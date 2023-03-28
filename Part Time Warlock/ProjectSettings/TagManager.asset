@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bullet
+  - ShadowPosition
+  - Ice
+  - Fire
+  - Enemy
+  - Coin
+  - FireWall
+  - Border
+  - Tome
+  - Portal
+  - Rooms
+  - SpawnPoint
+  - Entry
+  - WallCheckerLeft
+  - WallCheckerDown
+  - WallCheckerRight
+  - WallCheckerUp
+  - PlayerProx
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - ShadowArcher
+  - SlimeAggro
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2513412435
+    locked: 0
+  - name: FG
+    uniqueID: 1972415647
+    locked: 0
+  - name: UI
+    uniqueID: 3120786795
+    locked: 0
