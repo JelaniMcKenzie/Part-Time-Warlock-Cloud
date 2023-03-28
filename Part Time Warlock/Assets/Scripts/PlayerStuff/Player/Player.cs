@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField] public AudioClip spellSound = null;
     [SerializeField] public AudioClip iceSound = null;
     [SerializeField] public AudioClip fireClip = null;
+    [SerializeField] public AudioClip lightningClip = null;
 
 
 
@@ -211,6 +212,8 @@ public class Player : MonoBehaviour
                     mana -= 0.2f;
                     spellIce--;
                     manaBar.UpdateManaBar();
+                    spellFire = 0; //change line of code as this will be rudimentary
+                    spellLightning = 0;
                 }
                 else if (canFire == true)
                 {
@@ -224,10 +227,13 @@ public class Player : MonoBehaviour
                     mana -= 0.3333333333333333333f;
                     spellFire--;
                     manaBar.UpdateManaBar();
+                    spellIce = 0; //change line of code as this will be rudimentary
+                    spellLightning = 0; 
                 }
                 else if (canLightning == true)
                 {
                     GameObject l = Instantiate(lightningPellet, staffTip.transform.position, Quaternion.identity);
+                    AudioSource.PlayClipAtPoint(lightningClip, transform.position, 1);
                     //L.transform.position = Hand.transform.position;
                     Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -237,6 +243,8 @@ public class Player : MonoBehaviour
                     mana -= 0.5f;
                     spellLightning--;
                     manaBar.UpdateManaBar();
+                    spellIce = 0; //change line of code as this will be rudimentary
+                    spellFire = 0;
                 }
             }
             

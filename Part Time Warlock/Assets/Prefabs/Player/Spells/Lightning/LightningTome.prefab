@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8811874020519356257
 SpriteRenderer:
@@ -94,9 +94,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8811874020519356252}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.42470083, y: 0.60891, z: 0.2}
   m_Center: {x: -0.0014172213, y: -0.014170211, z: 0}
 --- !u!114 &8811874020519356255
@@ -113,4 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUpID: 2
   MB: {fileID: 0}
-  PowerUpSound: {fileID: 8300000, guid: 4016c8dda5e2cf44f8e72d9ea2d74e62, type: 3}
+  PowerUpSound: {fileID: 8300000, guid: a27ae245f760b4bf191c0234d3b43918, type: 3}

@@ -512,7 +512,7 @@ Transform:
   - {fileID: 8771377461835240735}
   - {fileID: 2359026352415005615}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8771377463029797779
 SpriteRenderer:
@@ -582,18 +582,18 @@ MonoBehaviour:
   pelletSpeed: 10
   staffArm: {fileID: 0}
   staffTip: {fileID: 6569334813343694460}
-  Pellet: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
-  IcePellet: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
-  FirePellet: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
-  LightningPellet: {fileID: 0}
-  Pwr: {fileID: 0}
-  UI: {fileID: 0}
-  HB: {fileID: 0}
-  MB: {fileID: 0}
-  SpellSound: {fileID: 8300000, guid: e576644fa8fbd01419470f76b9f03586, type: 3}
-  IceSound: {fileID: 8300000, guid: e8d21a37086d63648af1b22c6aeeea18, type: 3}
-  FireClip: {fileID: 8300000, guid: ff1b4459efbbc9343931fcd56996a1c8, type: 3}
-  Health: 1
+  pellet: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
+  icePellet: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
+  firePellet: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
+  lightningPellet: {fileID: 5972347860573988607, guid: 5f6123d52fe7777478986f2363c8939f, type: 3}
+  powerUps: {fileID: 0}
+  uiManager: {fileID: 0}
+  healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  spellSound: {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
+  iceSound: {fileID: 8300000, guid: 8171342f1983747b3a1e3a85ad95097b, type: 3}
+  fireClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
+  health: 0
   maxHealth: 1
   scene: Lose
   canHit: 1

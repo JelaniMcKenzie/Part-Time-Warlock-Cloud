@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4052731378346654987
 SpriteRenderer:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUpID: 1
   MB: {fileID: 0}
-  PowerUpSound: {fileID: 8300000, guid: 4016c8dda5e2cf44f8e72d9ea2d74e62, type: 3}
+  PowerUpSound: {fileID: 8300000, guid: a27ae245f760b4bf191c0234d3b43918, type: 3}
 --- !u!65 &4052731378346654985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109,8 +109,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4052731378346654984}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.64, y: 0.64, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
