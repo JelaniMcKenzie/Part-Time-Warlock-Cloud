@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
     [SerializeField] public AudioClip fireClip = null;
     [SerializeField] public AudioClip lightningClip = null;
 
+    //------------------Spell list------------------------------
+
+    public List<Spell> spells = new List<Spell>();
 
 
     public float health;
@@ -45,7 +48,7 @@ public class Player : MonoBehaviour
     public int coinNum = 0;
     public float timeBetweenShots = 0.2f;
     private float shotCounter;
-
+    [SerializeField] public string activeSpell = "";
 
     //Spell Fields
     public bool tome = false;
@@ -78,16 +81,19 @@ public class Player : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public float spellIce = 5;
-    public float spellLightning = 2;
-    public float maxIce;
-    public float spellFire = 3;
-    public float maxFire;
+    public int spellIce = 5;
+    public int spellLightning = 2;
+    public int maxIce;
+    public int spellFire = 3;
+    public int maxFire;
 
     public float mana;
     public float maxMana = 1f;
     void Start()
     {
+        spells.Add(new IceSpell());
+        spells.Add(new FireSpell());
+        spells.Add(new LightningSpell());
         canHit = true;
         powerUps = FindObjectOfType<PowerUps>();
         uiManager = FindObjectOfType<UIManager>();
@@ -104,7 +110,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ammo.ToString());
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (canMove == true)
         {
@@ -200,7 +205,7 @@ public class Player : MonoBehaviour
         {
             if (Time.realtimeSinceStartup > fireTime)
             {
-                if (canIce == true)
+                /*if (canIce == true)
                 {
                     GameObject k = Instantiate(icePellet, staffTip.transform.position, Quaternion.identity);
                     AudioSource.PlayClipAtPoint(iceSound, transform.position, 1);
@@ -238,14 +243,16 @@ public class Player : MonoBehaviour
                     Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     l.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    l.GetComponent<Rigidbody>().velocity = l.transform.right * 10f;
+                    l.GetComponent<Rigidbody>().velocity = l.transform.right * 20f;
                     // change the 10 to make it slower if need be
                     mana -= 0.5f;
                     spellLightning--;
                     manaBar.UpdateManaBar();
                     spellIce = 0; //change line of code as this will be rudimentary
                     spellFire = 0;
-                }
+                }*/
+
+
             }
             
 
@@ -282,6 +289,47 @@ public class Player : MonoBehaviour
         }
         
 
+    }
+
+    public void CastSpell(GameObject spellPrefab, AudioClip soundClip, float velocity, float manaCost,  int spellCount, int otherSpellCount)
+    {
+        if (powerUps.PowerUpID < 0 || powerUps.PowerUpID >= spells.Count)
+        {
+            return;
+        }
+
+        Spell spell = spells[powerUps.PowerUpID];
+        if (spell.maxUses <= 0 || mana < spell.manaCost)
+        {
+            return;
+        }
+
+        spell.Cast(staffTip.transform, Camera.main.transform);
+    }
+
+    public void CastActiveSpell()
+    {
+        switch (activeSpell)
+        {
+            case "ice":
+                if (canIce)
+                {
+                    //CastSpell(icePellet, iceSound, 10f, 0.2f, spellIce, spellFire);
+                }
+                break;
+            case "fire":
+                if (canFire)
+                {
+                    //CastSpell(firePellet, fireClip, 10f, 0.3333333333333333333f, spellFire,  spellIce);
+                }
+                break;
+            case "lightning":
+                if (canLightning)
+                {
+                    //CastSpell(lightningPellet, lightningClip, 20f, 0.5f, spellLightning, spellIce);
+                }
+                break;
+        }
     }
 
     public void ShootLogic()

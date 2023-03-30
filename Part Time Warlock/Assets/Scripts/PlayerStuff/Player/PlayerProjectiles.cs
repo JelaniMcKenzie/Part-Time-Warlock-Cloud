@@ -6,20 +6,25 @@ public class PlayerProjectiles : MonoBehaviour
 {
     // Start is called before the first frame update
     public Player P = null;
-    public GameObject Firewall = null;
-    public AudioClip FireClip = null;
+    public GameObject firewall = null;
+    public AudioClip fireClip = null;
+
+
+    public AudioClip spellSound;
+    public float speed = 10f;
+
+    private Rigidbody rb;
 
     Vector3 dir;
     //checks what direction the player is facing and fires there
     void Start()
     {
-        //2.5f refers to the amount of time before the gameobject gets destroyed
-        P = FindObjectOfType<Player>();
-        if (gameObject.tag == "Fire")
-        {
-            
-        }
-        
+       rb = GetComponent<Rigidbody>();
+       AudioSource.PlayClipAtPoint(spellSound, transform.position, 4);
+
+       //2.5f refers to the amount of time before the gameobject gets destroyed
+       P = FindObjectOfType<Player>();
+       
     }
 
     // Update is called once per frame
@@ -31,6 +36,8 @@ public class PlayerProjectiles : MonoBehaviour
             StartCoroutine(WaitForFire());
         }
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,8 +54,8 @@ public class PlayerProjectiles : MonoBehaviour
 
     public void FireWall()
     {
-            Instantiate(Firewall, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+        Instantiate(firewall, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
         
     }
         

@@ -127,8 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   P: {fileID: 0}
-  Firewall: {fileID: 3919298685696993394, guid: f58820879958e4f4cbb607c03c2beeb9, type: 3}
-  FireClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
+  firewall: {fileID: 3919298685696993394, guid: f58820879958e4f4cbb607c03c2beeb9, type: 3}
+  fireClip: {fileID: 0}
+  spellSound: {fileID: 0}
+  speed: 10
+  spellID: 
 --- !u!95 &1639810759
 Animator:
   serializedVersion: 5
