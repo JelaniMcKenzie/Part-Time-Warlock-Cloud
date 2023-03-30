@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PowerUps : MonoBehaviour
 {
-    [SerializeField] public int PowerUpID;
+    [SerializeField] public int PowerUpID ;
     private Player P = null;
     private UIManager UI = null;
     public ManaBar MB = null;
     [SerializeField] public AudioClip PowerUpSound = null;
-
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +30,6 @@ public class PowerUps : MonoBehaviour
             AudioSource.PlayClipAtPoint(PowerUpSound, transform.position, 4);
             if (PowerUpID == 0)
             {
-                P.activeSpell = "ice";
                 if (P.canFire == true)
                 {
                     P.canFire = false;
@@ -49,7 +46,6 @@ public class PowerUps : MonoBehaviour
 
             else if(PowerUpID == 1)
             {
-                P.activeSpell = "fire";
                 if (P.canIce == true)
                 {
                     P.canIce = false;
@@ -66,7 +62,6 @@ public class PowerUps : MonoBehaviour
 
             else if (PowerUpID == 2)
             {
-                P.activeSpell = "lightning";
                 if (P.canFire == true || P.canIce == false)
                 {
                     P.canFire = false;
