@@ -10,8 +10,8 @@ public class Aim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HF = FindObjectOfType<HandFlip>();
-        PAnim = FindObjectOfType<PlayerAnimations>();
+        HF = FindAnyObjectByType<HandFlip>();
+        PAnim = FindAnyObjectByType<PlayerAnimations>();
         Cursor.visible = false;
     }
 

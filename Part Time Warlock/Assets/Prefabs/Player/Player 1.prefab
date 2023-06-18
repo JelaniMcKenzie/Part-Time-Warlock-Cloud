@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5292227434973637048
+--- !u!1 &1958766353
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2359026352415005615}
-  - component: {fileID: 5271950805340359645}
-  - component: {fileID: 2239257302965835059}
+  - component: {fileID: 1958766354}
+  - component: {fileID: 1958766355}
+  - component: {fileID: 1958766357}
   m_Layer: 0
   m_Name: Prox
   m_TagString: PlayerProx
@@ -18,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2359026352415005615
+--- !u!4 &1958766354
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5292227434973637048}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4907353}
-  m_LocalScale: {x: 7.8021674, y: 7.8021674, z: 7.8021674}
+  m_GameObject: {fileID: 1958766353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7126409}
+  m_LocalScale: {x: 4.9332, y: 4.9332, z: 4.9332}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8771377463029797776}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5271950805340359645
+--- !u!212 &1958766355
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5292227434973637048}
+  m_GameObject: {fileID: 1958766353}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -50,6 +50,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 0.9764151, b: 0.9764151, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!135 &2239257302965835059
+--- !u!135 &1958766357
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5292227434973637048}
+  m_GameObject: {fileID: 1958766353}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -104,8 +106,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.50000006
+  m_Center: {x: 0, y: -0.0000076293945, z: 0.000000011573398}
 --- !u!1 &6569334812775653879
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +218,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -332,6 +336,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -422,6 +428,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -510,9 +518,9 @@ Transform:
   m_Children:
   - {fileID: 6569334812775653872}
   - {fileID: 8771377461835240735}
-  - {fileID: 2359026352415005615}
+  - {fileID: 1958766354}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8771377463029797779
 SpriteRenderer:
@@ -531,6 +539,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -593,6 +603,7 @@ MonoBehaviour:
   spellSound: {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
   iceSound: {fileID: 8300000, guid: 8171342f1983747b3a1e3a85ad95097b, type: 3}
   fireClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
+  lightningClip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
   health: 0
   maxHealth: 1
   scene: Lose
@@ -602,6 +613,9 @@ MonoBehaviour:
   currentTome: 0
   coinNum: 0
   timeBetweenShots: 0.2
+  activeScene:
+    m_Handle: 0
+  handParent: {fileID: 6569334812775653879}
   tome: 0
   canIce: 0
   canFire: 0
@@ -623,7 +637,7 @@ MonoBehaviour:
   maxMana: 1
 --- !u!95 &8771377463029797781
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -637,10 +651,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8771377463029797780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +675,8 @@ MonoBehaviour:
   P: {fileID: 0}
   currentAnim: Idle
   direction: Right
+  activeScene:
+    m_Handle: 0
   hand: {fileID: 8771377461428620953}
   staff: {fileID: 6569334813151368831}
 --- !u!54 &8771377463029797783
@@ -720,6 +738,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e576644fa8fbd01419470f76b9f03586, type: 3}
+  m_Resource: {fileID: 8300000, guid: e576644fa8fbd01419470f76b9f03586, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.184
   m_Pitch: 1

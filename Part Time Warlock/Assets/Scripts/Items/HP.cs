@@ -11,9 +11,9 @@ public class HP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
-        UI = FindObjectOfType<UIManager>();
-        HB = FindObjectOfType<HealthBar>();
+        P = FindAnyObjectByType<Player>();
+        UI = FindAnyObjectByType<UIManager>();
+        HB = FindAnyObjectByType<HealthBar>();
     }
 
     // Update is called once per frame

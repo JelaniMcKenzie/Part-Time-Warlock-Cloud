@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 275988022219552335}
   - component: {fileID: 275988022219552334}
   - component: {fileID: 180411283}
-  m_Layer: 6
+  - component: {fileID: 6378594308658900420}
+  m_Layer: 3
   m_Name: ShadowArcher
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -163,6 +164,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &6378594308658900420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275988022219552323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e4b45cca66a4e4fb96c9ca974c0e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyDeathAnim: {fileID: 3924345545686335828, guid: d5d53ede28a78094dbf75c46a67538b6, type: 3}
+  Anim: {fileID: 0}
+  frozen: 0
+  EnemyID: 
+  Arrow: {fileID: 0}
+  UI: {fileID: 0}
+  EA: {fileID: 0}
+  SM: {fileID: 0}
+  MB: {fileID: 0}
+  shadow: {fileID: 0}
+  isOnFire: 0
+  EnemyHealth: 3
+  EnemySpeed: 4
+  BurnSeconds: 5
+  addAmmo: 0
+  canMove: 0
+  SlimeMove: {fileID: 0}
 --- !u!1 &2745928774343931507
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +204,7 @@ GameObject:
   - component: {fileID: 5648889486854867808}
   - component: {fileID: 6518835122570249106}
   - component: {fileID: 1015748266}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

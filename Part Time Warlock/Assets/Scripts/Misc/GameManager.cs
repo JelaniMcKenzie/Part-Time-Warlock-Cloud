@@ -14,14 +14,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
-        UI = FindObjectOfType<UIManager>();
+        P = FindAnyObjectByType<Player>();
+        UI = FindAnyObjectByType<UIManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey /*&& (scene != "Win" || scene != "Lose")*/)
+        if (Input.anyKey  && SceneManager.GetActiveScene().name != "DungeonLevel"/*&& (scene != "Win" || scene != "Lose")*/)
         {
             SceneManager.LoadScene(scene);
         }

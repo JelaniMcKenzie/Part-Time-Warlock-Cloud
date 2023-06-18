@@ -18,20 +18,25 @@ public class ShadowArcher : MonoBehaviour
     public bool canTP = true;
     public bool canShoot = false;
     public float Health = 5;
-    public int BurnSeconds = 5;
+    public int burnSeconds = 5;
     public bool isOnFire = false;
     [SerializeField] public AudioClip Death = null;
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
-        AR = FindObjectOfType<ArrowRotate>();
-        SM = FindObjectOfType<SpawnManager>();
+        P = FindAnyObjectByType<Player>();
+        AR = FindAnyObjectByType<ArrowRotate>();
+        SM = FindAnyObjectByType<SpawnManager>();
         
     }
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void ShadowLogic()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (Health <= 0f)
@@ -66,17 +71,16 @@ public class ShadowArcher : MonoBehaviour
                     Teleport();
                     Shoot();
                 }
-                
-                
+
+
                 //Bow Looks at player
                 Vector3 dir = P.transform.position - Bow.transform.position;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 Bow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 timer = 0;
             }
-        }    
+        }
     }
-
     public void Teleport()
     {
         ShadowPosition = GameObject.FindGameObjectsWithTag("ShadowPosition");
@@ -96,7 +100,7 @@ public class ShadowArcher : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
         {
@@ -133,7 +137,7 @@ public class ShadowArcher : MonoBehaviour
 
     public IEnumerator Aflame()
     {
-        for (int s = 0; s <= BurnSeconds; s++)
+        for (int s = 0; s <= burnSeconds; s++)
         {
             Health -= 0.5f;
             yield return new WaitForSeconds(1.5f);
@@ -142,7 +146,7 @@ public class ShadowArcher : MonoBehaviour
 
     public IEnumerator BurnTime()
     {
-        yield return new WaitForSeconds(BurnSeconds);
+        yield return new WaitForSeconds(burnSeconds);
         isOnFire = false;
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
     }
@@ -154,7 +158,7 @@ public class ShadowArcher : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         canTP = true;
-    }
+    }*/
 
     public void Shoot()
     {

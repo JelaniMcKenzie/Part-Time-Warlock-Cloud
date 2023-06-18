@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
     public float timeBetweenShots = 0.2f;
     private float shotCounter;
 
+    public Scene activeScene;
+    public GameObject handParent = null;
 
     //Spell Fields
     public bool tome = false;
@@ -88,23 +90,33 @@ public class Player : MonoBehaviour
     public float maxMana = 1f;
     void Start()
     {
+        activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "Apartment")
+        {
+            handParent.SetActive(false);
+            canShoot = false;
+        } else
+        {
+            handParent.SetActive(true);
+            canShoot= true;
+            mana = 0f;
+            //manaBar.UpdateManaBar();
+            health = maxHealth;
+            //healthBar.UpdateHealthBar();
+        }
         canHit = true;
-        powerUps = FindObjectOfType<PowerUps>();
-        uiManager = FindObjectOfType<UIManager>();
-        manaBar = FindObjectOfType<ManaBar>();
-        healthBar = FindObjectOfType<HealthBar>();
+        powerUps = FindAnyObjectByType<PowerUps>();
+        uiManager = FindAnyObjectByType<UIManager>();
+        manaBar = FindAnyObjectByType<ManaBar>();
+        healthBar = FindAnyObjectByType<HealthBar>();
         //vel = new Vector3();
-        canShoot = true;
-        mana = 0f;
-        manaBar.UpdateManaBar();
-        health = maxHealth;
-        healthBar.UpdateHealthBar();
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ammo.ToString());
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (canMove == true)
         {
@@ -289,7 +301,7 @@ public class Player : MonoBehaviour
         if (ammo > 0)
         {
             ammo--;
-            
+
             GameObject K = Instantiate(pellet, staffTip.transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(spellSound, transform.position, 4);
             //K.transform.position = Hand.transform.position;

@@ -14,19 +14,15 @@ TagManager:
   - Border
   - Tome
   - Portal
-  - Rooms
-  - SpawnPoint
-  - Entry
-  - WallCheckerLeft
-  - WallCheckerDown
-  - WallCheckerRight
-  - WallCheckerUp
   - PlayerProx
+  - Lightning
+  - FloorMat
+  - BigCoin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - enemyLayer
   - Water
   - UI
   - ShadowArcher

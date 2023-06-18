@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         timerActive = true;
-        P = FindObjectOfType<Player>();
+        P = FindAnyObjectByType<Player>();
         //TomeDisplay.enabled = false;
     }
 

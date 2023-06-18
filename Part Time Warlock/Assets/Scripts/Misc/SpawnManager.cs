@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
+        P = FindAnyObjectByType<Player>();
         GetComponent<SpriteRenderer>().enabled = false;
         Anim = GetComponent<Animator>();
     }

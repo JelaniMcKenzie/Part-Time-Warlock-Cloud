@@ -12,9 +12,9 @@ public class PowerUps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
-        UI = FindObjectOfType<UIManager>();
-        MB = FindObjectOfType<ManaBar>();
+        P = FindAnyObjectByType<Player>();
+        UI = FindAnyObjectByType<UIManager>();
+        MB = FindAnyObjectByType<ManaBar>();
     }
 
     // Update is called once per frame

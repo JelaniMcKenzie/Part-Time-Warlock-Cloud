@@ -10,7 +10,7 @@ public class ManaBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
+        P = FindAnyObjectByType<Player>();
     }
 
     // Update is called once per frame

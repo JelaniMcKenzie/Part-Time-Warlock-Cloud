@@ -10,8 +10,8 @@ public class Coin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
-        UI = FindObjectOfType<UIManager>();
+        P = FindAnyObjectByType<Player>();
+        UI = FindAnyObjectByType<UIManager>();
     }
 
     // Update is called once per frame

@@ -14,7 +14,7 @@ public class PlayerProjectiles : MonoBehaviour
     void Start()
     {
         //2.5f refers to the amount of time before the gameobject gets destroyed
-        P = FindObjectOfType<Player>();
+        P = FindAnyObjectByType<Player>();
         if (gameObject.tag == "Fire")
         {
             

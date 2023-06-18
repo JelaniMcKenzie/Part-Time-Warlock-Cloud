@@ -9,7 +9,7 @@ public class ArrowRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindObjectOfType<Player>();
+        P = FindAnyObjectByType<Player>();
         AudioSource.PlayClipAtPoint(Arrow, transform.position, 4);
         Vector3 dir = P.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

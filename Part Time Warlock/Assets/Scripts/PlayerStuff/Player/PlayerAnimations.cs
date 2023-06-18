@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAnimations : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerAnimations : MonoBehaviour
     public string currentAnim = "Idle";
     public string direction = "Right";
     AnimatorStateInfo animState;
+    public Scene activeScene;
 
     public GameObject hand = null;
     public GameObject staff = null;
@@ -18,8 +21,8 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         Anim = GetComponent<Animator>();
-        P = FindObjectOfType<Player>();
-        
+        P = FindAnyObjectByType<Player>();
+        activeScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -27,47 +30,17 @@ public class PlayerAnimations : MonoBehaviour
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
-        Anim.GetCurrentAnimatorStateInfo(0); //0 is the default animation layer
-        //currentAnim = "Idle";
-    
+        Anim.GetCurrentAnimatorClipInfo(0); //0 is the default animation layer
+                                             //currentAnim = "Idle";
         if (P.canMove == true)
         {
-            MouseAim();
-            //--------------------NORMAL WASD----------------
-
-            if (Input.GetKey(KeyCode.D) || xAxis >= 1)
+            if (activeScene.name != "Apartment")
             {
-                currentAnim = direction;
-            }
-            if (Input.GetKey(KeyCode.A) || xAxis <= -1)
+                CombatAnim();
+            } else
             {
-                currentAnim = direction;
-            }
-            if (Input.GetKey(KeyCode.W) || yAxis >= 1)
-            {
-                currentAnim = direction;
-            }
-            if (Input.GetKey(KeyCode.S) || yAxis <= -1)
-            {
-                currentAnim = direction;
-            }
-
-            if (!animState.IsName(currentAnim))
-            {   //checks what the name of the animation is (e.g right)
-                //if the given animation ISN'T playing when the key is pressed, it immediately plays it
-                Anim.Play(currentAnim, 0);
-            }
-            
-
-            if (direction == "Down")
-            {
-                hand.GetComponent<SpriteRenderer>().sortingOrder = 5;
-                staff.GetComponent<SpriteRenderer>().sortingOrder = 4;
-            }
-            else
-            {
-                hand.GetComponent<SpriteRenderer>().sortingOrder = 3;
-                staff.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                ApartmentAnim();
+                
             }
         }
     }
@@ -112,13 +85,90 @@ public class PlayerAnimations : MonoBehaviour
                 
             }
         }
+    }
+
+    private void CombatAnim() {
+        MouseAim();
+        //--------------------NORMAL WASD----------------
+        if (Input.GetKeyDown(KeyCode.D) || xAxis >= 1)
+        {
+            currentAnim = direction;
+        }
+        if (Input.GetKeyDown(KeyCode.A) || xAxis <= -1)
+        {
+            currentAnim = direction;
+        }
+        if (Input.GetKeyDown(KeyCode.W) || yAxis >= 1)
+        {
+            currentAnim = direction;
+        }
+        if (Input.GetKeyDown(KeyCode.S) || yAxis <= -1)
+        {
+            currentAnim = direction;
+        }
 
 
+        if (direction == "Down")
+        {
+            hand.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            staff.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        }
+        else
+        {
+            hand.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            staff.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        }
+        if (!animState.IsName(currentAnim))
+        {   //checks what the name of the animation is (e.g right)
+            //if the given animation ISN'T playing when the key is pressed, it immediately plays it
+            Anim.Play(currentAnim, 0);
+        }
 
+    }
 
+    private void ApartmentAnim()
+    {
+        // Determine the direction of movement based on the x and y axis values
+        if (xAxis > 0)
+        {
+            currentAnim = "Right";
+        }
+        else if (xAxis < 0)
+        {
+            currentAnim = "Left";
+        }
+        else if (yAxis > 0)
+        {
+            currentAnim = "Up";
+        }
+        else if (yAxis < 0)
+        {
+            currentAnim = "Down";
+        }
+        else
+        {
+            // If there is no movement, play the idle animation in the current direction
+            switch (currentAnim)
+            {
+                case "Right":
+                    currentAnim = "IdleRight";
+                    break;
+                case "Left":
+                    currentAnim = "IdleLeft";
+                    break;
+                case "Up":
+                    currentAnim = "IdleUp";
+                    break;
+                case "Down":
+                    currentAnim = "Idle";
+                    break;
+            }
+        }
 
-
-
-
+        // Check if the current animation is already playing to prevent unnecessary animation restarts
+        if (!animState.IsName(currentAnim))
+        {
+            Anim.Play(currentAnim, 0);
+        }
     }
 }

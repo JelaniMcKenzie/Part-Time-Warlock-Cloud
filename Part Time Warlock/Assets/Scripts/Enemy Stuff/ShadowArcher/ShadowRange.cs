@@ -9,8 +9,8 @@ public class ShadowRange : MonoBehaviour
     public Player P = null;
     void Start()
     {
-        Shadow = FindObjectOfType<ShadowArcher>();
-        P = FindObjectOfType<Player>();
+        Shadow = FindAnyObjectByType<ShadowArcher>();
+        P = FindAnyObjectByType<Player>();
         GetComponent<SpriteRenderer>().enabled = false;
     }
 
