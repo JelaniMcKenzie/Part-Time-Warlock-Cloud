@@ -2392,14 +2392,21 @@ MonoBehaviour:
   slotHolder: {fileID: 139906617}
   spellHolder: {fileID: 1701684425}
   itemToAdd: {fileID: 11400000, guid: 39f2dd753e64e21448392596469b4767, type: 2}
-  itemToRemove: {fileID: 11400000, guid: b74c2291d7113db42853de3f652a8f27, type: 2}
+  itemToRemove: {fileID: 0}
   startingItems:
   - item: {fileID: 11400000, guid: b74c2291d7113db42853de3f652a8f27, type: 2}
-    quantity: 3
-  spellToAdd: {fileID: 11400000, guid: 4a38f9eb8e26fa741b59a2984e8d48ca, type: 2}
+    quantity: 1
+  items: []
+  spellToAdd: {fileID: 11400000, guid: 961aade58f78e824f8dcf30675fb28ea, type: 2}
   spellToRemove: {fileID: 0}
   startingSpells:
+  - item: {fileID: 11400000, guid: 428ea5b0984051049bf0386565c3dc52, type: 2}
+    quantity: 0
   - item: {fileID: 11400000, guid: 4679defa99687d5419b711feea0250d1, type: 2}
+    quantity: 0
+  - item: {fileID: 11400000, guid: 4a38f9eb8e26fa741b59a2984e8d48ca, type: 2}
+    quantity: 0
+  - item: {fileID: 11400000, guid: 961aade58f78e824f8dcf30675fb28ea, type: 2}
     quantity: 0
   spells: []
 --- !u!4 &1350227918
@@ -3363,10 +3370,6 @@ PrefabInstance:
     - target: {fileID: 4428265668298808229, guid: 7efa9a6927a75fa49aa864aae0b37344, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5137185092261599166, guid: 7efa9a6927a75fa49aa864aae0b37344, type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

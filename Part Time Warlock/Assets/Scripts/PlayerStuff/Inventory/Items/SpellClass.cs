@@ -31,7 +31,7 @@ public class SpellClass : ItemClass
     public float movementDistance;
 
     public override ItemClass GetItem() { return this; }
-    //return this works because its of a type tool class AND a type of itemclass
+    //return this works because its of a type spell class AND a type of itemclass
 
     public override ToolClass GetTool() { return null; }
 

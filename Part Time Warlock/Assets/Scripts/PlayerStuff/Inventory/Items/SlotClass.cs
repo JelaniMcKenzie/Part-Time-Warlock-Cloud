@@ -28,6 +28,7 @@ public class SlotClass
         this.quantity = slot.GetQuantity();
     }
 
+
     public void Clear()
     {
         this.item = null;

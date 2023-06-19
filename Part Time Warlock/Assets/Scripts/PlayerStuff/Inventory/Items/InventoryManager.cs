@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private SpellClass spellToRemove;
     [SerializeField] private SlotClass[] startingSpells;
     public SlotClass[] spells;
-    //[SerializeField] private List<SpellSlotClass> spellsList = new List<SpellSlotClass>();
+    
 
     private GameObject[] slots; //keeps the gameobject of every item slot
     private GameObject[] spellSlots; //keeps the gameobject of every spell slot
@@ -54,16 +54,14 @@ public class InventoryManager : MonoBehaviour
         {
             spells[i] = startingSpells[i];
         }
+
         //set all the slots
         for (int i = 0; i < slotHolder.transform.childCount; i++)
         {
             slots[i] = slotHolder.transform.GetChild(i).gameObject;
         }
-
-        
-        spellSlots = new GameObject[spellHolder.transform.childCount];
         //set all the spell slots
-        for (int i = 0;i < spellHolder.transform.childCount; i++)
+        for (int i = 0; i < spellHolder.transform.childCount; i++)
         {
             spellSlots[i] = spellHolder.transform.GetChild(i).gameObject;
         }
@@ -72,9 +70,10 @@ public class InventoryManager : MonoBehaviour
         Add(itemToAdd);
         Remove(itemToRemove);
 
+
         RefreshSpellsUI();
-        //AddSpell(spellToAdd);
-        //RemoveSpell(spellToRemove);
+        AddSpell(spellToAdd);
+        RemoveSpell(spellToRemove);
         //ReplaceSpells();
     }
 
@@ -114,17 +113,11 @@ public class InventoryManager : MonoBehaviour
         {
             try
             {
-                if (spells[i].GetItem() != null)
-                {
-                    spellSlots[i].transform.GetChild(0).GetComponent<Image>().enabled = true;
-                    if (spells[i].GetItem() is SpellClass)
-                    {
-                        SpellClass spellClass = (SpellClass)spells[i].GetItem();
-                        spellSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = spellClass.GetSpell().spellRune;
-                    }
-                    spellSlots[i].transform.GetChild(0).GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 0, 0);
-                    // gets the image in the respective item slot and sets the sprite equal to the item's icon
-                }
+                spellSlots[i].transform.GetChild(0).GetComponent<Image>().enabled = true;
+                spellSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = spells[i].GetItem().GetSpell().spellRune;   
+                spellSlots[i].transform.GetChild(0).GetComponent<Image>().rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+                // gets the image in the respective item slot and sets the sprite equal to the item's icon
+
             }
             catch
             {
@@ -168,18 +161,25 @@ public class InventoryManager : MonoBehaviour
             
         }
         RefreshUI();
-        RefreshSpellsUI();
         return true;
     }
-    /*
+    
     public bool AddSpell(SpellClass spell)
     {
-        SpellSlotClass spellSlot = ContainsSpell(spell);
-        if (spellSlot == null && spellsList.Count < spells.Length)
+        SlotClass spellSlot = ContainsSpell(spell);
+        if (spellSlot == null)
         {
+            for (int i = 0; i < spells.Length; i++)
+            {
+                if (spells[i].GetItem() == null)
+                {
+                    spells[i].AddItem(spell, 1);
+                    Debug.Log("Spell Added");
+                    break;
+                }
+            }
             //idea: do I need a separate spellmanager class?
-            spellsList.Add(new SpellSlotClass(spell));
-            Debug.Log("Spell Added");
+            
         }
         else
         {
@@ -191,7 +191,7 @@ public class InventoryManager : MonoBehaviour
         RefreshSpellsUI();
         return true;
     }
-    */
+    
 
     public bool Remove(ItemClass item)
     {
@@ -230,32 +230,43 @@ public class InventoryManager : MonoBehaviour
         RefreshUI();
         return true;
     }
-    /*
+    
     public bool RemoveSpell(SpellClass spell)
     {
-        SpellSlotClass tempSpell = ContainsSpell(spell);
-        if (tempSpell != null)
+        SlotClass temp = ContainsSpell(spell);
+        if (temp != null)
         {
-                SpellSlotClass spellToRemove = new SpellSlotClass();
-                foreach (SpellSlotClass slot in spellsList)
+            if (temp.GetQuantity() > 1)
+            {
+                temp.SubtractQuantity(1);
+            }
+            else
+            {
+                int slotToRemoveIndex = 0;
+
+                for (int i = 0; i < spells.Length; i++)
                 {
-                    if (slot.GetSpell() == spell)
+                    if (spells[i].GetItem() == spell)
                     {
-                        spellToRemove = slot;
+                        slotToRemoveIndex = i;
                         break;
                     }
                 }
-                spellsList.Remove(spellToRemove);
+                spells[slotToRemoveIndex].Clear();
+            }
+
         }
         else
         {
             return false;
             //no need to change the UI because nothing changed about it
         }
+
+
         RefreshSpellsUI();
         return true;
     }
-    */
+    
     public SlotClass Contains(ItemClass item)
     {
         for (int i = 0; i < items.Length; i++)
@@ -270,19 +281,23 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
-    /*
-    public SpellSlotClass ContainsSpell(SpellClass spellKey)
+    
+    public SlotClass ContainsSpell(SpellClass spell)
     {
-       foreach(SpellSlotClass spellSlot in spellsList)
-       {
-            if (spellSlot.GetSpell() == spellKey)
+        for (int i = 0; i < spells.Length; i++)
+        {
+            if (spells[i].GetItem() != null)
             {
-                return spellSlot;
+                if (spells[i].GetItem() == spell)
+                {
+                    return spells[i];
+                }
             }
-       }
+        }
         return null;
     }
 
+    /*
     public void ReplaceSpells()
     {
         List<ProjectileSpellClass> moveBasicShot = new List<ProjectileSpellClass>();
