@@ -17,14 +17,15 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private SlotClass[] startingItems;
     private SlotClass[] items;
 
+    /*
     [SerializeField] private SpellClass spellToAdd;
     [SerializeField] private SpellClass spellToRemove;
     [SerializeField] private SlotClass[] startingSpells;
     private SlotClass[] spells;
-    
+    */
 
     private GameObject[] slots; //keeps the gameobject of every item slot
-    private GameObject[] spellSlots; //keeps the gameobject of every spell slot
+    //private GameObject[] spellSlots; //keeps the gameobject of every spell slot
     private GameObject basicShotSpell;
     private GameObject movementSpell;
 
@@ -36,19 +37,20 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         slots = new GameObject[slotHolder.transform.childCount];
-        spellSlots = new GameObject[spellHolder.transform.childCount];
+        //spellSlots = new GameObject[spellHolder.transform.childCount];
         items = new SlotClass[slots.Length];
-        spells = new SlotClass[spellSlots.Length];
+        //spells = new SlotClass[spellSlots.Length];
 
         //initialize all the item & spell slots in the array with an instance of the SlotClass
         for (int i = 0; i < items.Length; i++)
         {
             items[i] = new SlotClass();
         }
-        for (int i = 0; i < spells.Length; i++)
+        
+        /*for (int i = 0; i < spells.Length; i++)
         {
             spells[i] = new SlotClass();
-        }
+        }*/
 
 
         //initialize any starter items & spells for the player
@@ -56,30 +58,33 @@ public class InventoryManager : MonoBehaviour
         {
             items[i] = startingItems[i];
         }
-        for (int i = 0; i < startingSpells.Length; i++)
+        
+        /*for (int i = 0; i < startingSpells.Length; i++)
         {
             spells[i] = startingSpells[i];
-        }
+        }*/
 
         //set all the slots
         for (int i = 0; i < slotHolder.transform.childCount; i++)
         {
             slots[i] = slotHolder.transform.GetChild(i).gameObject;
         }
+        /*
         //set all the spell slots
         for (int i = 0; i < spellHolder.transform.childCount; i++)
         {
             spellSlots[i] = spellHolder.transform.GetChild(i).gameObject;
         }
+        */
 
         RefreshUI();
         Add(itemToAdd, 1);
         Remove(itemToRemove);
 
 
-        RefreshSpellsUI();
-        AddSpell(spellToAdd);
-        RemoveSpell(spellToRemove);
+        //RefreshSpellsUI();
+        //AddSpell(spellToAdd);
+        //RemoveSpell(spellToRemove);
         //ReplaceSpells();
     }
 
@@ -92,7 +97,7 @@ public class InventoryManager : MonoBehaviour
             itemCursor.GetComponent<Image>().sprite = movingSlot.GetItem().itemIcon;
         }
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //we left clicked
         {
             if (isMovingItem)
             {
@@ -105,6 +110,19 @@ public class InventoryManager : MonoBehaviour
                 BeginItemMove();
             }
             
+        }
+        else if (Input.GetMouseButtonDown(1)) //we right clicked
+        {
+            if (isMovingItem)
+            {
+                //end item move
+                EndItemMove_Single();
+            }
+            else
+            {
+                //find the closest slot (the slot we clicked on)
+                BeginItemMove_Half();
+            }
         }
     }
 
@@ -139,6 +157,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    /*
     public void RefreshSpellsUI()
     {
         for (int i = 0; i < spells.Length; i++)
@@ -158,6 +177,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+    */
 
     public bool Add(ItemClass item, int quantity)
     {
@@ -167,7 +187,7 @@ public class InventoryManager : MonoBehaviour
         SlotClass slot = Contains(item);
         if (slot != null && slot.GetItem().isStackable)
         {
-            slot.AddQuantity(1);
+            slot.AddQuantity(quantity);
         }
         else
         {
@@ -195,7 +215,61 @@ public class InventoryManager : MonoBehaviour
         RefreshUI();
         return true;
     }
-    
+
+    public bool Remove(ItemClass item)
+    {
+        //items.Remove(item);
+
+        SlotClass temp = Contains(item);
+        if (temp != null)
+        {
+            if (temp.GetQuantity() > 1)
+            {
+                temp.SubtractQuantity(1);
+            }
+            else
+            {
+                int slotToRemoveIndex = 0;
+
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i].GetItem() == item)
+                    {
+                        slotToRemoveIndex = i;
+                        break;
+                    }
+                }
+                items[slotToRemoveIndex].Clear();
+            }
+
+        }
+        else
+        {
+            return false;
+            //no need to change the UI because nothing changed about it
+        }
+
+
+        RefreshUI();
+        return true;
+    }
+
+    public SlotClass Contains(ItemClass item)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].GetItem() != null)
+            {
+                if (items[i].GetItem() == item)
+                {
+                    return items[i];
+                }
+            }
+        }
+        return null;
+    }
+
+    /*
     public bool AddSpell(SpellClass spell)
     {
         SlotClass spellSlot = ContainsSpell(spell);
@@ -221,44 +295,6 @@ public class InventoryManager : MonoBehaviour
         
         
         RefreshSpellsUI();
-        return true;
-    }
-    
-    public bool Remove(ItemClass item)
-    {
-        //items.Remove(item);
-        
-        SlotClass temp = Contains(item);
-        if (temp != null)
-        {
-            if (temp.GetQuantity() > 1)
-            {
-                temp.SubtractQuantity(1);
-            }
-            else
-            {
-                int slotToRemoveIndex = 0;
-
-                for (int i = 0; i < items.Length; i++)
-                {
-                    if (items[i].GetItem() == item)
-                    {
-                        slotToRemoveIndex = i;
-                        break;
-                    }
-                }
-                items[slotToRemoveIndex].Clear();
-            }
-            
-        }
-        else
-        {
-            return false;
-            //no need to change the UI because nothing changed about it
-        }
-
-        
-        RefreshUI();
         return true;
     }
     
@@ -298,21 +334,6 @@ public class InventoryManager : MonoBehaviour
         return true;
     }
     
-    public SlotClass Contains(ItemClass item)
-    {
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i].GetItem() != null)
-            {
-                if (items[i].GetItem() == item)
-                {
-                    return items[i];
-                }
-            }
-        }
-        return null;
-    }
-    
     public SlotClass ContainsSpell(SpellClass spell)
     {
         for (int i = 0; i < spells.Length; i++)
@@ -328,7 +349,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    /*
+    
     public void ReplaceSpells()
     {
         List<ProjectileSpellClass> moveBasicShot = new List<ProjectileSpellClass>();
@@ -388,6 +409,27 @@ public class InventoryManager : MonoBehaviour
         return true;
     }
 
+    private bool BeginItemMove_Half()
+    {
+        originalSlot = GetClosestSlot();
+        if (originalSlot == null || originalSlot.GetItem() == null)
+        {
+            return false; //there is no item to move
+        }
+
+       
+        movingSlot = new SlotClass(originalSlot.GetItem(), Mathf.CeilToInt(originalSlot.GetQuantity() / 2f));
+        originalSlot.SubtractQuantity(Mathf.CeilToInt(originalSlot.GetQuantity() / 2f));
+
+        if (originalSlot.GetQuantity() == 0)
+        {
+            originalSlot.Clear();
+        }
+        RefreshUI();
+        isMovingItem = true;
+        return true;
+    }
+
     private bool EndItemMove()
     {
         originalSlot = GetClosestSlot();
@@ -434,7 +476,42 @@ public class InventoryManager : MonoBehaviour
         RefreshUI();
         return true;
     }
-    
+
+    private bool EndItemMove_Single()
+    {
+        originalSlot = GetClosestSlot();
+        if (originalSlot == null)
+        {
+            return false; //there is no item to move
+        }
+        if (originalSlot.GetItem() != null && originalSlot.GetItem() != movingSlot.GetItem())
+        {
+            return false;
+        }
+
+        movingSlot.SubtractQuantity(1);
+        if (originalSlot.GetItem() != null && originalSlot.GetItem() == movingSlot.GetItem())
+        {
+            originalSlot.AddQuantity(1);
+        }
+        else
+        {
+            originalSlot.AddItem(movingSlot.GetItem(), 1);
+        }
+        
+        if (movingSlot.GetQuantity() < 1)
+        {
+            isMovingItem = false;
+            movingSlot.Clear();
+        }
+        else
+        {
+            isMovingItem = true; 
+        }
+        RefreshUI();
+        return true;
+    }
+
     private SlotClass GetClosestSlot()
     {
         for (int i = 0; i < slots.Length; i++)

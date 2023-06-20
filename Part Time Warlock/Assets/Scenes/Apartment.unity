@@ -1041,6 +1041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8771377463029797769, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2393,20 +2397,9 @@ MonoBehaviour:
   itemToRemove: {fileID: 0}
   startingItems:
   - item: {fileID: 11400000, guid: b74c2291d7113db42853de3f652a8f27, type: 2}
-    quantity: 1
-  - item: {fileID: 11400000, guid: b74c2291d7113db42853de3f652a8f27, type: 2}
     quantity: 4
-  spellToAdd: {fileID: 0}
-  spellToRemove: {fileID: 0}
-  startingSpells:
-  - item: {fileID: 11400000, guid: 428ea5b0984051049bf0386565c3dc52, type: 2}
-    quantity: 0
-  - item: {fileID: 11400000, guid: 4679defa99687d5419b711feea0250d1, type: 2}
-    quantity: 0
-  - item: {fileID: 11400000, guid: 4a38f9eb8e26fa741b59a2984e8d48ca, type: 2}
-    quantity: 0
-  - item: {fileID: 11400000, guid: 961aade58f78e824f8dcf30675fb28ea, type: 2}
-    quantity: 0
+  - item: {fileID: 11400000, guid: b74c2291d7113db42853de3f652a8f27, type: 2}
+    quantity: 5
 --- !u!4 &1350227918
 Transform:
   m_ObjectHideFlags: 0
@@ -3140,7 +3133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1701684426
 RectTransform:
   m_ObjectHideFlags: 0
