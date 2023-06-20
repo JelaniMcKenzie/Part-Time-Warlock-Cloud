@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Aim : MonoBehaviour
 {
     [SerializeField] private Transform staffTip;
     public HandFlip HF = null;
     public PlayerAnimations PAnim = null;
+    public Scene activeScene;
     // Start is called before the first frame update
     void Start()
     {
+        if (activeScene.name == "Apartment")
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            Cursor.visible = false;
+        } 
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            Cursor.visible = true;
+        }
         HF = FindAnyObjectByType<HandFlip>();
         PAnim = FindAnyObjectByType<PlayerAnimations>();
-        Cursor.visible = false;
     }
 
     // Update is called once per frame
