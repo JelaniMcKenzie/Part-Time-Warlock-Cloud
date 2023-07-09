@@ -9,17 +9,14 @@ public class ConsumableClass : ItemClass
     //data specific to the consumable class
     public float healthAdded; //example placeholder variable
 
-
-    public override ItemClass GetItem() { return this; }
-    //return this works because its of a type tool class AND a type of itemclass
-
-    public override ToolClass GetTool() { return null; }
-
-    //return this doesn't work for MiscClass or ConsumableClass because its not of type tool
-    public override MiscClass GetMisc() { return null; }
-
     public override ConsumableClass GetConsumable() { return this; }
 
-    public override SpellClass GetSpell() { return null; }
+    public override void Use(Player p)
+    {
+        base.Use(p);
+        Debug.Log("Eat Consumable");
+        p.inventory.UseConsumable();
+    }
+
 
 }

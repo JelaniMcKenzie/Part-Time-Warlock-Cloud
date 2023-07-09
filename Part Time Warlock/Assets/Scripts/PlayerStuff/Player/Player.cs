@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     public float pelletSpeed = 10.0f;
     public Transform staffArm;
 
+
+    [Header("Spell Projectiles")]
+
     //--------------------Spell projectiles---------------------
     [SerializeField] public GameObject staffTip = null;
     [SerializeField] public GameObject pellet = null;
@@ -20,13 +23,21 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject firePellet = null;
     [SerializeField] public GameObject lightningPellet = null;
 
+
+    [Space(30)]
+
+
+    
     //--------------------Script comm fields--------------------
 
-    [SerializeField] public PowerUps powerUps = null;
-    [SerializeField] public UIManager uiManager = null;
-    [SerializeField] public HealthBar healthBar = null;
-    [SerializeField] public ManaBar manaBar = null;
+    public PowerUps powerUps = null;
+    public UIManager uiManager = null;
+    public HealthBar healthBar = null;
+    public ManaBar manaBar = null;
+    public InventoryManager inventory;
 
+
+    [Header("Audio Fields")]
     //-------------------Audio fields (CHANGE LATER)------------
     [SerializeField] public AudioClip spellSound = null;
     [SerializeField] public AudioClip iceSound = null;
@@ -34,7 +45,9 @@ public class Player : MonoBehaviour
     [SerializeField] public AudioClip lightningClip = null;
 
 
+    [Space(30)]
 
+    [Header("bool variables")]
     public float health;
     public float maxHealth = 1f;
     public string scene;
@@ -55,6 +68,7 @@ public class Player : MonoBehaviour
     public bool canFire = false;
     public bool canLightning = false;
     public bool canShoot = true;
+    public GameObject inventoryObj = null;
 
     //arrow key fields
 
@@ -64,6 +78,7 @@ public class Player : MonoBehaviour
     public bool right = false;
 
     public bool isShooting = false;
+    public bool isInventoryOpen = false;
 
     public int ammo = 6;
 
@@ -77,6 +92,7 @@ public class Player : MonoBehaviour
     //Vector3 vel;
     private Vector3 moveInput;
 
+    public Input inputKey = new Input();
 
     // Start is called before the first frame update
 
@@ -90,6 +106,7 @@ public class Player : MonoBehaviour
     public float maxMana = 1f;
     void Start()
     {
+        canShoot = false;
         activeScene = SceneManager.GetActiveScene();
         if (activeScene.name == "Apartment")
         {
@@ -117,6 +134,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (canMove == true)
         {
@@ -140,7 +158,74 @@ public class Player : MonoBehaviour
             spellFire = 3;
         }
 
+        
+        if (isInventoryOpen == false)
+        {
+            //Use a spell or an item
+            if (Input.GetMouseButtonDown(0))
+            {
 
+                if (inventory.items[15].item.GetSpell() != null)
+                {
+                    //use spell 1
+                    inventory.items[15].item.GetSpell().Use(this);
+                    Debug.Log("Cast " + inventory.items[15].item.name);
+                }
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                if (inventory.items[17].item.GetSpell() != null)
+                {
+                    //use spell 2
+                    inventory.items[17].item.GetSpell().Use(this);
+                    Debug.Log("Cast " + inventory.items[17].item.name);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (inventory.items[18].item.GetSpell() != null)
+                {
+                    //use spell 3 (dash spell)
+                    inventory.items[18].item.GetSpell().Use(this);
+                    Debug.Log("Cast " + inventory.items[18].item.name);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (inventory.items[16].item.GetSpell() != null)
+                {
+                    //use spell 4
+                    inventory.items[16].item.GetSpell().Use(this);
+                    Debug.Log("Cast " + inventory.items[16].item.name);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (inventory.items[19].item != null)
+                {
+                    //use item slot
+                    inventory.items[19].item.Use(this);
+                    //Debug.Log("Used " + inventory.items[19].GetItem().name);
+                }
+            }
+        }
+        
+
+        //Open and close inventory
+        if (Input.GetKeyDown(KeyCode.Tab) && isInventoryOpen == false)
+        {
+            inventoryObj.SetActive(true);
+            isInventoryOpen = true;
+            canMove = false;
+            //canShoot = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Tab) && isInventoryOpen == true)
+        {
+            inventoryObj.SetActive(false);
+            isInventoryOpen = false;
+            canMove = true;
+            //canShoot = true;
+        }
     }
 
     private void Movement()
@@ -208,7 +293,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && canShoot)
         {
             if (Time.realtimeSinceStartup > fireTime)
             {

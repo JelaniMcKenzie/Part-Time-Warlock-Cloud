@@ -7,17 +7,12 @@ public class MiscClass : ItemClass
 {
 
     //data specific to the MiscClass
-
-    public override ItemClass GetItem() { return this; }
-    //return this works because its of a type tool class AND a type of itemclass
-
-    public override ToolClass GetTool() { return null; }
-
-    //return this doesn't work for MiscClass or ConsumableClass because its not of type tool
     public override MiscClass GetMisc() { return this; }
 
-    public override ConsumableClass GetConsumable() { return null; }
-
-    public override SpellClass GetSpell() { return null; }
+    public override void Use(Player p)
+    {
+        //base.Use(p); //calls the function as implemented in the base class
+                     //in this case, the base class the item class
+    }
 
 }

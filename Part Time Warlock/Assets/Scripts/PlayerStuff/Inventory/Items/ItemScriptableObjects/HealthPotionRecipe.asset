@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930ef35022595104a92fabfd63ed1143, type: 3}
+  m_Name: HealthPotionRecipe
+  m_EditorClassIdentifier: 
+  inputItems:
+  - <item>k__BackingField: {fileID: 11400000, guid: 9957012c0532ff249821b0a23ad95139, type: 2}
+    <quantity>k__BackingField: 1
+    slotType: 0
+  - <item>k__BackingField: {fileID: 11400000, guid: 8139c6fd81e3d9f499119008a551c709, type: 2}
+    <quantity>k__BackingField: 1
+    slotType: 0
+  outputItem:
+    <item>k__BackingField: {fileID: 11400000, guid: b74c2291d7113db42853de3f652a8f27, type: 2}
+    <quantity>k__BackingField: 1
+    slotType: 0
