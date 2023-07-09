@@ -45,6 +45,8 @@ public class PlayerProjectiles : MonoBehaviour
         }
     }
 
+
+
     public void FireWall()
     {
             Instantiate(Firewall, transform.position, Quaternion.identity);

@@ -48,7 +48,8 @@ public class SpellClass : ItemClass
         {
             case SpellType.projectile:
                 {
-                    Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
+                    GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, P.staffTip.transform.rotation);
+                    projectile.GetComponent<Rigidbody>().AddForce(P.staffTip.transform.up * projectileSpeed, ForceMode.Impulse);
                     Debug.Log("Casted projectile spell");
                     if (uses <= 0)
                     {

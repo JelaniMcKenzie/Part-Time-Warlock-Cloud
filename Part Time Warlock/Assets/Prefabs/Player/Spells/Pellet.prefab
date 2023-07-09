@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1479044434323770487}
   - component: {fileID: 3005152075677664826}
   - component: {fileID: 8033867883047377998}
-  - component: {fileID: -8846181951383706884}
-  - component: {fileID: -5618367622913279003}
   - component: {fileID: 141137965}
-  - component: {fileID: -7003915555533957369}
+  - component: {fileID: -7613081985050953564}
+  - component: {fileID: -6060481190514442984}
   m_Layer: 0
   m_Name: Pellet
   m_TagString: Bullet
@@ -29,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3528400409650182722}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6521, y: -0.6052, z: 0}
   m_LocalScale: {x: 3.707969, y: 3.525381, z: 22.045}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3005152075677664826
 SpriteRenderer:
@@ -54,6 +53,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3528400409650182722}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 666746ee788f6404bbd643aa70e02984, type: 3}
   m_Name: 
@@ -104,7 +105,29 @@ MonoBehaviour:
   P: {fileID: 0}
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
---- !u!54 &-8846181951383706884
+--- !u!95 &141137965
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528400409650182722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9eb19e45ae1632d4f9e787c553eca40b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &-7613081985050953564
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +154,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &-5618367622913279003
+--- !u!65 &-6060481190514442984
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,44 +173,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.10689104, y: 0.108383045, z: 0.015496345}
-  m_Center: {x: -0.00052496087, y: 0.0011575408, z: 0.00074865273}
---- !u!95 &141137965
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528400409650182722}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9eb19e45ae1632d4f9e787c553eca40b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-7003915555533957369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3528400409650182722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a26a7c0f5a773e478fb02bea6cda59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownTime: 0
-  spellSound: {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
-  projectileSpeed: 10
-  destroyTime: 2.5
-  p: {fileID: 0}
+  m_Size: {x: 0.10000002, y: 0.099999994, z: 0.19999999}
+  m_Center: {x: 0, y: 0, z: 0}
