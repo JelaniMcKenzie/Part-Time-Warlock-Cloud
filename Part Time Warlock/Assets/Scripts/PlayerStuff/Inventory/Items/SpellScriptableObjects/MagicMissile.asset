@@ -15,15 +15,17 @@ MonoBehaviour:
   itemName: MagicMissile
   itemIcon: {fileID: -1057191354, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
   isStackable: 0
+  stackSize: 64
   spellRune: {fileID: -1057191354, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
   spellPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
   spellElement: Arcane
   damage: 1
   cooldown: 0.2
-  uses: 0
-  maxUses: 0
+  canCast: 1
+  uses: 5
+  maxUses: 5
   spellType: 0
-  projectileSpeed: 3
+  projectileSpeed: 25
   effectRadius: 0
   statusDuration: 0
   movementDistance: 0

@@ -127,8 +127,6 @@ public class Player : MonoBehaviour
         manaBar = FindAnyObjectByType<ManaBar>();
         healthBar = FindAnyObjectByType<HealthBar>();
         //vel = new Vector3();
-        
-        
     }
 
     // Update is called once per frame
@@ -139,7 +137,7 @@ public class Player : MonoBehaviour
         if (canMove == true)
         {
             Movement();
-            Shoot();
+            //Shoot();
         }
 
 
@@ -169,7 +167,7 @@ public class Player : MonoBehaviour
                 {
                     //use spell 1
                     inventory.items[15].item.GetSpell().Use(this);
-                    Debug.Log("Cast " + inventory.items[15].item.name);
+                    //Debug.Log("Cast " + inventory.items[15].item.name);
                 }
             }
             else if (Input.GetMouseButtonDown(1))
@@ -178,7 +176,7 @@ public class Player : MonoBehaviour
                 {
                     //use spell 2
                     inventory.items[17].item.GetSpell().Use(this);
-                    Debug.Log("Cast " + inventory.items[17].item.name);
+                    //Debug.Log("Cast " + inventory.items[17].item.name);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
@@ -187,7 +185,7 @@ public class Player : MonoBehaviour
                 {
                     //use spell 3 (dash spell)
                     inventory.items[18].item.GetSpell().Use(this);
-                    Debug.Log("Cast " + inventory.items[18].item.name);
+                    //Debug.Log("Cast " + inventory.items[18].item.name);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.E))
@@ -196,7 +194,7 @@ public class Player : MonoBehaviour
                 {
                     //use spell 4
                     inventory.items[16].item.GetSpell().Use(this);
-                    Debug.Log("Cast " + inventory.items[16].item.name);
+                    //Debug.Log("Cast " + inventory.items[16].item.name);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Q))
@@ -390,10 +388,7 @@ public class Player : MonoBehaviour
             GameObject K = Instantiate(pellet, staffTip.transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(spellSound, transform.position, 4);
             //K.transform.position = Hand.transform.position;
-            Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(staffTip.transform.parent.parent.parent.transform.position);
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            K.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            K.GetComponent<Rigidbody>().velocity = K.transform.right * 10f;
+            
             shotCounter = timeBetweenShots;
         }
          else if (ammo <= 0)

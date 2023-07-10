@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5972347860573988607}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.28129387, w: 0.95962167}
   m_LocalPosition: {x: -2.79, y: -0.24, z: 0}
   m_LocalScale: {x: 2.2740102, y: 1.637, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5972347860573988606
 SpriteRenderer:
@@ -54,6 +54,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -154,7 +156,7 @@ BoxCollider:
   m_Center: {x: -0.005130768, y: -0.0017101765, z: 0}
 --- !u!95 &1015898091
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,10 +170,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4047301213491646078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +188,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2337e34486cc6428565270ebb775c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightningPrefab: {fileID: 7566546451868967078, guid: 89c5ba6db8bcb6c449ea426d9ee366e2, type: 3}
-  lightningDamage: 10
-  lightningChainRange: 5

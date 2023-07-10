@@ -33,6 +33,7 @@ public class InventoryManager : MonoBehaviour
     private SlotClass tempSlot;
     private SlotClass originalSlot;
     bool isMovingItem;
+    public Player P = null;
 
     #region deprecated spell code
     /*
@@ -52,6 +53,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        P = FindAnyObjectByType<Player>();
         slots = new GameObject[slotHolder.transform.childCount];
         items = new SlotClass[slots.Length];
 
@@ -141,6 +143,7 @@ public class InventoryManager : MonoBehaviour
             //based on a user's input of some kind
         }
 
+        
         itemCursor.SetActive(isMovingItem);
         itemCursor.transform.position = Input.mousePosition;
         if (isMovingItem)
@@ -154,34 +157,37 @@ public class InventoryManager : MonoBehaviour
                 itemCursor.GetComponent<Image>().sprite = movingSlot.item.itemIcon;
             }
         }
+        if (P.isInventoryOpen == true)
+        {
+            if (Input.GetMouseButtonDown(0)) //we left clicked
+            {
+                if (isMovingItem)
+                {
+                    //end item move
+                    EndItemMove();
+                }
+                else
+                {
+                    //find the closest slot (the slot we clicked on)
+                    BeginItemMove();
+                }
+
+            }
+            else if (Input.GetMouseButtonDown(1)) //we right clicked
+            {
+                if (isMovingItem)
+                {
+                    //end item move
+                    EndItemMove_Single();
+                }
+                else
+                {
+                    //find the closest slot (the slot we clicked on)
+                    BeginItemMove_Half();
+                }
+            }
+        }
         
-        if (Input.GetMouseButtonDown(0)) //we left clicked
-        {
-            if (isMovingItem)
-            {
-                //end item move
-                EndItemMove();
-            } 
-            else
-            {
-                //find the closest slot (the slot we clicked on)
-                BeginItemMove();
-            }
-            
-        }
-        else if (Input.GetMouseButtonDown(1)) //we right clicked
-        {
-            if (isMovingItem)
-            {
-                //end item move
-                EndItemMove_Single();
-            }
-            else
-            {
-                //find the closest slot (the slot we clicked on)
-                BeginItemMove_Half();
-            }
-        }
     }
 
     #region Inventory Utils

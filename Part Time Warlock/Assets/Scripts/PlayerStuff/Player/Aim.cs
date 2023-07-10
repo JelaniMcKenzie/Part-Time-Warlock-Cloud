@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Aim : MonoBehaviour
 {
     [SerializeField] private Transform staffTip;
-    public HandFlip HF = null;
     public PlayerAnimations PAnim = null;
     public Scene activeScene;
     // Start is called before the first frame update
@@ -22,7 +21,6 @@ public class Aim : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = true;
             Cursor.visible = true;
         }
-        HF = FindAnyObjectByType<HandFlip>();
         PAnim = FindAnyObjectByType<PlayerAnimations>();
     }
 

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
 [CreateAssetMenu(fileName = "new Spell", menuName = "Item/Spell")]
@@ -41,6 +42,7 @@ public class SpellClass : ItemClass
 
     public override SpellClass GetSpell() { return this; }
 
+
     public override void Use(Player P) 
     {
         P = FindAnyObjectByType<Player>();
@@ -48,8 +50,15 @@ public class SpellClass : ItemClass
         {
             case SpellType.projectile:
                 {
-                    Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
-                    Debug.Log("Casted projectile spell");
+                    // Instantiate the projectile and store the reference
+                    GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
+                    //K.transform.position = Hand.transform.position;
+                    Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(P.transform.position);
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    projectile.GetComponent<Rigidbody>().velocity = projectile.transform.right * projectileSpeed;
+                    Debug.Log("Casted " + this.itemName);
+
                     if (uses <= 0)
                     {
                         canCast = false;

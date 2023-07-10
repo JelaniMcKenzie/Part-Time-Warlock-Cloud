@@ -15,15 +15,17 @@ MonoBehaviour:
   itemName: Firewall
   itemIcon: {fileID: 21300000, guid: c19484affcfc4c241ac50ff0eb674c37, type: 3}
   isStackable: 0
+  stackSize: 64
   spellRune: {fileID: 1118010391, guid: cde28b8b9e1acbd46b926b0a81ec1194, type: 3}
   spellPrefab: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
   spellElement: Fire
   damage: 3
   cooldown: 6
+  canCast: 1
   uses: 0
-  maxUses: 0
+  maxUses: 3
   spellType: 0
-  projectileSpeed: 3
+  projectileSpeed: 25
   effectRadius: 0
   statusDuration: 0
   movementDistance: 0

@@ -13,6 +13,7 @@ public class PlayerProjectiles : MonoBehaviour
     //checks what direction the player is facing and fires there
     void Start()
     {
+       
         //2.5f refers to the amount of time before the gameobject gets destroyed
         P = FindAnyObjectByType<Player>();
         if (gameObject.tag == "Fire")
@@ -25,6 +26,7 @@ public class PlayerProjectiles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Destroy(gameObject, 2.5f);
         if (gameObject.tag == "Fire")
         {
