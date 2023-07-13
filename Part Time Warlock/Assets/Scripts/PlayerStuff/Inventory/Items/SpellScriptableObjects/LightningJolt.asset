@@ -20,10 +20,9 @@ MonoBehaviour:
   spellPrefab: {fileID: 5972347860573988607, guid: 5f6123d52fe7777478986f2363c8939f, type: 3}
   spellElement: Lightning
   damage: 3
-  cooldown: 5
-  canCast: 1
-  uses: 0
+  uses: 5
   maxUses: 5
+  maxCooldown: 3
   spellType: 0
   projectileSpeed: 25
   effectRadius: 0

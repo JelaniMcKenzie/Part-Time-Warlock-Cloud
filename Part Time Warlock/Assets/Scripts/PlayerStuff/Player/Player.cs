@@ -224,6 +224,14 @@ public class Player : MonoBehaviour
             canMove = true;
             //canShoot = true;
         }
+
+        for (int i = 15; i < inventory.items.Length - 1; i++)
+        {
+            if (inventory.items[i].item is SpellClass spell)
+            {
+                spell.UpdateCooldown();
+            }
+        }
     }
 
     private void Movement()

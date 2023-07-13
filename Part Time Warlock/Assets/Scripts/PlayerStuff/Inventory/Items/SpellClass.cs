@@ -20,10 +20,11 @@ public class SpellClass : ItemClass
     public GameObject spellPrefab;
     public string spellElement;
     public float damage;
-    public float cooldown;
-    public bool canCast;
     public int uses;
     public int maxUses;
+
+    public float maxCooldown;
+    private float currentCooldown;
 
     [Space(30)]
     public SpellType spellType;
@@ -45,6 +46,12 @@ public class SpellClass : ItemClass
 
     public override void Use(Player P) 
     {
+        if (currentCooldown > 0)
+        {
+            Debug.Log("Spell is on cooldown. Remaining time: " + currentCooldown);
+            return;
+        }
+
         P = FindAnyObjectByType<Player>();
         switch (spellType)
         {
@@ -58,51 +65,47 @@ public class SpellClass : ItemClass
                     projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     projectile.GetComponent<Rigidbody>().velocity = projectile.transform.right * projectileSpeed;
                     Debug.Log("Casted " + this.itemName);
-
-                    if (uses <= 0)
-                    {
-                        canCast = false;
-                    }
                     break;
                 }
             case SpellType.aoe:
                 {
                     Instantiate(spellPrefab, P.transform.position, Quaternion.identity);
                     Debug.Log("Casted aoe spell");
-                    if (uses <= 0)
-                    {
-                        canCast = false;
-                    }
                     break;
                 }
             case SpellType.status:
                 {
                     //activate spell
                     Debug.Log("Casted status spell");
-                    if (uses <= 0)
-                    {
-                        canCast = false;
-                    }
                     break;
                 }
             case SpellType.movement:
                 {
                     //movement logic here
                     Debug.Log("Casted movement spell");
-                    if (uses <= 0)
-                    {
-                        canCast = false;
-                    }
                     break;
                 }
         }
+        uses--;
     }
 
-    public IEnumerator SpellCooldown()
+    public void UpdateCooldown()
     {
-        yield return new WaitForSeconds(cooldown);
-        uses = maxUses;
-        canCast = true;
-        
+        if (currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime;
+            if (currentCooldown < 0)
+            {
+                currentCooldown = 0;
+                uses = maxUses;
+                Debug.Log("Spell cooldown finished.");
+            }
+        }
+        else if (uses <= 0)
+        {
+            currentCooldown = maxCooldown;
+            Debug.Log("Spell uses exceeded. Cooldown started: " + currentCooldown);
+            return;
+        }
     }
 }

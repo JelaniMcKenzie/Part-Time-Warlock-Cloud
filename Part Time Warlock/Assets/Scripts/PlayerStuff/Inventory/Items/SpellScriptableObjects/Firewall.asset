@@ -20,12 +20,11 @@ MonoBehaviour:
   spellPrefab: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
   spellElement: Fire
   damage: 3
-  cooldown: 6
-  canCast: 1
-  uses: 0
+  uses: 3
   maxUses: 3
+  maxCooldown: 3
   spellType: 0
-  projectileSpeed: 25
+  projectileSpeed: 3
   effectRadius: 0
   statusDuration: 0
   movementDistance: 0

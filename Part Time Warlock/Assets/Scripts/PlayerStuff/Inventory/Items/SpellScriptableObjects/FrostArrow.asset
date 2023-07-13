@@ -20,10 +20,9 @@ MonoBehaviour:
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: Ice
   damage: 3
-  cooldown: 3
-  canCast: 1
-  uses: 0
+  uses: 5
   maxUses: 5
+  maxCooldown: 3
   spellType: 0
   projectileSpeed: 25
   effectRadius: 0

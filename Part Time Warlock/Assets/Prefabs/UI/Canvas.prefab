@@ -1383,6 +1383,14 @@ PrefabInstance:
       propertyPath: spellSlotHolder
       value: 
       objectReference: {fileID: 5261104876087939325}
+    - target: {fileID: 3221534788631554684, guid: 02c70b55befca2040946aa8d54f2c1cc, type: 3}
+      propertyPath: loadout.Array.data[0].<item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 428ea5b0984051049bf0386565c3dc52, type: 2}
+    - target: {fileID: 3221534788631554684, guid: 02c70b55befca2040946aa8d54f2c1cc, type: 3}
+      propertyPath: loadout.Array.data[3].<item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 4679defa99687d5419b711feea0250d1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
