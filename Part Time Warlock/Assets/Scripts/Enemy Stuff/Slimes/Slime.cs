@@ -10,8 +10,10 @@ public class Slime : GameEntity
     public bool frozen = false;
     public UIManager UI = null;
     public SpawnManager SM = null;
+    public ManaBar MB = null;
     public bool isOnFire = false;
     public int burnSeconds = 5;
+    public bool addAmmo;
     public bool canMove;
 
     [SerializeField] public AudioClip SlimeMove = null;
@@ -23,7 +25,7 @@ public class Slime : GameEntity
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
         SM = FindAnyObjectByType<SpawnManager>();
-
+        MB = FindAnyObjectByType<ManaBar>();
         //SM.EnemyCount++;
     }
 
@@ -130,7 +132,52 @@ public class Slime : GameEntity
 
     public override void Die()
     {
+        addAmmo = true;
         Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
+        if (P.currentTome == 1 && P.spellIce < 5)
+        {
+            if (P.canIce == false)
+            {
+                P.canIce = true;
+            }
+            if (addAmmo == true)
+            {
+                P.spellIce++;
+                P.mana += 0.2f;
+                MB.UpdateManaBar();
+            }
+
+            if (P.spellIce > 5)
+            {
+                addAmmo = false;
+                P.spellIce = 5;
+                P.mana = P.maxMana;
+                MB.UpdateManaBar();
+            }
+
+        }
+        else if (P.currentTome == 2 && P.spellFire < 3)
+        {
+            if (P.canFire == false)
+            {
+                P.canFire = true;
+            }
+            if (addAmmo == true)
+            {
+                P.spellFire++;
+                P.mana += 0.3333333333333333f;
+                MB.UpdateManaBar();
+            }
+
+            if (P.spellFire > 3)
+            {
+                addAmmo = false;
+                P.spellFire = 3;
+                P.mana = P.maxMana;
+                MB.UpdateManaBar();
+            }
+
+        }
         Destroy(this.gameObject);
     }
 
