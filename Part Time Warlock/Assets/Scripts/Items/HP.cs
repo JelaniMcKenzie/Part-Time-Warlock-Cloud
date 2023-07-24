@@ -27,7 +27,11 @@ public class HP : MonoBehaviour
         if (other.CompareTag("Player")) {
             AudioSource.PlayClipAtPoint(HPotion, transform.position, 4);
             P.health += 0.2f;
-            HB.UpdateHealthBar();
+            if (HB != null)
+            {
+                HB.UpdateHealthBar();
+            }
+           
             Destroy(this.gameObject);
         }
     }

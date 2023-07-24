@@ -18,10 +18,6 @@ public class Player : MonoBehaviour
 
     //--------------------Spell projectiles---------------------
     [SerializeField] public GameObject staffTip = null;
-    [SerializeField] public GameObject pellet = null;
-    [SerializeField] public GameObject icePellet = null;
-    [SerializeField] public GameObject firePellet = null;
-    [SerializeField] public GameObject lightningPellet = null;
 
 
     [Space(30)]
@@ -29,11 +25,8 @@ public class Player : MonoBehaviour
 
     
     //--------------------Script comm fields--------------------
-
-    public PowerUps powerUps = null;
     public UIManager uiManager = null;
     public HealthBar healthBar = null;
-    public ManaBar manaBar = null;
     public InventoryManager inventory;
 
 
@@ -54,19 +47,12 @@ public class Player : MonoBehaviour
     public bool canHit = true;
     public bool canMove = true;
     public bool isHit = false;
-    public int currentTome;
     public int coinNum = 0;
-    public float timeBetweenShots = 0.2f;
-    private float shotCounter;
 
     public Scene activeScene;
     public GameObject handParent = null;
 
     //Spell Fields
-    public bool tome = false;
-    public bool canIce = false;
-    public bool canFire = false;
-    public bool canLightning = false;
     public bool canShoot = true;
     public GameObject inventoryObj = null;
 
@@ -84,9 +70,6 @@ public class Player : MonoBehaviour
 
     public Rigidbody rb;
 
-
-    float fireTime = 0;
-
     //Vector fields
 
     //Vector3 vel;
@@ -96,14 +79,6 @@ public class Player : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public float spellIce = 5;
-    public float spellLightning = 2;
-    public float maxIce;
-    public float spellFire = 3;
-    public float maxFire;
-
-    public float mana;
-    public float maxMana = 1f;
     void Start()
     {
         canShoot = false;
@@ -116,15 +91,12 @@ public class Player : MonoBehaviour
         {
             handParent.SetActive(true);
             canShoot= true;
-            mana = 0f;
             //manaBar.UpdateManaBar();
             health = maxHealth;
             //healthBar.UpdateHealthBar();
         }
         canHit = true;
-        powerUps = FindAnyObjectByType<PowerUps>();
         uiManager = FindAnyObjectByType<UIManager>();
-        manaBar = FindAnyObjectByType<ManaBar>();
         healthBar = FindAnyObjectByType<HealthBar>();
         //vel = new Vector3();
     }
@@ -146,15 +118,6 @@ public class Player : MonoBehaviour
             FlashTimer();
         }
 
-        if (spellIce > 5)
-        {
-            spellIce = 5;
-        }
-
-        if (spellFire > 3)
-        {
-            spellFire = 3;
-        }
 
         
         if (isInventoryOpen == false)
@@ -276,136 +239,6 @@ public class Player : MonoBehaviour
         rb.velocity = moveInput * speed;
     }
 
-    private void Shoot()
-    {
-
-        if (Input.GetButtonDown("Fire1") && canShoot)
-        {
-
-            if (Time.realtimeSinceStartup > fireTime)
-            {
-                ShootLogic();
-            }
-
-        }
-
-        if (Input.GetButton("Fire1") && canShoot)
-        {
-            shotCounter -= Time.deltaTime;
-
-            if (shotCounter <= 0)
-            {
-                ShootLogic();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1) && canShoot)
-        {
-            if (Time.realtimeSinceStartup > fireTime)
-            {
-                if (canIce == true)
-                {
-                    GameObject k = Instantiate(icePellet, staffTip.transform.position, Quaternion.identity);
-                    AudioSource.PlayClipAtPoint(iceSound, transform.position, 1);
-                    //K.transform.position = Hand.transform.position;
-                    Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                    k.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    k.GetComponent<Rigidbody>().velocity = k.transform.right * 10f;
-                    mana -= 0.2f;
-                    spellIce--;
-                    manaBar.UpdateManaBar();
-                    spellFire = 0; //change line of code as this will be rudimentary
-                    spellLightning = 0;
-                }
-                else if (canFire == true)
-                {
-                    GameObject f = Instantiate(firePellet, staffTip.transform.position, Quaternion.identity);
-                    //AudioSource.PlayClipAtPoint(FireClip, transform.position);
-                    //F.transform.position = Hand.transform.position;
-                    Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                    f.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    f.GetComponent<Rigidbody>().velocity = f.transform.right * 10f;
-                    mana -= 0.3333333333333333333f;
-                    spellFire--;
-                    manaBar.UpdateManaBar();
-                    spellIce = 0; //change line of code as this will be rudimentary
-                    spellLightning = 0; 
-                }
-                else if (canLightning == true)
-                {
-                    GameObject l = Instantiate(lightningPellet, staffTip.transform.position, Quaternion.identity);
-                    AudioSource.PlayClipAtPoint(lightningClip, transform.position, 1);
-                    //L.transform.position = Hand.transform.position;
-                    Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                    l.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    l.GetComponent<Rigidbody>().velocity = l.transform.right * 10f;
-                    // change the 10 to make it slower if need be
-                    mana -= 0.5f;
-                    spellLightning--;
-                    manaBar.UpdateManaBar();
-                    spellIce = 0; //change line of code as this will be rudimentary
-                    spellFire = 0;
-                }
-            }
-            
-
-            if (spellIce <= 0)
-            {
-                canIce = false;
-            }
-
-            if (spellFire <= 0f)
-            {
-                canFire = false;
-            }
-
-
-            if (spellLightning <= 0)
-            {
-                canLightning = false;
-            }
-
-            if (spellIce > 0)
-            {
-                canIce = true;  
-            }
-
-            if (spellFire > 0f)
-            {
-                canFire = true;
-            }
-
-            if (spellLightning > 0)
-            {
-                canLightning = true;
-            }
-        }
-        
-
-    }
-
-    public void ShootLogic()
-    {
-        if (ammo > 0)
-        {
-            ammo--;
-
-            GameObject K = Instantiate(pellet, staffTip.transform.position, Quaternion.identity);
-            AudioSource.PlayClipAtPoint(spellSound, transform.position, 4);
-            //K.transform.position = Hand.transform.position;
-            
-            shotCounter = timeBetweenShots;
-        }
-         else if (ammo <= 0)
-        {
-            StartCoroutine(Refill());
-        }
-
-    }
-
     public void Sprint()
     {
 
@@ -451,14 +284,6 @@ public class Player : MonoBehaviour
         GetComponent<SpriteRenderer>().color = new Color32 (255, 255, 255, 0);
         yield return new WaitForSeconds(0.25f);
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
-    }
-
-    public IEnumerator Refill() {
-        canShoot = false;
-        yield return new WaitForSeconds(0.25f);
-        ammo = 5;
-        canShoot = true;
-        
     }
 
     public void FlashTimer()
