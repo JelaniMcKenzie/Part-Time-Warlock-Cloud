@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Laptop : MonoBehaviour
 {
+    public GameObject shopUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,16 @@ public class Laptop : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponent<Player>() != null)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                shopUI.SetActive(true);
+            }
+        }
     }
 }

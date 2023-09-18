@@ -6,11 +6,9 @@ public class SpawnManager : MonoBehaviour
 {
     float spawnTime;
     [SerializeField] public GameObject Enemy;
-    [SerializeField] public GameObject ShadowArcher = null;
 
     public Animator Anim = null;
     public Player P = null;
-    public int ShadowArcherCount;
     public int EnemyLimit = 30;
     public int EnemyCount = 0;
     // Start is called before the first frame update
@@ -50,23 +48,7 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-       int spawnEnemy = Random.Range(0, 3);
-        if (spawnEnemy == 0 || spawnEnemy == 1)
-        {
-            GameObject K = Instantiate(Enemy, transform.position, Quaternion.identity);
-            K.transform.parent = null;
-            
-        }
-        else if (spawnEnemy == 2) 
-        {
-            GameObject S = Instantiate(ShadowArcher, transform.position, Quaternion.identity);
-            S.transform.parent = null;
-            
-        }
-
-        if (ShadowArcherCount == 5)
-        {
-            spawnEnemy = Random.Range(0, 2);
-        }
+        GameObject K = Instantiate(Enemy, transform.position, Quaternion.identity);
+        K.transform.parent = null;
     }
 }

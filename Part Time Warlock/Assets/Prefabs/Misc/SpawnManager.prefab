@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8747583597304512199}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.5815487, y: -0.28330877, z: 1.1913407}
   m_LocalScale: {x: 0.26120573, y: 0.19538532, z: 0.26120573}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8747583597304512196
 MonoBehaviour:
@@ -46,10 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 7143482120570913188, guid: f4fc1e338ca3ab54bbf646d46c751e33, type: 3}
-  ShadowArcher: {fileID: 275988022219552323, guid: 9eef0838c22b1194cb2f109a409c3098, type: 3}
+  ShadowArcher: {fileID: 0}
   Anim: {fileID: 0}
   P: {fileID: 0}
-  ShadowArcherLimit: 5
+  ShadowArcherCount: 0
+  EnemyLimit: 30
+  EnemyCount: 0
 --- !u!212 &8747583596642042908
 SpriteRenderer:
   m_ObjectHideFlags: 0
