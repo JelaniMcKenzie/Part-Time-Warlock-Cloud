@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         
         if (isInventoryOpen == false)
         {
-            /*//Use a spell or an item
+            //Use a spell or an item
             if (Input.GetMouseButtonDown(0))
             {
 
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
                     //use item slot
                     inventory.items[19].item.Use(this);
                 }
-            }*/
+            }
         }
         
 

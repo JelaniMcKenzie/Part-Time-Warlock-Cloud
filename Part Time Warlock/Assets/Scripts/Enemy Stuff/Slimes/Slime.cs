@@ -9,7 +9,6 @@ public class Slime : GameEntity
     public Animator Anim = null;
     public bool frozen = false;
     public UIManager UI = null;
-    public SpawnManager SM = null;
     public bool isOnFire = false;
     public int burnSeconds = 5;
     public bool addAmmo;
@@ -23,7 +22,6 @@ public class Slime : GameEntity
         canMove = false;
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
-        SM = FindAnyObjectByType<SpawnManager>();
         //SM.EnemyCount++;
     }
 

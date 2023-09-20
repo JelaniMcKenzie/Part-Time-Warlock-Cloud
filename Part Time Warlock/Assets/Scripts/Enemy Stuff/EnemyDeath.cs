@@ -8,7 +8,6 @@ public class EnemyDeath : MonoBehaviour
     [SerializeField] public GameObject BigCoinPrefab = null;
     [SerializeField] public GameObject PotionPrefab = null;
 
-    public SpawnManager SM = null;
     // Start is called before the first frame update
     void Start()
     {

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Sprite[] Tomes;
-    [SerializeField] public Image TomeDisplay = null;
     public Text CoinText;
     public Text TomeText;
     public Text Pausetext = null;
@@ -60,11 +58,6 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinText()
     {
         CoinText.text = ": " + P.coinNum;
-    }
-
-    public void UpdateTome(int numTome)
-    {
-        TomeDisplay.sprite = Tomes[numTome];
     }
 
     public void UpdateTimer(float timeToDisplay)

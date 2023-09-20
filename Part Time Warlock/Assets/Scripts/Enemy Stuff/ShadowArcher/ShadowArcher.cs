@@ -8,7 +8,6 @@ public class ShadowArcher : MonoBehaviour
     public static GameObject[] ShadowPosition;
     public GameObject Bow = null;
     public Player P = null;
-    public SpawnManager SM = null;
     public ArrowRotate AR = null;
     public GameObject CoinPrefab = null;
     public GameObject PotionPrefab = null;
@@ -26,7 +25,6 @@ public class ShadowArcher : MonoBehaviour
     {
         P = FindAnyObjectByType<Player>();
         AR = FindAnyObjectByType<ArrowRotate>();
-        SM = FindAnyObjectByType<SpawnManager>();
         
     }
 
