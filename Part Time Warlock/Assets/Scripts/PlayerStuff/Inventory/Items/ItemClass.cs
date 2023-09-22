@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,4 +21,9 @@ public  class ItemClass : ScriptableObject
     public virtual MiscClass GetMisc() { return null; }
     public virtual ConsumableClass GetConsumable() { return null; }
     public virtual SpellClass GetSpell() { return null; }
+
+    internal void Use(Player_Attributes p)
+    {
+        throw new NotImplementedException();
+    }
 }

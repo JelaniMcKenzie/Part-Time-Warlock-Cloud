@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,12 @@ public class SpellClass : ItemClass
 
     [Space(30)]
     public SpellType spellType;
+
+    internal void Use(Player_Attributes p)
+    {
+        throw new NotImplementedException();
+    }
+
     public enum SpellType
     {
         projectile,
