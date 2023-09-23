@@ -20,7 +20,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
   spellElement: Arcane
   damage: 1
-  uses: 5
+  uses: 1
   maxUses: 5
   maxCooldown: 0.2
   spellType: 0

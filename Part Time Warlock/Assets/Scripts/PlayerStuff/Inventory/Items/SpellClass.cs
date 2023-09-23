@@ -27,6 +27,8 @@ public class SpellClass : ItemClass
     public float maxCooldown;
     private float currentCooldown;
 
+    [SerializeField] public AudioClip spellSound = null;
+
     [Space(30)]
     public SpellType spellType;
 
@@ -71,6 +73,7 @@ public class SpellClass : ItemClass
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     projectile.GetComponent<Rigidbody>().velocity = projectile.transform.right * projectileSpeed;
+                    
                     Debug.Log("Casted " + this.itemName);
                     break;
                 }
