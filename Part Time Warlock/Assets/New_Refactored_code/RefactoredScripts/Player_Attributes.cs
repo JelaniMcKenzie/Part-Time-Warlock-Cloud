@@ -14,7 +14,9 @@ public class Player_Attributes : MonoBehaviour
     private float verticalInput;
     private Vector3 moveInput;
 
-    
+    [SerializeField] public GameObject staffTip = null;
+
+
     public Rigidbody rb;
 
     // Start is called before the first frame update
@@ -31,6 +33,11 @@ public class Player_Attributes : MonoBehaviour
 
     private void Movement()
     {
+
+
+
+
+
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 

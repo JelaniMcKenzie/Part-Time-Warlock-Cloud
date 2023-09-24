@@ -255,6 +255,7 @@ MonoBehaviour:
   speed: 5
   maxHealth: 2
   health: 0
+  staffTip: {fileID: 0}
   rb: {fileID: 622715822}
 --- !u!114 &622715834 stripped
 MonoBehaviour:
@@ -292,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 740463971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.4, z: 0}
+  m_LocalPosition: {x: -0, y: 0.704, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -684,6 +685,7 @@ MonoBehaviour:
   speed: 5
   maxHealth: 5
   health: 0
+  staffTip: {fileID: 740463971}
   rb: {fileID: 1518793697}
 --- !u!54 &1518793697
 Rigidbody:
