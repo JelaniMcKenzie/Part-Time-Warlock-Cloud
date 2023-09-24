@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class ItemClass : ScriptableObject
+public class ItemClass : ScriptableObject
 {
     [Header("Item")]
     //data shared across every item

@@ -16,7 +16,7 @@ public class SpellClass : ItemClass
             //rather than doing it all in one class
 
 
-    public Sprite spellRune;
+    public Sprite spellRune; //consider removing as itemIcon does the same thing
     public GameObject spellPrefab;
     public string spellElement;
     public float damage;
@@ -39,7 +39,7 @@ public class SpellClass : ItemClass
     public float projectileSpeed;
     public float effectRadius;
     public float statusDuration;
-    public float movementDistance;
+    public float movementDistance; //for dash spells specifically (e.g. how far do you dash with this spell)
 
     public override SpellClass GetSpell() { return this; }
 
