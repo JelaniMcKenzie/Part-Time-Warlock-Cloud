@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Aim : MonoBehaviour
 {
-    [SerializeField] private Transform staffTip;
-    public PlayerAnimations PAnim = null;
-    public Scene activeScene;
+    //[SerializeField] private Transform staffTip;
+    //public PlayerAnimations PAnim = null;
+    //public Scene activeScene;
     // Start is called before the first frame update
     void Start()
     {
-        if (activeScene.name == "Apartment")
+        /*if (activeScene.name == "Apartment")
         {
             GetComponent<SpriteRenderer>().enabled = false;
             Cursor.visible = false;
@@ -21,7 +21,7 @@ public class Aim : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = true;
             Cursor.visible = true;
         }
-        PAnim = FindAnyObjectByType<PlayerAnimations>();
+        PAnim = FindAnyObjectByType<PlayerAnimations>(); */
     }
 
     // Update is called once per frame
@@ -36,8 +36,8 @@ public class Aim : MonoBehaviour
         transform.position = mousePos;
 
         // Rotate the staff tip towards the crosshair position
-        Vector3 staffDir = mousePos - staffTip.position;
-        staffTip.up = staffDir;
+        /*Vector3 staffDir = mousePos - staffTip.position;
+        staffTip.up = staffDir;*/
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

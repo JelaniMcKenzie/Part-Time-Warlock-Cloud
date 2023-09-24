@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,16 @@ public class SpellClass : ItemClass
     public float maxCooldown;
     private float currentCooldown;
 
+    [SerializeField] public AudioClip spellSound = null;
+
     [Space(30)]
     public SpellType spellType;
+
+    internal void Use(Player_Attributes p)
+    {
+        throw new NotImplementedException();
+    }
+
     public enum SpellType
     {
         projectile,
@@ -64,6 +73,7 @@ public class SpellClass : ItemClass
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                     projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     projectile.GetComponent<Rigidbody>().velocity = projectile.transform.right * projectileSpeed;
+                    
                     Debug.Log("Casted " + this.itemName);
                     break;
                 }

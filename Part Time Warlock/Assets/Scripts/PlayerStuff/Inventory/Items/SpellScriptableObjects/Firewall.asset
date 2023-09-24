@@ -23,6 +23,7 @@ MonoBehaviour:
   uses: 3
   maxUses: 3
   maxCooldown: 3
+  spellSound: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
   spellType: 0
   projectileSpeed: 3
   effectRadius: 0

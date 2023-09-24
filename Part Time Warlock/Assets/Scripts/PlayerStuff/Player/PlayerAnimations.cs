@@ -68,23 +68,28 @@ public class PlayerAnimations : MonoBehaviour
                 
             }
         }
-        else
+
+        //TEMPROARY CHANGE JUST SEEING HOW THE LEFT/RIGHT MECHANIC FELT
+
+        /* else
         {
-            if (dir.y < -10 /*player is looking down*/)
+        //player is looking down
+        if (dir.y < -10 )
             {
                 direction = "Down";
                 currentAnim = "Idle";
                
                 
             }
-            if (dir.y > 10 /*player is looking up*/)
+        //player is looking up
+        if (dir.y > 10 )
             {
                 direction = "Up";
                 currentAnim = "IdleUp";
                 
                 
-            }
-        }
+            } 
+        } */
     }
 
     private void CombatAnim() {
