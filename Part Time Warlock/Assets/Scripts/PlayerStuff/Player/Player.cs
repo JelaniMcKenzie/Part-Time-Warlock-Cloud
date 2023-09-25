@@ -92,7 +92,10 @@ public class Player : MonoBehaviour
         if (canMove == true)
         {
             Movement();
+            Sprint();
         }
+
+        
 
 
         if (isHit == true)
