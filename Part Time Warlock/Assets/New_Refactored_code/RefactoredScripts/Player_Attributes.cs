@@ -10,9 +10,9 @@ public class Player_Attributes : MonoBehaviour
     public int health;
 
 
-    private float horizontalInput;
-    private float verticalInput;
-    private Vector3 moveInput;
+    public float horizontalInput;
+    public float verticalInput;
+    public Vector3 moveInput;
 
     [SerializeField] public GameObject staffTip = null;
 
@@ -31,7 +31,7 @@ public class Player_Attributes : MonoBehaviour
         Movement();
     }
 
-    private void Movement()
+    public void Movement()
     {
 
 
