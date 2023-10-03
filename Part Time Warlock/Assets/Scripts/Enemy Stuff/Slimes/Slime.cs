@@ -14,6 +14,11 @@ public class Slime : GameEntity
     public bool addAmmo;
     public bool canMove;
 
+
+    public SpriteRenderer detectJump;
+    public Sprite[] groundSprites;
+   
+
     [SerializeField] public AudioClip SlimeMove = null;
     // Start is called before the first frame update
     void Start()
@@ -63,11 +68,26 @@ public class Slime : GameEntity
 
     public void EnemyMovement()
     {
-        // Calculate the direction towards the player
-        Vector3 direction = (P.transform.position - transform.position).normalized;
+        bool onGround = false;
 
-        // Move the enemy towards the player
-        transform.position += direction * moveSpeed * Time.deltaTime;
+        foreach (Sprite s in groundSprites)
+        {
+            //if the slime animation isn't in its "hopping" phase,
+            //then set onGround to true and stop it from moving
+            if (detectJump.sprite == s)
+            {
+                onGround = true;
+            }
+        }
+
+        if (onGround == false)
+        {
+            // Calculate the direction towards the player
+            Vector3 direction = (P.transform.position - transform.position).normalized;
+
+            // Move the enemy towards the player
+            transform.position += direction * moveSpeed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

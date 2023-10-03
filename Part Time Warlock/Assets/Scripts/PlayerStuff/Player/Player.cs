@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
+using System;
 
-public class Player : MonoBehaviour
+public class Player : GameEntity
 {
-    public float speed = 5.0f;
     public Transform staffArm;
 
 
@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
     [Space(30)]
 
     [Header("bool variables")]
-    public float health;
     public float maxHealth = 1f;
     public string scene;
     public bool canHit = true;
@@ -62,10 +61,19 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     private Vector3 moveInput;
 
+    [Header("Dash Settings")]
+    [SerializeField] float dashmoveSpeed = 10f;
+    [SerializeField] float dashDuration = 1f;
+    [SerializeField] float dashCooldown = 1f;
+    bool isDashing;
+    bool canDash = true;
+
+
     // Start is called before the first frame update
 
     void Start()
     {
+        canDash = true;
         canShoot = false;
         activeScene = SceneManager.GetActiveScene();
         if (activeScene.name == "Apartment")
@@ -87,15 +95,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isDashing)
+        {
+            return;
+        }
+     
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (canMove == true)
         {
             Movement();
             Sprint();
         }
-
-        
 
 
         if (isHit == true)
@@ -127,6 +137,10 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (canDash)
+                {
+                    StartCoroutine(Dash());
+                }
                 if (inventory.items[18].item.GetSpell() != null)
                 {
                     //use spell 3 (dash spell)
@@ -181,7 +195,7 @@ public class Player : MonoBehaviour
         moveInput.y = Input.GetAxisRaw("Vertical");
 
         moveInput.Normalize();
-        rb.velocity = moveInput * speed;
+        rb.velocity = moveInput * moveSpeed;
     }
 
     public void Sprint()
@@ -189,13 +203,13 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            speed = 7.5f;
-            Debug.Log(speed);
+            moveSpeed = 7.5f;
+            Debug.Log(moveSpeed);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 5.0f;
+            moveSpeed = 5.0f;
         }
     }
 
@@ -205,7 +219,7 @@ public class Player : MonoBehaviour
         {
             isHit = true;
             health -= 0.1f;
-            healthBar.UpdateHealthBar();
+            //healthBar.UpdateHealthBar();
             StartCoroutine(Invulnerable());
             if (health <= 0)
             {
@@ -214,6 +228,20 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+    public IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        rb.velocity = new Vector3(moveInput.x * dashmoveSpeed, moveInput.y * dashmoveSpeed, 0f);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+        
+        //TODO: Sync the cooldown of the dash to the usage of the dash spell
     }
 
     public IEnumerator Invulnerable()

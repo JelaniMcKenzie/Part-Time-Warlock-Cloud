@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1043140271}
   - component: {fileID: 335754699938242454}
   - component: {fileID: 323649110362874187}
+  - component: {fileID: 4468231041324695757}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -29,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7143482120570913188}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.554838, y: -0.02760952, z: -0.017692406}
-  m_LocalScale: {x: 6.6644883, y: 6.6644883, z: 6.6644883}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7143482120570913184
 SpriteRenderer:
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 1972415647
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1698019770, guid: 65afdc1a71ea0404cbdfc602a702838d, type: 3}
+  m_Sprite: {fileID: 505030462, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,8 +109,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.18291746, y: 0.15392785, z: 0.2}
-  m_Center: {x: -0.00037238546, y: -0.0067579416, z: 0}
+  m_Size: {x: 0.48130292, y: 0.4887187, z: 0.20000002}
+  m_Center: {x: 0.00015258789, y: 0.0149383545, z: 0}
 --- !u!54 &7143482120570913186
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,11 +157,11 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.08286244
-  m_Center: {x: 0, y: -0.008800324, z: 0}
+  m_Radius: 0.2409668
+  m_Center: {x: 0, y: 0.0145009365, z: 0}
 --- !u!95 &335754699938242454
 Animator:
-  serializedVersion: 7
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -174,7 +175,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -199,13 +199,44 @@ MonoBehaviour:
   EnemyDeathAnim: {fileID: 8248003738387992355, guid: 3efa197a9fc54e142adaf1f9503010f8, type: 3}
   Anim: {fileID: 0}
   frozen: 0
-  Arrow: {fileID: 0}
   UI: {fileID: 0}
-  SM: {fileID: 0}
-  MB: {fileID: 0}
-  shadow: {fileID: 0}
   isOnFire: 0
-  BurnSeconds: 5
+  burnSeconds: 5
   addAmmo: 0
   canMove: 0
+  detectJump: {fileID: 7143482120570913184}
+  groundSprites:
+  - {fileID: 505030462, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
+  - {fileID: 338965606, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
+  - {fileID: -698332941, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
+  - {fileID: -7521492, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
+  - {fileID: 149083604, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
+  - {fileID: -1773569314, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
   SlimeMove: {fileID: 8300000, guid: ac0df32c781584a43a05c75076a86a5a, type: 3}
+--- !u!114 &4468231041324695757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143482120570913188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052b56100dbcba94eaafb821d7c283fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  moveSpeed: 5
+  isFrozen: 0
+  isBurning: 0
+  EnemyDeathAnim: {fileID: 0}
+  Anim: {fileID: 0}
+  frozen: 0
+  UI: {fileID: 0}
+  isOnFire: 0
+  burnSeconds: 5
+  addAmmo: 0
+  canMove: 0
+  detectJump: {fileID: 0}
+  groundSprites: []
+  SlimeMove: {fileID: 0}
