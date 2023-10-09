@@ -6,7 +6,7 @@ public class Slime : GameEntity
 {
     private Player P = null;
     [SerializeField] public GameObject EnemyDeathAnim = null;
-    public Animator Anim = null;
+    //public Animator Anim = null;
     public bool frozen = false;
     public UIManager UI = null;
     public bool isOnFire = false;
@@ -42,15 +42,6 @@ public class Slime : GameEntity
         else if (canMove == false)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        }
-
-        if (frozen == true)
-        {
-            GetComponent<Animator>().speed = 0;
-        }
-        else
-        {
-            GetComponent<Animator>().speed = 1;
         }
 
         if (isOnFire == true)
@@ -157,7 +148,7 @@ public class Slime : GameEntity
     {
         moveSpeed = 0f;
         isFrozen = true;
-        GetComponent<SpriteRenderer>().color = new Color32(0, 150, 150, 255);
+        GetComponent<SpriteRenderer>().color = new Color32(0, 210, 210, 80);
         yield return new WaitForSeconds(2.5f);
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
         moveSpeed = 4f;

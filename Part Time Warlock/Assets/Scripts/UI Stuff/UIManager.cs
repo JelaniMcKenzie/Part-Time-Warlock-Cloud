@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     {
         timerActive = true;
         P = FindAnyObjectByType<Player>();
+        UpdateCoinText();
         //TomeDisplay.enabled = false;
     }
 

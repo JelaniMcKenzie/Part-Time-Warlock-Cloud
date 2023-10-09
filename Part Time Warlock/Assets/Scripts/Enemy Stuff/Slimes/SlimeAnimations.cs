@@ -15,20 +15,16 @@ public class SlimeAnimations : Slime
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            canMove = true;
-        }
-        if (Input.GetKeyUp(KeyCode.P))
-        {
-            canMove = false;
-        }
+        anim.speed = 1;
+
         if (canMove == true)
         {
+            if (isFrozen == true) { anim.speed = 0; }
             anim.SetBool("isChasing", true);
         }
         else
         {
+            if (isFrozen == true) { anim.speed = 0; }
             anim.SetBool("isChasing", false);
 
         }

@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 4071025492244720921}
   - component: {fileID: 2359875646074357623}
   m_Layer: 5
-  m_Name: Cursor
+  m_Name: MouseItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &887255143700540916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -128.26129}
+  m_AnchoredPosition: {x: 948.6206, y: 1193.7931}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4071025492244720921
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c19484affcfc4c241ac50ff0eb674c37, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

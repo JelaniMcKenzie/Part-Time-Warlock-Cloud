@@ -15,4 +15,5 @@ MonoBehaviour:
   itemName: Clerical Extract
   itemIcon: {fileID: -333212452, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
   isStackable: 1
-  stackSize: 64
+  stackSize: 1
+  description: 

@@ -15,3 +15,5 @@ MonoBehaviour:
   itemName: Sunstone Powder
   itemIcon: {fileID: -507829295, guid: 2562a89daca024f4f9aaec5f1314367a, type: 3}
   isStackable: 1
+  stackSize: 5
+  description: 

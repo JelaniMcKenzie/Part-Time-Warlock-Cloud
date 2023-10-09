@@ -13,8 +13,10 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private List<CraftingRecipeClass> craftingRecipes = new List<CraftingRecipeClass>();
     [SerializeField] private GameObject itemCursor;
 
+
     [SerializeField] private GameObject slotHolder;
     [SerializeField] private GameObject spellSlotHolder;
+
     [SerializeField] private ItemClass itemToAdd;
     [SerializeField] private ItemClass itemToRemove;
 
@@ -24,9 +26,10 @@ public class InventoryManager : MonoBehaviour
     public SlotClass slotTypeRef = new SlotClass();
 
     public SlotClass[] items;
-
+    public SlotClass[] spellLibraryItems;
     private GameObject[] slots; //keeps the gameobject of every item slot
     private GameObject[] spellSlots; //keeps the gameobject of every spell slot
+    private GameObject[] spellLibrarySlots;
 
     private SlotClass movingSlot;
     private SlotClass tempSlot;
@@ -55,7 +58,6 @@ public class InventoryManager : MonoBehaviour
         P = FindAnyObjectByType<Player>();
         slots = new GameObject[slotHolder.transform.childCount];
         items = new SlotClass[slots.Length];
-
         spellSlots = new GameObject[spellSlotHolder.transform.childCount];
 
         for (int i = 0; i < spellSlots.Length; i++)
@@ -140,6 +142,12 @@ public class InventoryManager : MonoBehaviour
             Craft(craftingRecipes[0]); //the only crafting recipe currently loaded
             //TODO: Create a system that passes the correct recipe into the Craft() method
             //based on a user's input of some kind
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            
+            //panel.transform.position = new Vector3(panel.transform.position.x -30, panel.transform.position.y, 0);
         }
 
         
@@ -814,7 +822,7 @@ public class InventoryManager : MonoBehaviour
         return true;
     }
 
-    private SlotClass GetClosestSlot()
+    public SlotClass GetClosestSlot()
     {
         for (int i = 0; i < slots.Length; i++)
         {

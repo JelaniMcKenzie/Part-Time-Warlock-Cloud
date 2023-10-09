@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: new Spell
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Thunder Rush
   itemIcon: {fileID: 0}
-  isStackable: 1
+  isStackable: 0
   stackSize: 64
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 0}
-  spellElement: 
-  damage: 0
-  uses: 0
-  maxUses: 0
-  maxCooldown: 0
-  spellType: 0
+  spellElement: Lightning
+  damage: 5
+  uses: 1
+  maxUses: 1
+  maxCooldown: 5
+  spellSound: {fileID: 0}
+  spellType: 3
   projectileSpeed: 0
   effectRadius: 0
   statusDuration: 0

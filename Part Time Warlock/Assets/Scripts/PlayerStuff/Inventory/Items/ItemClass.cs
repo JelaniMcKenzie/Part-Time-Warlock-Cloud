@@ -12,6 +12,9 @@ public class ItemClass : ScriptableObject
     public bool isStackable = true;
     public int stackSize = 64;
 
+    [TextArea(4, 4)]
+    public string description;
+
     public virtual void Use(Player p) 
     {
         Debug.Log("used item");

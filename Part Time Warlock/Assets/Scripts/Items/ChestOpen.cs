@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ChestOpen : MonoBehaviour
 {
-    [SerializeField] public GameObject IceTome = null;
-    [SerializeField] public GameObject FireTome = null;
     [SerializeField] public GameObject CoinPrefab = null;
     [SerializeField] public GameObject BigCoinPrefab = null;
     [SerializeField] public GameObject ClosedChest = null;
@@ -22,16 +20,6 @@ public class ChestOpen : MonoBehaviour
         int spawnTome = Random.Range(0, 2);
         int spawnBigCoin = Random.Range(0, 3);
 
-        if (spawnTome == 0)
-        {
-            Instantiate(IceTome, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
-        }
-
-        else if (spawnTome == 1)
-        {
-            Instantiate(FireTome, transform.position + new Vector3(0, 1.5f , 0), Quaternion.identity);
-
-        }
 
         if (spawnBigCoin == 0)
         {

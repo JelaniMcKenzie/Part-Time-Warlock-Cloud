@@ -371,7 +371,7 @@ LineRenderer:
   m_GameObject: {fileID: 597523000}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 0
@@ -420,8 +420,8 @@ LineRenderer:
         inWeight: 0
         outWeight: 0.16286172
       - serializedVersion: 3
-        time: 0.91428566
-        value: 1
+        time: 1
+        value: 0.5812501
         inSlope: 0.15840662
         outSlope: 0.15840662
         tangentMode: 0
@@ -517,6 +517,9 @@ MonoBehaviour:
   speed: 5
   maxHealth: 2
   health: 0
+  horizontalInput: 0
+  verticalInput: 0
+  moveInput: {x: 0, y: 0, z: 0}
   staffTip: {fileID: 0}
   rb: {fileID: 622715822}
 --- !u!114 &622715834 stripped
@@ -530,6 +533,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d835daf688a654892f890447cdf904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &622715839 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8771377463029797781, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+  m_PrefabInstance: {fileID: 1892368368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &740463971
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +823,7 @@ GameObject:
   - component: {fileID: 1518793697}
   - component: {fileID: 1518793696}
   - component: {fileID: 1518793698}
+  - component: {fileID: 1518793699}
   m_Layer: 0
   m_Name: Player_Refactored
   m_TagString: Player
@@ -907,6 +916,9 @@ MonoBehaviour:
   speed: 5
   maxHealth: 5
   health: 0
+  horizontalInput: 0
+  verticalInput: 0
+  moveInput: {x: 0, y: 0, z: 0}
   staffTip: {fileID: 740463971}
   rb: {fileID: 1518793697}
 --- !u!54 &1518793697
@@ -950,7 +962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xAxis: 0
   yAxis: 0
-  Anim: {fileID: 0}
+  Anim: {fileID: 622715839}
   P: {fileID: 0}
   currentAnim: Idle
   direction: Right
@@ -958,6 +970,27 @@ MonoBehaviour:
     m_Handle: 0
   hand: {fileID: 0}
   staff: {fileID: 0}
+--- !u!95 &1518793699
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518793693}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 543ca9d5fac00cc4da21772b58daac6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1707042512
 GameObject:
   m_ObjectHideFlags: 0

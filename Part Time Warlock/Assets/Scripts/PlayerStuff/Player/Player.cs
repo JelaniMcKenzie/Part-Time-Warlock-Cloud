@@ -115,7 +115,7 @@ public class Player : GameEntity
 
 
         
-        if (isInventoryOpen == false)
+        /*if (isInventoryOpen == false)
         {
             //Use a spell or an item
             if (Input.GetMouseButtonDown(0))
@@ -186,7 +186,7 @@ public class Player : GameEntity
             {
                 spell.UpdateCooldown();
             }
-        }
+        }*/
     }
 
     private void Movement()
@@ -196,6 +196,14 @@ public class Player : GameEntity
 
         moveInput.Normalize();
         rb.velocity = moveInput * moveSpeed;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canDash)
+            {
+                StartCoroutine(Dash());
+            }
+        }
     }
 
     public void Sprint()
@@ -218,7 +226,16 @@ public class Player : GameEntity
         if (canHit == true)
         {
             isHit = true;
-            health -= 0.1f;
+            if (coinNum > 0)
+            {
+                coinNum -= UnityEngine.Random.Range(5, 10);
+                uiManager.UpdateCoinText();
+            }
+            else
+            {
+                uiManager.timer -= 30;
+                uiManager.CoinText.text = ": 0";
+            }
             //healthBar.UpdateHealthBar();
             StartCoroutine(Invulnerable());
             if (health <= 0)
