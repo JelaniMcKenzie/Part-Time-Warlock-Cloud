@@ -15,7 +15,6 @@ public class ConsumableClass : ItemClass
     {
         base.Use(p);
         Debug.Log("Eat Consumable");
-        p.inventory.UseConsumable();
     }
 
 

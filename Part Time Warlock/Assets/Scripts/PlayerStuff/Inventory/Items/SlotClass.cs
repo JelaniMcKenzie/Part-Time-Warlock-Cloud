@@ -12,11 +12,11 @@ public class SlotClass
     //[field: SerializeField] public ItemClass item { get; private set; } = null;
     //[field: SerializeField] public int quantity { get; private set; } = 0;
 
-    [SerializeField] public ItemClass item; //change to private after new inventory is done
-    [SerializeField] public int quantity;  //change to private after new inventory is done
+    [SerializeField] private ItemClass item; //change to private after new inventory is done
+    [SerializeField] private int quantity;  //change to private after new inventory is done
 
-    public ItemClass itemRef => item;
-    public int quantityRef => quantity;
+    public ItemClass Item => item;
+    public int Quantity => quantity;
 
 
     public SlotType slotType;
@@ -37,8 +37,7 @@ public class SlotClass
     public SlotClass()
     {
         //default/dummy constructor
-        this.item = null;
-        this.quantity = -1;
+        Clear();
     }
 
     public SlotClass(SlotClass slot)
@@ -51,7 +50,7 @@ public class SlotClass
     public void Clear()
     {
         this.item = null;
-        this.quantity = 0;
+        this.quantity = -1;
     }
 
     public void UpdateInventorySlot(ItemClass data, int amount)

@@ -24,7 +24,6 @@ public class Player : GameEntity
     //--------------------Script comm fields--------------------
     public UIManager uiManager = null;
     public HealthBar healthBar = null;
-    public InventoryManager inventory;
 
 
     [Header("Audio Fields")]

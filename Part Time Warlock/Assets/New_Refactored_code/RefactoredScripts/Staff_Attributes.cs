@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Staff_Attributes : MonoBehaviour
 {
-    public InventoryManager inventory;
     //public Transform staffArm;
     [SerializeField] public GameObject staffTip = null;
     public bool isInventoryOpen = false;
@@ -33,7 +32,7 @@ public class Staff_Attributes : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         transform.rotation = rotation;
-
+        /*
         if (isInventoryOpen == false)
         {
             //Use a spell or an item

@@ -11,7 +11,7 @@ public class NewInventorySystem
 
     public List<SlotClass> InventorySlots => inventorySlots;
 
-    public int inventorySize => InventorySlots.Count;
+    public int InventorySize => InventorySlots.Count;
 
     public UnityAction<SlotClass> OnInventorySlotChanged;
 
@@ -58,7 +58,7 @@ public class NewInventorySystem
     {
         /*this code gets all the slots where the slot's itemData is equal to the item we're searching for, and then
         adds it to a List.*/
-        invSlot = InventorySlots.Where(slot => slot.item == itemtoAdd).ToList();
+        invSlot = InventorySlots.Where(slot => slot.Item == itemtoAdd).ToList();
         Debug.Log(invSlot.Count);
         return invSlot == null ? false : true; //if the invSlot is null, return false. Else return true.
 
@@ -75,7 +75,7 @@ public class NewInventorySystem
     {
         //Note: in System.Linq functions like FirstOrDefault, i is a parameter variable that references an item in the list.
         //therefore, it can be named anything. I just called it i.
-        freeSlot = InventorySlots.FirstOrDefault(i => i.item == null);
+        freeSlot = InventorySlots.FirstOrDefault(i => i.Item == null);
         return freeSlot == null ? false : true; //if its found a free slot, return true. else return false
     }
 }

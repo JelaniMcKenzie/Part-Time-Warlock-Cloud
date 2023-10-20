@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public abstract class InventoryDisplay : MonoBehaviour
 {
@@ -16,24 +17,25 @@ public abstract class InventoryDisplay : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        
     }
 
     public abstract void AssignSlot(NewInventorySystem invToDisplay);
 
     protected virtual void UpdateSlot(SlotClass updatedSlot)
     {
-        foreach (var slot in slotDictionary)
+        foreach (var slot in SlotDictionary)
         {
             if (slot.Value == updatedSlot) //Slot value - the "under the hood" inventory slot.
             {
-                slot.Key.UpdateUISlot(); //Slot key - the UI representation of the value
+                slot.Key.UpdateUISlot(updatedSlot); //Slot key - the UI representation of the value
             }
         }
     }
 
     public void SlotClicked(InventorySlot_UI clickedSlot)
     {
+
         Debug.Log("Slot Clicked");
     }
 }

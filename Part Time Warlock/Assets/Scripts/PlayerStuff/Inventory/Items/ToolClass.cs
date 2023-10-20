@@ -7,6 +7,7 @@ public class ToolClass : ItemClass
 {
     [Header("Tool")]
     //data specific to tool class
+
     public ToolType toolType;
     public enum ToolType
     {

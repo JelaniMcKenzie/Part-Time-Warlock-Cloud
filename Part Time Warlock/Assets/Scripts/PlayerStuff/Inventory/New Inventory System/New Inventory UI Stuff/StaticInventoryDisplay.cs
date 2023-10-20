@@ -29,11 +29,11 @@ public class StaticInventoryDisplay : InventoryDisplay
         //will this throw an error due to the size mismatch?
         //temporarialy make the inventory slots a size of 5 to solve this;
          
-        if (slots.Length != inventorySystem.inventorySize)
+        if (slots.Length != inventorySystem.InventorySize)
         {
             Debug.Log($"inventory slots out of sync on {this.gameObject} ");
         }
-        for (int i = 0; i < inventorySystem.inventorySize; i++) 
+        for (int i = 0; i < inventorySystem.InventorySize; i++) 
         {
             slotDictionary.Add(slots[i], inventorySystem.InventorySlots[i]);
             slots[i].InitializeSlot(inventorySystem.InventorySlots[i]);

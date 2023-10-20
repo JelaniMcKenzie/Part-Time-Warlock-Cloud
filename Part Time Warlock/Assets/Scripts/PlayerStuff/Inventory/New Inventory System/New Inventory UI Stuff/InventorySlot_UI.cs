@@ -13,15 +13,23 @@ public class InventorySlot_UI : MonoBehaviour
     private Button button;
 
     public SlotClass AssignedInventorySlot => assignedInventorySlot;
-    public InventoryDisplay parentDisplay { get; private set; }
+    public InventoryDisplay ParentDisplay { get; private set; }
 
     public void Awake()
     {
         ClearSlot();
 
         button = GetComponent<Button>();
-        button?.onClick.AddListener(OnUISlotClick);
-        parentDisplay = transform.parent.GetComponent<InventoryDisplay>();
+        if (button != null)
+        {
+            button.onClick.AddListener(OnUISlotClick);
+        }
+        else
+        {
+            Debug.Log("Cannot Find Button");
+        }
+        //button?.onClick.AddListener(OnUISlotClick);
+        ParentDisplay = transform.parent.GetComponent<InventoryDisplay>();
     }
 
     public void InitializeSlot(SlotClass slot)
@@ -32,12 +40,12 @@ public class InventorySlot_UI : MonoBehaviour
 
     public void UpdateUISlot(SlotClass slot)
     {
-        if (slot.item != null)
+        if (slot.Item != null)
         {
-            itemSprite.sprite = slot.item.itemIcon;
+            itemSprite.sprite = slot.Item.itemIcon;
             itemSprite.color = Color.white;
 
-            if (slot.quantity > 1) itemCount.text = slot.quantity.ToString();
+            if (slot.Quantity > 1) itemCount.text = slot.Quantity.ToString();
             else itemCount.text = "";
         }
         else
@@ -60,11 +68,17 @@ public class InventorySlot_UI : MonoBehaviour
         assignedInventorySlot?.Clear();
         itemSprite.sprite = null;
         itemSprite.color = Color.clear;
-        itemCount.text = string.Empty;
+        itemCount.text = "";
     }
 
     public void OnUISlotClick()
     {
-        parentDisplay?.SlotClicked(this);
+        if (ParentDisplay != null)
+        {
+            ParentDisplay.SlotClicked(this);
+            
+        }
+        
+        //ParentDisplay?.SlotClicked(this); //the ? operator basically acts as a super condensed if statement
     }
 }
