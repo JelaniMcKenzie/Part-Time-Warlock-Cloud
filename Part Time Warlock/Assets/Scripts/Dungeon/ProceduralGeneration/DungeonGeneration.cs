@@ -67,13 +67,37 @@ public class DungeonGeneration : MonoBehaviour
     private void FillWalls()
     {
         BoundsInt bounds = floorMap.cellBounds;
-        for (int xMap = bounds.xMin - 10; xMap <= bounds.xMax + 10; xMap++)
+        for (int yMap = bounds.yMin - 1; yMap <= bounds.yMax + 1; yMap++)
         {
-            for (int yMap = bounds.yMin - 10; yMap <= bounds.yMax + 10; yMap++)
+            for (int xMap = bounds.xMin - 1; xMap <= bounds.xMax + 1; xMap++)
             {
                 Vector3Int pos = new Vector3Int(xMap, yMap, 0);
-                Vector3Int posBelow = new Vector3Int(xMap, yMap - 1, 0);
-                Vector3Int posAbove = new Vector3Int(xMap, yMap + 1, 0);
+                Vector3Int posLeft = new Vector3Int(xMap - 1, yMap, 0); //the amount of tiles on the wall in the positive
+                Vector3Int posRight = new Vector3Int(xMap + 1, yMap, 0); //the amount of tiles on the wall in the negative
+                TileBase tile = floorMap.GetTile(pos);
+                TileBase tileBelow = floorMap.GetTile(posLeft);
+                TileBase tileAbove = floorMap.GetTile(posRight);
+                if (tile == null)
+                {
+                    pitMap.SetTile(pos, pitTile);
+                    if (tileBelow != null)
+                    {
+                        wallMap.SetTile(pos, sideWallTile[0]);
+                    }
+                    else if (tileAbove != null)
+                    {
+                        wallMap.SetTile(pos, sideWallTile[1]);
+                    }
+                }
+            }
+        }
+        for (int xMap = bounds.xMin - 1; xMap <= bounds.xMax + 1; xMap++)
+        {
+            for (int yMap = bounds.yMin - 1; yMap <= bounds.yMax + 1; yMap++)
+            {
+                Vector3Int pos = new Vector3Int(xMap, yMap, 0);
+                Vector3Int posBelow = new Vector3Int(xMap, yMap - 3, 0); //the amount of tiles on the wall in the positive
+                Vector3Int posAbove = new Vector3Int(xMap, yMap + 1, 0); //the amount of tiles on the wall in the negative
                 TileBase tile = floorMap.GetTile(pos);
                 TileBase tileBelow = floorMap.GetTile(posBelow);
                 TileBase tileAbove = floorMap.GetTile(posAbove);
@@ -91,6 +115,7 @@ public class DungeonGeneration : MonoBehaviour
                 }
             }
         }
+       
     }
 
 

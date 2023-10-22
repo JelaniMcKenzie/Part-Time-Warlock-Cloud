@@ -348,17 +348,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4013355944628893568, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013355944628893568, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013355944628893568, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1972415647
+      objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797769, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.903
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3767
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -716,8 +728,8 @@ MonoBehaviour:
   botWallTile:
   - {fileID: 11400000, guid: 4156e11e00b30bb439e405a5ceb3d76c, type: 2}
   sideWallTile:
-  - {fileID: 11400000, guid: 98877e8ffb8da7d4c9ef53aa4b892823, type: 2}
   - {fileID: 11400000, guid: fbb39c0ae7dcdd74e8a3bf08e912c23a, type: 2}
+  - {fileID: 11400000, guid: 98877e8ffb8da7d4c9ef53aa4b892823, type: 2}
   pitTile: {fileID: 11400000, guid: 5252892a311697a419b0f18b03d7d370, type: 2}
   floorMap: {fileID: 385761618}
   wallMap: {fileID: 469630229}
@@ -725,7 +737,7 @@ MonoBehaviour:
   player: {fileID: 380666010}
   deviationRate: 10
   roomRate: 15
-  maxRouteLength: 0
+  maxRouteLength: 50
   maxRoutes: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
