@@ -123,6 +123,126 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &334059737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334059738}
+  - component: {fileID: 334059740}
+  - component: {fileID: 334059739}
+  m_Layer: 0
+  m_Name: Tilemap_Pit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &334059738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334059737}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 984177796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!483693784 &334059739
+TilemapRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334059737}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1972415647
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_ChunkSize: {x: 32, y: 32, z: 32}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_MaxChunkCount: 16
+  m_MaxFrameAge: 16
+  m_SortOrder: 0
+  m_Mode: 0
+  m_DetectChunkCullingBounds: 0
+  m_MaskInteraction: 0
+--- !u!1839735485 &334059740
+Tilemap:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334059737}
+  m_Enabled: 1
+  m_Tiles: {}
+  m_AnimatedTiles: {}
+  m_TileAssetArray: []
+  m_TileSpriteArray: []
+  m_TileMatrixArray: []
+  m_TileColorArray: []
+  m_TileObjectToInstantiateArray: []
+  m_AnimationFrameRate: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Origin: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0, y: 0, z: 1}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileOrientation: 0
+  m_TileOrientationMatrix:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
 --- !u!1001 &342696878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +397,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+--- !u!1 &380666010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8771377463029797769, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+  m_PrefabInstance: {fileID: 380666009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385761615
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 984177796}
   - component: {fileID: 984177795}
+  - component: {fileID: 984177797}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -561,8 +687,46 @@ Transform:
   m_Children:
   - {fileID: 385761616}
   - {fileID: 469630227}
+  - {fileID: 334059738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &984177797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984177794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6ed2888f17f464c8a39a8daf330b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorTile:
+  - {fileID: 11400000, guid: b7eeb649bd9bf41468d1eb0fac1429d7, type: 2}
+  - {fileID: 11400000, guid: fcc9eadef7f23474fb3a04284ed22bed, type: 2}
+  - {fileID: 11400000, guid: 11272fc66d46ea84699e065e3755bbf4, type: 2}
+  - {fileID: 11400000, guid: 116c0770e07ed9e44bfcc25735b49406, type: 2}
+  - {fileID: 11400000, guid: 116c0770e07ed9e44bfcc25735b49406, type: 2}
+  topWallTile:
+  - {fileID: 11400000, guid: 60b2d7309f19f334bbcb597dd39fb8bb, type: 2}
+  - {fileID: 11400000, guid: 0ef7db429d74b644f9c0d78724c117d6, type: 2}
+  - {fileID: 11400000, guid: 0caa68573072d834bb5ceab6e05ecebc, type: 2}
+  - {fileID: 11400000, guid: 88e8d94e34a73fd4e820d6e7f01a3b02, type: 2}
+  botWallTile:
+  - {fileID: 11400000, guid: 4156e11e00b30bb439e405a5ceb3d76c, type: 2}
+  sideWallTile:
+  - {fileID: 11400000, guid: 98877e8ffb8da7d4c9ef53aa4b892823, type: 2}
+  - {fileID: 11400000, guid: fbb39c0ae7dcdd74e8a3bf08e912c23a, type: 2}
+  pitTile: {fileID: 11400000, guid: 5252892a311697a419b0f18b03d7d370, type: 2}
+  floorMap: {fileID: 385761618}
+  wallMap: {fileID: 469630229}
+  pitMap: {fileID: 334059740}
+  player: {fileID: 380666010}
+  deviationRate: 10
+  roomRate: 15
+  maxRouteLength: 0
+  maxRoutes: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
