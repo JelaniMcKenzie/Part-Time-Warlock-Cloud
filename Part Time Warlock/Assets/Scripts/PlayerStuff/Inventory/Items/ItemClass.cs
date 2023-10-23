@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a scriptable object that defines what an item is in our game.
+/// Has inheritance to have branched versions of items such as consumables
+/// and equipment
+/// </summary>
 public class ItemClass : ScriptableObject
 {
     [Header("Item")]
@@ -11,6 +16,7 @@ public class ItemClass : ScriptableObject
     public Sprite itemIcon;
     public bool isStackable = true;
     public int stackSize = 64;
+    public int price;
 
     [TextArea(4, 4)]
     public string description;

@@ -28,6 +28,8 @@ public class StaticInventoryDisplay : InventoryDisplay
         //the hotbar has 5 slots. Code checks if the backend has 10 slots
         //will this throw an error due to the size mismatch?
         //temporarialy make the inventory slots a size of 5 to solve this;
+
+        //This is a static display so the slots count on the UI and the backend must match up. Else it will throw a warning
          
         if (slots.Length != inventorySystem.InventorySize)
         {
@@ -36,7 +38,7 @@ public class StaticInventoryDisplay : InventoryDisplay
         for (int i = 0; i < inventorySystem.InventorySize; i++) 
         {
             slotDictionary.Add(slots[i], inventorySystem.InventorySlots[i]);
-            slots[i].InitializeSlot(inventorySystem.InventorySlots[i]);
+            slots[i].InitializeSlot(inventorySystem.InventorySlots[i]); //initialize the UI slot with its counterpart on the backend
         }
     }
 }

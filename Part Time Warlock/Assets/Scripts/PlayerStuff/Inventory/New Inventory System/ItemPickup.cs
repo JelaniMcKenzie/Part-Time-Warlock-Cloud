@@ -17,10 +17,12 @@ public class ItemPickup : MonoBehaviour
         myCollider.radius = pickupRadius;
     }
 
+    //TODO: change the logic of slime chasing so that this code can be changed to OnTriggerEnter2D
     private void OnCollisionEnter2D(Collision2D other)
     {
 
         var inventory = other.transform.GetComponent<NewInventoryHolder>();
+        //if the object we collided with doesn't have an inventory component, return 
         if (!inventory) return;
 
         if (inventory.InventorySystem.AddToInventory(item, 1))

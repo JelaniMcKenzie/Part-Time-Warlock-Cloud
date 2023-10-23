@@ -7,7 +7,7 @@ using System.Linq;
 [System.Serializable]
 public class NewInventorySystem
 {
-    [SerializeField] public List<SlotClass> inventorySlots;
+    [SerializeField] public List<SlotClass> inventorySlots; // the list of inventory slots
 
     public List<SlotClass> InventorySlots => inventorySlots;
 
@@ -15,13 +15,13 @@ public class NewInventorySystem
 
     public UnityAction<SlotClass> OnInventorySlotChanged;
 
-    public NewInventorySystem(int size)
+    public NewInventorySystem(int size) // Constructor that sets the amount of slots
     {
         inventorySlots = new List<SlotClass>(size);
 
         for (int i = 0; i < size; i++)
         {
-            inventorySlots.Add(new SlotClass());
+            inventorySlots.Add(new SlotClass()); //add # of empty slots based on size variable
         }
     }
 
@@ -34,36 +34,35 @@ public class NewInventorySystem
             foreach (var slot in invSlot)
             {
                 //does the slot have room left in the stack
-                if(slot.RoomLeftInStack(amountToAdd))
+                if(slot.EnoughRoomLeftInStack(amountToAdd))
                 {
                     slot.AddQuantity(amountToAdd);
                     OnInventorySlotChanged?.Invoke(slot);
                     return true;
                 }
             }
-           
         }
 
         if (HasFreeSlot(out SlotClass freeSlot)) //Gets the first available slot
         {
-            freeSlot.UpdateInventorySlot(itemToAdd, amountToAdd);
-            OnInventorySlotChanged?.Invoke(freeSlot);
-            return true;
+            if (freeSlot.EnoughRoomLeftInStack(amountToAdd))
+            {
+                freeSlot.UpdateInventorySlot(itemToAdd, amountToAdd);
+                OnInventorySlotChanged?.Invoke(freeSlot);
+                return true;
+            }
+            //TODO Add implementation to only take what can fill the stack, and check for another free slot to put the remainder in.
         }
-
         return false;
     }
 
-    public bool ContainsItem(ItemClass itemtoAdd, out List<SlotClass> invSlot)
+    public bool ContainsItem(ItemClass itemtoAdd, out List<SlotClass> invSlot) //do any of our slots have the item to add in therm?
     {
         /*this code gets all the slots where the slot's itemData is equal to the item we're searching for, and then
         adds it to a List.*/
         invSlot = InventorySlots.Where(slot => slot.Item == itemtoAdd).ToList();
         Debug.Log(invSlot.Count);
-        return invSlot == null ? false : true; //if the invSlot is null, return false. Else return true.
-
-
-
+        return invSlot == null ? false : true; //if the invSlot list is null, return false. Else return true.
 
         /*Note: System.Linq has a lot of useful functions. For example the one below gets the
         first inventory slot where the item's max stack size is greater than 5
@@ -75,7 +74,7 @@ public class NewInventorySystem
     {
         //Note: in System.Linq functions like FirstOrDefault, i is a parameter variable that references an item in the list.
         //therefore, it can be named anything. I just called it i.
-        freeSlot = InventorySlots.FirstOrDefault(i => i.Item == null);
+        freeSlot = InventorySlots.FirstOrDefault(i => i.Item == null); //get the first free slot
         return freeSlot == null ? false : true; //if its found a free slot, return true. else return false
     }
 }

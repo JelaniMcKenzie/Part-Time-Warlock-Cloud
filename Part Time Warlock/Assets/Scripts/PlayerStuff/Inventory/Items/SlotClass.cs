@@ -12,10 +12,10 @@ public class SlotClass
     //[field: SerializeField] public ItemClass item { get; private set; } = null;
     //[field: SerializeField] public int quantity { get; private set; } = 0;
 
-    [SerializeField] private ItemClass item; //change to private after new inventory is done
-    [SerializeField] private int quantity;  //change to private after new inventory is done
+    [SerializeField] private ItemClass item; //reference to the item itself
+    [SerializeField] private int quantity;  //reference to the amount of the item we have
 
-    public ItemClass Item => item;
+    public ItemClass Item => item; // => is essentially a hypercondensed getter method. Is capitalized in name for outer classes to reference
     public int Quantity => quantity;
 
 
@@ -28,44 +28,45 @@ public class SlotClass
         potion,
     }
 
-    public SlotClass(ItemClass _item, int _quantity)
+    public SlotClass(ItemClass _item, int _quantity) //constructor to make an occupied inventory slot
     {
         item = _item;
         quantity = _quantity;
     }
 
-    public SlotClass()
+    public SlotClass() //constructor to make an empty inventory slot
     {
         //default/dummy constructor
         Clear();
     }
 
-    public SlotClass(SlotClass slot)
+
+    /*public SlotClass(SlotClass slot) // deprecated constructor
     {
         this.item = slot.item;
         this.quantity = slot.quantity;
-    }
+    }*/
 
 
-    public void Clear()
+    public void Clear() // Clears the slot
     {
         this.item = null;
         this.quantity = -1;
     }
 
-    public void UpdateInventorySlot(ItemClass data, int amount)
+    public void UpdateInventorySlot(ItemClass data, int amount) // updates slot directly
     {
         item = data;
         quantity = amount;
     }
 
-    public void AssignItem(SlotClass invSlot)
+    public void AssignItem(SlotClass invSlot) //Assigns an item to the slot
     {
-        if (item == invSlot.item)
+        if (item == invSlot.item) // Does the slot contain the same item? Add to the stack if so.
         {
             AddQuantity(invSlot.quantity);
         }
-        else
+        else // overwrite slot with the new item that we're trying to add
         {
             item = invSlot.item;
             quantity = 0;
@@ -93,15 +94,15 @@ public class SlotClass
         }
     }
     //Note:AddItem is deprecated in NewInventorySystem.cs
-    public void AddItem(ItemClass item, int quantity) 
+    /*public void AddItem(ItemClass item, int quantity) 
     {
         this.item = item;
         this.quantity = quantity;
-    }
+    }*/
 
-    public bool RoomLeftInStack(int amountToAdd)
+    public bool EnoughRoomLeftInStack(int amountToAdd)
     {
-        if (quantity + amountToAdd <= item.stackSize)
+        if (item == null || item != null && quantity + amountToAdd <= item.stackSize)
         {
             return true;
         }
@@ -111,9 +112,23 @@ public class SlotClass
         }
     }
 
-    public bool RoomLeftInStack(int amountToAdd, out int amountRemaining)
+    public bool EnoughRoomLeftInStack(int amountToAdd, out int amountRemaining) // would there be enough room in the stack for the amount we're trying to add?
     {
         amountRemaining = item.stackSize - quantity;
-        return RoomLeftInStack(amountToAdd);
+        return EnoughRoomLeftInStack(amountToAdd);
+    }
+
+    public bool SplitStack(out SlotClass splitStack)
+    {
+        if (Quantity <= 1) //is there enough to actually split; can't have half of an item. If not, return false
+        {
+            splitStack = null;
+            return false;
+        }
+        int halfStack = Mathf.RoundToInt(quantity / 2); //Get half the stack
+        SubtractQuantity(halfStack);
+
+        splitStack = new SlotClass(item, halfStack); //Creates a copy of this slot with half the stack size
+        return true;
     }
 }

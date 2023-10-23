@@ -22,13 +22,12 @@ public class InventorySlot_UI : MonoBehaviour
         button = GetComponent<Button>();
         if (button != null)
         {
-            button.onClick.AddListener(OnUISlotClick);
+            button.onClick.AddListener(OnUISlotClick); //this requires an EventSystem gameObject in your scene to work
         }
         else
         {
             Debug.Log("Cannot Find Button");
         }
-        //button?.onClick.AddListener(OnUISlotClick);
         ParentDisplay = transform.parent.GetComponent<InventoryDisplay>();
     }
 
@@ -38,7 +37,7 @@ public class InventorySlot_UI : MonoBehaviour
         UpdateUISlot(slot);
     }
 
-    public void UpdateUISlot(SlotClass slot)
+    public void UpdateUISlot(SlotClass slot) //pass in a backend inventory slot to display
     {
         if (slot.Item != null)
         {
@@ -75,10 +74,7 @@ public class InventorySlot_UI : MonoBehaviour
     {
         if (ParentDisplay != null)
         {
-            ParentDisplay.SlotClicked(this);
-            
+            ParentDisplay.SlotClicked(this);            
         }
-        
-        //ParentDisplay?.SlotClicked(this); //the ? operator basically acts as a super condensed if statement
     }
 }

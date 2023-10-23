@@ -19,6 +19,7 @@ public class MouseItemData : MonoBehaviour
 
     private void Update()
     {
+        //TODO: add controller support.
         if (AssignedMouseInvSlot.Item != null)
         {
             transform.position = Mouse.current.position.ReadValue(); //have the selected item follow the mouse
@@ -27,6 +28,7 @@ public class MouseItemData : MonoBehaviour
             if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUIObject()) 
             {
                 ClearSlot();
+                //TODO : Drop the item on the ground instead of deleting it 
             }
         }
     }
@@ -53,6 +55,7 @@ public class MouseItemData : MonoBehaviour
         eventDataCurrentPosition.position = Mouse.current.position.ReadValue();
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;   
+        return results.Count > 0; //if the list of hit UI elements is greater than 0, that means the mouse interacted with something.
+                                  //if not, then it hit nothing
     }
 }

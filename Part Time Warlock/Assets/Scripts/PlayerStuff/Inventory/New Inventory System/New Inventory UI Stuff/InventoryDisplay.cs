@@ -21,9 +21,9 @@ public abstract class InventoryDisplay : MonoBehaviour
         
     }
 
-    public abstract void AssignSlot(NewInventorySystem invToDisplay);
+    public abstract void AssignSlot(NewInventorySystem invToDisplay); //Implemented in child classes
 
-    protected virtual void UpdateSlot(SlotClass updatedSlot)
+    protected virtual void UpdateSlot(SlotClass updatedSlot) //called whenever something changes in the inventory, pass in the slot that was changed
     {
         foreach (var slot in SlotDictionary)
         {
@@ -36,15 +36,27 @@ public abstract class InventoryDisplay : MonoBehaviour
 
     public void SlotClicked(InventorySlot_UI clickedUISlot)
     {
-        
+        //TODO: either change the hardcoded key or utilize the new input system to change the logic here
+        //The new input system requires an inputsystem gameobject to be active in the scene
+        bool isShiftPressed = Keyboard.current.leftShiftKey.isPressed;
 
         // if clicked slot has item and mouse doesn't have item, pick up the item
         if (clickedUISlot.AssignedInventorySlot.Item != null && mouseInventoryItem.AssignedMouseInvSlot.Item == null)
         {
             //If player is holding shift, split the stack in half
-            mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
-            clickedUISlot.ClearSlot(); //clear the hotbar/inventory slot because the item is picked up by the mouse
-            return;
+            if (isShiftPressed && clickedUISlot.AssignedInventorySlot.SplitStack(out SlotClass halfStackSlot))
+            {
+                mouseInventoryItem.UpdateMouseSlot(halfStackSlot);
+                clickedUISlot.UpdateUISlot();
+                return;
+            } 
+            else //pick up item in the clicked slot
+            {
+                mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
+                clickedUISlot.ClearSlot(); //clear the hotbar/inventory slot because the item is picked up by the mouse
+                return;
+            }
+           
         }
 
         // clicked slot doesn't have item and mouse has an item, place the mouse item in the empty slot
@@ -54,18 +66,72 @@ public abstract class InventoryDisplay : MonoBehaviour
             clickedUISlot.UpdateUISlot();
 
             mouseInventoryItem.ClearSlot(); //the selected item has been placed into an inventory slot
+            return;
         }
 
         // if clicked slot and mouse have an item, decide what to do
+        if (clickedUISlot.AssignedInventorySlot.Item != null && mouseInventoryItem.AssignedMouseInvSlot.Item != null)
+        {
+            bool isSameItem = clickedUISlot.AssignedInventorySlot.Item == mouseInventoryItem.AssignedMouseInvSlot.Item;
+
             //if both items are the same, combine the stack
-        //if the slot stack size + mouse stack size > the slot max stack size? If so, take only enough from the mouse to fill the stack
-        //if the items are different, swap the slot item with the mouse item
-        
-        
+            if (isSameItem && clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedMouseInvSlot.Quantity))
+            {
+                clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedMouseInvSlot); //add to the stack
+                clickedUISlot.UpdateUISlot();
+
+                mouseInventoryItem.ClearSlot(); //stacks are combined; clear what's on the mouse
+                return;
+            }
+
+            //if there isn't room left in stack, keep the remaining items in the mouse
+            else if (isSameItem && 
+                !clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedMouseInvSlot.Quantity, out int leftInStack))
+            {
+                if (leftInStack < 1)
+                {
+                    SwapSlots(clickedUISlot); //Stack is full so swap the items
+                }
+                else // slot is not at max, so take whats needed from the mouse inventory
+                {
+                    int remainingOnMouse = mouseInventoryItem.AssignedMouseInvSlot.Quantity - leftInStack; //how much would be left on the mouse when you fill the clicked slot stack
+                    
+                    //actually fill the clicked slot stack
+                    clickedUISlot.AssignedInventorySlot.AddQuantity(leftInStack);
+                    clickedUISlot.UpdateUISlot();
+
+                    //make the mouse item have the new (remainder) amount of the item
+                    var newItem = new SlotClass(mouseInventoryItem.AssignedMouseInvSlot.Item, remainingOnMouse);
+                    mouseInventoryItem.ClearSlot();
+                    mouseInventoryItem.UpdateMouseSlot(newItem);
+                    return;
+                }
+            }
+            
+            //if the items are different, swap the slot item with the mouse item
+            else if (!isSameItem)
+            {
+                SwapSlots(clickedUISlot);
+                return;
+            }
+        }
     }
 
-    private void SwapSlots(SlotClass clickedSlot)
+    private void SwapSlots(InventorySlot_UI clickedUISlot)
     {
+        //we have an item on the mouse and make a copy of it to be overwritten
+        var clonedSlot = new SlotClass(mouseInventoryItem.AssignedMouseInvSlot.Item, mouseInventoryItem.AssignedMouseInvSlot.Quantity);
 
+        //clear the mouse slot
+        mouseInventoryItem.ClearSlot();
+
+        //put the item we clicked on in the inventory On the mouse
+        mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
+
+        clickedUISlot.ClearSlot();
+
+        //Update the UI with the item we cloned. (We cloned the item to save a reference to it for this purpose, because the original was deleted in clickedUISlot.ClearSlot());
+        clickedUISlot.AssignedInventorySlot.AssignItem(clonedSlot);
+        clickedUISlot.UpdateUISlot();
     }
 }
