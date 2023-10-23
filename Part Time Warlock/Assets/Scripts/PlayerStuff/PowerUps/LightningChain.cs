@@ -17,7 +17,7 @@ public class LightningChain : MonoBehaviour
     }
 
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("velocity = " + other.GetComponent<Rigidbody>().velocity);
         /*IEnumerator stunned()

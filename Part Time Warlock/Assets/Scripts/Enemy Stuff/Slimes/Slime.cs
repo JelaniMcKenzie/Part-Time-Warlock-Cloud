@@ -41,7 +41,7 @@ public class Slime : GameEntity
 
         else if (canMove == false)
         {
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
 
         if (isOnFire == true)
@@ -81,7 +81,7 @@ public class Slime : GameEntity
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
         {
@@ -109,7 +109,7 @@ public class Slime : GameEntity
 
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("PlayerProx"))
         {
@@ -117,7 +117,7 @@ public class Slime : GameEntity
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("PlayerProx"))
         {

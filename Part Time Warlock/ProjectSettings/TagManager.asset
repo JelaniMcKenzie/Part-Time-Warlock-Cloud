@@ -18,15 +18,16 @@ TagManager:
   - Lightning
   - FloorMat
   - BigCoin
+  - Prox
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - enemyLayer
+  - 
   - Water
   - UI
-  - ShadowArcher
-  - SlimeAggro
+  - 
+  - 
   - 
   - 
   - 

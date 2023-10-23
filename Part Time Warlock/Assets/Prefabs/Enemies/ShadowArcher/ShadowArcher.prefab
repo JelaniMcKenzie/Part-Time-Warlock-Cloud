@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 275988022219552332}
   - component: {fileID: 275988022219552333}
   - component: {fileID: 275988022219552335}
-  - component: {fileID: 275988022219552334}
-  - component: {fileID: 180411283}
+  - component: {fileID: 8002259633028743515}
+  - component: {fileID: 8672415217203517530}
   m_Layer: 3
   m_Name: ShadowArcher
   m_TagString: Enemy
@@ -103,7 +103,6 @@ MonoBehaviour:
   Arrow: {fileID: 3410154502973357208, guid: c785471e6e65f1a45af66445da438112, type: 3}
   Bow: {fileID: 2745928774343931507}
   P: {fileID: 0}
-  SM: {fileID: 0}
   AR: {fileID: 0}
   CoinPrefab: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
   PotionPrefab: {fileID: 1986261339318792923, guid: 65f123fa7787db94382b227ed4802293, type: 3}
@@ -115,13 +114,42 @@ MonoBehaviour:
   burnSeconds: 5
   isOnFire: 0
   Death: {fileID: 8300000, guid: db83a4676a8448143b958c6f20e8d500, type: 3}
---- !u!65 &275988022219552334
-BoxCollider:
+--- !u!50 &8002259633028743515
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275988022219552323}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &8672415217203517530
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275988022219552323}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -130,39 +158,34 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.11717816, y: 0.2199724, z: 0.2}
-  m_Center: {x: -0.004341792, y: 0.013025189, z: 0}
---- !u!54 &180411283
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275988022219552323}
-  serializedVersion: 4
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
+  m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0005700309, y: 0.0074101686}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.07489373, y: 0.20485702}
+  m_EdgeRadius: 0
 --- !u!1 &2745928774343931507
 GameObject:
   m_ObjectHideFlags: 0

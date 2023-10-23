@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class ItemPickup : MonoBehaviour
 {
     public float pickupRadius;
     public ItemClass item;
 
-    private SphereCollider myCollider;
+    private CircleCollider2D myCollider;
 
     private void Awake()
     {
-        myCollider = GetComponent<SphereCollider>();
+        myCollider = GetComponent<CircleCollider2D>();
         myCollider.isTrigger = false;
         myCollider.radius = pickupRadius;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
 
         var inventory = other.transform.GetComponent<NewInventoryHolder>();

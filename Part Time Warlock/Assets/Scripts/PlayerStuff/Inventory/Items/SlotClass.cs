@@ -58,6 +58,20 @@ public class SlotClass
         item = data;
         quantity = amount;
     }
+
+    public void AssignItem(SlotClass invSlot)
+    {
+        if (item == invSlot.item)
+        {
+            AddQuantity(invSlot.quantity);
+        }
+        else
+        {
+            item = invSlot.item;
+            quantity = 0;
+            AddQuantity(invSlot.quantity);
+        }
+    }
     /*public ItemClass GetItem()
     {
         return item;

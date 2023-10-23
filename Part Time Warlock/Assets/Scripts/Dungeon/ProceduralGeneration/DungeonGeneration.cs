@@ -43,7 +43,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField]
     private int maxRoutes = 20;
     [Tooltip("The range of sizes a room can be")]
-    [Range(3, 10)]
+    [Range(3, 6)]
     private int roomSize;
 
 

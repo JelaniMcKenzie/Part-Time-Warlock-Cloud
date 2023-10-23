@@ -19,8 +19,6 @@ public class Player : GameEntity
 
     [Space(30)]
 
-
-    
     //--------------------Script comm fields--------------------
     public UIManager uiManager = null;
     public HealthBar healthBar = null;
@@ -57,8 +55,8 @@ public class Player : GameEntity
     public bool left = false;
     public bool right = false;
     public bool isInventoryOpen = false;
-    public Rigidbody rb;
-    private Vector3 moveInput;
+    public Rigidbody2D rb;
+    private Vector2 moveInput;
 
     [Header("Dash Settings")]
     [SerializeField] float dashmoveSpeed = 10f;
@@ -72,6 +70,7 @@ public class Player : GameEntity
 
     void Start()
     {
+
         canDash = true;
         canShoot = false;
         activeScene = SceneManager.GetActiveScene();
@@ -106,6 +105,11 @@ public class Player : GameEntity
             Sprint();
         }
 
+        if (coinNum < 0)
+        {
+            coinNum = 0;
+            uiManager.UpdateCoinText();
+        }
 
         if (isHit == true)
         {
@@ -187,6 +191,7 @@ public class Player : GameEntity
             }
         }*/
     }
+
 
     private void Movement()
     {
@@ -295,19 +300,21 @@ public class Player : GameEntity
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             Damage();
         }
+
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             Damage();
         }
+
     }
 }

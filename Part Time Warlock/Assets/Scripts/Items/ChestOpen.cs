@@ -39,7 +39,7 @@ public class ChestOpen : MonoBehaviour
         {
             StartCoroutine(CloseChest());
         }
-        GetComponent<BoxCollider>().isTrigger = false;
+        GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     public IEnumerator CloseChest()

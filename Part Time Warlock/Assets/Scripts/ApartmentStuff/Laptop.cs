@@ -17,7 +17,7 @@ public class Laptop : MonoBehaviour
         
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Player>() != null)
         {

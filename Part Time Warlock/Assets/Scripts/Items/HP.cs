@@ -22,7 +22,7 @@ public class HP : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
             AudioSource.PlayClipAtPoint(HPotion, transform.position, 4);
