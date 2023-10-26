@@ -21,11 +21,11 @@ public class ItemPickup : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
 
-        var inventory = other.transform.GetComponent<NewInventoryHolder>();
+        var inventory = other.transform.GetComponent<PlayerInventoryHolder>();
         //if the object we collided with doesn't have an inventory component, return 
         if (!inventory) return;
 
-        if (inventory.InventorySystem.AddToInventory(item, 1))
+        if (inventory.AddToInventory(item, 1))
         {
             //if item was successfully added to inventory, destroy this gameObject
             Destroy(this.gameObject);
