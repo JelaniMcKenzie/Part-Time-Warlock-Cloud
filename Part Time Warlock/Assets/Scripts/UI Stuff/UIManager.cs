@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //UpdateCoinText();
         if (timerActive == true)
         {
             if (timer > 0f)

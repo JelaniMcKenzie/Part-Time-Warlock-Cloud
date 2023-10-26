@@ -760,29 +760,15 @@ MonoBehaviour:
   isBurning: 0
   staffArm: {fileID: 0}
   staffTip: {fileID: 6569334813343694460}
-  uiManager: {fileID: 0}
-  healthBar: {fileID: 0}
-  spellSound: {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
-  iceSound: {fileID: 8300000, guid: 8171342f1983747b3a1e3a85ad95097b, type: 3}
-  fireClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
-  lightningClip: {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
   maxHealth: 1
   scene: Lose
-  canHit: 1
   canMove: 1
-  isHit: 0
   coinNum: 20
   activeScene:
     m_Handle: 0
   handParent: {fileID: 6569334812775653879}
-  canShoot: 1
   inventoryObj: {fileID: 0}
-  up: 0
-  down: 0
-  left: 0
-  right: 0
   isInventoryOpen: 0
-  rb: {fileID: 3578645339513646420}
   dashmoveSpeed: 20
   dashDuration: 0.075
   dashCooldown: 1

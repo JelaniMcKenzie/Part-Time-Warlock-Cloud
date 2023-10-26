@@ -149,47 +149,16 @@ public class PlayerAnimations : MonoBehaviour
 
     private void ApartmentAnim()
     {
-        // Determine the direction of movement based on the x and y axis values
-        if (xAxis > 0)
+        float moveInputX = Input.GetAxisRaw("Horizontal");
+        float moveInputY = Input.GetAxisRaw("Vertical");
+
+        if (moveInputX == 0 && moveInputY == 0)
         {
-            currentAnim = "Right";
-        }
-        else if (xAxis < 0)
-        {
-            currentAnim = "Left";
-        }
-        else if (yAxis > 0)
-        {
-            currentAnim = "Up";
-        }
-        else if (yAxis < 0)
-        {
-            currentAnim = "Down";
+            Anim.SetBool("running", false);
         }
         else
         {
-            // If there is no movement, play the idle animation in the current direction
-            switch (currentAnim)
-            {
-                case "Right":
-                    currentAnim = "IdleRight";
-                    break;
-                case "Left":
-                    currentAnim = "IdleLeft";
-                    break;
-                case "Up":
-                    currentAnim = "IdleUp";
-                    break;
-                case "Down":
-                    currentAnim = "Idle";
-                    break;
-            }
-        }
-
-        // Check if the current animation is already playing to prevent unnecessary animation restarts
-        if (!animState.IsName(currentAnim))
-        {
-            Anim.Play(currentAnim, 0);
+            Anim.SetBool("running", true);
         }
     }
 }
