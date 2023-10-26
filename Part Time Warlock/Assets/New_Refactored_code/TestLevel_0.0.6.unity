@@ -335,6 +335,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6593372236604084359, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593372236604084359, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -348,6 +356,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3881639834509014796, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4013355944628893568, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -404,6 +416,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8771377463029797779, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1239295632, guid: b5184757ec38b41a6b8a7bb554918876, type: 3}
     - target: {fileID: 8771377463029797779, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_SortingOrder
       value: 3
