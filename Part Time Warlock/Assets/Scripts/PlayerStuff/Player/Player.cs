@@ -9,53 +9,30 @@ using System;
 public class Player : GameEntity
 {
     public Transform staffArm;
-
-
-    [Header("Spell Projectiles")]
-
-    //--------------------Spell projectiles---------------------
-    [SerializeField] public GameObject staffTip = null;
-
+    public GameObject staffTip = null;
 
     [Space(30)]
 
     //--------------------Script comm fields--------------------
-    public UIManager uiManager = null;
-    public HealthBar healthBar = null;
-
-
-    [Header("Audio Fields")]
-    //-------------------Audio fields (CHANGE LATER)------------
-    [SerializeField] public AudioClip spellSound = null;
-    [SerializeField] public AudioClip iceSound = null;
-    [SerializeField] public AudioClip fireClip = null;
-    [SerializeField] public AudioClip lightningClip = null;
-
-
+    private UIManager uiManager = null;
     [Space(30)]
 
     [Header("bool variables")]
     public float maxHealth = 1f;
     public string scene;
-    public bool canHit = true;
+    private bool canHit = true;
     public bool canMove = true;
-    public bool isHit = false;
+    private bool isHit = false;
     public int coinNum = 0;
 
     public Scene activeScene;
     public GameObject handParent = null;
 
-    public bool canShoot = true;
+    private bool canShoot = true;
     public GameObject inventoryObj = null;
 
-    //arrow key fields
-
-    public bool up = false;
-    public bool down = false;
-    public bool left = false;
-    public bool right = false;
     public bool isInventoryOpen = false;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Vector2 moveInput;
 
     [Header("Dash Settings")]
@@ -71,6 +48,7 @@ public class Player : GameEntity
     void Start()
     {
 
+        rb = GetComponent<Rigidbody2D>();
         canDash = true;
         canShoot = false;
         activeScene = SceneManager.GetActiveScene();
@@ -87,7 +65,6 @@ public class Player : GameEntity
         }
         canHit = true;
         uiManager = FindAnyObjectByType<UIManager>();
-        healthBar = FindAnyObjectByType<HealthBar>();
     }
 
     // Update is called once per frame
@@ -97,7 +74,7 @@ public class Player : GameEntity
         {
             return;
         }
-     
+
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         if (canMove == true)
         {
@@ -117,7 +94,7 @@ public class Player : GameEntity
         }
 
 
-        
+
         /*if (isInventoryOpen == false)
         {
             //Use a spell or an item
@@ -167,7 +144,7 @@ public class Player : GameEntity
                 }
             }
         }
-        
+
 
         //Open and close inventory
         if (Input.GetKeyDown(KeyCode.Tab) && isInventoryOpen == false)
@@ -248,7 +225,7 @@ public class Player : GameEntity
                 SceneManager.LoadScene(scene);
             }
         }
-        
+
     }
 
     public IEnumerator Dash()
@@ -261,7 +238,7 @@ public class Player : GameEntity
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-        
+
         //TODO: Sync the cooldown of the dash to the usage of the dash spell
     }
 
@@ -292,7 +269,7 @@ public class Player : GameEntity
                 StartCoroutine(DamageFlash());
             }
         }
-        
+
         else
         {
             timer = 0f;
