@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class ChestInventory : NewInventoryHolder , IInteractable
+{
+    public UnityAction<IInteractable> OnInteractionComplete {  get; set; }
+
+
+    public void Interact(Interactor interactor, out bool interactSuccessful)
+    {
+        OnDynamicInventoryDisplayRequested?.Invoke(PrimaryInventorySystem);
+        interactSuccessful = true;
+    }
+
+    public void EndInteraction()
+    {
+        
+    }
+
+    
+}
