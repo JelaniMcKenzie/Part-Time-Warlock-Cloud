@@ -28,7 +28,6 @@ public class Player : GameEntity
     public Scene activeScene;
     public GameObject handParent = null;
 
-    private bool canShoot = true;
     public GameObject inventoryObj = null;
 
     public bool isInventoryOpen = false;
@@ -50,16 +49,13 @@ public class Player : GameEntity
 
         rb = GetComponent<Rigidbody2D>();
         canDash = true;
-        canShoot = false;
         activeScene = SceneManager.GetActiveScene();
         if (activeScene.name == "Apartment")
         {
             handParent.SetActive(false);
-            canShoot = false;
         } else
         {
             handParent.SetActive(true);
-            canShoot= true;
             health = maxHealth;
             //healthBar.UpdateHealthBar();
         }

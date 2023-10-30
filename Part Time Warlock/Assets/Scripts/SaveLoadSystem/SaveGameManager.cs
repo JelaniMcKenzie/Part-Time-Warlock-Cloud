@@ -1,57 +1,46 @@
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace SaveLoadSystem
+
+public class SaveGameManager : MonoBehaviour
 {
-    public static class SaveGameManager
+    public static SaveData data;
+
+    private void Awake()
     {
-        public static SaveData currentSaveData = new SaveData();
+        data = new SaveData();
+        SaveLoad.OnLoadGame += LoadData;
+    }
 
-        public const string saveDirectory = "/SaveData/";
-        public const string fileName = "SaveGame.sav";
+    public void DeleteData()
+    {
+        SaveLoad.DeleteSaveData();
+    }
 
-        public static UnityAction OnLoadGameStart;
-        public static UnityAction OnLoadGameFinish;
+    public static void SaveData()
+    {
+        var saveData = data;
 
-        public static bool SaveGame()
+        SaveLoad.Save(saveData);
+    }
+
+    public static void LoadData(SaveData _data)
+    {
+        data = _data;
+    }
+
+    public static void TryLoadData()
+    {
+        try
         {
-            var dir = Application.persistentDataPath + saveDirectory;
-
-            if (!Directory.Exists(dir)) 
-            {
-                Directory.CreateDirectory(dir);
-            }
-
-            string json = JsonUtility.ToJson(currentSaveData, true);
-            File.WriteAllText(dir + fileName, json);
-
-            GUIUtility.systemCopyBuffer = dir;
-
-            return true;
+            SaveLoad.Load();
         }
-
-        public static void LoadGame()
+        catch
         {
-            OnLoadGameStart?.Invoke(); //in all the scripts that need it, subscribe to this event with a method(s)
-                                       //to preform logic when a game starts loading
-            string fullPath = Application.persistentDataPath + saveDirectory + fileName;
-            SaveData tempData = new SaveData();
-
-            if (File.Exists(fullPath))
-            {
-                string json = File.ReadAllText(fullPath);
-                tempData = JsonUtility.FromJson<SaveData>(json);
-            }
-            else
-            {
-                Debug.LogError("Save file does not exist!");
-            }
-
-            currentSaveData = tempData;
-            OnLoadGameFinish?.Invoke();//in all the scripts that need it, subscribe to this event with a method(s)
-                                       //to preform logic when a game is done loading
-
+            Debug.Log("Could not load save data");
         }
     }
 }
+

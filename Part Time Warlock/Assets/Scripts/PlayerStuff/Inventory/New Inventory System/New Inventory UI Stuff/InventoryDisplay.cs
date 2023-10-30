@@ -21,7 +21,7 @@ public abstract class InventoryDisplay : MonoBehaviour
         
     }
 
-    public abstract void AssignSlot(NewInventorySystem invToDisplay); //Implemented in child classes
+    public abstract void AssignSlot(NewInventorySystem invToDisplay, int offset); //Implemented in child classes
 
     protected virtual void UpdateSlot(SlotClass updatedSlot) //called whenever something changes in the inventory, pass in the slot that was changed
     {

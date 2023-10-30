@@ -159,6 +159,14 @@ public class PlayerAnimations : MonoBehaviour
         else
         {
             Anim.SetBool("running", true);
+            if (moveInputX < 0)
+            {
+                P.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (moveInputX > 0)
+            {
+                P.GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,19 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private NewInventoryHolder inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
 
-
-    protected override void Start()
+    private void OnEnable()
     {
-        base.Start();
+        PlayerInventoryHolder.OnPlayerInventoryChanged += RefreshStaticDisplay;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInventoryHolder.OnPlayerInventoryChanged -= RefreshStaticDisplay;
+
+    }
+
+    private void RefreshStaticDisplay()
+    {
         if (inventoryHolder != null)
         {
             inventorySystem = inventoryHolder.PrimaryInventorySystem;
@@ -19,9 +29,15 @@ public class StaticInventoryDisplay : InventoryDisplay
         }
         else Debug.LogWarning($"No inventory assigned to {this.gameObject}");
 
-        AssignSlot(inventorySystem);
+        AssignSlot(inventorySystem, 0);
     }
-    public override void AssignSlot(NewInventorySystem invToDisplay)
+
+    protected override void Start()
+    {
+        base.Start();
+        RefreshStaticDisplay();
+    }
+    public override void AssignSlot(NewInventorySystem invToDisplay, int offset)
     {
         slotDictionary = new Dictionary<InventorySlot_UI, SlotClass>();
 
@@ -31,11 +47,7 @@ public class StaticInventoryDisplay : InventoryDisplay
 
         //This is a static display so the slots count on the UI and the backend must match up. Else it will throw a warning
          
-        if (slots.Length != inventorySystem.InventorySize)
-        {
-            Debug.Log($"inventory slots out of sync on {this.gameObject} ");
-        }
-        for (int i = 0; i < inventorySystem.InventorySize; i++) 
+        for (int i = 0; i < inventoryHolder.Offset; i++) 
         {
             slotDictionary.Add(slots[i], inventorySystem.InventorySlots[i]);
             slots[i].InitializeSlot(inventorySystem.InventorySlots[i]); //initialize the UI slot with its counterpart on the backend

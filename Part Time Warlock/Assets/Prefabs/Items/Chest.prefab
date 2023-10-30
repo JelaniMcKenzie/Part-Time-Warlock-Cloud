@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 436636932724596625}
   - component: {fileID: 9057608037383646213}
   - component: {fileID: 3370848689299395415}
+  - component: {fileID: 3536308897587500363}
   m_Layer: 3
   m_Name: Chest
   m_TagString: Untagged
@@ -144,5 +145,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 10
-  inventorySystem:
+  primaryInventorySystem:
     inventorySlots: []
+--- !u!114 &3536308897587500363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074066142520683465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121906c20d2d3ce47ad102d4dccc7a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: aee968f6-f30c-4d71-b5ad-927eba5aba09

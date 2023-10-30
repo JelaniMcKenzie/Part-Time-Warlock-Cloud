@@ -6,18 +6,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventoryHolder : NewInventoryHolder
 {
-    [SerializeField] protected int secondaryInventorySize;
-    [SerializeField] protected NewInventorySystem secondaryInventorySystem;
+    
+    
+    public static UnityAction OnPlayerInventoryChanged;
 
-    public NewInventorySystem SecondaryInventorySystem => secondaryInventorySystem;
-
-    public static UnityAction<NewInventorySystem> OnPlayerBackpackDisplayRequested;
-
-
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-        secondaryInventorySystem = new NewInventorySystem(secondaryInventorySize);
+        SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
+        SaveLoad.OnLoadGame += LoadInventory;
+    }
+
+    protected override void LoadInventory(SaveData data)
+    {
+        //check for that specfic chest's save data inventory and load it it
+        if (data.playerInventory.invSystem != null)
+        {
+            this.primaryInventorySystem = data.playerInventory.invSystem;
+            OnPlayerInventoryChanged?.Invoke();
+            
+        }
     }
 
     // Update is called once per frame
@@ -25,21 +32,17 @@ public class PlayerInventoryHolder : NewInventoryHolder
     {
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
-            OnPlayerBackpackDisplayRequested?.Invoke(secondaryInventorySystem);
+            OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
         }
     }
 
     public bool AddToInventory(ItemClass item, int quantity)
     {
-        //primaryInventorySystem is the hotbar. secondaryInventorySystem is the player backpack
-        /*if (primaryInventorySystem.AddToInventory(item, quantity))
-        {
-            return true;
-        }*/
-        if(secondaryInventorySystem.AddToInventory(item, quantity)) 
+        if (primaryInventorySystem.AddToInventory(item, quantity))
         {
             return true;
         }
+        
         return false;
     }
 }
