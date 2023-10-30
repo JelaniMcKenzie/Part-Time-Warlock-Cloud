@@ -10,6 +10,8 @@ public class PlayerInventoryHolder : NewInventoryHolder
     
     public static UnityAction OnPlayerInventoryChanged;
 
+    public static UnityAction<NewInventorySystem, int> OnPlayerInventoryDisplayRequested; //Inventory to display, amount to display by
+
     private void Start()
     {
         SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
@@ -32,7 +34,7 @@ public class PlayerInventoryHolder : NewInventoryHolder
     {
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
-            OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
+            OnPlayerInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
         }
     }
 

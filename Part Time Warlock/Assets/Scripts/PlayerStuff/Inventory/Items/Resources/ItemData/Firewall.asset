@@ -10,21 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
-  m_Name: LightningJolt
+  m_Name: Firewall
   m_EditorClassIdentifier: 
-  itemName: LightningJolt
-  itemIcon: {fileID: 21300000, guid: 4ae7b6b62d3d3b54c84b1b3f18fab376, type: 3}
+  ID: 4
+  itemName: Firewall
+  description: 
+  itemIcon: {fileID: 21300000, guid: c19484affcfc4c241ac50ff0eb674c37, type: 3}
   isStackable: 0
   stackSize: 64
-  spellRune: {fileID: 1131860974, guid: 46e87f3b52ea7054c8dfaaca76662468, type: 3}
-  spellPrefab: {fileID: 5972347860573988607, guid: 5f6123d52fe7777478986f2363c8939f, type: 3}
-  spellElement: Lightning
+  price: 0
+  spellRune: {fileID: 1118010391, guid: cde28b8b9e1acbd46b926b0a81ec1194, type: 3}
+  spellPrefab: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
+  spellElement: Fire
   damage: 3
-  uses: 5
-  maxUses: 5
+  uses: 3
+  maxUses: 3
   maxCooldown: 3
+  spellSound: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
   spellType: 0
-  projectileSpeed: 25
+  projectileSpeed: 3
   effectRadius: 0
   statusDuration: 0
   movementDistance: 0

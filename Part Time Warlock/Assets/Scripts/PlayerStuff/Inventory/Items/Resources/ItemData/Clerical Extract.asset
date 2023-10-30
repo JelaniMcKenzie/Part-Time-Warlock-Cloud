@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd26f602b4902fa4db61438f6421877a, type: 3}
-  m_Name: Wood
+  m_Name: Clerical Extract
   m_EditorClassIdentifier: 
-  itemName: Wood
-  itemIcon: {fileID: 21300000, guid: b02d1a657e62c874a813bc96e5e0d763, type: 3}
+  ID: 3
+  itemName: Clerical Extract
+  description: 
+  itemIcon: {fileID: -333212452, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
   isStackable: 1
+  stackSize: 1
+  price: 0
+  itemPrefab: {fileID: 1617301695022411340, guid: 8c88bb97d3d8e64418141306602faddd, type: 3}

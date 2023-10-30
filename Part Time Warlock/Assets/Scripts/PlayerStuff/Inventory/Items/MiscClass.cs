@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Misc Class", menuName = "Item/Misc")]
+[CreateAssetMenu(menuName = "Inventory System/Misc")]
 public class MiscClass : ItemClass
 {
 
     //data specific to the MiscClass
+
     public override MiscClass GetMisc() { return this; }
 
     public override void Use(Player p)

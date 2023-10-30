@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd26f602b4902fa4db61438f6421877a, type: 3}
-  m_Name: Sunstone Powder
+  m_Script: {fileID: 11500000, guid: f19c9a2bbef27c04485760fb3a401ced, type: 3}
+  m_Name: BasicStaff
   m_EditorClassIdentifier: 
-  itemName: Sunstone Powder
-  itemIcon: {fileID: -507829295, guid: 2562a89daca024f4f9aaec5f1314367a, type: 3}
-  isStackable: 1
-  stackSize: 5
+  ID: 1
+  itemName: BasicStaff
   description: 
+  itemIcon: {fileID: 21300000, guid: f8dbcb5e3e17c7b4786e94ab31fb4cdd, type: 3}
+  isStackable: 0
+  stackSize: 64
+  price: 0
+  toolType: 0

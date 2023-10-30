@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: new Spell
   m_EditorClassIdentifier: 
+  ID: 10
   itemName: Thunder Rush
+  description: 
   itemIcon: {fileID: 0}
   isStackable: 0
   stackSize: 64
+  price: 0
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 0}
   spellElement: Lightning

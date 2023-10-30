@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd26f602b4902fa4db61438f6421877a, type: 3}
-  m_Name: Clerical Extract
+  m_Name: Sunstone Powder
   m_EditorClassIdentifier: 
-  itemName: Clerical Extract
-  itemIcon: {fileID: -333212452, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
-  isStackable: 1
-  stackSize: 1
+  ID: 5
+  itemName: Sunstone Powder
   description: 
+  itemIcon: {fileID: -507829295, guid: 2562a89daca024f4f9aaec5f1314367a, type: 3}
+  isStackable: 1
+  stackSize: 5
+  price: 0
+  itemPrefab: {fileID: 765548765413413659, guid: c6f5d1e88b1c6ac41af3edcc4408469e, type: 3}

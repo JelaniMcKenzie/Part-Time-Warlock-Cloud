@@ -8,18 +8,24 @@ using UnityEngine;
 /// Has inheritance to have branched versions of items such as consumables
 /// and equipment
 /// </summary>
+/// 
+
 public class ItemClass : ScriptableObject
 {
     [Header("Item")]
     //data shared across every item
+    public int ID = -1;
     public string itemName;
+    [TextArea(4, 4)]
+    public string description;
     public Sprite itemIcon;
     public bool isStackable = true;
     public int stackSize = 64;
     public int price;
+    public GameObject itemPrefab;
+    
 
-    [TextArea(4, 4)]
-    public string description;
+    
 
     public virtual void Use(Player p) 
     {

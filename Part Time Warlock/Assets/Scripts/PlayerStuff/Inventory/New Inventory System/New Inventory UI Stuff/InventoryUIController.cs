@@ -36,12 +36,14 @@ public class InventoryUIController : MonoBehaviour
     private void OnEnable()
     {
         NewInventoryHolder.OnDynamicInventoryDisplayRequested += DisplayInventory;
+        PlayerInventoryHolder.OnPlayerInventoryDisplayRequested += DisplayPlayerInventory;
 
     }
 
     private void OnDisable()
     {
         NewInventoryHolder.OnDynamicInventoryDisplayRequested -= DisplayInventory;
+        PlayerInventoryHolder.OnPlayerInventoryDisplayRequested -= DisplayPlayerInventory;
 
     }
 
@@ -63,5 +65,11 @@ public class InventoryUIController : MonoBehaviour
     {
         inventoryPanel.gameObject.SetActive(true);
         inventoryPanel.RefreshDynamicInventory(invToDisplay, offset);
+    }
+    
+    void DisplayPlayerInventory(NewInventorySystem invToDisplay, int offset)
+    {
+        playerBackpackPanel.gameObject.SetActive(true);
+        playerBackpackPanel.RefreshDynamicInventory(invToDisplay, offset);
     }
 }

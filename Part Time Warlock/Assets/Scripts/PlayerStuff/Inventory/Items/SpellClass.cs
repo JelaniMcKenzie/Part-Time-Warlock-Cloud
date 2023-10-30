@@ -6,7 +6,7 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
-[CreateAssetMenu(fileName = "new Spell", menuName = "Item/Spell")]
+[CreateAssetMenu(menuName = "Inventory System/Spell")]
 public class SpellClass : ItemClass
 {
     //Idea: Should individual spells have their own scripts that

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Tool Class", menuName = "Item/Tool")]
+[CreateAssetMenu(menuName = "Inventory System/Tool")]
 public class ToolClass : ItemClass
 {
     [Header("Tool")]

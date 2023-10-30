@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
-  m_Name: MagicMissile
+  m_Name: LightningJolt
   m_EditorClassIdentifier: 
-  itemName: MagicMissile
-  itemIcon: {fileID: -1057191354, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
+  ID: 8
+  itemName: LightningJolt
+  description: 
+  itemIcon: {fileID: 21300000, guid: 4ae7b6b62d3d3b54c84b1b3f18fab376, type: 3}
   isStackable: 0
   stackSize: 64
-  spellRune: {fileID: -1057191354, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
-  spellPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
-  spellElement: Arcane
-  damage: 1
-  uses: 1
+  price: 0
+  spellRune: {fileID: 1131860974, guid: 46e87f3b52ea7054c8dfaaca76662468, type: 3}
+  spellPrefab: {fileID: 5972347860573988607, guid: 5f6123d52fe7777478986f2363c8939f, type: 3}
+  spellElement: Lightning
+  damage: 3
+  uses: 5
   maxUses: 5
-  maxCooldown: 0.2
+  maxCooldown: 3
+  spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
   effectRadius: 0

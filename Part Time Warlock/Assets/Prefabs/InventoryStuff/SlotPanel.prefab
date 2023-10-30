@@ -138,7 +138,7 @@ MonoBehaviour:
   itemSprite: {fileID: 4674721031477285159}
   itemCount: {fileID: 7077146101204932855}
   assignedInventorySlot:
-    item: {fileID: 0}
+    itemID: -1
     quantity: -1
     slotType: 0
 --- !u!1 &2551325784955034221
@@ -208,10 +208,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 21
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 1

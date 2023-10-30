@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: FrostArrow
   m_EditorClassIdentifier: 
+  ID: 6
   itemName: FrostArrow
+  description: 
   itemIcon: {fileID: 21300000, guid: a7b4505b4b996674cbb2bdec22ee0f49, type: 3}
   isStackable: 0
   stackSize: 64
+  price: 0
   spellRune: {fileID: 21300000, guid: b0bbf97e95ada294ba10b45321f7d830, type: 3}
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: Ice

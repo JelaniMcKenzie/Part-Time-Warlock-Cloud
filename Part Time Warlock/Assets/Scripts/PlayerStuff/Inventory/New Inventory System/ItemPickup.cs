@@ -28,6 +28,12 @@ public class ItemPickup : MonoBehaviour
     private void Start()
     {
         SaveGameManager.data.activeItems.Add(id, itemSaveData);
+        //TODO: When instantiating an item already in the inventory this throws an exception. Why?
+    }
+
+    private void Update()
+    {
+        //Add code for floating anim here
     }
 
     //Logic for if we want item pickups to be saved (no duplicating items)

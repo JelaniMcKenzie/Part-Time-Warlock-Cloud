@@ -15,8 +15,13 @@ public class UniqueID : MonoBehaviour
 
     public string ID => _id;
 
-    private void OnValidate()
+    private void Awake()
     {
+        if (idDatabase == null)
+        {
+            idDatabase = new SerializableDictionary<string, GameObject>();
+        }
+
         if (idDatabase.ContainsKey(_id))
         {
             Generate();
@@ -40,5 +45,6 @@ public class UniqueID : MonoBehaviour
         //Makes sure no IDs are identical, and that they reference the proper GameObjects
         _id = Guid.NewGuid().ToString();
         idDatabase.Add(_id, this.gameObject);
+        Debug.Log(idDatabase.Count);
     }
 }
