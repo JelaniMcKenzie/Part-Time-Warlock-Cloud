@@ -40,6 +40,7 @@ public class UniqueID : MonoBehaviour
         }
     }
 
+    [ContextMenu("Generate ID")]
     private void Generate()
     {
         //Makes sure no IDs are identical, and that they reference the proper GameObjects

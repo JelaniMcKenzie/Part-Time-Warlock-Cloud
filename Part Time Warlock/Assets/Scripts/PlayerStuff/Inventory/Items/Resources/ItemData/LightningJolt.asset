@@ -19,6 +19,8 @@ MonoBehaviour:
   isStackable: 0
   stackSize: 64
   price: 0
+  GoldValue: 400
+  itemPrefab: {fileID: 0}
   spellRune: {fileID: 1131860974, guid: 46e87f3b52ea7054c8dfaaca76662468, type: 3}
   spellPrefab: {fileID: 5972347860573988607, guid: 5f6123d52fe7777478986f2363c8939f, type: 3}
   spellElement: Lightning

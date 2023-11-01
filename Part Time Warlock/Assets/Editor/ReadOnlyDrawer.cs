@@ -1,31 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 /// <summary>
-/// This class contains custom drawer for ReadOnly attributes
+/// This class contain custom drawer for ReadOnly attribute.
 /// </summary>
-
 [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
 public class ReadOnlyDrawer : PropertyDrawer
 {
     /// <summary>
-    /// Unity method for drawing GUI in editor
+    /// Unity method for drawing GUI in Editor
     /// </summary>
-    /// <param name = "position">Position.</param>
-    /// <param name = "property">Property.</param>
-    /// <param name = "label">Label.</param>
-
+    /// <param name="position">Position.</param>
+    /// <param name="property">Property.</param>
+    /// <param name="label">Label.</param>
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         // Saving previous GUI enabled value
         var previousGUIState = GUI.enabled;
         // Disabling edit for property
         GUI.enabled = false;
-        // Drawing property
+        // Drawing Property
         EditorGUI.PropertyField(position, property, label);
         // Setting old GUI enabled value
         GUI.enabled = previousGUIState;
     }
-
 }

@@ -20,11 +20,15 @@ public class PlayerInventoryHolder : NewInventoryHolder
 
     protected override void LoadInventory(SaveData data)
     {
-        //check for that specfic chest's save data inventory and load it it
+        
         if (data.playerInventory.invSystem != null)
         {
-            this.primaryInventorySystem = data.playerInventory.invSystem;
+            primaryInventorySystem = data.playerInventory.invSystem;
             OnPlayerInventoryChanged?.Invoke();
+
+        }
+        else
+        {
             
         }
     }

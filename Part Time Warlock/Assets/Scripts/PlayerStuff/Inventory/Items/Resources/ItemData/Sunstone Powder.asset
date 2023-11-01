@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 5
   itemName: Sunstone Powder
-  description: 
+  description: Used in health potions
   itemIcon: {fileID: -507829295, guid: 2562a89daca024f4f9aaec5f1314367a, type: 3}
   isStackable: 1
   stackSize: 5
   price: 0
+  GoldValue: 5
   itemPrefab: {fileID: 765548765413413659, guid: c6f5d1e88b1c6ac41af3edcc4408469e, type: 3}

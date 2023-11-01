@@ -12,6 +12,7 @@ public abstract class NewInventoryHolder : MonoBehaviour
     [SerializeField] private int inventorySize;
     [SerializeField] protected NewInventorySystem primaryInventorySystem;
     [SerializeField] protected int offset = 10;
+    [SerializeField] protected int _gold;
 
     public int Offset => offset;
 
@@ -22,7 +23,8 @@ public abstract class NewInventoryHolder : MonoBehaviour
     protected virtual void Awake()
     {
         //automate the inventorySize to equal the amount of slots (e.g. with transform.childcount or something)
-        primaryInventorySystem = new NewInventorySystem(inventorySize);
+
+        primaryInventorySystem = new NewInventorySystem(inventorySize, _gold);
     }
 
     protected abstract void LoadInventory(SaveData saveData);

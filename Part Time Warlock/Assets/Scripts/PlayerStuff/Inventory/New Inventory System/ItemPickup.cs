@@ -41,7 +41,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (data.collectedItems.Contains(id))
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }   
     }
 

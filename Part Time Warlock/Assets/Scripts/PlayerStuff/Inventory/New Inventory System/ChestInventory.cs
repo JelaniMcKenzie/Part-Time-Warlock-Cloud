@@ -26,9 +26,9 @@ public class ChestInventory : NewInventoryHolder , IInteractable
         //check for that specfic chest's save data inventory and load it it
         if (data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out InventorySaveData chestData))
         {
-            this.primaryInventorySystem = chestData.invSystem;
-            this.transform.position = chestData.position;
-            this.transform.rotation = chestData.rotation;
+            primaryInventorySystem = chestData.invSystem;
+            transform.position = chestData.position;
+            transform.rotation = chestData.rotation;
         }
     }
 

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using System;
 
 [System.Serializable]
 public class NewInventorySystem
 {
     [SerializeField] public List<SlotClass> inventorySlots; // the list of inventory slots
+    [SerializeField] private int _gold;
+
+    public int Gold => _gold;
 
     public List<SlotClass> InventorySlots => inventorySlots;
 
@@ -16,6 +20,20 @@ public class NewInventorySystem
     public UnityAction<SlotClass> OnInventorySlotChanged;
 
     public NewInventorySystem(int size) // Constructor that sets the amount of slots
+    {
+        _gold = 0;
+        CreateInventory(size);
+
+    }
+
+    public NewInventorySystem(int size, int gold) 
+    {
+        _gold = gold;
+        CreateInventory(size);
+
+    }
+
+    private void CreateInventory(int size)
     {
         inventorySlots = new List<SlotClass>(size);
 
@@ -76,5 +94,95 @@ public class NewInventorySystem
         //therefore, it can be named anything. I just called it i.
         freeSlot = InventorySlots.FirstOrDefault(i => i.Item == null); //get the first free slot
         return freeSlot == null ? false : true; //if its found a free slot, return true. else return false
+    }
+
+    public bool CheckInventoryRemaining(Dictionary<ItemClass, int> shoppingCart)
+    {
+        //clone the player's inventory to check its space
+        var clonedSystem = new NewInventorySystem(this.InventorySize);
+
+        for (int i = 0; i < InventorySize; i++)
+        {
+            clonedSystem.InventorySlots[i].AssignItem(this.inventorySlots[i].Item, 
+                InventorySlots[i].Quantity);
+        }
+
+        //for each key-value pair in the shopping cart dictionary, add every item to the player's inventory one by one
+        foreach (var kvp in shoppingCart)
+        {
+            for (int i = 0; i < kvp.Value; i++)
+            {
+                //if you failed to add an item to the cloned system, break of the loop
+                if (!clonedSystem.AddToInventory(kvp.Key, 1)) 
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public void SpendGold(int basketTotal)
+    {
+        _gold -= basketTotal;
+    }
+
+    public Dictionary<ItemClass, int> GetAllItemsHeld()
+    {
+        //an organized list of every item the player has, irrespective of split stacks
+        var distinctItems = new Dictionary<ItemClass, int>();
+
+        foreach (var item in inventorySlots)
+        {
+            if (item.Item == null)
+            {
+                continue; //skip to the next item in the loop
+            }
+            if (!distinctItems.ContainsKey(item.Item))
+            {
+                distinctItems.Add(item.Item, item.Quantity);
+            }
+            else
+            {
+                distinctItems[item.Item] += item.Quantity;
+            }
+        }
+
+        return distinctItems;
+    }
+
+    public void GainGold(int price)
+    {
+        _gold += price;
+    }
+
+    public void RemoveItemsFromInventory(ItemClass item, int amount)
+    {
+        if (ContainsItem(item, out List<SlotClass> invSlot))
+        {
+            foreach (var slot in invSlot)
+            {
+                var quantity = slot.Quantity;
+
+                if (quantity > amount)
+                {
+                    slot.SubtractQuantity(amount);
+                    amount -= quantity;
+                }
+                else
+                {
+                    slot.SubtractQuantity(quantity);
+                    amount -= quantity;
+                }
+
+                if (amount <= 0)
+                {
+                    amount = 0;
+                }
+
+                OnInventorySlotChanged?.Invoke(slot);
+            }
+        }
     }
 }

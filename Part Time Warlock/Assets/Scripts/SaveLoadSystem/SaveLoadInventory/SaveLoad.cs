@@ -40,7 +40,7 @@ public static class SaveLoad
         if (File.Exists(fullPath)) 
         { 
             //get file and turn it back into a json string
-            string json = File.ReadAllText(fullPath);
+            var json = File.ReadAllText(fullPath);
             data = JsonUtility.FromJson<SaveData>(json);
             OnLoadGame?.Invoke(data);
         }

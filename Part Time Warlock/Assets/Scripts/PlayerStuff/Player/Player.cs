@@ -224,6 +224,11 @@ public class Player : GameEntity
 
     }
 
+    /**
+     * TODO: Add a method that, when the player leaves the dungeon, adds
+     * the int coinNum value of this script to the Gold value of the NewInventorySystem script
+     */
+
     public IEnumerator Dash()
     {
         canDash = false;

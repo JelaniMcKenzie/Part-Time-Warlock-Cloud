@@ -19,4 +19,5 @@ MonoBehaviour:
   isStackable: 1
   stackSize: 1
   price: 0
+  GoldValue: 15
   itemPrefab: {fileID: 1617301695022411340, guid: 8c88bb97d3d8e64418141306602faddd, type: 3}

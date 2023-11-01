@@ -22,6 +22,7 @@ public class ItemClass : ScriptableObject
     public bool isStackable = true;
     public int stackSize = 64;
     public int price;
+    public int GoldValue;
     public GameObject itemPrefab;
     
 

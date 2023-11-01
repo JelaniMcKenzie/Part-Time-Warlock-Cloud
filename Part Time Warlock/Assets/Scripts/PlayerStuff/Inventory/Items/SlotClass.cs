@@ -5,21 +5,12 @@ using UnityEngine;
 
 [System.Serializable]
 
-public class SlotClass : ISerializationCallbackReceiver
+///<summary>
+/// A class that determines the logic for slots with stacking (e.g., player inventories and chests).
+/// </summary>
+
+public class SlotClass : ItemSlot
 {
-    /*The below fields are properties; Any class can get the values from the 
-    slot class but only the SlotClass can set the values*/
-    //[field: SerializeField] public ItemClass item { get; private set; } = null;
-    //[field: SerializeField] public int quantity { get; private set; } = 0;
-
-    [NonSerialized] private ItemClass item; //reference to the item itself
-    [SerializeField] private int itemID = -1;
-    [SerializeField] private int quantity;  //reference to the amount of the item we have
-
-    public ItemClass Item => item; // => is essentially a hypercondensed getter method. Is capitalized in name for outer classes to reference
-    public int Quantity => quantity;
-
-
     public SlotType slotType;
 
     public enum SlotType
@@ -42,68 +33,12 @@ public class SlotClass : ISerializationCallbackReceiver
         Clear();
     }
 
-
-    /*public SlotClass(SlotClass slot) // deprecated constructor
-    {
-        this.item = slot.item;
-        this.quantity = slot.quantity;
-    }*/
-
-
-    public void Clear() // Clears the slot
-    {
-        this.item = null;
-        itemID = -1;
-        this.quantity = -1;
-    }
-
     public void UpdateInventorySlot(ItemClass data, int amount) // updates slot directly
     {
         item = data;
         itemID = item.ID;
         quantity = amount;
     }
-
-    public void AssignItem(SlotClass invSlot) //Assigns an item to the slot
-    {
-        if (item == invSlot.item) // Does the slot contain the same item? Add to the stack if so.
-        {
-            AddQuantity(invSlot.quantity);
-        }
-        else // overwrite slot with the new item that we're trying to add
-        {
-            item = invSlot.item;
-            itemID = item.ID;
-            quantity = 0;
-            AddQuantity(invSlot.quantity);
-        }
-    }
-    /*public ItemClass GetItem()
-    {
-        return item;
-    }
-    public int GetQuantity()
-    {
-        return quantity;
-    }*/
-    public void AddQuantity(int _quantity)
-    {
-        quantity += _quantity;
-    }
-    public void SubtractQuantity(int _quantity)
-    {
-        quantity -= _quantity;
-        if (quantity <= 0)
-        {
-            Clear();
-        }
-    }
-    //Note:AddItem is deprecated in NewInventorySystem.cs
-    /*public void AddItem(ItemClass item, int quantity) 
-    {
-        this.item = item;
-        this.quantity = quantity;
-    }*/
 
     public bool EnoughRoomLeftInStack(int amountToAdd)
     {
@@ -135,21 +70,5 @@ public class SlotClass : ISerializationCallbackReceiver
 
         splitStack = new SlotClass(item, halfStack); //Creates a copy of this slot with half the stack size
         return true;
-    }
-
-    public void OnBeforeSerialize()
-    {
-        
-    }
-
-    public void OnAfterDeserialize()
-    {
-        if (itemID == -1)
-        {
-            return; //slot is empty
-        }
-
-        var db = Resources.Load<Database>("Database");
-        item = db.GetItem(itemID);
     }
 }
