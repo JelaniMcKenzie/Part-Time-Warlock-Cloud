@@ -14,6 +14,7 @@ public abstract class NewInventoryHolder : MonoBehaviour
     [SerializeField] protected int offset = 10;
     [SerializeField] protected int _gold;
 
+
     public int Offset => offset;
 
     public NewInventorySystem PrimaryInventorySystem => primaryInventorySystem; //this is essentially the same as a getter method for other classes to reference this
@@ -25,6 +26,7 @@ public abstract class NewInventoryHolder : MonoBehaviour
         //automate the inventorySize to equal the amount of slots (e.g. with transform.childcount or something)
 
         primaryInventorySystem = new NewInventorySystem(inventorySize, _gold);
+        
     }
 
     protected abstract void LoadInventory(SaveData saveData);

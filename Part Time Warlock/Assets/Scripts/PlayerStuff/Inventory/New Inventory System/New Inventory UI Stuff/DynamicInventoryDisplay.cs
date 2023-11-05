@@ -14,7 +14,7 @@ public class DynamicInventoryDisplay : InventoryDisplay
     protected override void Start()
     {
         base.Start();
-        
+
     }
 
     private void OnDestroy()

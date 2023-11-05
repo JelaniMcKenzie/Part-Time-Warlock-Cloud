@@ -61,14 +61,24 @@ public class SpellClass : ItemClass
         {
             case SpellType.projectile:
                 {
-                    // Instantiate the projectile and store the reference
                     GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
-                    //K.transform.position = Hand.transform.position;
-                    Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(P.transform.position);
-                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+                    // Calculate the direction from the player's position to the mouse position
+                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 direction = (mousePosition - P.transform.position).normalized;
+
+                    // Calculate the angle
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                    // Rotate the projectile
                     projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    projectile.GetComponent<Rigidbody>().velocity = projectile.transform.right * projectileSpeed;
-                    
+
+                    // Get the Rigidbody2D component
+                    Rigidbody2D rb2d = projectile.GetComponent<Rigidbody2D>();
+
+                    // Set the velocity
+                    rb2d.velocity = direction * projectileSpeed;
+
                     Debug.Log("Casted " + this.itemName);
                     break;
                 }

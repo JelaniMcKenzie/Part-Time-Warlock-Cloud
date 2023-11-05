@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventoryHolder : NewInventoryHolder
 {
-    
-    
+    [SerializeField] private List<SlotClass> loadout;
+
+    private DynamicInventoryDisplay inventoryDisplay;
+
     public static UnityAction OnPlayerInventoryChanged;
 
     public static UnityAction<NewInventorySystem, int> OnPlayerInventoryDisplayRequested; //Inventory to display, amount to display by
@@ -16,6 +18,32 @@ public class PlayerInventoryHolder : NewInventoryHolder
     {
         SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
         SaveLoad.OnLoadGame += LoadInventory;
+
+        if (this.gameObject.GetComponent<Player>() != null)
+        {
+            inventoryDisplay = new DynamicInventoryDisplay();
+            Debug.Log("Found Player");
+            for (int i = 0; i < loadout.Count; i++)
+            {
+                
+                Debug.Log("Setting Slot Types");
+                if (i < 4)
+                {
+                    primaryInventorySystem.InventorySlots[i].slotType = SlotClass.SlotType.spell;
+                    primaryInventorySystem.InventorySlots[i].AssignItem(loadout[i]);
+                    
+
+                }
+                if (i == 4)
+                {
+                    primaryInventorySystem.InventorySlots[i].slotType = SlotClass.SlotType.potion;
+                    primaryInventorySystem.InventorySlots[i].AssignItem(loadout[i]);
+
+                }
+
+            }
+        }
+        
     }
 
     protected override void LoadInventory(SaveData data)
@@ -27,19 +55,12 @@ public class PlayerInventoryHolder : NewInventoryHolder
             OnPlayerInventoryChanged?.Invoke();
 
         }
-        else
-        {
-            
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
-        {
-            OnPlayerInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
-        }
+        
     }
 
     public bool AddToInventory(ItemClass item, int quantity)

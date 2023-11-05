@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
 using System;
+using UnityEngine.InputSystem;
 
 public class Player : GameEntity
 {
@@ -40,6 +41,8 @@ public class Player : GameEntity
     [SerializeField] float dashCooldown = 1f;
     bool isDashing;
     bool canDash = true;
+
+    public PlayerInventoryHolder inventory;
 
 
     // Start is called before the first frame update
@@ -89,15 +92,19 @@ public class Player : GameEntity
             FlashTimer();
         }
 
+        if (Keyboard.current.tabKey.wasPressedThisFrame && isInventoryOpen == false) 
+        {
+            PlayerInventoryHolder.OnPlayerInventoryDisplayRequested?.Invoke(inventory.PrimaryInventorySystem, inventory.Offset);
+        }
 
-
-        /*if (isInventoryOpen == false)
+        /*
+        if (isInventoryOpen == false)
         {
             //Use a spell or an item
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (inventory.items[15].item.GetSpell() != null)
+                if (inventory.PrimaryInventorySystem.InventorySlots[15].item.GetSpell() != null)
                 {
                     //use spell 1
                     inventory.items[15].item.GetSpell().Use(this);

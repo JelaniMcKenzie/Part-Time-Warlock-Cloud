@@ -772,6 +772,7 @@ MonoBehaviour:
   dashmoveSpeed: 20
   dashDuration: 0.075
   dashCooldown: 1
+  inventory: {fileID: 4770366049546040742}
 --- !u!95 &8771377463029797781
 Animator:
   serializedVersion: 5
@@ -1018,3 +1019,19 @@ MonoBehaviour:
     _gold: 0
   offset: 5
   _gold: 500
+  loadout:
+  - itemID: 9
+    quantity: 1
+    slotType: 0
+  - itemID: -1
+    quantity: -1
+    slotType: 0
+  - itemID: 4
+    quantity: 1
+    slotType: 0
+  - itemID: 6
+    quantity: 0
+    slotType: 0
+  - itemID: -1
+    quantity: -1
+    slotType: 0

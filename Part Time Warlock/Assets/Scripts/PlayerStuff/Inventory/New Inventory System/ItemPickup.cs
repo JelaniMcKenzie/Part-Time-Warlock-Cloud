@@ -62,6 +62,7 @@ public class ItemPickup : MonoBehaviour
         //if the object we collided with doesn't have an inventory component, return 
         if (!inventory) return;
 
+
         if (inventory.AddToInventory(item, 1))
         {
             //Add to list of picked up items

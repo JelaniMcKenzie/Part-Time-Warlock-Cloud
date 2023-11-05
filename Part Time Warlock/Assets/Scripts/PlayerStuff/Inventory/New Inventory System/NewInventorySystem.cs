@@ -52,12 +52,12 @@ public class NewInventorySystem
             foreach (var slot in invSlot)
             {
                 //does the slot have room left in the stack
-                if(slot.EnoughRoomLeftInStack(amountToAdd))
+                if (slot.EnoughRoomLeftInStack(amountToAdd))
                 {
                     slot.AddQuantity(amountToAdd);
                     OnInventorySlotChanged?.Invoke(slot);
                     return true;
-                }
+                }                
             }
         }
 
