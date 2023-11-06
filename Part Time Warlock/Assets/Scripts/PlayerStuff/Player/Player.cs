@@ -16,6 +16,7 @@ public class Player : GameEntity
 
     //--------------------Script comm fields--------------------
     private UIManager uiManager = null;
+    public SpellClass[] spells = new SpellClass[4];
     [Space(30)]
 
     [Header("bool variables")]
@@ -97,56 +98,54 @@ public class Player : GameEntity
             PlayerInventoryHolder.OnPlayerInventoryDisplayRequested?.Invoke(inventory.PrimaryInventorySystem, inventory.Offset);
         }
 
-        /*
-        if (isInventoryOpen == false)
-        {
+       
             //Use a spell or an item
             if (Input.GetMouseButtonDown(0))
             {
 
-                if (inventory.PrimaryInventorySystem.InventorySlots[15].item.GetSpell() != null)
+                if (spells[0] != null)
                 {
                     //use spell 1
-                    inventory.items[15].item.GetSpell().Use(this);
+                    spells[0].Use(this);
                 }
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                if (inventory.items[17].item.GetSpell() != null)
+                if (spells[1] != null)
                 {
-                    //use spell 2
-                    inventory.items[17].item.GetSpell().Use(this);
+                    //use spell 1
+                    spells[1].Use(this);
                 }
-            }
+        }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (canDash)
                 {
                     StartCoroutine(Dash());
                 }
-                if (inventory.items[18].item.GetSpell() != null)
-                {
-                    //use spell 3 (dash spell)
-                    inventory.items[18].item.GetSpell().Use(this);
-                }
-            }
+                    if (spells[2] != null)
+                    {
+                        //use spell 1
+                        spells[2].Use(this);
+                    }
+        }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                if (inventory.items[16].item.GetSpell() != null)
+                if (spells[3] != null)
                 {
-                    //use spell 4
-                    inventory.items[16].item.GetSpell().Use(this);
+                    //use spell 1
+                    spells[3].Use(this);
                 }
-            }
+        }
             else if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (inventory.items[19].item != null)
+                /*if (inventory.items[19].item != null)
                 {
                     //use item slot
                     inventory.items[19].item.Use(this);
-                }
+                }*/
             }
-        }
+        
 
 
         //Open and close inventory
@@ -163,13 +162,13 @@ public class Player : GameEntity
             canMove = true;
         }
 
-        for (int i = 15; i < inventory.items.Length - 1; i++)
+        foreach (var spell in spells)
         {
-            if (inventory.items[i].item is SpellClass spell)
+            if (spell != null)
             {
                 spell.UpdateCooldown();
             }
-        }*/
+        }
     }
 
 

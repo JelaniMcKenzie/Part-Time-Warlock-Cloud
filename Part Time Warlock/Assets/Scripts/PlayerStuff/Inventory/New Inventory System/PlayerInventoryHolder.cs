@@ -19,7 +19,7 @@ public class PlayerInventoryHolder : NewInventoryHolder
         SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
         SaveLoad.OnLoadGame += LoadInventory;
 
-        if (this.gameObject.GetComponent<Player>() != null)
+        /*if (this.gameObject.GetComponent<Player>() != null)
         {
             inventoryDisplay = new DynamicInventoryDisplay();
             Debug.Log("Found Player");
@@ -42,7 +42,7 @@ public class PlayerInventoryHolder : NewInventoryHolder
                 }
 
             }
-        }
+        }*/
         
     }
 

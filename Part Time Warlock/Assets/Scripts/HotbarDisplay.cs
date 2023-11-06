@@ -1,5 +1,7 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Diagnostics;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class HotbarDisplay : StaticInventoryDisplay
 {
@@ -8,6 +10,8 @@ public class HotbarDisplay : StaticInventoryDisplay
     private int _currentIndex = 0;
 
     private PlayerInputActions _playerControls;
+
+
 
     private void Awake()
     {
