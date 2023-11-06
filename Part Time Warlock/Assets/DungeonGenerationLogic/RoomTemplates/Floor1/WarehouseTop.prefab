@@ -2103,7 +2103,7 @@ MonoBehaviour:
   ManualDoorModeData:
     DoorsList: []
   SimpleDoorModeData:
-    DistanceFromCorners: 2
+    DistanceFromCorners: 1
     DoorLength: 4
     Socket: {fileID: 0}
     Mode: 1
@@ -2114,7 +2114,7 @@ MonoBehaviour:
       Enabled: 1
     HorizontalDoors:
       Length: 4
-      Margin1: 2
+      Margin1: 3
       Margin2: 2
       Enabled: 1
   DefaultSocket: {fileID: 0}

@@ -48,27 +48,35 @@ public class PlayerAnimations : MonoBehaviour
 
     private void MouseAim()
     {
-        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        dir = Vector3.MoveTowards(new Vector3(), dir, 0.1f) * 1000;
-        float xDistance = Mathf.Abs(dir.x);
-        float yDistance = Mathf.Abs(dir.y);
-        if (xDistance > yDistance)
+        if (P != null)
         {
-            if (dir.x < -10 /*player is looking left. the 0 references the player position*/)
+            Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            dir = Vector3.MoveTowards(new Vector3(), dir, 0.1f) * 1000;
+            float xDistance = Mathf.Abs(dir.x);
+            float yDistance = Mathf.Abs(dir.y);
+            if (xDistance > yDistance)
             {
-                /*direction = "Left";
-                currentAnim = "IdleLeft";*/
-                P.GetComponent<SpriteRenderer>().flipX = true;
-                
+                if (dir.x < -10 /*player is looking left. the 0 references the player position*/)
+                {
+                    /*direction = "Left";
+                    currentAnim = "IdleLeft";*/
+                    P.GetComponent<SpriteRenderer>().flipX = true;
 
+
+                }
+                if (dir.x > 10 /*player is looking right*/)
+                {
+                    /*direction = "Right";
+                    currentAnim = "IdleRight";*/
+                    P.GetComponent<SpriteRenderer>().flipX = false;
+
+                }
             }
-            if (dir.x > 10 /*player is looking right*/)
-            {
-                /*direction = "Right";
-                currentAnim = "IdleRight";*/
-                P.GetComponent<SpriteRenderer>().flipX = false;
-                
-            }
+
+        }
+        else
+        {
+            Debug.LogError("Player is null for some reason");
         }
 
         //TEMPROARY CHANGE JUST SEEING HOW THE LEFT/RIGHT MECHANIC FELT
