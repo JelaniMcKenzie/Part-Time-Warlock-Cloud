@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         timerActive = true;
-        //P = FindAnyObjectByType<Player>();
+        
         
         UpdateCoinText();
         
@@ -50,7 +50,15 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdateCoinText();
+        //hard coded solution to the canvas not being able to find the player
+        //change later so that this code only runs after the dungeon is finished generating
+        P = FindAnyObjectByType<Player>();
+        UpdateCoinText();
+        if (P == null)
+        {
+            Debug.Log("couldn't find player");
+        }
+        
         if (timerActive == true)
         {
             if (timer > 0f)

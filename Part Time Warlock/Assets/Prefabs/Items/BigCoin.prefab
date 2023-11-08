@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fff019095ec014280e025128eea746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 474415862004806713, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-  P: {fileID: 8771377463029797778, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+  UI: {fileID: 0}
+  P: {fileID: 0}
   CoinSound: {fileID: 8300000, guid: ed9d33cc042df3140a901db4a1e788a5, type: 3}
 --- !u!58 &7854478073111886987
 CircleCollider2D:

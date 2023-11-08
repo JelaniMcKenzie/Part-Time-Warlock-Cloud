@@ -12,6 +12,10 @@ public class Coin : MonoBehaviour
     {
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
+        if (UI == null)
+        {
+            Debug.Log("cant find UI");
+        }
     }
 
     // Update is called once per frame
