@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2856699557416337591}
   - component: {fileID: 5065628097688572539}
-  - component: {fileID: 8671568741676095535}
   - component: {fileID: 3254604614448386488}
+  - component: {fileID: 2549742359963211254}
+  - component: {fileID: 5873845048992416113}
   m_Layer: 0
   m_Name: ClericalExtract
   m_TagString: Untagged
@@ -86,20 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8671568741676095535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617301695022411340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13f31db716491d540a64b69e99dc1c88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupRadius: 0.09
-  item: {fileID: 11400000, guid: 9957012c0532ff249821b0a23ad95139, type: 2}
 --- !u!58 &3254604614448386488
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +122,73 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.05
+--- !u!61 &2549742359963211254
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617301695022411340}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.1, y: 0.1}
+    newSize: {x: 0.1, y: 0.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1}
+  m_EdgeRadius: 0
+--- !u!114 &5873845048992416113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617301695022411340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa27230cdde82e4aa418597ead47d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addToInventory:
+  - itemType: {fileID: 0}
+    itemNum: 0
+    itemRawDurability: 0
+  removeFromInventory: []
+  playAudioOnEvent: 0
+  eventAudio: {fileID: 0}
+  bagSprite: {fileID: 0}
+  itemSprite: {fileID: 0}
+  playerTag: Player
+  anim: {fileID: 0}
+  destroyWhenCalled: 1
+  enableDebug: 1

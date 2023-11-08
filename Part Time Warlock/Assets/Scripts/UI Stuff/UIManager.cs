@@ -25,36 +25,16 @@ public class UIManager : MonoBehaviour
     public float seconds;
     public bool timerActive;
 
-    [SerializeField] private ShopKeeperDisplay shopKeeperDisplay;
-
-    private void Awake()
-    {
-        shopKeeperDisplay.gameObject.SetActive(false);
-    }
-    private void OnEnable()
-    {
-        ShopKeeper.OnShopWindowRequested += DisplayShopWindow;
-    }
-
-    private void OnDisable()
-    {
-        ShopKeeper.OnShopWindowRequested -= DisplayShopWindow;
-    }
-
-    private void DisplayShopWindow(ShopSystem shopSystem, PlayerInventoryHolder playerInventory)
-    {
-        shopKeeperDisplay.gameObject.SetActive(true);
-        shopKeeperDisplay.DisplayShopWindow(shopSystem, playerInventory);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         timerActive = true;
-        P = FindAnyObjectByType<Player>();
+        //P = FindAnyObjectByType<Player>();
+        
         UpdateCoinText();
         
-        if (activeScene.name != "Apartment")
+        if (activeScene.name == "Apartment")
         {
             CoinText.gameObject.SetActive(false);
             TimerText.gameObject.SetActive(false);
@@ -87,20 +67,16 @@ public class UIManager : MonoBehaviour
             }
         }
         
-        if (P.canMove == false)
+        if (P.isGamePaused == false)
         {
-            Pausetext.gameObject.SetActive(true);
+            Pausetext.gameObject.SetActive(false);
         } 
         
         else
         {
-            Pausetext.gameObject.SetActive(false);
+            Pausetext.gameObject.SetActive(true);
         }
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            shopKeeperDisplay.gameObject.SetActive(false);
-        }
     }
 
     public void UpdateCoinText()

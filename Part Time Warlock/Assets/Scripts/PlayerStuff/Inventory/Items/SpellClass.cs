@@ -6,8 +6,8 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
-[CreateAssetMenu(menuName = "Inventory System/Spell")]
-public class SpellClass : ItemClass
+[CreateAssetMenu(fileName = "(Spell)Spell", menuName = "InventoryPlus/Spell", order = 1)]
+public class SpellClass : InventoryPlus.Item
 {
     //Idea: Should individual spells have their own scripts that
             //inherit from this base spell class?
@@ -45,10 +45,10 @@ public class SpellClass : ItemClass
     public float statusDuration;
     public float movementDistance; //for dash spells specifically (e.g. how far do you dash with this spell)
 
-    public override SpellClass GetSpell() { return this; }
+    public SpellClass GetSpell() { return this; }
 
 
-    public override void Use(Player P) 
+    public void Use(Player P) 
     {
         if (currentCooldown > 0)
         {

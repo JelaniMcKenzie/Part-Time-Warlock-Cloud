@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
 using System;
 using UnityEngine.InputSystem;
+using InventoryPlus;
 
 public class Player : GameEntity
 {
     public Transform staffArm;
     public GameObject staffTip = null;
+    public Inventory inventory;
+    [SerializeField] private InputReader inputReader;
 
     [Space(30)]
 
     //--------------------Script comm fields--------------------
     private UIManager uiManager = null;
-    public SpellClass[] spells = new SpellClass[4];
+
     [Space(30)]
 
     [Header("bool variables")]
@@ -25,6 +28,7 @@ public class Player : GameEntity
     private bool canHit = true;
     public bool canMove = true;
     private bool isHit = false;
+    public bool isGamePaused; //move this to a gamemanager script later
     public int coinNum = 0;
 
     public Scene activeScene;
@@ -43,7 +47,7 @@ public class Player : GameEntity
     bool isDashing;
     bool canDash = true;
 
-    public PlayerInventoryHolder inventory;
+    
 
 
     // Start is called before the first frame update
@@ -76,10 +80,62 @@ public class Player : GameEntity
         }
 
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
+        if (inputReader.inventoryOn == true )
+        {
+            canMove = false;
+            
+        }
+        else
+        {
+            canMove = true;
+        }
+
+
         if (canMove == true)
         {
             Movement();
             Sprint();
+            //Use a spell or an item
+            if (Input.GetMouseButtonDown(0))
+            {
+                inventory.UseItem(inventory.hotbarUISlots[0]);
+
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                inventory.UseItem(inventory.hotbarUISlots[1]);
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                inventory.UseItem(inventory.hotbarUISlots[2]);
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (canDash)
+                {
+                    StartCoroutine(Dash());
+                }
+                inventory.UseItem(inventory.hotbarUISlots[3]);
+
+            } 
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                
+            }
+
+            
+            for (int i = 0; i < inventory.inventoryItems.Count; i++)
+            {
+                if (inventory.inventoryItems[i].ItemType.GetItem() is SpellClass)
+                {
+                    //Downcast from ItemSlot to SpellClass to access SpellClass methods
+                    SpellClass s = (SpellClass) inventory.inventoryItems[i].ItemType.GetItem();
+                    s.UpdateCooldown();
+                }
+            }
+            
+            
         }
 
         if (coinNum < 0)
@@ -93,82 +149,25 @@ public class Player : GameEntity
             FlashTimer();
         }
 
-        if (Keyboard.current.tabKey.wasPressedThisFrame && isInventoryOpen == false) 
+        //Pause Game
+        if (Input.GetKeyDown(KeyCode.Escape) && canMove == false)
         {
-            PlayerInventoryHolder.OnPlayerInventoryDisplayRequested?.Invoke(inventory.PrimaryInventorySystem, inventory.Offset);
-        }
-
-       
-            //Use a spell or an item
-            if (Input.GetMouseButtonDown(0))
-            {
-
-                if (spells[0] != null)
-                {
-                    //use spell 1
-                    spells[0].Use(this);
-                }
-            }
-            else if (Input.GetMouseButtonDown(1))
-            {
-                if (spells[1] != null)
-                {
-                    //use spell 1
-                    spells[1].Use(this);
-                }
-        }
-            else if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (canDash)
-                {
-                    StartCoroutine(Dash());
-                }
-                    if (spells[2] != null)
-                    {
-                        //use spell 1
-                        spells[2].Use(this);
-                    }
-        }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (spells[3] != null)
-                {
-                    //use spell 1
-                    spells[3].Use(this);
-                }
-        }
-            else if (Input.GetKeyDown(KeyCode.Q))
-            {
-                /*if (inventory.items[19].item != null)
-                {
-                    //use item slot
-                    inventory.items[19].item.Use(this);
-                }*/
-            }
-        
-
-
-        //Open and close inventory
-        if (Input.GetKeyDown(KeyCode.Tab) && isInventoryOpen == false)
-        {
-            inventoryObj.SetActive(true);
-            isInventoryOpen = true;
-            canMove = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab) && isInventoryOpen == true)
-        {
-            inventoryObj.SetActive(false);
-            isInventoryOpen = false;
+            isGamePaused = false;
             canMove = true;
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && canMove == true)
+        {
+            isGamePaused = true;
+            canMove = false;
+        }
 
-        foreach (var spell in spells)
+        /*foreach (var spell in spells)
         {
             if (spell != null)
             {
                 spell.UpdateCooldown();
             }
-        }
+        }*/
     }
 
 

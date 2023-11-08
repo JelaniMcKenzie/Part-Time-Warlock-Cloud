@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 0}
-  P: {fileID: 0}
+  P: {fileID: 8771377463029797778, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
   CoinSound: {fileID: 8300000, guid: ed9d33cc042df3140a901db4a1e788a5, type: 3}
 --- !u!95 &1305421668
 Animator:
@@ -152,7 +152,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

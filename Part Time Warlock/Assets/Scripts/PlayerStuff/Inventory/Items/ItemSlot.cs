@@ -74,8 +74,8 @@ public abstract class ItemSlot : ISerializationCallbackReceiver
             return; //slot is empty
         }
 
-        var db = Resources.Load<Database>("Database");
-        item = db.GetItem(itemID);
+        //var db = Resources.Load<Database>("Database");
+        //item = db.GetItem(itemID);
     }
 
  
