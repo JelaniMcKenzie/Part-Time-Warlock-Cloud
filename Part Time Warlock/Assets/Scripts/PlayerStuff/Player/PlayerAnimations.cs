@@ -50,6 +50,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (P != null)
         {
+            
             Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
             dir = Vector3.MoveTowards(new Vector3(), dir, 0.1f) * 1000;
             float xDistance = Mathf.Abs(dir.x);
@@ -61,14 +62,22 @@ public class PlayerAnimations : MonoBehaviour
                     /*direction = "Left";
                     currentAnim = "IdleLeft";*/
                     P.GetComponent<SpriteRenderer>().flipX = true;
+                    P.staff.GetComponent<SpriteRenderer>().flipX = true;
 
-
+                    //P.staffTip.transform.localPosition = new Vector3(P.staffTip.transform.localPosition.x, -0.2f, 0); // Flip staffTip
+                    //-0.3f is a hardcoded value to matchup the staffTip with the sprite while its flipped.
+                    //Probably not the best way to go about this but it *does* work
                 }
                 if (dir.x > 10 /*player is looking right*/)
                 {
                     /*direction = "Right";
                     currentAnim = "IdleRight";*/
                     P.GetComponent<SpriteRenderer>().flipX = false;
+                    P.staff.GetComponent<SpriteRenderer>().flipX = false;
+
+                    //P.staffTip.transform.localPosition = new Vector3(P.staffTip.transform.localPosition.x, 0.2f, 0); // Flip staffTip
+                    //0.3f is a hardcoded value to matchup the staffTip with the sprite while its flipped.
+                    //Probably not the best way to go about this but it *does* work
 
                 }
             }
@@ -136,7 +145,7 @@ public class PlayerAnimations : MonoBehaviour
 
 
 
-        if (direction == "Down") //change for if the mouse is on the southern hemisphere of the player
+        /*if (direction == "Down") //change for if the mouse is on the southern hemisphere of the player
         {
             hand.GetComponent<SpriteRenderer>().sortingOrder = 5;
             staff.GetComponent<SpriteRenderer>().sortingOrder = 4;
@@ -145,7 +154,7 @@ public class PlayerAnimations : MonoBehaviour
         {
             hand.GetComponent<SpriteRenderer>().sortingOrder = 1;
             staff.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        }
+        }*/
         
         /*if (!animState.IsName(currentAnim))
         {   //checks what the name of the animation is (e.g right)

@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ public class SpellClass : InventoryPlus.Item
     public int maxUses;
 
     public float maxCooldown;
-    private float currentCooldown;
+    public float currentCooldown;
 
     [SerializeField] public AudioClip spellSound = null;
 
@@ -43,7 +44,7 @@ public class SpellClass : InventoryPlus.Item
     public float projectileSpeed;
     public float effectRadius;
     public float statusDuration;
-    public float movementDistance; //for dash spells specifically (e.g. how far do you dash with this spell)
+    public float dashSpellDuration;
 
     public SpellClass GetSpell() { return this; }
 
@@ -97,6 +98,11 @@ public class SpellClass : InventoryPlus.Item
             case SpellType.movement:
                 {
                     //movement logic here
+
+                    //instantiate a prefab. the prefab will have its own script on it, determining
+                    //the actual logic for each spell
+
+                    Instantiate(spellPrefab, P.transform.position, Quaternion.identity);
                     Debug.Log("Casted movement spell");
                     break;
                 }
@@ -104,6 +110,7 @@ public class SpellClass : InventoryPlus.Item
         uses--;
     }
 
+    
     public void UpdateCooldown()
     {
         if (currentCooldown > 0)
@@ -123,4 +130,6 @@ public class SpellClass : InventoryPlus.Item
             return;
         }
     }
+
+    
 }

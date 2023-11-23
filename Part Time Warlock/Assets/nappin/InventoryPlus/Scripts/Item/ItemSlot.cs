@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using UnityEngine;
 
 
@@ -12,7 +11,7 @@ namespace InventoryPlus
         [SerializeField] [Min(1)] private int itemNum = 1;
         [SerializeField] [Min(1f)] private float itemRawDurability = 100f;
 
-        public Item ItemType => itemType;
+
         /**/
 
 

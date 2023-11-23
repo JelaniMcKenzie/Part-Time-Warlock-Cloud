@@ -10,7 +10,7 @@ using InventoryPlus;
 
 public class Player : GameEntity
 {
-    public Transform staffArm;
+    public GameObject staff;
     public GameObject staffTip = null;
     public Inventory inventory;
     [SerializeField] private InputReader inputReader;
@@ -25,29 +25,29 @@ public class Player : GameEntity
     [Header("bool variables")]
     public float maxHealth = 1f;
     public string scene;
-    private bool canHit = true;
-    public bool canMove = true;
+    public bool canHit = true;
+    public bool canMove = false;
     private bool isHit = false;
     public bool isGamePaused; //move this to a gamemanager script later
     public int coinNum = 0;
 
     public Scene activeScene;
-    public GameObject handParent = null;
+    public GameObject handParent;
 
     public GameObject inventoryObj = null;
 
     public bool isInventoryOpen = false;
-    private Rigidbody2D rb;
-    private Vector2 moveInput;
+    public Rigidbody2D rb;
+    public Vector2 moveInput;
+
+    [Space(30)]
 
     [Header("Dash Settings")]
-    [SerializeField] float dashmoveSpeed = 10f;
-    [SerializeField] float dashDuration = 1f;
-    [SerializeField] float dashCooldown = 1f;
-    bool isDashing;
-    bool canDash = true;
-
-    
+    public float dashMoveSpeed;
+    public float dashDuration;
+    public float dashCooldown;
+    public bool canDash = true;
+    public bool isDashing = false;
 
 
     // Start is called before the first frame update
@@ -81,7 +81,7 @@ public class Player : GameEntity
 
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
-        if (inputReader.inventoryOn == true )
+        /*if (inputReader.inventoryOn == true )
         {
             canMove = false;
             
@@ -89,53 +89,69 @@ public class Player : GameEntity
         else
         {
             canMove = true;
-        }
+        }*/
 
 
         if (canMove == true)
         {
             Movement();
+            //AimStaff();
             Sprint();
+
+            #region SpellCastingLogic
+
             //Use a spell or an item
             if (Input.GetMouseButtonDown(0))
             {
                 inventory.UseItem(inventory.hotbarUISlots[0]);
 
             }
-            else if (Input.GetMouseButtonDown(1))
+
+            if (Input.GetMouseButtonDown(1))
             {
                 inventory.UseItem(inventory.hotbarUISlots[1]);
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 inventory.UseItem(inventory.hotbarUISlots[2]);
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (canDash)
-                {
-                    StartCoroutine(Dash());
-                }
-                inventory.UseItem(inventory.hotbarUISlots[3]);
 
-            } 
-            else if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Space) && canDash)
+            {
+                SpellClass dashSpell = (SpellClass) inventory.GetInventorySlot(inventory.hotbarUISlots[3]).GetItemType();
+
+                if (Mathf.Abs(moveInput.x) != 0 || Mathf.Abs(moveInput.y) != 0)
+                {
+                    if (!isDashing && dashSpell.currentCooldown > 0)
+                    {
+                        StartCoroutine(Dash(moveInput));
+                    }
+                    else
+                    {
+                        inventory.UseItem(inventory.hotbarUISlots[3]);
+                        StartCoroutine(Dash(moveInput));
+                    }
+                }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 
             }
-
             
             for (int i = 0; i < inventory.inventoryItems.Count; i++)
             {
-                if (inventory.inventoryItems[i].ItemType.GetItem() is SpellClass)
+                if (inventory.inventoryItems[i].GetItemType() is SpellClass)
                 {
                     //Downcast from ItemSlot to SpellClass to access SpellClass methods
-                    SpellClass s = (SpellClass) inventory.inventoryItems[i].ItemType.GetItem();
+                    SpellClass s = (SpellClass) inventory.inventoryItems[i].GetItemType();
                     s.UpdateCooldown();
+                   
                 }
             }
-            
-            
+            #endregion
+
         }
 
         if (coinNum < 0)
@@ -160,14 +176,6 @@ public class Player : GameEntity
             isGamePaused = true;
             canMove = false;
         }
-
-        /*foreach (var spell in spells)
-        {
-            if (spell != null)
-            {
-                spell.UpdateCooldown();
-            }
-        }*/
     }
 
 
@@ -179,13 +187,25 @@ public class Player : GameEntity
         moveInput.Normalize();
         rb.velocity = moveInput * moveSpeed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (canDash)
-            {
-                StartCoroutine(Dash());
-            }
-        }
+    }
+
+    /*private void AimStaff()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
+
+
+        //rotate staff object
+        Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
+        float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+        staffArm.rotation = Quaternion.Euler(0, 0, angle);
+
+    }*/
+
+    public void EnableMovement(bool _enable)
+    {
+        if (!_enable) moveInput = Vector3.zero;
+        canMove = _enable;
     }
 
     public void Sprint()
@@ -229,23 +249,35 @@ public class Player : GameEntity
 
     }
 
-    /**
-     * TODO: Add a method that, when the player leaves the dungeon, adds
-     * the int coinNum value of this script to the Gold value of the NewInventorySystem script
-     */
 
-    public IEnumerator Dash()
+    public IEnumerator Dash(Vector2 dashDirection)
     {
         canDash = false;
         isDashing = true;
-        rb.velocity = new Vector3(moveInput.x * dashmoveSpeed, moveInput.y * dashmoveSpeed, 0f);
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
 
+        // Perform dash logic here, for example, move the player
+        Vector2 startPos = transform.position;
+        Vector2 endPos = startPos + dashDirection.normalized * dashMoveSpeed * dashDuration;
+        float startTime = Time.time;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            float t = (Time.time - startTime) / dashDuration;
+            transform.position = Vector2.Lerp(startPos, endPos, t);
+            yield return null;
+        }
+
+        isDashing = false;
+        canDash = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
 
-        //TODO: Sync the cooldown of the dash to the usage of the dash spell
+    public IEnumerator DashCooldown()
+    {
+        canDash = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     public IEnumerator Invulnerable()

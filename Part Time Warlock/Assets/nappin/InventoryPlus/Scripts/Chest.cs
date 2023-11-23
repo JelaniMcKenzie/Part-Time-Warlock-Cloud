@@ -72,7 +72,7 @@ namespace InventoryPlus
             if (collision.CompareTag(playerTag))
             {
                 //set chest as inventory child
-                PlayerController player = collision.GetComponent<PlayerController>();
+                Player player = collision.GetComponent<Player>();
                 chestUI.SetParent(player.inventory.transform);
                 player.inventory.InChestRange(true);
 
@@ -90,7 +90,7 @@ namespace InventoryPlus
         {
             if (collision.CompareTag(playerTag))
             {
-                PlayerController player = collision.GetComponent<PlayerController>();
+                Player player = collision.GetComponent<Player>();
                 chestUI.SetParent(this.transform);
                 player.inventory.InChestRange(false);
             }

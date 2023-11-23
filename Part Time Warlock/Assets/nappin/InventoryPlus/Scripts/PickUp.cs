@@ -22,7 +22,7 @@ namespace InventoryPlus
         public Sprite bagSprite;
         public SpriteRenderer itemSprite;
         public string playerTag = "Player";
-        public Animator anim;
+        //public Animator anim;
 
         [Space(15)]
         public bool destroyWhenCalled = true;
@@ -43,12 +43,6 @@ namespace InventoryPlus
         private void Start()
         {
             col = this.GetComponent<BoxCollider2D>();
-
-            if (col != null)
-            {
-                Debug.Log("found box collider");
-            }
-
 
             if (addToInventory.Count == 1)
             {
@@ -128,6 +122,7 @@ namespace InventoryPlus
             {
                 inventory = collision.GetComponent<Player>().inventory;
                 UpdateInventory();
+                Destroy(this.gameObject);
             }
         }
 
@@ -155,7 +150,6 @@ namespace InventoryPlus
                 if (destroyWhenCalled)
                 {
                     this.enabled = false;
-                    Destroy(this.gameObject);
                     //anim.SetTrigger("Despawn");
                 }
 

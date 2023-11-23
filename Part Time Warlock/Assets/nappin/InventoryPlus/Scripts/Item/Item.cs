@@ -29,11 +29,5 @@ namespace InventoryPlus
         [SerializeField] public AudioClip useAudio;
         [SerializeField] public AudioClip dropAudio;
         [SerializeField] public AudioClip equipAudio;
-
-        public Item GetItem()
-        {
-            return this;
-        }
     }
-
 }

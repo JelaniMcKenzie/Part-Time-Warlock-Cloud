@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: ThunderRush
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 1737299735, guid: 48d0c76250e3e3c429015a5163a6048b, type: 3}
-  itemName: ThunderRush
+  itemSprite: {fileID: -1756536176, guid: 48d0c76250e3e3c429015a5163a6048b, type: 3}
+  itemName: Thunder Rush
   itemID: 
   itemCategory: Magic
   isStackable: 0
@@ -30,15 +30,16 @@ MonoBehaviour:
   dropAudio: {fileID: 0}
   equipAudio: {fileID: 0}
   spellRune: {fileID: 0}
-  spellPrefab: {fileID: 0}
+  spellPrefab: {fileID: 1349106966584309559, guid: 03d9af1541c35d24185d3f85c7b1c7cc, type: 3}
   spellElement: 
   damage: 0
-  uses: 0
-  maxUses: 0
-  maxCooldown: 0
+  uses: 1
+  maxUses: 1
+  maxCooldown: 6.5
+  currentCooldown: 0
   spellSound: {fileID: 0}
-  spellType: 0
+  spellType: 3
   projectileSpeed: 0
   effectRadius: 0
   statusDuration: 0
-  movementDistance: 0
+  dashSpellDuration: 2.2

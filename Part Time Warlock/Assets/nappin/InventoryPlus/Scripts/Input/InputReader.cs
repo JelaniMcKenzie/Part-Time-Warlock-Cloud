@@ -30,12 +30,12 @@ namespace InventoryPlus
 
         [Space(15)]
         [Header("References")]
-        public PlayerController pc;
+        public Player player;
         public Inventory inventory;
         public UIDetails details;
 
 
-        public bool inventoryOn = false;
+        private bool inventoryOn = false;
 
         private GameObject currentSelectedObj = null;
         private StandaloneInputModule inputModule;
@@ -54,7 +54,7 @@ namespace InventoryPlus
 
             //set initial state
             inputModule.horizontalAxis = InventoryOffHorizontalInput;
-            //inventory.SelectFirstHotbarSlot();
+            inventory.SelectFirstHotbarSlot();
             inventory.ClearSwap();
         }
 
@@ -91,17 +91,12 @@ namespace InventoryPlus
 
         private void ToggleInventory()
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 inventoryOn = !inventoryOn;
 
                 ShowCursor(inventoryOn);
-                
-                if (pc != null)
-                {
-                    pc.EnableController(!inventoryOn);
-                }
-                
+                player.EnableMovement(!inventoryOn);
                 inventory.ShowInventory(inventoryOn);
                 inventory.ForceEndSwap();
 
@@ -123,7 +118,7 @@ namespace InventoryPlus
 
         private void InventoryActions()
         {
-            /*//use action
+            //use action
             if (Input.GetKeyDown(KeyCode.U) && currentSelectedObj != null && ((performUse == ActionState.Inventory && inventoryOn) || (performUse == ActionState.HUD && !inventoryOn) || (performUse == ActionState.Both)))
             {
                 inventory.UseItem(currentSelectedObj.GetComponent<UISlot>());
@@ -135,7 +130,7 @@ namespace InventoryPlus
             {
                 inventory.DropItem(currentSelectedObj.GetComponent<UISlot>());
                 if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
-            }*/
+            }
 
             //sort action
             if (Input.GetKeyDown(KeyCode.M) && currentSelectedObj != null && ((performSort == ActionState.Inventory && inventoryOn) || (performSort == ActionState.HUD && !inventoryOn) || (performSort == ActionState.Both)))
@@ -144,13 +139,12 @@ namespace InventoryPlus
                 if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
             }
 
-            /* Old code for equipping items
             //equip action
             if (Input.GetKeyDown(KeyCode.E) && currentSelectedObj != null && ((performEquip == ActionState.Inventory && inventoryOn) || (performEquip == ActionState.HUD && !inventoryOn) || (performEquip == ActionState.Both)))
             {
                 inventory.EquipItem(currentSelectedObj.GetComponent<UISlot>());
                 if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
-            }*/
+            }
 
             //swap action - clear swap
             if (Input.GetKeyDown(KeyCode.N) && currentSelectedObj != null && ((performSwap == ActionState.Inventory && inventoryOn) || (performSwap == ActionState.HUD && !inventoryOn) || (performSwap == ActionState.Both)))
@@ -179,11 +173,13 @@ namespace InventoryPlus
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
-                /*else
+                else
                 {
+                    /*
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
-                }*/
+                    */
+                }
             }
         }
 

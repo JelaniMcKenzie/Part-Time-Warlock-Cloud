@@ -19,8 +19,6 @@ namespace InventoryPlus
         [SerializeField] public bool enableMouseDrag = true;
 
         [SerializeField] public Animator anim;
-        Player p;
-
         
         [SerializeField] public bool instanciatePickuppableOnDrop = false;
         [SerializeField] public GameObject pickupPrefab;
@@ -39,6 +37,9 @@ namespace InventoryPlus
         private bool wasLoaded = false;
 
 
+        private Player p;
+
+
         /**/
 
 
@@ -46,14 +47,13 @@ namespace InventoryPlus
 
         private void Start()
         {
-            p = FindAnyObjectByType<Player>();
-
-            if (!wasLoaded)
+            if(!wasLoaded)
             {
                 AssignInventorySlots();
                 AssignHotbarSlots();
 
                 AddStartingInventory();
+                p = FindAnyObjectByType<Player>();
             }
         }
 
@@ -465,7 +465,19 @@ namespace InventoryPlus
                     else isItemUsable = false;
                 }
 
-                if(isItemUsable)
+                //Casting Spells Logic
+                if (slot.GetItemType() is SpellClass && slot.GetItemType() != null)
+                {
+                    //downcast to spell class from Itemclass
+                    SpellClass spell = (SpellClass)slot.GetItemType();
+                    if (p != null)
+                    {
+                        spell.Use(p);
+                    }
+
+                }
+
+                if (isItemUsable)
                 {
                     if (itemsAudio != null && slot.GetItemType().useAudio != null) PlayItemsAudio(slot.GetItemType().useAudio);
                     if (enableDebug) Debug.Log("Used " + slot.GetItemType().itemName);
@@ -474,20 +486,6 @@ namespace InventoryPlus
             }
 
             else if (enableDebug) Debug.Log("Not selecting an item, can't perform the Use action");
-
-            //Casting Spells Logic
-            if (slot.ItemType.GetItem() is SpellClass && slot.ItemType.GetItem() != null)
-            {
-                //downcast to spell class from Itemclass
-                SpellClass spell = (SpellClass) slot.ItemType.GetItem();
-                if (p != null)
-                {
-                    spell.Use(p);
-                }
-                
-            }
-
-            
         }
 
 
@@ -658,7 +656,7 @@ namespace InventoryPlus
             if (swapUISlot != null)
             {
                 swapUISlot.SetSwapState(false);
-                //swapUISlot.ForceEndMouseDrag();
+                swapUISlot.ForceEndMouseDrag();
             }
             swapUISlot = null;
         }

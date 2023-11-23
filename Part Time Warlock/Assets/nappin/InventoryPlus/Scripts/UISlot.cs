@@ -60,8 +60,20 @@ namespace InventoryPlus
 
         public void SetupMouseDrag(Inventory _inventory)
         {
-            mouseDrag = this.gameObject.AddComponent<MouseDrag>();
-            mouseDrag.SetInventory(this, _inventory);
+            //Do a null check for the MouseDrag compoment. Without it, it will add
+            //multiple MouseDrag gameobjects, which conflict with the code's ability
+            //to move items in and out of slots (can't have multiple mousedrag items for
+            //one UI slot)
+            if (this.gameObject.GetComponent<MouseDrag>() != null)
+            {    
+                mouseDrag.SetInventory(this, _inventory);
+            }
+            else
+            {
+                mouseDrag = this.gameObject.AddComponent<MouseDrag>();
+                mouseDrag.SetInventory(this, _inventory);
+            }
+            
         }
 
 
