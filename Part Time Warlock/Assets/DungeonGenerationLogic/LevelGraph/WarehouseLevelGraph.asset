@@ -151,8 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Position: {x: 656, y: 192}
-  Name: Room
-  IndividualRoomTemplates: []
+  Name: BreakRoom
+  IndividualRoomTemplates:
+  - {fileID: 8492665448054464914, guid: 22b599706436baa47bc37c96ebfaebbc, type: 3}
   RoomTemplateSets: []
 --- !u!114 &-1057870377725823307
 MonoBehaviour:
@@ -228,8 +229,8 @@ MonoBehaviour:
   - {fileID: 2435598703024812119}
   - {fileID: -2545582128204807044}
   EditorData:
-    PanOffset: {x: 5, y: 53}
-    Zoom: 1
+    PanOffset: {x: -151.84152, y: -22.363646}
+    Zoom: 1.3310001
   RoomType: Edgar.Unity.Room
   ConnectionType: Edgar.Unity.Connection
   IsDirected: 0

@@ -14,24 +14,26 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI Pausetext;
     public TextMeshProUGUI TimerText;
     public TextMeshProUGUI RentGoalText;
-    public Image[] GoldCoins;
+    public Image bag;
+    public Sprite[] bagFill;
     public Player P;
 
     public Scene activeScene;
+    private GameManager gameManager;
 
     //timer fields
     public float timer = 300f;
     public float minutes;
     public float seconds;
     public bool timerActive;
+    public float timerSpeed = 1f;
 
 
     // Start is called before the first frame update
     void Start()
     {
         timerActive = true;
-        
-        
+        gameManager = FindAnyObjectByType<GameManager>();
         UpdateCoinText();
         
         if (activeScene.name == "Apartment")
@@ -40,10 +42,7 @@ public class UIManager : MonoBehaviour
             TimerText.gameObject.SetActive(false);
             RentGoalText.gameObject.SetActive(false);
 
-            foreach (Image coin in GoldCoins)
-            {
-                coin.gameObject.SetActive(false);
-            }
+            bag.gameObject.SetActive(false);
         }
     }
 
@@ -53,7 +52,9 @@ public class UIManager : MonoBehaviour
         //hard coded solution to the canvas not being able to find the player
         //change later so that this code only runs after the dungeon is finished generating
         P = FindAnyObjectByType<Player>();
+        
         UpdateCoinText();
+        UpdateBagImage(P.coinNum, gameManager.rentGoal);
         if (P == null)
         {
             Debug.Log("couldn't find player");
@@ -63,7 +64,7 @@ public class UIManager : MonoBehaviour
         {
             if (timer > 0f)
             {
-                timer -= Time.deltaTime;
+                timer -= Time.deltaTime * timerSpeed;
                 UpdateTimer(timer);
                 //Debug.Log(timer);
             }
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour
             {
                 timer = 0f;
                 timerActive = false;
+                SceneManager.LoadScene("Lose");
             }
         }
         
@@ -90,6 +92,28 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinText()
     {
         CoinText.text = ": " + P.coinNum;
+    }
+
+    // Call this method to update the image based on the percentage
+    public void UpdateBagImage(float numerator, float denominator)
+    {
+        if (bag != null && bagFill != null && bagFill.Length > 0)
+        {
+            float percentage = numerator / denominator;
+
+            // Calculate the index based on fifths
+            int index = Mathf.FloorToInt(percentage * bagFill.Length);
+
+            // Ensure the index is within the valid range
+            index = Mathf.Clamp(index, 0, bagFill.Length - 1);
+
+            // Assign the corresponding sprite
+            bag.sprite = bagFill[index];
+        }
+        else
+        {
+            Debug.LogError("Image component or fifths sprites are not assigned.");
+        }
     }
 
     public void UpdateTimer(float timeToDisplay)

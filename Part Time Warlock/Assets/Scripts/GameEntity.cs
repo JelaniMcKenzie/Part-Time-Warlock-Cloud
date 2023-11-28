@@ -35,6 +35,18 @@ public class GameEntity : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public virtual void AddKnockBack()
+    {
+        if (this.gameObject.CompareTag("Player"))
+        {
+
+        }
+        else if (this.gameObject.CompareTag("Enemy"))
+        {
+
+        }
+    }
+
     /*public virtual void Burn()
     {
         //Method to be overidden by derived classes.
