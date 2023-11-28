@@ -35,7 +35,7 @@ namespace InventoryPlus
         public UIDetails details;
 
 
-        private bool inventoryOn = false;
+        public bool inventoryOn = false;
 
         private GameObject currentSelectedObj = null;
         private StandaloneInputModule inputModule;

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+
         if (SceneManager.GetActiveScene().name == "Opener" || 
             SceneManager.GetActiveScene().name == "Opener2"||
             SceneManager.GetActiveScene().name == "Objectives" ||

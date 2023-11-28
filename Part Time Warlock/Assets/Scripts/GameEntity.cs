@@ -8,6 +8,7 @@ public class GameEntity : MonoBehaviour
     public float moveSpeed = 5f;
     public bool isFrozen = false;
     public bool isBurning = false;
+    public bool canMove = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,7 @@ public class GameEntity : MonoBehaviour
         //Some enemies may have a positive effect when
         //this method is called
     }*/
+
 
 
 }

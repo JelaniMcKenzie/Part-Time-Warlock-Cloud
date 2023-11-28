@@ -25,7 +25,6 @@ public class Player : GameEntity
     public float maxHealth = 1f;
     public string scene;
     public bool canHit = true;
-    public bool canMove = false;
     private bool isHit = false;
     public bool isGamePaused; //move this to a gamemanager script later
     public int coinNum = 0;
@@ -189,23 +188,16 @@ public class Player : GameEntity
 
     }
 
-    /*private void AimStaff()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
-
-
-        //rotate staff object
-        Vector2 offset = new Vector2(mousePos.x - screenPoint.x, mousePos.y - screenPoint.y);
-        float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-        staffArm.rotation = Quaternion.Euler(0, 0, angle);
-
-    }*/
-
     public void EnableMovement(bool _enable)
     {
-        if (!_enable) moveInput = Vector3.zero;
+        if (!_enable) 
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Animator>().SetBool("running", false);
+        }
+           
         canMove = _enable;
+        
     }
 
     public void Sprint()
@@ -225,8 +217,11 @@ public class Player : GameEntity
 
     public void Damage()
     {
+        
+
         if (canHit == true)
-        {
+        {  
+            canMove = true;
             isHit = true;
             if (coinNum > 0)
             {
@@ -313,7 +308,11 @@ public class Player : GameEntity
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Damage();
+            if (canHit == true)
+            {
+                Damage();
+            }
+            
         }
 
     }
@@ -322,7 +321,16 @@ public class Player : GameEntity
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Damage();
+            if (inventory.isActiveAndEnabled)
+            {
+                inputReader.inventoryOn = false;
+                inventory.ShowInventory(inputReader.inventoryOn);
+                EnableMovement(true);
+            }
+            if (canHit == true)
+            {
+                Damage();
+            }
         }
 
     }

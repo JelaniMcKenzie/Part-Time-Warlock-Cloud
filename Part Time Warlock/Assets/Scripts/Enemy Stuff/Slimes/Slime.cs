@@ -12,7 +12,6 @@ public class Slime : GameEntity
     public bool isOnFire = false;
     public int burnSeconds = 5;
     public bool addAmmo;
-    public bool canMove;
 
 
     public SpriteRenderer detectJump;
