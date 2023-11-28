@@ -17,9 +17,9 @@ public class Slime : GameEntity
 
     public SpriteRenderer detectJump;
     public Sprite[] groundSprites;
-   
 
-    [SerializeField] public AudioClip SlimeMove = null;
+    [SerializeField] private AudioClip slimeMove;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +51,6 @@ public class Slime : GameEntity
 
         if (health <= 0f)
         {
-            AudioSource.PlayClipAtPoint(SlimeMove, transform.position);
             Die();
             //SM.EnemyCount--;
         }
@@ -60,7 +59,7 @@ public class Slime : GameEntity
     public void EnemyMovement()
     {
         bool onGround = false;
-
+        AudioSource.PlayClipAtPoint(slimeMove, transform.position);
         foreach (Sprite s in groundSprites)
         {
             //if the slime animation isn't in its "hopping" phase,
@@ -116,7 +115,7 @@ public class Slime : GameEntity
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerProx"))
+        if (other.CompareTag("PlayerProx") && !this.gameObject.CompareTag("NPC"))
         {
             canMove = true;
         }
@@ -124,7 +123,7 @@ public class Slime : GameEntity
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerProx"))
+        if (other.CompareTag("PlayerProx") && !this.gameObject.CompareTag("NPC"))
         {
             StartCoroutine(ChaseTimer());
         }
@@ -134,12 +133,6 @@ public class Slime : GameEntity
     {
         yield return new WaitForSeconds(3f);
         canMove = false;
-    }
-
-    public IEnumerator SlimeSteps()
-    {
-        AudioSource.PlayClipAtPoint(SlimeMove, transform.position, 4);
-        yield return new WaitForSeconds(2f);
     }
 
     public override void Die()

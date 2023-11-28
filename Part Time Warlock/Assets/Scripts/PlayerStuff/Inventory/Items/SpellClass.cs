@@ -66,22 +66,18 @@ public class SpellClass : InventoryPlus.Item
 
                     // Calculate the direction from the player's position to the mouse position
                     Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 direction = (mousePosition - P.transform.position).normalized;
-
-                    // Calculate the angle
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                    // Rotate the projectile
-                    projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    Vector2 direction = mousePosition - P.transform.position; // Remove normalization
 
                     // Get the Rigidbody2D component
                     Rigidbody2D rb2d = projectile.GetComponent<Rigidbody2D>();
 
                     // Set the velocity
-                    rb2d.velocity = direction * projectileSpeed;
+                    rb2d.velocity = direction.normalized * projectileSpeed; // Normalize only when setting velocity
 
                     Debug.Log("Casted " + this.itemName);
                     break;
+
+
                 }
             case SpellType.aoe:
                 {

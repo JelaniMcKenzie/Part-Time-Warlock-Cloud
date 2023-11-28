@@ -80,7 +80,11 @@ public class PTWDungeonPostProcessing : DungeonGeneratorPostProcessingComponentG
             {
                 var spawnPosition = roomTemplateInstance.transform.Find("SpawnPosition");
                 var player = GameObject.FindWithTag("Player");
+                var portal = GameObject.FindWithTag("Portal");
                 player.transform.position = spawnPosition.position;
+                portal.transform.position = spawnPosition.position;
+                portal.SetActive(false);
+
             }
         }
     }
