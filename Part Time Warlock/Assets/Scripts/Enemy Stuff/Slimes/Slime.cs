@@ -12,6 +12,7 @@ public class Slime : GameEntity
     public bool isOnFire = false;
     public int burnSeconds = 5;
     public bool addAmmo;
+    private bool hasPlayedSound = false;
 
 
     public SpriteRenderer detectJump;
@@ -22,6 +23,7 @@ public class Slime : GameEntity
     // Start is called before the first frame update
     void Start()
     {
+        
         health = 3f;
         canMove = false;
         P = FindAnyObjectByType<Player>();
@@ -57,8 +59,9 @@ public class Slime : GameEntity
 
     public void EnemyMovement()
     {
+        
         bool onGround = false;
-        AudioSource.PlayClipAtPoint(slimeMove, transform.position);
+        
         foreach (Sprite s in groundSprites)
         {
             //if the slime animation isn't in its "hopping" phase,
@@ -71,12 +74,22 @@ public class Slime : GameEntity
 
         if (onGround == false)
         {
+            if (hasPlayedSound == false)
+            {
+                StartCoroutine(PlaySoundAndWait());
+            }
             // Calculate the direction towards the player
             Vector3 direction = (P.transform.position - transform.position).normalized;
 
             // Move the enemy towards the player
             transform.position += direction * moveSpeed * Time.deltaTime;
+
         }
+    }
+
+    public void ResetSoundFlag()
+    {
+        hasPlayedSound = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -126,6 +139,19 @@ public class Slime : GameEntity
         {
             StartCoroutine(ChaseTimer());
         }
+    }
+
+
+    public IEnumerator PlaySoundAndWait()
+    {
+        hasPlayedSound = true;
+
+        AudioSource.PlayClipAtPoint(slimeMove, transform.position);
+
+        // Wait for the length of the audio clip
+        yield return new WaitForSeconds(slimeMove.length);
+
+        hasPlayedSound = false;
     }
 
     public IEnumerator ChaseTimer()

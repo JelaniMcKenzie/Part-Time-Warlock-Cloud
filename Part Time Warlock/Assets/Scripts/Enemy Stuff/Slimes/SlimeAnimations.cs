@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeAnimations : Slime
+public class SlimeAnimations : MonoBehaviour
 {
 
     private Animator anim;
@@ -16,18 +16,22 @@ public class SlimeAnimations : Slime
     void Update()
     {
         anim.speed = 1;
-
-        if (canMove == true)
+        Slime slime = GetComponent<Slime>();
+        if (slime != null)
         {
-            if (isFrozen == true) { anim.speed = 0; }
-            anim.SetBool("isChasing", true);
-        }
-        else
-        {
-            if (isFrozen == true) { anim.speed = 0; }
-            anim.SetBool("isChasing", false);
+            if (slime.canMove == true)
+            {
+                if (slime.isFrozen == true) { anim.speed = 0; }
+                anim.SetBool("isChasing", true);
+            }
+            else
+            {
+                if (slime.isFrozen == true) { anim.speed = 0; }
+                anim.SetBool("isChasing", false);
 
+            }
         }
+        
     }
 
     //if attack range, then attack anim

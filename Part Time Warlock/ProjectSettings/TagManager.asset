@@ -19,6 +19,7 @@ TagManager:
   - BigCoin
   - Prox
   - NPC
+  - LevelMusic
   layers:
   - Default
   - TransparentFX

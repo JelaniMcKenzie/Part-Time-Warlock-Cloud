@@ -1110,6 +1110,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8771377463029797778, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
+      propertyPath: coinSpawnRef
+      value: 
+      objectReference: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
     - target: {fileID: 9041232334102905220, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1245,7 +1249,7 @@ GameObject:
   - component: {fileID: 1498134612}
   m_Layer: 0
   m_Name: AudioSource
-  m_TagString: Untagged
+  m_TagString: LevelMusic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1277,8 +1281,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f2e15188bbcbcd04cae68e0f7e870e83, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.196
+  m_Pitch: 1.02
   Loop: 1
   Mute: 0
   Spatialize: 0

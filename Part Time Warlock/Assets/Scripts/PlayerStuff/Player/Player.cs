@@ -47,6 +47,15 @@ public class Player : GameEntity
     public bool canDash = true;
     public bool isDashing = false;
 
+    [Space(15)]
+
+    [Header("Coin Damage Spawn Settings")]
+    private int minCoinSpawn = 1;
+    private int maxCoinSpawn = 5;
+    [SerializeField] private GameObject coinSpawnRef;
+    public float maxForce = 5f; // Maximum distance for the offset (how far the coins spread on hit)
+
+
 
     // Start is called before the first frame update
 
@@ -218,15 +227,31 @@ public class Player : GameEntity
     public void Damage()
     {
         
-
         if (canHit == true)
         {  
             canMove = true;
             isHit = true;
             if (coinNum > 0)
             {
-                coinNum -= UnityEngine.Random.Range(5, 10);
+                int subtractedCoins = UnityEngine.Random.Range(5, 10);
+                coinNum -= subtractedCoins;
                 uiManager.UpdateCoinText();
+
+
+                //Spawn half of the coins that the player lost
+                for (int i = 0; i < subtractedCoins / 2; i++)
+                {
+                    SpawnCoin();
+                }
+
+                /*Save this for loop for later; a "midas touch" item, staff, or potion
+                 * could work well with this code
+                for (int i = 0; i < subtractedCoins; i++)
+                {
+                    SpawnCoin();
+                }
+                */
+
             }
             else
             {
@@ -242,6 +267,29 @@ public class Player : GameEntity
             }
         }
 
+    }
+
+    private void SpawnCoin()
+    {
+        // Calculate a random offset within the specified range
+        float xOffset = UnityEngine.Random.Range(-1f, 1f);
+        float yOffset = UnityEngine.Random.Range(-1f, 1f);
+
+        // Create a Vector2 with the random offset
+        Vector2 offset = new Vector2(xOffset, yOffset);
+
+        // Instantiate a coin at the player's position with the random offset
+        Instantiate(coinSpawnRef, (Vector2)transform.position + offset, Quaternion.identity);
+
+        // Get the Rigidbody2D component
+        Rigidbody2D coinRb = coinSpawnRef.GetComponent<Rigidbody2D>();
+
+        // Apply a random force to the coin
+        if (coinRb != null)
+        {
+            Vector2 force = new Vector2(UnityEngine.Random.Range(-maxForce, maxForce), UnityEngine.Random.Range(-maxForce, maxForce));
+            coinRb.AddForce(force, ForceMode2D.Impulse);
+        }
     }
 
 
