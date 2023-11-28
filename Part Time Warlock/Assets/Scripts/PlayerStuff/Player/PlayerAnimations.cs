@@ -55,21 +55,29 @@ public class PlayerAnimations : MonoBehaviour
             dir = Vector3.MoveTowards(new Vector3(), dir, 0.1f) * 1000;
             float xDistance = Mathf.Abs(dir.x);
             float yDistance = Mathf.Abs(dir.y);
-            if (xDistance > yDistance || yDistance > xDistance)
+            if (xDistance > yDistance)
             {
-                if (dir.x < -0.1 /*player is looking left. the 0 references the player position*/)
+                if (dir.x < -10 /*player is looking left. the 0 references the player position*/)
                 {
                     /*direction = "Left";
                     currentAnim = "IdleLeft";*/
                     P.GetComponent<SpriteRenderer>().flipX = true;
-                    
+                    P.staff.GetComponent<SpriteRenderer>().flipX = true;
+
+                    //P.staffTip.transform.localPosition = new Vector3(P.staffTip.transform.localPosition.x, -0.2f, 0); // Flip staffTip
+                    //-0.3f is a hardcoded value to matchup the staffTip with the sprite while its flipped.
+                    //Probably not the best way to go about this but it *does* work
                 }
-                if (dir.x > 0.1 /*player is looking right*/)
+                if (dir.x > 10 /*player is looking right*/)
                 {
                     /*direction = "Right";
                     currentAnim = "IdleRight";*/
                     P.GetComponent<SpriteRenderer>().flipX = false;
-                    
+                    P.staff.GetComponent<SpriteRenderer>().flipX = false;
+
+                    //P.staffTip.transform.localPosition = new Vector3(P.staffTip.transform.localPosition.x, 0.2f, 0); // Flip staffTip
+                    //0.3f is a hardcoded value to matchup the staffTip with the sprite while its flipped.
+                    //Probably not the best way to go about this but it *does* work
 
                 }
             }

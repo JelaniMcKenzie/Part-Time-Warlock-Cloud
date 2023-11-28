@@ -12,13 +12,13 @@ TagManager:
   - Coin
   - FireWall
   - Border
+  - Tome
   - Portal
   - PlayerProx
   - Lightning
   - FloorMat
   - BigCoin
   - Prox
-  - NPC
   layers:
   - Default
   - TransparentFX

@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "(Con)Consumable", menuName = "InventoryPlus/Consumable", order = 1)]
-public class ConsumableClass : InventoryPlus.Item
+[CreateAssetMenu(menuName = "Inventory System/Consumable")]
+public class ConsumableClass : ItemClass
 {
     [Header("Consumable")]
+    //data specific to the consumable class
+    public float healthAdded; //example placeholder variable
 
-    //a game object to instantiate, apply logic to, and immediately destroy
-    public GameObject consumable;
+    public override ConsumableClass GetConsumable() { return this; }
 
-    public void Use(Player p)
+    public override void Use(Player p)
     {
-        Instantiate(consumable);
+        base.Use(p);
+        Debug.Log("Eat Consumable");
     }
+
+
 }

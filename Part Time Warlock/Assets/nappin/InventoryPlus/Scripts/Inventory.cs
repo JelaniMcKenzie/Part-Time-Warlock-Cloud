@@ -477,18 +477,6 @@ namespace InventoryPlus
 
                 }
 
-                //using consumables logic
-                if (slot.GetItemType() is ConsumableClass && slot.GetItemType() != null)
-                {
-                    //downcast to spell class from Itemclass
-                    ConsumableClass consume = (ConsumableClass)slot.GetItemType();
-                    if (p != null)
-                    {
-                        consume.Use(p);
-                    }
-
-                }
-
                 if (isItemUsable)
                 {
                     if (itemsAudio != null && slot.GetItemType().useAudio != null) PlayItemsAudio(slot.GetItemType().useAudio);

@@ -1,5 +1,4 @@
 using InventoryPlus;
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,22 +34,8 @@ public class ThunderRushLogic : MonoBehaviour
 
     public IEnumerator DashWithSpell(float activeTime)
     {
-        player.canHit = false;
         yield return new WaitForSeconds(activeTime);
-        player.canHit = true;
         Destroy(this.gameObject);
 
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            float knockbackForce = 5f;
-            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-        }
-    }
-
 }

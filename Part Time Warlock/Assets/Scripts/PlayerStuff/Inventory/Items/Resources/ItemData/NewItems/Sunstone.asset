@@ -23,8 +23,8 @@ MonoBehaviour:
   usageCost: 0
   hasDamagedSprites: 0
   damagedSprites: []
-  itemAttribute: item attribute
-  itemDescription: item description
+  itemAttribute: 
+  itemDescription: 
   itemRarity: 0
   useAudio: {fileID: 0}
   dropAudio: {fileID: 0}

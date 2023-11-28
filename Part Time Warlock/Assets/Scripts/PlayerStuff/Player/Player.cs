@@ -10,6 +10,7 @@ using InventoryPlus;
 
 public class Player : GameEntity
 {
+    public GameObject staff;
     public GameObject staffTip = null;
     public Inventory inventory;
     [SerializeField] private InputReader inputReader;
@@ -124,20 +125,19 @@ public class Player : GameEntity
                 {
                     if (!isDashing && dashSpell.currentCooldown > 0)
                     {
-                        StartCoroutine(Dash(moveInput, GetComponent<Rigidbody2D>()));
+                        StartCoroutine(Dash(moveInput));
                     }
                     else
                     {
                         inventory.UseItem(inventory.hotbarUISlots[3]);
-                        StartCoroutine(Dash(moveInput, GetComponent<Rigidbody2D>()));
+                        StartCoroutine(Dash(moveInput));
                     }
                 }
             }
             
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                inventory.UseItem(inventory.hotbarUISlots[4]);
-                inventory.DropItem(inventory.hotbarUISlots[4]);
+                
             }
             
             for (int i = 0; i < inventory.inventoryItems.Count; i++)
@@ -250,29 +250,35 @@ public class Player : GameEntity
     }
 
 
-    public IEnumerator Dash(Vector2 dashDirection, Rigidbody2D rb)
+    public IEnumerator Dash(Vector2 dashDirection)
     {
         canDash = false;
         isDashing = true;
 
-        // Perform dash logic here, for example, calculate velocity
-        Vector2 dashVelocity = dashDirection.normalized * dashMoveSpeed;
-        rb.velocity = dashVelocity;
-
+        // Perform dash logic here, for example, move the player
+        Vector2 startPos = transform.position;
+        Vector2 endPos = startPos + dashDirection.normalized * dashMoveSpeed * dashDuration;
         float startTime = Time.time;
-        float endTime = startTime + dashDuration;
 
-        while (Time.time < endTime)
+        while (Time.time < startTime + dashDuration)
         {
+            float t = (Time.time - startTime) / dashDuration;
+            transform.position = Vector2.Lerp(startPos, endPos, t);
             yield return null;
         }
 
-        rb.velocity = Vector2.zero; // Stop the player after the dash
         isDashing = false;
+        canDash = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 
+    public IEnumerator DashCooldown()
+    {
+        canDash = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
 
     public IEnumerator Invulnerable()
     {
