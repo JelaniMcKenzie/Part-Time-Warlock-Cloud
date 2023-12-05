@@ -862,7 +862,12 @@ namespace PixelCrushers.DialogueSystem
             switch (barkSource)
             {
                 case BarkSource.Conversation:
-                    if (string.IsNullOrEmpty(barkConversation)) return;
+                    if (string.IsNullOrEmpty(barkConversation)) 
+                    {
+                        Debug.Log("Bark conversation is empty");
+                        return;
+                    }
+                     
                     if (DialogueManager.isConversationActive && !allowBarksDuringConversations)
                     {
                         if (DialogueDebug.logWarnings) Debug.LogWarning("Dialogue System: Bark triggered on " + name + ", but a conversation is already active.", GetBarker(barkConversation));
@@ -880,6 +885,7 @@ namespace PixelCrushers.DialogueSystem
                         else
                         {
                             DialogueManager.Bark(barkConversation, GetBarker(barkConversation), Tools.Select(barkTarget, actor), barkHistory);
+                            
                         }
                         sequencer = BarkController.LastSequencer;
                     }

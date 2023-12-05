@@ -1531,6 +1531,14 @@ PrefabInstance:
       propertyPath: initialDatabase
       value: 
       objectReference: {fileID: 11400000, guid: be75b42316041f34fb4341cdb01c30f9, type: 2}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: allowOnlyOneInstance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.barkSettings.allowBarksDuringConversations
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11471062, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_parent
       value: 
@@ -8517,10 +8525,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3829837311270852661, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
-      propertyPath: CoinSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 47f9a1dca1606694cbdc03a2faee9495, type: 3}
     - target: {fileID: 8084149017391147427, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -924.70514
@@ -9423,6 +9427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7143482120570913188, guid: f4fc1e338ca3ab54bbf646d46c751e33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9916,18 +9924,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1958766354, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 28.088068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958766354, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 28.088068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958766354, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 28.088068
-      objectReference: {fileID: 0}
     - target: {fileID: 280577893954680342, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10634,11 +10630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -926.78
+      value: -930.74
       objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -360.83
+      value: -361.22
       objectReference: {fileID: 0}
     - target: {fileID: 8771377463029797776, guid: ec0e06101ba01d1409e58f15b9c00b55, type: 3}
       propertyPath: m_LocalPosition.z

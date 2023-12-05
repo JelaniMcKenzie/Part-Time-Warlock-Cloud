@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
     public float xAxis;
     public float yAxis;
     public Animator Anim = null;
+    public ArmorController armorController;
     public Player P = null;
     public string currentAnim;
     public string direction;
@@ -22,8 +23,9 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         Anim = GetComponent<Animator>();
-        P = FindAnyObjectByType<Player>();
+        P = this.gameObject.GetComponent<Player>();
         activeScene = SceneManager.GetActiveScene();
+        armorController = GetComponent<ArmorController>();
     }
 
     // Update is called once per frame
@@ -129,10 +131,14 @@ public class PlayerAnimations : MonoBehaviour
         if (moveInputX == 0 && moveInputY == 0)
         {
             Anim.SetBool("running", false);
+            Anim.SetBool("idle", true);
+        
         } 
         else
-        {
+        {      
             Anim.SetBool("running", true);
+            Anim.SetBool("idle", false);
+
         }
 
 
@@ -147,7 +153,7 @@ public class PlayerAnimations : MonoBehaviour
             hand.GetComponent<SpriteRenderer>().sortingOrder = 1;
             staff.GetComponent<SpriteRenderer>().sortingOrder = 2;
         }*/
-        
+
         /*if (!animState.IsName(currentAnim))
         {   //checks what the name of the animation is (e.g right)
             //if the given animation ISN'T playing when the key is pressed, it immediately plays it
@@ -163,6 +169,7 @@ public class PlayerAnimations : MonoBehaviour
 
         if (moveInputX == 0 && moveInputY == 0)
         {
+            
             Anim.SetBool("running", false);
         }
         else

@@ -28,6 +28,7 @@ public class Player : GameEntity
     private bool isHit = false;
     public bool isGamePaused; //move this to a gamemanager script later
     public int coinNum = 0;
+    public bool moveSpeedMultiplied = false;
 
     public Scene activeScene;
     public GameObject handParent;
@@ -55,6 +56,8 @@ public class Player : GameEntity
     [SerializeField] private GameObject coinSpawnRef;
     public float maxForce = 5f; // Maximum distance for the offset (how far the coins spread on hit)
 
+    public Material material;
+
 
 
     // Start is called before the first frame update
@@ -76,6 +79,9 @@ public class Player : GameEntity
         }
         canHit = true;
         uiManager = FindAnyObjectByType<UIManager>();
+        SpriteRenderer s = GetComponent<SpriteRenderer>();
+        material = s.material;
+
     }
 
     // Update is called once per frame
@@ -148,6 +154,19 @@ public class Player : GameEntity
                 inventory.DropItem(inventory.hotbarUISlots[4]);
             }
             
+            //BAD CODE PRACTICE HERE - OPTIMIZE LATER
+
+            foreach (InventoryPlus.ItemSlot i in inventory.inventoryItems)
+            {
+                if (i.GetItemType() is SpellClass)
+                {
+                    //Downcast from ItemSlot to SpellClass to access SpellClass methods
+                    SpellClass s = (SpellClass) i.GetItemType();
+                    s.UpdateCooldown();
+                }
+            }
+
+            /*
             for (int i = 0; i < inventory.inventoryItems.Count; i++)
             {
                 if (inventory.inventoryItems[i].GetItemType() is SpellClass)
@@ -157,7 +176,7 @@ public class Player : GameEntity
                     s.UpdateCooldown();
                    
                 }
-            }
+            }*/
             #endregion
 
         }
