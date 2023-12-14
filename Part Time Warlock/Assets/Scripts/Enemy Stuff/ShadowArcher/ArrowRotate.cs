@@ -14,8 +14,8 @@ public class ArrowRotate : MonoBehaviour
         Vector3 dir = P.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.Rotate(0, 0, -90); //rotates the arrow towards the player;
-        GetComponent<Rigidbody>().velocity = (Vector3.MoveTowards(transform.position, P.transform.position, 0.1f) - transform.position) * 200;
+        StartCoroutine(PassThrough());
+        GetComponent<Rigidbody2D>().velocity = (Vector3.MoveTowards(transform.position, P.transform.position, 0.1f) - transform.position) * 200;
     }
 
     // Update is called once per frame
@@ -54,6 +54,14 @@ public class ArrowRotate : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private IEnumerator PassThrough() 
+    {
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<BoxCollider2D>().isTrigger = false;
+
     }
 
 

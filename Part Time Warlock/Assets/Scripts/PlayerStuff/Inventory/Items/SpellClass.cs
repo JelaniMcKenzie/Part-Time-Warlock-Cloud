@@ -63,6 +63,7 @@ public class SpellClass : InventoryPlus.Item
             case SpellType.projectile:
                 {
                     GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
+                    AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position);
 
                     // Calculate the direction from the player's position to the mouse position
                     Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -99,6 +100,7 @@ public class SpellClass : InventoryPlus.Item
                     //the actual logic for each spell
 
                     Instantiate(spellPrefab, P.transform.position, Quaternion.identity);
+                    AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position);
                     Debug.Log("Casted movement spell");
                     break;
                 }

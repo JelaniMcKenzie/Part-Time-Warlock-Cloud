@@ -91,7 +91,7 @@ namespace InventoryPlus
 
         private void ToggleInventory()
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 inventoryOn = !inventoryOn;
 

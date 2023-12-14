@@ -20,6 +20,7 @@ TagManager:
   - Prox
   - NPC
   - LevelMusic
+  - NewBorder
   layers:
   - Default
   - TransparentFX

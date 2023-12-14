@@ -1,6 +1,8 @@
+using Edgar.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerProjectiles : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class PlayerProjectiles : MonoBehaviour
     void Update()
     {
         
-        Destroy(gameObject, 2.5f);
+        Destroy(this.gameObject, 2.5f);
         if (gameObject.tag == "Fire")
         {
             StartCoroutine(WaitForFire());
@@ -36,12 +38,14 @@ public class PlayerProjectiles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Border"))
+        
+        if (other.gameObject.CompareTag("Border"))
         {
+            Debug.LogError(other.name);
             Destroy(this.gameObject);
         }
 
-        if (other.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
         }

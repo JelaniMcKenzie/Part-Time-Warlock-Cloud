@@ -24,21 +24,22 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: 
+  itemDescription: An Ice type Spell that freezes enemies on contact
   itemRarity: 0
-  useAudio: {fileID: 0}
+  useAudio: {fileID: 8300000, guid: 8171342f1983747b3a1e3a85ad95097b, type: 3}
   dropAudio: {fileID: 0}
   equipAudio: {fileID: 0}
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: 
   damage: 0
-  uses: 0
+  uses: 5
   maxUses: 5
   maxCooldown: 2
+  currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
   effectRadius: 0
   statusDuration: 0
-  movementDistance: 0
+  dashSpellDuration: 0

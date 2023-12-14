@@ -15,7 +15,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI TimerText;
     public TextMeshProUGUI RentGoalText;
     public Image bag;
+    public Image controls;
+    public Image darkOverlay;
     public Sprite[] bagFill;
+    public GameObject minimap;
+    public GameObject miniMapHead;
     public Player P;
 
     public Scene activeScene;
@@ -43,18 +47,37 @@ public class UIManager : MonoBehaviour
             RentGoalText.gameObject.SetActive(false);
 
             bag.gameObject.SetActive(false);
+
+            minimap.SetActive(false);
+            miniMapHead.SetActive(false);
+        }
+        else if (activeScene.name == "RDG Test") {
+            CoinText.gameObject.SetActive(true);
+            TimerText.gameObject.SetActive(true);
+            RentGoalText.gameObject.SetActive(true);
+
+            bag.gameObject.SetActive(true);
+
+            minimap.SetActive(true);
+            miniMapHead.SetActive(true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //hard coded solution to the canvas not being able to find the player
         //change later so that this code only runs after the dungeon is finished generating
         P = FindAnyObjectByType<Player>();
         
         UpdateCoinText();
-        UpdateBagImage(P.coinNum, gameManager.rentGoal);
+
+        if (bag != null)
+        {
+            UpdateBagImage(P.coinNum, gameManager.rentGoal);
+        }
+        
         if (P == null)
         {
             Debug.Log("couldn't find player");
@@ -80,11 +103,16 @@ public class UIManager : MonoBehaviour
         if (P.isGamePaused == false)
         {
             Pausetext.gameObject.SetActive(false);
+            controls.gameObject.SetActive(false);
+            darkOverlay.gameObject.SetActive(false);
         } 
         
         else
         {
             Pausetext.gameObject.SetActive(true);
+            controls.gameObject.SetActive(true);
+            darkOverlay.gameObject.SetActive(true);
+
         }
 
     }

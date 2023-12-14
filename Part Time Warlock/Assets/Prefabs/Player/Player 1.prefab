@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.7126409}
-  m_LocalScale: {x: 28.088068, y: 28.088068, z: 28.088068}
+  m_LocalScale: {x: 20.648829, y: 20.648829, z: 20.648829}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8771377463029797776}
@@ -1020,6 +1020,7 @@ GameObject:
   - component: {fileID: 3578645339513646420}
   - component: {fileID: 4713113472031010819}
   - component: {fileID: 5408624687423015281}
+  - component: {fileID: 507386414779131593}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -1117,7 +1118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  moveSpeed: 5
+  moveSpeed: 7.5
   isFrozen: 0
   isBurning: 0
   canMove: 1
@@ -1129,6 +1130,7 @@ MonoBehaviour:
   canHit: 1
   isGamePaused: 0
   coinNum: 0
+  moveSpeedMultiplied: 0
   activeScene:
     m_Handle: 0
   handParent: {fileID: 6569334812775653879}
@@ -1272,10 +1274,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23a29b92d11b7c42a8682a98dd84e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpriteRenderer: {fileID: 0}
-  animator: {fileID: 0}
   equippedArmor: {fileID: 0}
+  abilityRef: {fileID: 0}
+  isEquipped: 0
   player: {fileID: 0}
+--- !u!114 &507386414779131593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771377463029797769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68573e62412f0454097dcde7ad81e1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &354241232634535466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1994,7 +2008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.size
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: hotbarUISlots.Array.data[0]
@@ -2046,7 +2060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[1].itemNum
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[2].itemNum
@@ -2071,19 +2085,19 @@ PrefabInstance:
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[0].itemType
       value: 
-      objectReference: {fileID: 11400000, guid: ff5bf734f90c36e438dbe98885af29a5, type: 2}
+      objectReference: {fileID: 11400000, guid: c6dc230f9bacfad4f818cdc149d70954, type: 2}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[1].itemType
       value: 
-      objectReference: {fileID: 11400000, guid: e11d466e4a467284a95497ba47a3ed25, type: 2}
+      objectReference: {fileID: 11400000, guid: e60f59adcc9c9d3488443363382501be, type: 2}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[2].itemType
       value: 
-      objectReference: {fileID: 11400000, guid: c6dc230f9bacfad4f818cdc149d70954, type: 2}
+      objectReference: {fileID: 11400000, guid: 8aef9c7cc10a44c4c9a9bc9b9fd2089b, type: 2}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[3].itemType
       value: 
-      objectReference: {fileID: 11400000, guid: e60f59adcc9c9d3488443363382501be, type: 2}
+      objectReference: {fileID: 11400000, guid: 5ec6b64f6c27e8f4e842afb84fe9a927, type: 2}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[4].itemType
       value: 

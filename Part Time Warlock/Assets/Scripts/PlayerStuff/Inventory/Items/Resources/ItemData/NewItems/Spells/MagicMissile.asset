@@ -24,21 +24,22 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: 
+  itemDescription: Every novice's wizard's basic spell. Deals Damage
   itemRarity: 0
-  useAudio: {fileID: 0}
+  useAudio: {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
   dropAudio: {fileID: 0}
   equipAudio: {fileID: 0}
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
   spellElement: 
   damage: 0
-  uses: 5
+  uses: 4
   maxUses: 5
   maxCooldown: 0.25
+  currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
   effectRadius: 0
   statusDuration: 0
-  movementDistance: 0
+  dashSpellDuration: 0

@@ -50,6 +50,7 @@ public class ThunderRushLogic : MonoBehaviour
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
             rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+            
         }
     }
 

@@ -19,7 +19,7 @@ public class HandParent : MonoBehaviour
     {
         if (P.canMove == true)
         {
-            transform.localPosition = Vector3.MoveTowards(new Vector3(), crosshair.transform.position, 0.1f);
+            transform.localPosition = Vector3.MoveTowards(new Vector3(), crosshair.transform.position, 0f);
             Vector3 pos = transform.localPosition;
             pos.x = Mathf.Min(0.1f, Mathf.Max(-0.1f, pos.x));
             pos.y = Mathf.Min(0.1f, Mathf.Max(-0.1f, pos.y)) - 0.3f;

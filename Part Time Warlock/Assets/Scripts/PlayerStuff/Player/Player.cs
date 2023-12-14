@@ -12,6 +12,7 @@ public class Player : GameEntity
 {
     public GameObject staffTip = null;
     public Inventory inventory;
+    public ScriptableObject armor;
     [SerializeField] private InputReader inputReader;
 
     [Space(30)]
@@ -22,6 +23,8 @@ public class Player : GameEntity
     [Space(30)]
 
     [Header("bool variables")]
+
+    public bool canCast = true;
     public float maxHealth = 1f;
     public string scene;
     public bool canHit = true;
@@ -68,10 +71,13 @@ public class Player : GameEntity
         rb = GetComponent<Rigidbody2D>();
         canDash = true;
         activeScene = SceneManager.GetActiveScene();
+        
         if (activeScene.name == "Apartment")
         {
             handParent.SetActive(false);
-        } else
+            canCast = false;
+        } 
+        else
         {
             handParent.SetActive(true);
             health = maxHealth;
@@ -87,6 +93,15 @@ public class Player : GameEntity
     // Update is called once per frame
     void Update()
     {
+        activeScene = SceneManager.GetActiveScene();
+        
+        if (activeScene.name == "RDG Test")
+        {
+            handParent.SetActive(true);
+            canCast = true;
+        }
+        
+
         if (isDashing)
         {
             return;
@@ -111,21 +126,22 @@ public class Player : GameEntity
             //AimStaff();
             Sprint();
 
+            
             #region SpellCastingLogic
 
             //Use a spell or an item
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && canCast == true)
             {
                 inventory.UseItem(inventory.hotbarUISlots[0]);
 
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && canCast == true)
             {
                 inventory.UseItem(inventory.hotbarUISlots[1]);
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && canCast == true)
             {
                 inventory.UseItem(inventory.hotbarUISlots[2]);
             }
@@ -142,8 +158,12 @@ public class Player : GameEntity
                     }
                     else
                     {
-                        inventory.UseItem(inventory.hotbarUISlots[3]);
-                        StartCoroutine(Dash(moveInput, GetComponent<Rigidbody2D>()));
+                        if (canCast == true) 
+                        {
+                            inventory.UseItem(inventory.hotbarUISlots[3]);
+                            StartCoroutine(Dash(moveInput, GetComponent<Rigidbody2D>()));
+                        }
+                        
                     }
                 }
             }
@@ -154,19 +174,9 @@ public class Player : GameEntity
                 inventory.DropItem(inventory.hotbarUISlots[4]);
             }
             
-            //BAD CODE PRACTICE HERE - OPTIMIZE LATER
+            
 
-            foreach (InventoryPlus.ItemSlot i in inventory.inventoryItems)
-            {
-                if (i.GetItemType() is SpellClass)
-                {
-                    //Downcast from ItemSlot to SpellClass to access SpellClass methods
-                    SpellClass s = (SpellClass) i.GetItemType();
-                    s.UpdateCooldown();
-                }
-            }
-
-            /*
+            
             for (int i = 0; i < inventory.inventoryItems.Count; i++)
             {
                 if (inventory.inventoryItems[i].GetItemType() is SpellClass)
@@ -176,7 +186,7 @@ public class Player : GameEntity
                     s.UpdateCooldown();
                    
                 }
-            }*/
+            }
             #endregion
 
         }
@@ -230,7 +240,6 @@ public class Player : GameEntity
 
     public void Sprint()
     {
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeed = 7.5f;
@@ -243,6 +252,7 @@ public class Player : GameEntity
         }
     }
 
+    
     public void Damage()
     {
         
@@ -279,7 +289,7 @@ public class Player : GameEntity
             }
             //healthBar.UpdateHealthBar();
             StartCoroutine(Invulnerable());
-            if (health <= 0)
+            if (uiManager.timer <= 0)
             {
                 Destroy(this.gameObject);
                 SceneManager.LoadScene(scene);

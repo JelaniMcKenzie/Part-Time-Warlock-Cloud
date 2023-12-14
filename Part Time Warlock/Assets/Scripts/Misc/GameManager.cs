@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Player P = null;
     public UIManager UI = null;
     [SerializeField] public GameObject Portal = null;
+    [SerializeField] public GameObject[] pausedObjects;
     public float rentGoal = 25f;
     // Start is called before the first frame update
     void Start()
@@ -59,21 +60,23 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Lose");
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!paused)
             {
                 Time.timeScale = 0;
                 paused = true;
                 P.canMove = false;
+                
             }
 
             else
             {
                 Time.timeScale = 1.0f;
                 paused = false;
+    
                 P.canMove = true;
             }
-        }
+        }*/
     }
 }

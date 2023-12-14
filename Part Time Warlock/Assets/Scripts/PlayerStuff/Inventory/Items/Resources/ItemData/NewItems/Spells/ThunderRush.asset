@@ -24,20 +24,21 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: 
+  itemDescription: A defensive, lightning type spell that cloaks your body, granting
+    temporary invulnerability
   itemRarity: 0
-  useAudio: {fileID: 0}
+  useAudio: {fileID: 8300000, guid: f093376eef3641445b0355ae4e47bc6a, type: 3}
   dropAudio: {fileID: 0}
   equipAudio: {fileID: 0}
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 1349106966584309559, guid: 03d9af1541c35d24185d3f85c7b1c7cc, type: 3}
   spellElement: 
   damage: 0
-  uses: 1
+  uses: 0
   maxUses: 1
   maxCooldown: 6.5
-  currentCooldown: 0
-  spellSound: {fileID: 8300000, guid: f093376eef3641445b0355ae4e47bc6a, type: 3}
+  currentCooldown: 1.0504147
+  spellSound: {fileID: 0}
   spellType: 3
   projectileSpeed: 0
   effectRadius: 0

@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     public string scene;
+    private Player p;
+    private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        p = FindAnyObjectByType<Player>();
+        gm = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -22,8 +25,14 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (p.coinNum < gm.rentGoal)
+            {
+                scene = "Lose";
+            }
+            Destroy(other.gameObject);
+            this.gameObject.SetActive(false);
             SceneManager.LoadScene(scene);
-            this.enabled = false;
+            
         }
     }
 }

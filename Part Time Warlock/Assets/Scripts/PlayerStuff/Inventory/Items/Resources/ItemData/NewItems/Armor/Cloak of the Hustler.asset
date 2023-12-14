@@ -24,12 +24,12 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: 
+  itemDescription: A battered, raggedy loak mysteriously loaned to you by your landlord.
+    Increases movement speed
   itemRarity: 0
   useAudio: {fileID: 0}
   dropAudio: {fileID: 0}
   equipAudio: {fileID: 0}
   cloakBuffDebuff: {fileID: 2879223967035400661, guid: 8836edd1be1bcf24eb0b8d82e87db893, type: 3}
-  isEquipped: 1
   color: {r: 0.050418302, g: 0.47413698, b: 0.9716981, a: 1}
   defaultColor: {r: 0.7490197, g: 0.17623992, b: 0.6036217, a: 1}
