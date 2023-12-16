@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 2268109011919773123}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.4837, y: 3.4837, z: 3.4837}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3451220922864593842}
@@ -2503,7 +2503,7 @@ PrefabInstance:
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: hotbarUISlots.Array.data[5]
       value: 
-      objectReference: {fileID: 7725194082685452311}
+      objectReference: {fileID: 4947902376143916314}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: hotbarUISlots.Array.data[6]
       value: 
@@ -2788,7 +2788,7 @@ PrefabInstance:
       addedObject: {fileID: 8031633900435460620}
     - targetCorrespondingSourceObject: {fileID: 6038407030300830069, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7725194082685452310}
+      addedObject: {fileID: 4947902376143916316}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
 --- !u!114 &1857896085120801006 stripped
@@ -2968,12 +2968,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3db3f55557e6cba46a7da21f8a98c234, type: 3}
---- !u!224 &7725194082685452310 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3431494325063912713, guid: 3db3f55557e6cba46a7da21f8a98c234, type: 3}
-  m_PrefabInstance: {fileID: 7725194082685452309}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7725194082685452311 stripped
+--- !u!114 &4947902376143916314 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3431494325063912719, guid: 3db3f55557e6cba46a7da21f8a98c234, type: 3}
   m_PrefabInstance: {fileID: 7725194082685452309}
@@ -2984,3 +2979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156d640fb88c096499837580d51a6c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4947902376143916316 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3431494325063912713, guid: 3db3f55557e6cba46a7da21f8a98c234, type: 3}
+  m_PrefabInstance: {fileID: 7725194082685452309}
+  m_PrefabAsset: {fileID: 0}

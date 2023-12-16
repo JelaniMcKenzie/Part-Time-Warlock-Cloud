@@ -7,11 +7,14 @@ public class CameraTarget : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Transform player;
     [SerializeField] private float threshold;
+    private Vector3 velocity = Vector3.zero;
+    [SerializeField] private float smoothTime = 0.3f;
 
     private void Start()
     {
         player = FindAnyObjectByType<Player>().transform;
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        threshold = cam.orthographicSize / 2f;
     }
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class CameraTarget : MonoBehaviour
         targetPos.x = Mathf.Clamp(targetPos.x, -threshold + player.position.x, threshold + player.position.x);
         targetPos.y = Mathf.Clamp(targetPos.y, -threshold + player.position.y, threshold + player.position.y);
 
-        this.transform.position = targetPos;
+        this.transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
 
     }
 }

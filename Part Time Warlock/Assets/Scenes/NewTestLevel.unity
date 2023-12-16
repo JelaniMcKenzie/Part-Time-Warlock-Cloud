@@ -2225,7 +2225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &892948911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8991,7 +8991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.5183616
+      value: 5.5679846
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8999,7 +8999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45291138
+      value: 0.928
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10090,7 +10090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7642312
+      value: 1.0760046
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10098,7 +10098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6188965
+      value: -1.2748
       objectReference: {fileID: 0}
     - target: {fileID: 7424598132446073135, guid: a46f89dc8175ae64593af51e3ba3108a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10877,7 +10877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7013096632989420080, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: moveSpeed
-      value: 500
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 7103690517140072971, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10948,6 +10948,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2490708713124145588}
+    - target: {fileID: 979589431437421296, guid: 4fcffcdfa5bf2994f9ef19fbfd13abc5, type: 3}
+      propertyPath: threshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 979589431437421296, guid: 4fcffcdfa5bf2994f9ef19fbfd13abc5, type: 3}
+      propertyPath: smoothTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1634748654845078985, guid: 4fcffcdfa5bf2994f9ef19fbfd13abc5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11183,6 +11191,18 @@ PrefabInstance:
     - target: {fileID: 6123155050589421908, guid: 6dc7f21f57bf5334f9ad4fa9bd83802f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023868041172365739, guid: 6dc7f21f57bf5334f9ad4fa9bd83802f, type: 3}
+      propertyPath: m_XDamping
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023868041172365739, guid: 6dc7f21f57bf5334f9ad4fa9bd83802f, type: 3}
+      propertyPath: m_YDamping
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023868041172365739, guid: 6dc7f21f57bf5334f9ad4fa9bd83802f, type: 3}
+      propertyPath: m_ZDamping
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
