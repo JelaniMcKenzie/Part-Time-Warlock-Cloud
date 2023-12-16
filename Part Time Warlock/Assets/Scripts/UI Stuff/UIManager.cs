@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     {
         timerActive = true;
         gameManager = FindAnyObjectByType<GameManager>();
-        UpdateCoinText();
+        //UpdateCoinText();
         
         if (activeScene.name == "Apartment")
         {
@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
         //change later so that this code only runs after the dungeon is finished generating
         P = FindAnyObjectByType<Player>();
         
-        UpdateCoinText();
+        //UpdateCoinText();
 
         if (bag != null)
         {

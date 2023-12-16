@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameEntity : MonoBehaviour
 {
     public float health = 100;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 5f; //must be a high value for things like the player (e.g. 500f)
     public bool isFrozen = false;
     public bool isBurning = false;
     public bool canMove = true;

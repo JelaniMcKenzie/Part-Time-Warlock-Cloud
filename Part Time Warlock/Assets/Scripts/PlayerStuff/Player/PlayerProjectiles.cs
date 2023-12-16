@@ -41,7 +41,6 @@ public class PlayerProjectiles : MonoBehaviour
         
         if (other.gameObject.CompareTag("Border"))
         {
-            Debug.LogError(other.name);
             Destroy(this.gameObject);
         }
 

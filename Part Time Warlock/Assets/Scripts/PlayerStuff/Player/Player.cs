@@ -215,14 +215,26 @@ public class Player : GameEntity
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (canMove == true)
+        {
+            moveInput.Normalize();
+            //Using Time.fixedDeltaTime makes movement feel the same across all systems, regardless of framerate.
+            //its good for optimization
+            //This comes with the caveat of needing to make the moveSpeed a high value (e.g. 500)
+            rb.velocity = new Vector2(moveInput.x * moveSpeed * Time.fixedDeltaTime,
+                                      moveInput.y * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
 
     private void Movement()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-        moveInput.Normalize();
-        rb.velocity = moveInput * moveSpeed;
+        //moveInput.Normalize();
+        //rb.velocity = moveInput * moveSpeed;
 
     }
 
