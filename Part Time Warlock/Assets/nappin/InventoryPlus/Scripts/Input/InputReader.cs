@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 namespace InventoryPlus
@@ -91,7 +92,7 @@ namespace InventoryPlus
 
         private void ToggleInventory()
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 inventoryOn = !inventoryOn;
 
@@ -104,13 +105,26 @@ namespace InventoryPlus
                 if (inventoryOn)
                 {
                     inputModule.horizontalAxis = InventoryOnHorizontalInput;
-                    inventory.SelectFirstInventorySlot();
-                    
+
+                    //Select the last selected object upon opening the inventory
+                    //e.g., if a spell was selected before the inventory was closed, that spell's info
+                    //would be shown upon opening the inventory
+                    currentSelectedObj.GetComponent<Button>().Select();
+                    currentSelectedObj.GetComponent<Button>().OnSelect(null);
+                    details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), true);
+
+                    //if the last selected object doesn't have an item, autoselect the first spell slot
+                    if (inventory.GetInventorySlot(currentSelectedObj.GetComponent<UISlot>()) == null)
+                    {
+                        inventory.SelectFirstHotbarSlot();
+                    }
+
                 }
                 else
                 {
                     inputModule.horizontalAxis = InventoryOffHorizontalInput;
-                    //inventory.SelectFirstHotbarSlot();
+                    currentSelectedObj.GetComponent<Button>().OnDeselect(null);
+
                 }
             }
         }
