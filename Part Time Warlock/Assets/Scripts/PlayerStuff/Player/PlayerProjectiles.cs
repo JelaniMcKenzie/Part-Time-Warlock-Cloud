@@ -4,24 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PlayerProjectiles : MonoBehaviour
+public class PlayerProjectiles : DamageSpell
 {
     // Start is called before the first frame update
     public Player P = null;
     public GameObject Firewall = null;
     public AudioClip FireClip = null;
 
-    Vector3 dir;
     //checks what direction the player is facing and fires there
     void Start()
     {
-       
-        //2.5f refers to the amount of time before the gameobject gets destroyed
-        P = FindAnyObjectByType<Player>();
-        if (gameObject.tag == "Fire")
-        {
-            
-        }
         
     }
 
@@ -39,12 +31,7 @@ public class PlayerProjectiles : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.CompareTag("Border"))
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Border") || other.gameObject.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
         }
@@ -52,8 +39,8 @@ public class PlayerProjectiles : MonoBehaviour
 
     public void FireWall()
     {
-            Instantiate(Firewall, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+        Instantiate(Firewall, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
         
     }
         

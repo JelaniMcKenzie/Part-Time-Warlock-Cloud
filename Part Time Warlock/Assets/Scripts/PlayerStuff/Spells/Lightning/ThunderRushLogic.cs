@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderRushLogic : MonoBehaviour
+public class ThunderRushLogic : DamageSpell
 {
     /// <summary>
     /// Things this code should do
@@ -13,13 +13,15 @@ public class ThunderRushLogic : MonoBehaviour
     /// knockback enemies?
     /// </summary>
     /// 
-    public Player player;
-    SpellClass dashSpell;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         player = FindAnyObjectByType<Player>();
-        dashSpell = (SpellClass) player.inventory.GetInventorySlot(player.inventory.hotbarUISlots[3]).GetItemType();
+        spell = (SpellClass) player.inventory.GetInventorySlot(player.inventory.hotbarUISlots[3]).GetItemType();
+        damage = spell.damage;
+        
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class ThunderRushLogic : MonoBehaviour
         if (player != null)
         {
             transform.position = player.transform.position;
-            StartCoroutine(DashWithSpell(dashSpell.dashSpellDuration));
+            StartCoroutine(DashWithSpell(spell.dashSpellDuration));
             
         }
     }
@@ -50,8 +52,7 @@ public class ThunderRushLogic : MonoBehaviour
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
             rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-            
+
         }
     }
-
 }

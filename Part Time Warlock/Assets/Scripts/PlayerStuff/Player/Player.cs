@@ -25,7 +25,6 @@ public class Player : GameEntity
     [Header("bool variables")]
 
     public bool canCast = true;
-    public float maxHealth = 1f;
     public string scene;
     public bool canHit = true;
     private bool isHit = false;
@@ -80,7 +79,6 @@ public class Player : GameEntity
         else
         {
             handParent.SetActive(true);
-            health = maxHealth;
             //healthBar.UpdateHealthBar();
         }
         canHit = true;
@@ -124,7 +122,7 @@ public class Player : GameEntity
         {
             Movement();
             //AimStaff();
-            Sprint();
+            //Sprint();
 
             
             #region SpellCastingLogic
@@ -215,26 +213,13 @@ public class Player : GameEntity
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (canMove == true)
-        {
-            moveInput.Normalize();
-            //Using Time.fixedDeltaTime makes movement feel the same across all systems, regardless of framerate.
-            //its good for optimization
-            //This comes with the caveat of needing to make the moveSpeed a high value (e.g. 500)
-            rb.velocity = new Vector2(moveInput.x * moveSpeed * Time.fixedDeltaTime,
-                                      moveInput.y * moveSpeed * Time.fixedDeltaTime);
-        }
-    }
-
     private void Movement()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-        //moveInput.Normalize();
-        //rb.velocity = moveInput * moveSpeed;
+        moveInput.Normalize();
+        rb.velocity = moveInput * moveSpeed;
 
     }
 
@@ -264,51 +249,46 @@ public class Player : GameEntity
         }
     }
 
-    
+
     public void Damage()
     {
-        
         if (canHit == true)
-        {  
+        {
             canMove = true;
             isHit = true;
+
+            // Ensure coinNum doesn't go below zero
             if (coinNum > 0)
             {
-                int subtractedCoins = UnityEngine.Random.Range(5, 10);
-                coinNum -= subtractedCoins;
+                int maxSpawnedCoins = Mathf.Min(coinNum, 10); // Adjust the maximum spawn based on your preference
+
+                int subtractedCoins = Mathf.Max(coinNum / 5, 1); // 1:1 spawn for lower numbers, proportional for higher
+
+                coinNum = Mathf.Max(coinNum - subtractedCoins, 0);
                 uiManager.UpdateCoinText();
 
-
-                //Spawn half of the coins that the player lost
-                for (int i = 0; i < subtractedCoins / 2; i++)
+                // Spawn coins
+                for (int i = 0; i < maxSpawnedCoins; i++)
                 {
                     SpawnCoin();
                 }
-
-                /*Save this for loop for later; a "midas touch" item, staff, or potion
-                 * could work well with this code
-                for (int i = 0; i < subtractedCoins; i++)
-                {
-                    SpawnCoin();
-                }
-                */
-
             }
             else
             {
                 uiManager.timer -= 30;
                 uiManager.CoinText.text = ": 0";
             }
-            //healthBar.UpdateHealthBar();
+
             StartCoroutine(Invulnerable());
+
             if (uiManager.timer <= 0)
             {
                 Destroy(this.gameObject);
                 SceneManager.LoadScene(scene);
             }
         }
-
     }
+
 
     private void SpawnCoin()
     {
@@ -339,6 +319,13 @@ public class Player : GameEntity
         canDash = false;
         isDashing = true;
 
+        // Create a layer mask excluding the enemy layer
+        LayerMask originalMask = ~LayerMask.GetMask("Player");
+        LayerMask noEnemyMask = ~LayerMask.GetMask("Enemy");
+
+        // Disable collision with the enemy layer
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+
         // Perform dash logic here, for example, calculate velocity
         Vector2 dashVelocity = dashDirection.normalized * dashMoveSpeed;
         rb.velocity = dashVelocity;
@@ -350,6 +337,9 @@ public class Player : GameEntity
         {
             yield return null;
         }
+
+        // Enable collision back with the enemy layer
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
 
         rb.velocity = Vector2.zero; // Stop the player after the dash
         isDashing = false;

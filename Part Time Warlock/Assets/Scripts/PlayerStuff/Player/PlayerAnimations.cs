@@ -130,18 +130,25 @@ public class PlayerAnimations : MonoBehaviour
          
         if (moveInputX == 0 && moveInputY == 0)
         {
-            Anim.SetBool("running", false);
             Anim.SetBool("idle", true);
-        
+            Anim.SetBool("running", false);
+            Anim.SetBool("dashing", false);
+
         } 
         else
-        {      
-            Anim.SetBool("running", true);
+        {
             Anim.SetBool("idle", false);
-
+            if (P.isDashing == true)
+            {
+                Anim.SetBool("dashing", true);
+                Anim.SetBool("running", false);
+            }
+            else
+            {
+                Anim.SetBool("running", true);
+                Anim.SetBool("dashing", false);
+            }
         }
-
-
 
         /*if (direction == "Down") //change for if the mouse is on the southern hemisphere of the player
         {

@@ -2010,7 +2010,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "6cb61094d0ac43eca39090ad5352cbb3",
     "m_Id": 0,
-    "m_DisplayName": "Cloak",
+    "m_DisplayName": "MainTex",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2125,10 +2125,10 @@
     "m_Guid": {
         "m_GuidSerialized": "318e5f38-a141-44d6-ba2a-6581e07985f2"
     },
-    "m_Name": "Cloak",
+    "m_Name": "MainTex",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Cloak",
-    "m_DefaultReferenceName": "_Cloak",
+    "m_RefNameGeneratedByDisplayName": "MainTex",
+    "m_DefaultReferenceName": "_MainTex",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

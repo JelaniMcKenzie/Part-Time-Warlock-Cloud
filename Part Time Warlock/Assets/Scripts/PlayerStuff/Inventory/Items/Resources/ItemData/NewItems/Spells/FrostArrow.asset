@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: FrostArrow
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: b0bbf97e95ada294ba10b45321f7d830, type: 3}
-  itemName: FrostArrow
+  itemSprite: {fileID: 21300000, guid: 51cb606a0d3e7d74ab559fe6ced7281d, type: 3}
+  itemName: Frost Arrow
   itemID: 
   itemCategory: Magic
   isStackable: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: An Ice type Spell that freezes enemies on contact
+  itemDescription: An Ice type Spell that deals damage and freezes enemies on contact
   itemRarity: 0
   useAudio: {fileID: 8300000, guid: 8171342f1983747b3a1e3a85ad95097b, type: 3}
   dropAudio: {fileID: 0}
@@ -32,14 +32,16 @@ MonoBehaviour:
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: 
-  damage: 0
-  uses: 5
-  maxUses: 5
-  maxCooldown: 2
-  currentCooldown: 0
+  damage: 15
+  uses: 0
+  maxUses: 1
+  maxCooldown: 1
+  currentCooldown: 0.13731904
   spellSound: {fileID: 0}
   spellType: 0
-  projectileSpeed: 25
+  projectileSpeed: 35
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
+  screenShakeMag: 0
+  screenShakeLength: 0

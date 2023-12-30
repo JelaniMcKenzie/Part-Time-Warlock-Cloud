@@ -33,14 +33,16 @@ MonoBehaviour:
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 1349106966584309559, guid: 03d9af1541c35d24185d3f85c7b1c7cc, type: 3}
   spellElement: 
-  damage: 0
-  uses: 0
+  damage: 5
+  uses: 1
   maxUses: 1
   maxCooldown: 6.5
-  currentCooldown: 1.0504147
+  currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 3
   projectileSpeed: 0
   effectRadius: 0
   statusDuration: 0
-  dashSpellDuration: 2.2
+  dashSpellDuration: 4.296
+  screenShakeMag: 0
+  screenShakeLength: 0

@@ -34,8 +34,8 @@ MonoBehaviour:
   spellElement: 
   damage: 0
   uses: 3
-  maxUses: 3
-  maxCooldown: 3
+  maxUses: 1
+  maxCooldown: 6
   currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
@@ -43,3 +43,5 @@ MonoBehaviour:
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
+  screenShakeMag: 0
+  screenShakeLength: 0

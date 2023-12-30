@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class Slime : GameEntity
 {
     private Player P = null;
     [SerializeField] public GameObject EnemyDeathAnim = null;
+
+
     //public Animator Anim = null;
     public bool frozen = false;
     public UIManager UI = null;
     public bool isOnFire = false;
     public int burnSeconds = 5;
-    public bool addAmmo;
     private bool hasPlayedSound = false;
+    public Rigidbody2D rb;
 
+    
 
     public SpriteRenderer detectJump;
     public Sprite[] groundSprites;
@@ -23,11 +27,13 @@ public class Slime : GameEntity
     // Start is called before the first frame update
     void Start()
     {
-        
-        health = 3f;
+
+        health = 27f;
         canMove = false;
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
+        rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         //SM.EnemyCount++;
     }
 
@@ -42,12 +48,12 @@ public class Slime : GameEntity
 
         else if (canMove == false)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+            rb.velocity = new Vector3(0, 0, 0);
         }
 
         if (isOnFire == true)
         {
-            GetComponent<SpriteRenderer>().color = new Color32(222, 70, 97, 255);
+            sprite.color = new Color32(222, 70, 97, 255);
         }
 
         if (health <= 0f)
@@ -59,9 +65,9 @@ public class Slime : GameEntity
 
     public void EnemyMovement()
     {
-        
+
         bool onGround = false;
-        
+
         foreach (Sprite s in groundSprites)
         {
             //if the slime animation isn't in its "hopping" phase,
@@ -94,14 +100,15 @@ public class Slime : GameEntity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
+        
+        if (other.TryGetComponent<DamageSpell>(out var damageSpell))
         {
-            health--;
+            TakeDamage(damageSpell.damage);
             StartCoroutine(DamageFlash());
 
         }
@@ -162,7 +169,6 @@ public class Slime : GameEntity
 
     public override void Die()
     {
-        addAmmo = true;
         Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
@@ -171,25 +177,25 @@ public class Slime : GameEntity
     {
         moveSpeed = 0f;
         isFrozen = true;
-        GetComponent<SpriteRenderer>().color = new Color32(0, 210, 210, 80);
+        sprite.color = new Color32(0, 210, 210, 80);
         yield return new WaitForSeconds(2.5f);
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        sprite.color = new Color32(255, 255, 255, 255);
         moveSpeed = 4f;
         isFrozen = false;
     }
 
     public IEnumerator DamageFlash()
     {
-        GetComponent<SpriteRenderer>().color = new Color32(100, 0, 0, 255);
+        sprite.color = new Color32(100, 0, 0, 255);
         yield return new WaitForSeconds(0.25f);
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     public IEnumerator Aflame()
     {
         for (int s = 0; s <= burnSeconds; s++)
         {
-            health -= 0.5f;
+            health -= 2;
             yield return new WaitForSeconds(1.5f);
         }
     }
@@ -198,6 +204,6 @@ public class Slime : GameEntity
     {
         yield return new WaitForSeconds(burnSeconds);
         isOnFire = false;
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 }

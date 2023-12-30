@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2619150897040894299}
   - component: {fileID: 5468851416780053630}
   m_Layer: 0
-  m_Name: Ice Pellet
+  m_Name: Frost Arrow
   m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3528400409650182722}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.14801389, w: 0.9889853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6521, y: -0.6052, z: 0}
-  m_LocalScale: {x: 3.707969, y: 3.525381, z: 22.045}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,9 +76,9 @@ SpriteRenderer:
   m_SortingLayerID: 1972415647
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b0bbf97e95ada294ba10b45321f7d830, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51cb606a0d3e7d74ab559fe6ced7281d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -102,6 +102,7 @@ MonoBehaviour:
   P: {fileID: 0}
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
+  damage: 0
 --- !u!50 &2619150897040894299
 Rigidbody2D:
   serializedVersion: 4
@@ -110,9 +111,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3528400409650182722}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -161,16 +162,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.08449891, y: 0.0071914047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.10066241, y: 0.11864087}
   m_EdgeRadius: 0

@@ -21,7 +21,7 @@ public class CotHLogic : MonoBehaviour
             // Multiply moveSpeed by 2 only if it hasn't been multiplied before
             if (!player.moveSpeedMultiplied)
             {
-                player.moveSpeed *= 1.5f;
+                player.moveSpeed *= 1.2f;
                 player.moveSpeedMultiplied = true; // Add a boolean flag to indicate that moveSpeed has been multiplied
             }
         }

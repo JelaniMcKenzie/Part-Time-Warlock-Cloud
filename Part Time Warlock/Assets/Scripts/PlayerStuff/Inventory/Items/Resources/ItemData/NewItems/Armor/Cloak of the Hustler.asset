@@ -24,7 +24,7 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: A battered, raggedy loak mysteriously loaned to you by your landlord.
+  itemDescription: A battered, raggedy cloak mysteriously loaned to you by your landlord.
     Increases movement speed
   itemRarity: 0
   useAudio: {fileID: 0}

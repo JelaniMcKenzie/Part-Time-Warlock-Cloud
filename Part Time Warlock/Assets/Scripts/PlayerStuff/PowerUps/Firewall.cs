@@ -8,7 +8,7 @@ public class Firewall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource.PlayClipAtPoint(firewallclip, transform.position, 4);
+        AudioSource.PlayClipAtPoint(firewallclip, transform.position, 1);
     }
 
     // Update is called once per frame

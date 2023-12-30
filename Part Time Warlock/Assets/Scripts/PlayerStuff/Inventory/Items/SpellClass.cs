@@ -45,12 +45,15 @@ public class SpellClass : InventoryPlus.Item
     public float effectRadius;
     public float statusDuration;
     public float dashSpellDuration;
+    public float screenShakeMag;
+    public float screenShakeLength;
 
     public SpellClass GetSpell() { return this; }
 
 
     public void Use(Player P) 
     {
+        CameraController cam = FindAnyObjectByType<CameraController>();
         if (currentCooldown > 0)
         {
             Debug.Log("Spell is on cooldown. Remaining time: " + currentCooldown);
@@ -63,17 +66,34 @@ public class SpellClass : InventoryPlus.Item
             case SpellType.projectile:
                 {
                     GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
-                    AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position);
+                    PlayerProjectiles proj = projectile.GetComponent<PlayerProjectiles>();
+
+                    if (proj != null)
+                    {
+                        proj.damage = damage;
+                    }
+
+                    AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position, 2f);
 
                     // Calculate the direction from the player's position to the mouse position
                     Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector2 direction = mousePosition - P.transform.position; // Remove normalization
+
 
                     // Get the Rigidbody2D component
                     Rigidbody2D rb2d = projectile.GetComponent<Rigidbody2D>();
 
                     // Set the velocity
                     rb2d.velocity = direction.normalized * projectileSpeed; // Normalize only when setting velocity
+
+                    // Calculate the rotation angle in degrees
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                    // Rotate the projectile to face the mouse position
+                    projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+
+                    cam.Shake((P.transform.position - P.staffTip.transform.position).normalized, screenShakeMag, screenShakeLength);
 
                     Debug.Log("Casted " + this.itemName);
                     break;
@@ -127,7 +147,5 @@ public class SpellClass : InventoryPlus.Item
             Debug.Log("Spell uses exceeded. Cooldown started: " + currentCooldown);
             return;
         }
-    }
-
-    
+    }    
 }

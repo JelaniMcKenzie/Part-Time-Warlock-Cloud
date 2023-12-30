@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GameEntity : MonoBehaviour
 {
-    public float health = 100;
+    [SerializeField] protected float health = 100f;
     public float moveSpeed = 5f; //must be a high value for things like the player (e.g. 500f)
     public bool isFrozen = false;
     public bool isBurning = false;
     public bool canMove = true;
+    public SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class GameEntity : MonoBehaviour
 
     }
 
-    public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(float amount)
     {
         health -= amount;
         if (health <= 0)
