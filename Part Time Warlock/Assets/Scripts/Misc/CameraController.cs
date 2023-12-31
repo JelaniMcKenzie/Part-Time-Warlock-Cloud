@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
+    public Player player;
 
     Vector3 target, mousePos, refVel, shakeOffset;
 
@@ -23,7 +23,8 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = player.position;
+        player = FindAnyObjectByType<Player>();
+        target = player.transform.position;
         zStart = transform.position.z;
     }
 
@@ -33,7 +34,12 @@ public class CameraController : MonoBehaviour
         mousePos = CaptureMousePos();
         shakeOffset = UpdateShake();
         target = UpdateTargetPos();
-        UpdateCameraPosition();
+
+        if (player.canMove)
+        {
+            UpdateCameraPosition();
+        }
+        
     }
 
     private Vector3 UpdateShake()
@@ -67,7 +73,7 @@ public class CameraController : MonoBehaviour
     private Vector3 UpdateTargetPos()
     {
         Vector3 mouseOffset = mousePos * cameraDistance;
-        Vector3 ret = player.position + mouseOffset;
+        Vector3 ret = player.transform.position + mouseOffset;
         ret += shakeOffset;
         ret.z = zStart;
         return ret;

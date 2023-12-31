@@ -28,7 +28,7 @@ public class Slime : GameEntity
     void Start()
     {
 
-        health = 27f;
+        health = 143;
         canMove = false;
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();

@@ -51,7 +51,7 @@ public class SpellClass : InventoryPlus.Item
     public SpellClass GetSpell() { return this; }
 
 
-    public void Use(Player P) 
+    public void Use(Player P)
     {
         CameraController cam = FindAnyObjectByType<CameraController>();
         if (currentCooldown > 0)

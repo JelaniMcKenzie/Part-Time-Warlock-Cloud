@@ -69,18 +69,6 @@ public class Player : GameEntity
 
         rb = GetComponent<Rigidbody2D>();
         canDash = true;
-        activeScene = SceneManager.GetActiveScene();
-        
-        if (activeScene.name == "Apartment")
-        {
-            handParent.SetActive(false);
-            canCast = false;
-        } 
-        else
-        {
-            handParent.SetActive(true);
-            //healthBar.UpdateHealthBar();
-        }
         canHit = true;
         uiManager = FindAnyObjectByType<UIManager>();
         SpriteRenderer s = GetComponent<SpriteRenderer>();
@@ -91,21 +79,12 @@ public class Player : GameEntity
     // Update is called once per frame
     void Update()
     {
-        activeScene = SceneManager.GetActiveScene();
-        
-        if (activeScene.name == "RDG Test")
-        {
-            handParent.SetActive(true);
-            canCast = true;
-        }
-        
-
         if (isDashing)
         {
             return;
         }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        //transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
         /*if (inputReader.inventoryOn == true )
         {
@@ -152,14 +131,14 @@ public class Player : GameEntity
                 {
                     if (!isDashing && dashSpell.currentCooldown > 0)
                     {
-                        StartCoroutine(Dash(moveInput, GetComponent<Rigidbody2D>()));
+                        StartCoroutine(Dash(moveInput, rb));
                     }
                     else
                     {
                         if (canCast == true) 
                         {
                             inventory.UseItem(inventory.hotbarUISlots[3]);
-                            StartCoroutine(Dash(moveInput, GetComponent<Rigidbody2D>()));
+                            StartCoroutine(Dash(moveInput, rb));
                         }
                         
                     }
@@ -227,7 +206,7 @@ public class Player : GameEntity
     {
         if (!_enable) 
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
             GetComponent<Animator>().SetBool("running", false);
         }
            
@@ -303,10 +282,9 @@ public class Player : GameEntity
         Instantiate(coinSpawnRef, (Vector2)transform.position + offset, Quaternion.identity);
 
         // Get the Rigidbody2D component
-        Rigidbody2D coinRb = coinSpawnRef.GetComponent<Rigidbody2D>();
-
+        
         // Apply a random force to the coin
-        if (coinRb != null)
+        if (coinSpawnRef.TryGetComponent<Rigidbody2D>(out var coinRb))
         {
             Vector2 force = new Vector2(UnityEngine.Random.Range(-maxForce, maxForce), UnityEngine.Random.Range(-maxForce, maxForce));
             coinRb.AddForce(force, ForceMode2D.Impulse);

@@ -31,7 +31,7 @@ namespace InventoryPlus
         [SerializeField] public bool enableDebug;
 
 
-        private bool inChestRange = false;
+        public bool inChestRange = false;
         private List<ItemSlot> dropList = new List<ItemSlot>();
         private UISlot swapUISlot;
         private bool wasLoaded = false;

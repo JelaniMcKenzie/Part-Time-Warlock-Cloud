@@ -11,6 +11,7 @@ public class Aim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         /*if (activeScene.name == "Apartment")
         {
             GetComponent<SpriteRenderer>().enabled = false;
@@ -38,11 +39,6 @@ public class Aim : MonoBehaviour
         // Rotate the staff tip towards the crosshair position
         /*Vector3 staffDir = mousePos - staffTip.position;
         staffTip.up = staffDir;*/
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = true;
-        }
        
     }
 }

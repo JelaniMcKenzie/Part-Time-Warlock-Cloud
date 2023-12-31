@@ -1,17 +1,18 @@
+using PixelCrushers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerAnimations : MonoBehaviour
+public class Playeranimations : MonoBehaviour
 {
     public float xAxis;
     public float yAxis;
-    public Animator Anim = null;
+    public Animator anim = null;
     public ArmorController armorController;
     public Player P = null;
-    public string currentAnim;
+    public string currentanim;
     public string direction;
     AnimatorStateInfo animState;
     public Scene activeScene;
@@ -19,13 +20,17 @@ public class PlayerAnimations : MonoBehaviour
     public GameObject hand = null;
     public GameObject staff = null;
 
+    private SpriteRenderer playerSprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        Anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         P = this.gameObject.GetComponent<Player>();
         activeScene = SceneManager.GetActiveScene();
         armorController = GetComponent<ArmorController>();
+        playerSprite = P.GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -33,18 +38,11 @@ public class PlayerAnimations : MonoBehaviour
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
-        Anim.GetCurrentAnimatorClipInfo(0); //0 is the default animation layer
-                                            //currentAnim = "Idle";
+        anim.GetCurrentAnimatorClipInfo(0); //0 is the default animation layer
+                                            //currentanim = "Idle";
         if (P.canMove == true)
         {
-            if (activeScene.name != "Apartment")
-            {
-                CombatAnim();
-            } else
-            {
-                ApartmentAnim();
-
-            }
+            CombatAnim();
         }
     }
 
@@ -62,14 +60,14 @@ public class PlayerAnimations : MonoBehaviour
                 if (dir.x < -0.1 /*player is looking left. the 0 references the player position*/)
                 {
                     /*direction = "Left";
-                    currentAnim = "IdleLeft";*/
+                    currentanim = "IdleLeft";*/
                     P.GetComponent<SpriteRenderer>().flipX = true;
                     
                 }
                 if (dir.x > 0.1 /*player is looking right*/)
                 {
                     /*direction = "Right";
-                    currentAnim = "IdleRight";*/
+                    currentanim = "IdleRight";*/
                     P.GetComponent<SpriteRenderer>().flipX = false;
                     
 
@@ -90,7 +88,7 @@ public class PlayerAnimations : MonoBehaviour
         if (dir.y < -10 )
             {
                 direction = "Down";
-                currentAnim = "Idle";
+                currentanim = "Idle";
                
                 
             }
@@ -98,7 +96,7 @@ public class PlayerAnimations : MonoBehaviour
         if (dir.y > 10 )
             {
                 direction = "Up";
-                currentAnim = "IdleUp";
+                currentanim = "IdleUp";
                 
                 
             } 
@@ -110,43 +108,42 @@ public class PlayerAnimations : MonoBehaviour
         //--------------------NORMAL WASD----------------
         /*if (Input.GetKeyDown(KeyCode.D) || xAxis >= 1)
         {
-            currentAnim = direction;
+            currentanim = direction;
         }
         if (Input.GetKeyDown(KeyCode.A) || xAxis <= -1)
         {
-            currentAnim = direction;
+            currentanim = direction;
         }
         if (Input.GetKeyDown(KeyCode.W) || yAxis >= 1)
         {
-            currentAnim = direction;
+            currentanim = direction;
         }
         if (Input.GetKeyDown(KeyCode.S) || yAxis <= -1)
         {
-            currentAnim = direction;
+            currentanim = direction;
         }*/
 
-        float moveInputX = Input.GetAxisRaw("Horizontal");
-        float moveInputY = Input.GetAxisRaw("Vertical");
+        
          
-        if (moveInputX == 0 && moveInputY == 0)
+        if (P.moveInput.x == 0 && P.moveInput.y == 0)
         {
-            Anim.SetBool("idle", true);
-            Anim.SetBool("running", false);
-            Anim.SetBool("dashing", false);
+            anim.SetBool("idle", true);
+            anim.SetBool("running", false);
+            anim.SetBool("dashing", false);
 
         } 
         else
         {
-            Anim.SetBool("idle", false);
+            anim.SetBool("idle", false);
             if (P.isDashing == true)
             {
-                Anim.SetBool("dashing", true);
-                Anim.SetBool("running", false);
+                anim.SetBool("dashing", true);
+                anim.SetBool("running", false);
             }
             else
             {
-                Anim.SetBool("running", true);
-                Anim.SetBool("dashing", false);
+                anim.SetBool("running", true);
+                anim.SetBool("dashing", false);
             }
         }
 
@@ -161,34 +158,43 @@ public class PlayerAnimations : MonoBehaviour
             staff.GetComponent<SpriteRenderer>().sortingOrder = 2;
         }*/
 
-        /*if (!animState.IsName(currentAnim))
+        /*if (!animState.IsName(currentanim))
         {   //checks what the name of the animation is (e.g right)
             //if the given animation ISN'T playing when the key is pressed, it immediately plays it
-            Anim.Play(currentAnim, 0);
+            anim.Play(currentanim, 0);
         }*/
 
     }
 
-    private void ApartmentAnim()
+    private void Apartmentanim()
     {
-        float moveInputX = Input.GetAxisRaw("Horizontal");
-        float moveInputY = Input.GetAxisRaw("Vertical");
-
-        if (moveInputX == 0 && moveInputY == 0)
+        if (P.moveInput.x == 0 && P.moveInput.y == 0)
         {
-            
-            Anim.SetBool("running", false);
+            anim.SetBool("idle", true);
+            anim.SetBool("running", false);
+            anim.SetBool("dashing", false);
         }
         else
         {
-            Anim.SetBool("running", true);
-            if (moveInputX < 0)
+            anim.SetBool("idle", false);
+            if (P.isDashing == true)
             {
-                P.GetComponent<SpriteRenderer>().flipX = true;
+                anim.SetBool("dashing", true);
+                anim.SetBool("running", false);
             }
-            else if (moveInputX > 0)
+            else
             {
-                P.GetComponent<SpriteRenderer>().flipX = false;
+                anim.SetBool("running", true);
+                anim.SetBool("dashing", false);
+            }
+
+            if (P.moveInput.x < 0)
+            {
+                playerSprite.flipX = true;
+            }
+            else if (P.moveInput.x > 0)
+            {
+                playerSprite.flipX = false;
             }
         }
     }

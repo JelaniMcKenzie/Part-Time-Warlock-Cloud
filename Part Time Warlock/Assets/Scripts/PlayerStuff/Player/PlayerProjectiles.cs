@@ -7,7 +7,6 @@ using UnityEngine.Tilemaps;
 public class PlayerProjectiles : DamageSpell
 {
     // Start is called before the first frame update
-    public Player P = null;
     public GameObject Firewall = null;
     public AudioClip FireClip = null;
 

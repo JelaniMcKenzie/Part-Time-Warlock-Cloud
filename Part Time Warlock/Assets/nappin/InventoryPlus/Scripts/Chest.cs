@@ -19,7 +19,6 @@ namespace InventoryPlus
         [Space(15)]
         public bool enableDebug = true;
 
-
         private Inventory inventory;
         private BoxCollider2D col;
 

@@ -33,6 +33,7 @@ namespace InventoryPlus
         [Header("References")]
         public Player player;
         public Inventory inventory;
+        public Chest chest;
         public UIDetails details;
 
 
@@ -41,6 +42,8 @@ namespace InventoryPlus
         private GameObject currentSelectedObj = null;
         private StandaloneInputModule inputModule;
         private EventSystem eventSystem;
+
+        [SerializeField] private UpdateChestName chestObjName;
 
 
         /**/
@@ -86,6 +89,16 @@ namespace InventoryPlus
             {
                 if (playAudioOnSelection) selectionAudio.Play();
                 if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), true);
+                UISlot currentUISlot = currentSelectedObj.GetComponent<UISlot>();
+                Storage s = currentUISlot.GetSlotOwner();
+
+                //TODO: why does this code throw a null reference exception? It works, but is unoptomized
+                if (s != null)
+                {
+                    chestObjName.UpdateText(null);
+                } 
+                chestObjName.UpdateText(s.GetItemSlot(s.GetItemIndex(currentUISlot)).GetItemType().itemName);
+                
             }
         }
 
@@ -100,6 +113,7 @@ namespace InventoryPlus
                 player.EnableMovement(!inventoryOn);
                 inventory.ShowInventory(inventoryOn);
                 inventory.ForceEndSwap();
+                chestObjName.ShowChestObj(inventory.inChestRange);
 
                 //inventory open - inventory closed
                 if (inventoryOn)
@@ -124,6 +138,7 @@ namespace InventoryPlus
                 {
                     inputModule.horizontalAxis = InventoryOffHorizontalInput;
                     currentSelectedObj.GetComponent<Button>().OnDeselect(null);
+                    chestObjName.gameObject.SetActive(false);
 
                 }
             }
