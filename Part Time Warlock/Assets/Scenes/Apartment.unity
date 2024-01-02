@@ -3765,7 +3765,6 @@ MonoBehaviour:
   chestUI: {fileID: 1817308110}
   playerTag: Player
   enableDebug: 1
-  chestNameObj: {fileID: 0}
 --- !u!70 &251968062
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3904,10 +3903,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2432980898803541602, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
-      propertyPath: inputReader
-      value: 
-      objectReference: {fileID: 1533649004}
     - target: {fileID: 2751465659558000230, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7521,17 +7516,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 156d640fb88c096499837580d51a6c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1533649004 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6255309858697955974, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
-  m_PrefabInstance: {fileID: 377258318}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07cfd70776074624d9771778d2e420aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1569478164

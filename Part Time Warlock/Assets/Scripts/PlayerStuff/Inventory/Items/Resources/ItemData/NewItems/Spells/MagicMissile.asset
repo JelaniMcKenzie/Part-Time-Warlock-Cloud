@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MagicMissile
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -1057191354, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
-  itemName: MagicMissile
+  itemName: Magic Missile
   itemID: 
   itemCategory: Magic
   isStackable: 0

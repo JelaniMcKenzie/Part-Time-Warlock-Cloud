@@ -60,6 +60,8 @@ namespace InventoryPlus
             inputModule.horizontalAxis = InventoryOffHorizontalInput;
             inventory.SelectFirstHotbarSlot();
             inventory.ClearSwap();
+            chestObjName.gameObject.SetActive(false);
+
         }
 
         #endregion
@@ -92,13 +94,22 @@ namespace InventoryPlus
                 UISlot currentUISlot = currentSelectedObj.GetComponent<UISlot>();
                 Storage s = currentUISlot.GetSlotOwner();
 
-                //TODO: why does this code throw a null reference exception? It works, but is unoptomized
-                if (s != null)
+                if (inventory.inChestRange == true)
                 {
-                    chestObjName.UpdateText(null);
-                } 
-                chestObjName.UpdateText(s.GetItemSlot(s.GetItemIndex(currentUISlot)).GetItemType().itemName);
-                
+                    if (s != null)
+                    {
+                        chestObjName.UpdateText(null);
+                        chestObjName.gameObject.SetActive(false);
+                    }
+
+                    ItemSlot selectedSlot = s.GetItemSlot(s.GetItemIndex(currentUISlot));
+
+                    if (selectedSlot != null)
+                    {
+                        chestObjName.gameObject.SetActive(true);
+                        chestObjName.UpdateText(selectedSlot.GetItemType().itemName);
+                    }
+                }
             }
         }
 

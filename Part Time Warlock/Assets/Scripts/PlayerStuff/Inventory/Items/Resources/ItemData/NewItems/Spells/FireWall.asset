@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireWall
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -1863700131, guid: cde28b8b9e1acbd46b926b0a81ec1194, type: 3}
-  itemName: FireWall
+  itemName: Fire Wall
   itemID: 
   itemCategory: Magic
   isStackable: 0
