@@ -13,13 +13,6 @@ public class CameraController : MonoBehaviour
 
     float smoothTime = 0.1f, zStart;
 
-    //camera shake
-
-    float shakeMag, shakeTimeEnd;
-
-    Vector3 shakeVector;
-
-    bool isShaking;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +25,6 @@ public class CameraController : MonoBehaviour
     void FixedUpdate()
     {
         mousePos = CaptureMousePos();
-        shakeOffset = UpdateShake();
         target = UpdateTargetPos();
 
         if (player.canMove)
@@ -40,19 +32,6 @@ public class CameraController : MonoBehaviour
             UpdateCameraPosition();
         }
         
-    }
-
-    private Vector3 UpdateShake()
-    {
-        if (!isShaking || Time.time > shakeTimeEnd)
-        {
-            isShaking = false;
-            return Vector3.zero;
-        }
-
-        Vector3 tempOffset = shakeVector;
-        tempOffset *= shakeMag;
-        return tempOffset;
     }
 
     private Vector3 CaptureMousePos()
@@ -85,19 +64,4 @@ public class CameraController : MonoBehaviour
         tempPos = Vector3.SmoothDamp(transform.position, target, ref refVel, smoothTime);
         transform.position = tempPos;
     }
-
-    /**
-     * TODO: Add randomness to shot accuracy and pass that into the camera shake
-     */
-    public void Shake(Vector3 direction, float magnitude, float length)
-    {
-        isShaking = true;
-        shakeVector = direction;
-        shakeMag = magnitude;
-        shakeTimeEnd = Time.time + length;
-    }
-
-
-
-
 }

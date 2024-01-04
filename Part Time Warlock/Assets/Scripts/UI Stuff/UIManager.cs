@@ -38,8 +38,8 @@ public class UIManager : MonoBehaviour
     {
         timerActive = true;
         gameManager = FindAnyObjectByType<GameManager>();
-        //UpdateCoinText();
-        
+        UpdateCoinText();
+
         if (activeScene.name == "Apartment")
         {
             CoinText.gameObject.SetActive(false);
@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
             minimap.SetActive(true);
             miniMapHead.SetActive(true);
         }
+        
     }
 
     // Update is called once per frame

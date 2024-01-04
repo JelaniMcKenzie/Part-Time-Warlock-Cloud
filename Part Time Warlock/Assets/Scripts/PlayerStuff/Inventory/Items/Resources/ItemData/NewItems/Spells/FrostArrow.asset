@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: FrostArrow
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 51cb606a0d3e7d74ab559fe6ced7281d, type: 3}
+  itemSprite: {fileID: 21300000, guid: 89a39c65b651afe40afd32b30b7f8698, type: 3}
   itemName: Frost Arrow
   itemID: 
   itemCategory: Magic
@@ -33,13 +33,15 @@ MonoBehaviour:
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: 
   damage: 15
-  uses: 0
+  uses: 1
   maxUses: 1
   maxCooldown: 1
-  currentCooldown: 0.13731904
+  currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
-  projectileSpeed: 35
+  projectileSpeed: 25
+  isSpreadShot: 1
+  spreadShotNum: 5
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 675016632962489012}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.2570401, w: 0.96640074}
-  m_LocalPosition: {x: 1.22, y: 6.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666746ee788f6404bbd643aa70e02984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P: {fileID: 0}
+  damage: 0
   Firewall: {fileID: 3919298685696993394, guid: f58820879958e4f4cbb607c03c2beeb9, type: 3}
   FireClip: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
 --- !u!95 &1639810759

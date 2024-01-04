@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   player: {fileID: 0}
-  threshold: 2
+  threshold: 3

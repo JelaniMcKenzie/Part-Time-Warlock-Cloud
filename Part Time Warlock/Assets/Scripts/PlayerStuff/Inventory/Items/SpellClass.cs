@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
@@ -42,10 +43,12 @@ public class SpellClass : InventoryPlus.Item
     }
 
     public float projectileSpeed;
+    public bool isSpreadShot;
+    public float spreadShotNum;
     public float effectRadius;
     public float statusDuration;
     public float dashSpellDuration;
-    public float screenShakeMag;
+    public float screenShakeIntensity;
     public float screenShakeLength;
 
     public SpellClass GetSpell() { return this; }
@@ -53,52 +56,82 @@ public class SpellClass : InventoryPlus.Item
 
     public void Use(Player P)
     {
-        CameraController cam = FindAnyObjectByType<CameraController>();
+        CameraShake cam = FindAnyObjectByType<CameraShake>();
+        P = FindAnyObjectByType<Player>();
+
         if (currentCooldown > 0)
         {
             Debug.Log("Spell is on cooldown. Remaining time: " + currentCooldown);
             return;
         }
 
-        P = FindAnyObjectByType<Player>();
+        
         switch (spellType)
         {
             case SpellType.projectile:
                 {
-                    GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
-                    PlayerProjectiles proj = projectile.GetComponent<PlayerProjectiles>();
-
-                    if (proj != null)
-                    {
-                        proj.damage = damage;
-                    }
-
-                    AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position, 2f);
-
                     // Calculate the direction from the player's position to the mouse position
                     Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector2 direction = mousePosition - P.transform.position; // Remove normalization
+                    if (isSpreadShot)
+                    {
+                        // Handle spread shot logic
+                        for (int i = 0; i < spreadShotNum; i++)
+                        {
+                            GameObject spreadShot = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
+                            AudioSource.PlayClipAtPoint(useAudio, spreadShot.transform.position, 2f);
+                            
+                            // Get the Rigidbody2D component
+                            Rigidbody2D rb2d = spreadShot.GetComponent<Rigidbody2D>();
 
+                            // Calculate the rotation angle in degrees
+                            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-                    // Get the Rigidbody2D component
-                    Rigidbody2D rb2d = projectile.GetComponent<Rigidbody2D>();
+                            //Rotate the projectile to face the mouse position
+                            spreadShot.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-                    // Set the velocity
-                    rb2d.velocity = direction.normalized * projectileSpeed; // Normalize only when setting velocity
+                            //Rotate each projectile for a fan pattern
+                            spreadShot.transform.Rotate(0, 0, (i - 2) * 15);
 
-                    // Calculate the rotation angle in degrees
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                            spreadShot.transform.position += spreadShot.transform.right;
 
-                    // Rotate the projectile to face the mouse position
-                    projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                            // Set the velocity
+                            rb2d.velocity = spreadShot.transform.right * projectileSpeed; // Normalize only when setting velocity
 
+                        }
 
-                    cam.Shake((P.transform.position - P.staffTip.transform.position).normalized, screenShakeMag, screenShakeLength);
+                    }
+                    else
+                    {
+                        //single shot logic here
+                        GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
+                        PlayerProjectiles proj = projectile.GetComponent<PlayerProjectiles>();
+
+                        if (proj != null)
+                        {
+                            proj.damage = damage;
+                        }
+
+                        AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position, 2f);
+
+                        // Get the Rigidbody2D component
+                        Rigidbody2D rb2d = projectile.GetComponent<Rigidbody2D>();
+
+                        // Set the velocity
+                        rb2d.velocity = direction.normalized * projectileSpeed; // Normalize only when setting velocity
+
+                        // Calculate the rotation angle in degrees
+                        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                        //Rotate the projectile to face the mouse position
+                        projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    }
+
+                    
+                    cam.ShakeCamera(screenShakeIntensity, screenShakeLength);
 
                     Debug.Log("Casted " + this.itemName);
                     break;
-
-
                 }
             case SpellType.aoe:
                 {

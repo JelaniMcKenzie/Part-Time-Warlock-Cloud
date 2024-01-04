@@ -33,15 +33,17 @@ MonoBehaviour:
   spellPrefab: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
   spellElement: 
   damage: 0
-  uses: 3
+  uses: 0
   maxUses: 1
   maxCooldown: 6
-  currentCooldown: 0
+  currentCooldown: 0.1858647
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
+  isSpreadShot: 0
+  spreadShotNum: 0
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
-  screenShakeMag: 0
-  screenShakeLength: 0
+  screenShakeIntensity: 3
+  screenShakeLength: 0.5
