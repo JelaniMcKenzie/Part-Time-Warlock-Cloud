@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     {
         timerActive = true;
         gameManager = FindAnyObjectByType<GameManager>();
+        P = FindAnyObjectByType<Player>();
         UpdateCoinText();
 
         if (activeScene.name == "Apartment")
@@ -69,8 +70,7 @@ public class UIManager : MonoBehaviour
     {
         
         //hard coded solution to the canvas not being able to find the player
-        //change later so that this code only runs after the dungeon is finished generating
-        P = FindAnyObjectByType<Player>();
+       
         
         //UpdateCoinText();
 
