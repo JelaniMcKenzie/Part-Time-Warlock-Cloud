@@ -1,5 +1,7 @@
+using Edgar.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
-        Debug.Log(scene);
+        UnityEngine.Debug.Log("Scene Name: " + scene);
     }
 
     // Update is called once per frame
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Lose");
         }
 
+
+
         /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!paused)
@@ -80,3 +84,4 @@ public class GameManager : MonoBehaviour
         }*/
     }
 }
+

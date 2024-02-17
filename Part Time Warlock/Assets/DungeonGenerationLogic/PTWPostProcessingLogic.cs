@@ -39,6 +39,11 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
             // Add floor collider
             AddFloorCollider(floor);
 
+            // Add the room manager component
+            var roomManager = roomTemplateInstance.AddComponent<CurrentRoomDetectionRoomManager>();
+            roomManager.RoomInstance = roomInstance;
+            Debug.Log("Added Room Detection");
+
             // Add current room detection handler
             floor.AddComponent<CurrentRoomDetectionTriggerHandler>();
         }
@@ -133,10 +138,21 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
                 var spawnPosition = roomTemplateInstance.transform.Find("SpawnPosition");
                 var player = GameObject.FindWithTag("Player");
                 var portal = GameObject.FindWithTag("Portal");
-                player.transform.position = spawnPosition.position;
-                portal.transform.position = spawnPosition.position;
-                portal.SetActive(false);
-
+                if (player != null)
+                {
+                    player.transform.position = spawnPosition.position;
+                }
+                else
+                {
+                    Debug.LogError("Could not find Player");
+                }
+                
+                if (portal != null)
+                {
+                    portal.transform.position = spawnPosition.position;
+                    portal.SetActive(false);
+                }
+                
             }
         }
     }

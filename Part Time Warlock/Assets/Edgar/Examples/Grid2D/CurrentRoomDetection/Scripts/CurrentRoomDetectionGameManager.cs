@@ -13,6 +13,7 @@ namespace Edgar.Unity.Examples.CurrentRoomDetection
         // The room that will be active after the player leaves the current room
         private RoomInstanceGrid2D nextCurrentRoom;
 
+        //Reactivate Update Method for debugging RDG related issues
         public void Update()
         {
             if (InputHelper.GetKeyDown(KeyCode.G))
@@ -85,6 +86,8 @@ namespace Edgar.Unity.Examples.CurrentRoomDetection
             var canvas = GetCanvas();
             var currentRoomInfo = canvas.transform.Find("CurrentRoomInfo").GetComponent<Text>();
             currentRoomInfo.text = $"Room name: {currentRoom?.Room.GetDisplayName()}, Room template: {currentRoom?.RoomTemplatePrefab.name}";
+            UnityEngine.Debug.Log(currentRoomInfo.text);
+               
         }
     }
 }

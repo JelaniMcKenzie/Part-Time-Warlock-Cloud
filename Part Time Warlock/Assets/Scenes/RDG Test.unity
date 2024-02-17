@@ -781,11 +781,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.98
+      value: -25.02
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -931,11 +931,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0200005
+      value: 5.9799995
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1118,6 +1118,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 58728070211366706, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 58728070211366706, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 136
+      objectReference: {fileID: 0}
     - target: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1202,6 +1210,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5726494993630859844, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1899
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726494993630859844, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1069
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1217,6 +1233,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5712314471825818479, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
   m_PrefabInstance: {fileID: 694327741}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &694327745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+  m_PrefabInstance: {fileID: 694327741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473990437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1250,7 @@ GameObject:
   - component: {fileID: 1473990439}
   - component: {fileID: 1473990440}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: Dungeon Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,7 +1265,7 @@ Transform:
   m_GameObject: {fileID: 1473990437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 849.2945, y: 953.7452, z: -7.319844}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1450,6 +1471,7 @@ GameObject:
   - component: {fileID: 2043926002}
   - component: {fileID: 2043926003}
   - component: {fileID: 2043926004}
+  - component: {fileID: 2043926005}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1508,6 +1530,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   portal: {fileID: 632102045}
+--- !u!114 &2043926005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043926001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a56c595e3622248855801f071981b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 694327745}
 --- !u!1001 &2120298995
 PrefabInstance:
   m_ObjectHideFlags: 0
