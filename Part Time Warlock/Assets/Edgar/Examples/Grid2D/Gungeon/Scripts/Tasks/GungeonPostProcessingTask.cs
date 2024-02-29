@@ -61,6 +61,7 @@ namespace Edgar.Unity.Examples.Gungeon
 
                         // Find the door game object by its name
                         var doorsGameObject = corridorGameObject.transform.Find("Door")?.gameObject;
+                        Debug.Log(doorsGameObject.name);
 
                         // Each corridor room instance has a connection that represents the edge in the level graph
                         // We use the connection object to check if the corridor should be locked or not

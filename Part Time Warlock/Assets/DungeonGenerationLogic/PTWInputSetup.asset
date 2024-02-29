@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b5b0d06428d324ea102b6e0f9672a0, type: 3}
+  m_Name: PTWInputSetup
+  m_EditorClassIdentifier: 
+  LevelGraph: {fileID: 11400000, guid: 23b21a1e545adca4fb874faaa39abe26, type: 2}
+  UseRandomLevelGraph: 1
+  Stage: 1
+  Stage1LevelGraphs:
+  - {fileID: 11400000, guid: 23b21a1e545adca4fb874faaa39abe26, type: 2}
+  Stage2LevelGraphs:
+  - {fileID: 11400000, guid: b8965a3a9eff6284db3054f4b26747a2, type: 2}
+  RoomTemplates:
+    BasicRoomTemplates:
+    - {fileID: 8492665448054464914, guid: b751d75804b280c409cb5a74d11d3a6b, type: 3}
+    - {fileID: 8492665448054464914, guid: f48e8b683202ceb48be98b44d25305f2, type: 3}
+    - {fileID: 8492665448054464914, guid: 98e3b68f20b53af4eb889c8827151aa4, type: 3}
+    BossFoyersRoomTemplates:
+    - {fileID: 8492665448054464914, guid: d882a549a4515fe429797d02ecd3e427, type: 3}
+    BossRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 16d7a1ff167122e4cb31ea64cdd4cff3, type: 3}
+    CorridorRoomTemplates:
+    - {fileID: 3827930881947918026, guid: 539c69f66bea46349b0acbef47f4ae82, type: 3}
+    - {fileID: 6265851996217485303, guid: 0ab1baa51cee130499a38fa83c5f68e7, type: 3}
+    EntranceRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 3831dbf7d8cf1d34f84bb60c19622979, type: 3}
+    ExitRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 13d6a11fda32f9b419995eb975943c5c, type: 3}
+    HubRoomTemplates:
+    - {fileID: 8492665448054464914, guid: b751d75804b280c409cb5a74d11d3a6b, type: 3}
+    - {fileID: 8492665448054464914, guid: f48e8b683202ceb48be98b44d25305f2, type: 3}
+    - {fileID: 8492665448054464914, guid: 98e3b68f20b53af4eb889c8827151aa4, type: 3}
+    RewardRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 22b599706436baa47bc37c96ebfaebbc, type: 3}
+    ShopRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 8cf1a29a68f44804ba0ef21320c5f25c, type: 3}
+    SecretRoomTemplates:
+    - {fileID: 8492665448054464914, guid: d664b4efbc2057f4abd6da45ee9b5a69, type: 3}
+  SecretRoomChance: 0.908
+  SecretRoomDeadEndChance: 0.856

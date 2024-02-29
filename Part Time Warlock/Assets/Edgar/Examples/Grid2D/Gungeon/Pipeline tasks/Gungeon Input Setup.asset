@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b5b0d06428d324ea102b6e0f9672a0, type: 3}
   m_Name: Gungeon Input Setup
   m_EditorClassIdentifier: 
-  LevelGraph: {fileID: 11400000, guid: 22bbd706dc04a964186d0701547c9821, type: 2}
+  LevelGraph: {fileID: 11400000, guid: e779be756bebf574ebdee9c2e257f3da, type: 2}
   UseRandomLevelGraph: 1
   Stage: 1
   Stage1LevelGraphs:

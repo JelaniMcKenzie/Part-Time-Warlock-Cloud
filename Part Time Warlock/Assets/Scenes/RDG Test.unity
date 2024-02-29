@@ -781,11 +781,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.02
+      value: -21.02
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -931,15 +931,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9799995
+      value: -55.5
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -974,11 +974,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
---- !u!1 &632102045 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5957923650014761952, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
-  m_PrefabInstance: {fileID: 632102044}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &680438150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1238,6 +1233,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
   m_PrefabInstance: {fileID: 694327741}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1181851756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4379034752279344733, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
+  m_PrefabInstance: {fileID: 2120298995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473990437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,10 +1285,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   EnableDiagnostics: 0
-  InputType: 0
-  CustomInputTask: {fileID: 11400000, guid: c66e37e5e5814e142a057d3b3c97fa29, type: 2}
+  InputType: 1
+  CustomInputTask: {fileID: 11400000, guid: 62ba07fd97e384943b252f0d70fe14ea, type: 2}
   FixedLevelGraphConfig:
-    LevelGraph: {fileID: 11400000, guid: 23b21a1e545adca4fb874faaa39abe26, type: 2}
+    LevelGraph: {fileID: 0}
     UseCorridors: 1
   GeneratorConfig:
     RootGameObject: {fileID: 0}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
     ThrowExceptionsImmediately: 0
   UseRandomSeed: 1
   RandomGeneratorSeed: 0
-  GenerateOnStart: 1
+  GenerateOnStart: 0
   ThrowExceptionsImmediately: 0
   DisableCustomPostProcessing: 0
 --- !u!114 &1473990440
@@ -1332,6 +1332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnChance: 0.85
+  Enemies:
+  - {fileID: 7143482120570913188, guid: f4fc1e338ca3ab54bbf646d46c751e33, type: 3}
 --- !u!1 &1498134610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1555,6 @@ GameObject:
   - component: {fileID: 2043926002}
   - component: {fileID: 2043926003}
   - component: {fileID: 2043926004}
-  - component: {fileID: 2043926005}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1593,7 +1594,7 @@ MonoBehaviour:
   paused: 0
   P: {fileID: 0}
   UI: {fileID: 0}
-  Portal: {fileID: 632102045}
+  Portal: {fileID: 0}
   pausedObjects:
   - {fileID: 694327743}
   - {fileID: 694327742}
@@ -1607,24 +1608,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2043926001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed56a2f6ec4cda43a317edd99ffa66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies: []
-  portal: {fileID: 632102045}
---- !u!114 &2043926005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043926001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a56c595e3622248855801f071981b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 58590bce2cc7aeb4a91410a3c374a5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Canvas: {fileID: 694327745}
+  Stage: 1
+  CurrentLevelGraph: {fileID: 0}
 --- !u!1001 &2120298995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1680,13 +1669,44 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4379034752279344733, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120299001}
   m_SourcePrefab: {fileID: 100100000, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
 --- !u!20 &2120298996 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4872809499966458812, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
   m_PrefabInstance: {fileID: 2120298995}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2120299001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181851756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea19b80a49044f691000f68da025b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorMode: 0
+  FogColor: {r: 0, g: 0, b: 0, a: 1}
+  Mode: 0
+  TransitionMode: 0
+  TileGranularity: 2
+  FogSmoothness: 20
+  WaveSpeed: 10
+  WaveRevealThreshold: 0.5
+  FadeInDuration: 1
+  RevealCorridors: 1
+  RevealCorridorsTiles: 1
+  RevealCorridorsGradually: 1
+  InitialFogTransparency: 0
+  WaveOrigin: {fileID: 0}
+  GeneratedLevelRoot: {fileID: 0}
+  RevealedRooms: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

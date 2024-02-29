@@ -105,6 +105,8 @@ namespace Edgar.Unity.Examples.Gungeon
             
             var enemies = new List<GungeonEnemy>();
             var totalEnemiesCount = Random.Next(4, 8);
+            
+            
 
             while (enemies.Count < totalEnemiesCount)
             {
@@ -129,6 +131,7 @@ namespace Edgar.Unity.Examples.Gungeon
                 // Create an instance of the enemy and set position and parent
                 var enemy = Instantiate(enemyPrefab, roomInstance.RoomTemplateInstance.transform, true);
                 enemy.transform.position = position;
+                
                 
                 // Add the GungeonEnemy component to know when the enemy is killed
                 var gungeonEnemy = enemy.AddComponent<GungeonEnemy>();
