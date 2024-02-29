@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4333471322319969791}
   - component: {fileID: 2055584396004691356}
   - component: {fileID: 656215294783162157}
+  - component: {fileID: 4875120128981467209}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -215,20 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052b56100dbcba94eaafb821d7c283fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  moveSpeed: 5
-  isFrozen: 0
-  isBurning: 0
-  EnemyDeathAnim: {fileID: 0}
-  frozen: 0
-  UI: {fileID: 0}
-  isOnFire: 0
-  burnSeconds: 5
-  addAmmo: 0
-  canMove: 0
-  detectJump: {fileID: 0}
-  groundSprites: []
-  SlimeMove: {fileID: 0}
 --- !u!61 &656215294783162157
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -274,3 +261,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48174176, y: 0.42044201}
   m_EdgeRadius: 0
+--- !u!114 &4875120128981467209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211150580829288311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 0000000053a1cf959fac90756b6d03ba
+  m_ShapePath:
+  - {x: -0.16067962, y: -0.08027064, z: 0}
+  - {x: -0.21986094, y: 0.000420719, z: 0}
+  - {x: 0.21982825, y: 0.016206572, z: 0}
+  - {x: 0.18738072, y: -0.03795955, z: 0}
+  - {x: 0.14884405, y: -0.08816357, z: 0}
+  m_ShapePathHash: 1618154804
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1224344
+  m_LocalBounds:
+    m_Center: {x: -0.000016346574, y: -0.0359785, z: 0}
+    m_Extent: {x: 0.2198446, y: 0.05218507, z: 0}
