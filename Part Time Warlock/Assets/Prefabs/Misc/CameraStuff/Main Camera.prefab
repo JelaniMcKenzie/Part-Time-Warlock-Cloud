@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3470162918698246186}
   - component: {fileID: 1275467531751259576}
   - component: {fileID: 2721049842628391589}
+  - component: {fileID: 7290735978994268400}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -172,3 +173,31 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7290735978994268400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379034752279344733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea19b80a49044f691000f68da025b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorMode: 0
+  FogColor: {r: 0, g: 0, b: 0, a: 1}
+  Mode: 0
+  TransitionMode: 0
+  TileGranularity: 2
+  FogSmoothness: 20
+  WaveSpeed: 10
+  WaveRevealThreshold: 0.5
+  FadeInDuration: 1
+  RevealCorridors: 1
+  RevealCorridorsTiles: 1
+  RevealCorridorsGradually: 1
+  InitialFogTransparency: 0
+  WaveOrigin: {fileID: 0}
+  GeneratedLevelRoot: {fileID: 0}
+  RevealedRooms: []

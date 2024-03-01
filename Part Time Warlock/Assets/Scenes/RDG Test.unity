@@ -781,11 +781,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.02
+      value: 14.98
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -927,19 +927,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5957923650014761952, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -55.5
+      value: 6.9799995
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1236,11 +1236,6 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
   m_PrefabInstance: {fileID: 694327741}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1181851756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4379034752279344733, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
-  m_PrefabInstance: {fileID: 2120298995}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473990437
 GameObject:
@@ -1673,44 +1668,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4379034752279344733, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2120299001}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
 --- !u!20 &2120298996 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4872809499966458812, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
   m_PrefabInstance: {fileID: 2120298995}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2120299001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181851756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea19b80a49044f691000f68da025b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ColorMode: 0
-  FogColor: {r: 0, g: 0, b: 0, a: 1}
-  Mode: 0
-  TransitionMode: 0
-  TileGranularity: 2
-  FogSmoothness: 20
-  WaveSpeed: 10
-  WaveRevealThreshold: 0.5
-  FadeInDuration: 1
-  RevealCorridors: 1
-  RevealCorridorsTiles: 1
-  RevealCorridorsGradually: 1
-  InitialFogTransparency: 0
-  WaveOrigin: {fileID: 0}
-  GeneratedLevelRoot: {fileID: 0}
-  RevealedRooms: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
