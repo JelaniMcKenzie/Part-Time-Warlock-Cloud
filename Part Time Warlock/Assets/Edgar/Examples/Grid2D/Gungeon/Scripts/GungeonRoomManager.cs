@@ -104,7 +104,7 @@ namespace Edgar.Unity.Examples.Gungeon
             EnemiesSpawned = true;
             
             var enemies = new List<GungeonEnemy>();
-            var totalEnemiesCount = Random.Next(4, 8);
+            var totalEnemiesCount = UnityEngine.Random.Range(4, 8);
             
             
 
@@ -126,7 +126,7 @@ namespace Edgar.Unity.Examples.Gungeon
                 }
 
                 // Pick random enemy prefab
-                var enemyPrefab = EnemyPrefabs[Random.Next(0, EnemyPrefabs.Length)];
+                var enemyPrefab = EnemyPrefabs[UnityEngine.Random.Range(0, EnemyPrefabs.Length)];
 
                 // Create an instance of the enemy and set position and parent
                 var enemy = Instantiate(enemyPrefab, roomInstance.RoomTemplateInstance.transform, true);
@@ -160,7 +160,7 @@ namespace Edgar.Unity.Examples.Gungeon
 
         private static float RandomRange(float min, float max)
         {
-            return (float)(Random.NextDouble() * (max - min) + min);
+            return (UnityEngine.Random.Range(0.0f, 1.0f) * (max - min) + min);
         }
 
         #region hide

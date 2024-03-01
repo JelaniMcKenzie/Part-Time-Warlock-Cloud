@@ -1117,14 +1117,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 58728070211366706, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 136
-      objectReference: {fileID: 0}
-    - target: {fileID: 58728070211366706, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 136
-      objectReference: {fileID: 0}
     - target: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1208,14 +1200,6 @@ PrefabInstance:
     - target: {fileID: 474415862004806717, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726494993630859844, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1899
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726494993630859844, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1069
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1624,6 +1608,10 @@ PrefabInstance:
     - target: {fileID: 4379034752279344733, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290735978994268400, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
+      propertyPath: Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8705921587170273582, guid: 8397077bc45e9ab4dba407f5256b7b04, type: 3}
       propertyPath: m_LocalPosition.x

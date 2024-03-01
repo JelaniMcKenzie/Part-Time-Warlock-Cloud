@@ -18,7 +18,9 @@ namespace Edgar.Unity.Examples.Gungeon
         {
             if (otherCollider.gameObject.tag == "Player")
             {
+                
                 roomManager?.OnRoomEnter(otherCollider.gameObject);
+                
 
                 // Handle Fog of War
                 if (roomInstance.IsCorridor)
