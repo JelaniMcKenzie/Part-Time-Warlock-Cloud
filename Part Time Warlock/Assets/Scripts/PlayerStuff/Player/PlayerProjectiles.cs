@@ -46,7 +46,7 @@ public class PlayerProjectiles : DamageSpell
 
     public IEnumerator WaitForFire()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.025f);
         FireWall();
     }
 }

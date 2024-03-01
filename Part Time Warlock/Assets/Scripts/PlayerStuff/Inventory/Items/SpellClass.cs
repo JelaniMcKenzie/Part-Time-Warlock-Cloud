@@ -43,8 +43,10 @@ public class SpellClass : InventoryPlus.Item
     }
 
     public float projectileSpeed;
+
     public bool isSpreadShot;
     public float spreadShotNum;
+
     public float effectRadius;
     public float statusDuration;
     public float dashSpellDuration;

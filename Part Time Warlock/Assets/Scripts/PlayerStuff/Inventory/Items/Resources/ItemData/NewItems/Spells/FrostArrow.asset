@@ -42,8 +42,9 @@ MonoBehaviour:
   projectileSpeed: 25
   isSpreadShot: 1
   spreadShotNum: 5
+  spreadShotAngle: 15
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
-  screenShakeMag: 0
+  screenShakeIntensity: 0
   screenShakeLength: 0

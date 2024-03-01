@@ -36,12 +36,12 @@ MonoBehaviour:
   uses: 0
   maxUses: 1
   maxCooldown: 6
-  currentCooldown: 0.1858647
+  currentCooldown: 4.068568
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
-  isSpreadShot: 0
-  spreadShotNum: 0
+  isSpreadShot: 1
+  spreadShotNum: 5
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
