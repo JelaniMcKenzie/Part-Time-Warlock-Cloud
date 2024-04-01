@@ -9,6 +9,9 @@ namespace InventoryPlus
         [Header("Refernces")]
         [Min(0)] public int sceneIndex;
         public string playerTag = "Player";
+        public InventorySaver inventorySaver;
+        public GameObject inventoryObj;
+        public Player P;
         
         
         private SaveSystem saveSystem;
@@ -20,6 +23,8 @@ namespace InventoryPlus
         private void Awake()
         {
             saveSystem = this.GetComponent<SaveSystem>();    
+            inventorySaver = FindAnyObjectByType<InventorySaver>();
+            P = FindAnyObjectByType<Player>();
         }
 
 
@@ -27,7 +32,8 @@ namespace InventoryPlus
         {
             if (collision.CompareTag(playerTag))
             {
-                if(saveSystem != null) saveSystem.SaveData();
+                //inventorySaver.UpdateSavedInventory(inventoryObj.GetComponent<Inventory>());
+                if (saveSystem != null) saveSystem.SaveData();
                 SceneManager.LoadScene(sceneIndex);
             }
         }

@@ -8,4 +8,9 @@ public class loadSceneButton : MonoBehaviour
     {
         SceneManager.LoadScene(input);
     }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }

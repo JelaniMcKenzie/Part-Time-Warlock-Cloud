@@ -12,6 +12,7 @@ public class Player : GameEntity
 {
     public GameObject staffTip = null;
     public Inventory inventory;
+    public InventorySaver inventorySaver;
     public ScriptableObject armor;
     [SerializeField] private InputReader inputReader;
 
@@ -23,6 +24,8 @@ public class Player : GameEntity
     [Space(30)]
 
     [Header("bool variables")]
+
+    public bool controlsReversed = false;
 
     public bool canCast = true;
     public string scene;
@@ -66,7 +69,7 @@ public class Player : GameEntity
 
     void Start()
     {
-
+        inventorySaver = FindAnyObjectByType<InventorySaver>();
         rb = GetComponent<Rigidbody2D>();
         canDash = true;
         canHit = true;
@@ -74,6 +77,16 @@ public class Player : GameEntity
         SpriteRenderer s = GetComponent<SpriteRenderer>();
         material = s.material;
 
+
+        inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
+        
+    }
+
+    private void Awake()
+    {
+
+
+        
     }
 
     // Update is called once per frame
@@ -105,6 +118,7 @@ public class Player : GameEntity
 
             
             #region SpellCastingLogic
+
 
             //Use a spell or an item
             if (Input.GetMouseButtonDown(0) && canCast == true)
@@ -194,11 +208,23 @@ public class Player : GameEntity
 
     private void Movement()
     {
-        moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y = Input.GetAxisRaw("Vertical");
 
-        moveInput.Normalize();
-        rb.velocity = moveInput * moveSpeed;
+        if (controlsReversed == true)
+        {
+            moveInput.x = Input.GetAxisRaw("Horizontal") * -1f;
+            moveInput.y = Input.GetAxisRaw("Vertical") * -1f;
+
+            moveInput.Normalize();
+            rb.velocity = moveInput * moveSpeed;
+        }
+        else
+        {
+            moveInput.x = Input.GetAxisRaw("Horizontal");
+            moveInput.y = Input.GetAxisRaw("Vertical");
+
+            moveInput.Normalize();
+            rb.velocity = moveInput * moveSpeed;
+        }
 
     }
 

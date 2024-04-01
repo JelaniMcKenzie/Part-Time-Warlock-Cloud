@@ -91,25 +91,29 @@ namespace InventoryPlus
             {
                 if (playAudioOnSelection) selectionAudio.Play();
                 if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), true);
-                UISlot currentUISlot = currentSelectedObj.GetComponent<UISlot>();
-                Storage s = currentUISlot.GetSlotOwner();
 
-                if (inventory.inChestRange == true)
+                if (inventoryOn)
                 {
-                    if (s != null)
-                    {
-                        chestObjName.UpdateText(null);
-                        chestObjName.gameObject.SetActive(false);
-                    }
+                    UISlot currentUISlot = currentSelectedObj.GetComponent<UISlot>();
+                    Storage s = currentUISlot.GetSlotOwner();
 
-                    ItemSlot selectedSlot = s.GetItemSlot(s.GetItemIndex(currentUISlot));
-
-                    if (selectedSlot != null)
+                    if (inventory.inChestRange == true)
                     {
-                        chestObjName.gameObject.SetActive(true);
-                        chestObjName.UpdateText(selectedSlot.GetItemType().itemName);
+                        if (s != null)
+                        {
+                            chestObjName.UpdateText(null);
+                            chestObjName.gameObject.SetActive(false);
+                        }
+
+                        ItemSlot selectedSlot = s.GetItemSlot(s.GetItemIndex(currentUISlot));
+
+                        if (selectedSlot != null)
+                        {
+                            chestObjName.gameObject.SetActive(true);
+                            chestObjName.UpdateText(selectedSlot.GetItemType().itemName);
+                        }
                     }
-                }
+                }    
             }
         }
 

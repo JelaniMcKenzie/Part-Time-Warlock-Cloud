@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        activeScene = SceneManager.GetActiveScene();
         timerActive = true;
         gameManager = FindAnyObjectByType<GameManager>();
         P = FindAnyObjectByType<Player>();
@@ -43,11 +44,12 @@ public class UIManager : MonoBehaviour
 
         if (activeScene.name == "Apartment")
         {
-            CoinText.gameObject.SetActive(false);
+            //CoinText.gameObject.SetActive(false);
             TimerText.gameObject.SetActive(false);
+            timerActive = false;
             RentGoalText.gameObject.SetActive(false);
 
-            bag.gameObject.SetActive(false);
+            //bag.gameObject.SetActive(false);
 
             minimap.SetActive(false);
             miniMapHead.SetActive(false);

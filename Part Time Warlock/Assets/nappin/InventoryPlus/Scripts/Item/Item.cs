@@ -12,6 +12,7 @@ namespace InventoryPlus
         [SerializeField] public string itemName;
         [SerializeField] public string itemID;
         [SerializeField] public string itemCategory;
+        [SerializeField] public int price;
 
         [SerializeField] public bool isStackable;
         [SerializeField] public int stackSize;
