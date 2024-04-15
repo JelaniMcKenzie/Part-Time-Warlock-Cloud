@@ -88,7 +88,7 @@ public class Slime : GameEntity
             Vector3 direction = (P.transform.position - transform.position).normalized;
 
             // Move the enemy towards the player
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            transform.position += moveSpeed * Time.deltaTime * direction;
 
         }
     }

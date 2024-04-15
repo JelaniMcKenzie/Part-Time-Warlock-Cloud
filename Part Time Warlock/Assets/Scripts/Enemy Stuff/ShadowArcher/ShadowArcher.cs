@@ -2,172 +2,204 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadowArcher : MonoBehaviour
+public class ShadowArcher : GameEntity
 {
-    public GameObject Arrow = null;
-    public static GameObject[] ShadowPosition;
-    public GameObject Bow = null;
-    public Player P = null;
-    public ArrowRotate AR = null;
-    public GameObject CoinPrefab = null;
-    public GameObject PotionPrefab = null;
-    [SerializeField] public GameObject ShadowArcherDeath = null;
-    public float timer = 0;
-    int waitingTime = 5;
-    public bool canTP = true;
-    public bool canShoot = false;
-    public float Health = 5;
-    public int burnSeconds = 5;
-    public bool isOnFire = false;
-    [SerializeField] public AudioClip Death = null;
+    /// <summary>
+    /// What this code needs to do:
+    /// Locate the player, draw a line from the bow to the player
+    /// wait an interval of time before firing, then fire
+    /// dissapear
+    /// move in a random direction towards the player
+    /// reappear
+    /// rinse repeat
+    /// 
+    /// If the enemy is a certain distance away from the player, it doesn't move towards it
+    /// </summary>
+    /// 
+    /***
+     * 
+     * TODO: Fix movement logic. it sucks
+     */
+
+    public GameObject arrow;
+    public GameObject bow;
+    public GameObject firePos;
+    public SpriteRenderer bowSprite;
+    public Player player;
+    public float fireInterval = 2f;
+    public float detectionDistance = 10f;
+
+    private bool isFiring;
+    private bool isMovingTowardsPlayer = true;
+
+    public LineRenderer lineRenderer;
+    public float lineUpdateInterval = 0.1f; // Interval for updating the line renderer
+
+    private float lineUpdateTimer = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<Player>();
-        AR = FindAnyObjectByType<ArrowRotate>();
-        
+       canMove = true;
+       player = FindAnyObjectByType<Player>();
+       StartCoroutine(EnemyBehaviorLoop());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        DrawLineToPlayer();
 
-    public void ShadowLogic()
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (Health <= 0f)
+        // Update line renderer position periodically
+        lineUpdateTimer += Time.deltaTime;
+        if (lineUpdateTimer >= lineUpdateInterval)
         {
-            AudioSource.PlayClipAtPoint(Death, transform.position, 4);
-            Debug.Log("dead");
-            EnemyDeath();
+            lineUpdateTimer = 0f;
+            UpdateLineRenderer();
         }
-        if (P.canMove == true)
+
+        if (isFiring == false)
         {
-            //Appear
-            //Shoot
-            timer += Time.deltaTime;
-            if (timer < 2)
-            {
-                GetComponent<SpriteRenderer>().enabled = true;
-                GetComponent<BoxCollider>().enabled = true;
-                Bow.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            else if (timer > 2)
-            {
-                GetComponent<SpriteRenderer>().enabled = false;
-                GetComponent<BoxCollider>().enabled = false;
-                Bow.GetComponent<SpriteRenderer>().enabled = false;
-
-            }
-
-            if (timer > waitingTime)
-            {
-                if (canTP == true)
-                {
-                    Teleport();
-                    Shoot();
-                }
-
-
-                //Bow Looks at player
-                Vector3 dir = P.transform.position - Bow.transform.position;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                Bow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                timer = 0;
-            }
+            isMovingTowardsPlayer = true;
         }
-    }
-    public void Teleport()
-    {
-        ShadowPosition = GameObject.FindGameObjectsWithTag("ShadowPosition");
-        GameObject selectedObject = ShadowPosition[Random.Range(0, ShadowPosition.Length-1)];
-        transform.position = selectedObject.transform.position;
-        Debug.Log("moved");
-        Bow.transform.position = selectedObject.transform.position;
-        
-
-    }
-
-    public void EnemyDeath()
-    {
-        //SM.ShadowArcherCount--;
-        //SM.EnemyCount--;
-        Instantiate(ShadowArcherDeath, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
-    }
-
-    /*public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Bullet"))
+        else
         {
-            Health--;
-            StartCoroutine(DamageFlash());
+            isMovingTowardsPlayer = false;
+        }
+
+        MoveTowardsPlayer();
+
+    }
+
+    public override void Die()
+    {
+        base.Die();
+    }
+
+    IEnumerator EnemyBehaviorLoop()
+    {
+        while (true)
+        {
+            // Locate the player
+            LocatePlayer();
+
+            // Draw a line from the bow to the player
             
-        }
 
-        if (other.CompareTag("Ice"))
+            // Wait for interval before firing
+            yield return new WaitForSeconds(fireInterval);
+
+            // Fire
+            Fire();
+
+            // Disappear
+            //gameObject.SetActive(false);
+            //transform.localScale = Vector2.zero;
+
+            // Move in a random direction towards the player
+
+            // Reappear
+            //gameObject.SetActive(true);
+            //transform.localScale = Vector2.one;
+
+            // Rinse and repeat
+            //yield return null;
+        }
+    }
+
+    void LocatePlayer()
+    {
+        if (player != null)
         {
-            //Destroy GameObject
-            //Instantiate "EnemyFreeze" object that's basically a mannequin with an ice block
-            //Or instantaiate an opaque ice block on top of it that breaks after five seconds
+            // Check the distance between enemy and player
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-            StartCoroutine(Freeze());
-
+            // If the player is within detection distance, move towards it
+            if (distanceToPlayer <= detectionDistance)
+            {
+                isMovingTowardsPlayer = true;
+            }
+            else
+            {
+                isMovingTowardsPlayer = false;
+            }
         }
+    }
 
-        if (other.CompareTag("FireWall"))
+    
+
+    void DrawLineToPlayer()
+    {
+        if (player != null && bow != null)
         {
-            GetComponent<SpriteRenderer>().color = new Color32(255, 218, 0, 255);
-            isOnFire = true;
-            StartCoroutine(Aflame());
-            StartCoroutine(BurnTime());
+            Vector3 directionToPlayer = player.transform.position - transform.position;
+
+            // Flip the sprite based on player position
+            if (directionToPlayer.x < 0)
+            {
+                sprite.flipX = false;
+                bowSprite.flipX = true;
+                bowSprite.flipY = true;
+
+            }
+            else
+            {
+                sprite.flipX = true;
+                bowSprite.flipY = false;
+
+            }
+
+            // Rotate the bow toward the player
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            bow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            // Update Line Renderer
+            UpdateLineRenderer();
         }
     }
 
-    public IEnumerator DamageFlash()
+    void MoveTowardsPlayer()
     {
-        GetComponent<SpriteRenderer>().color = new Color32(255, 10, 100, 255);
-        yield return new WaitForSeconds(0.25f);
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
-    }
-
-    public IEnumerator Aflame()
-    {
-        for (int s = 0; s <= burnSeconds; s++)
+        if (isMovingTowardsPlayer)
         {
-            Health -= 0.5f;
-            yield return new WaitForSeconds(1.5f);
+            // Calculate the direction towards the player
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+
+            // Move the enemy towards the player
+            transform.position += moveSpeed * Time.deltaTime * direction;
         }
     }
 
-    public IEnumerator BurnTime()
+    void UpdateLineRenderer()
     {
-        yield return new WaitForSeconds(burnSeconds);
-        isOnFire = false;
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        if (player != null && bow != null && lineRenderer != null)
+        {
+            // Set positions for Line Renderer (bow position to player position)
+            lineRenderer.SetPosition(0, bow.transform.position);
+            lineRenderer.SetPosition(1, player.transform.position);
+        }
     }
 
-    public IEnumerator Freeze()
+    public void Fire()
     {
-        canTP = false;
-        GetComponent<SpriteRenderer>().color = new Color32(0, 150, 150, 255);
-        yield return new WaitForSeconds(2.5f);
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
-        canTP = true;
-    }*/
-
-    public void Shoot()
-    {
+        isFiring = true;
         //yield return new WaitForSeconds(1f);
-        GameObject a = Instantiate(Arrow, Bow.transform.position, Quaternion.identity);
+        GameObject a = Instantiate(arrow, firePos.transform.position, Quaternion.identity);
         a.transform.parent = null;
         a.transform.localScale = new Vector3(1, 1, 1);
         a.transform.position = transform.position;
-        a.transform.LookAt(P.transform.position);
-        Bow.transform.LookAt(P.transform.position);
+        a.transform.LookAt(player.transform.position);
+        isFiring = false;
+        //bow.transform.LookAt(player.transform.position);
         Destroy(a.gameObject, 2.5f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            TakeDamage(9f);
+        }
     }
 
 
