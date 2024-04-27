@@ -128,14 +128,15 @@ MonoBehaviour:
   isFrozen: 0
   isBurning: 0
   canMove: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  sprite: {fileID: 0}
   EnemyDeathAnim: {fileID: 8248003738387992355, guid: 3efa197a9fc54e142adaf1f9503010f8, type: 3}
   frozen: 0
   UI: {fileID: 0}
   isOnFire: 0
   burnSeconds: 5
-  addAmmo: 0
   rb: {fileID: 0}
+  chaseDistance: 5
+  chaseDuration: 3
   detectJump: {fileID: 7143482120570913184}
   groundSprites:
   - {fileID: 505030462, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
@@ -165,11 +166,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7143482120570913188}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 95
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -182,7 +183,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6601459960757821598
 BoxCollider2D:

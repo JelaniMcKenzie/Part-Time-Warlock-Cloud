@@ -158,7 +158,6 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
 
             foreach (Transform graffitiTransform in graffitiHolder)
             {
-                Debug.Log("AAAAAA");
                 var graffiti = graffitiTransform.gameObject;
                 if (Random.NextDouble() < enemySpawnChance)
                 {

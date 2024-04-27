@@ -149,7 +149,7 @@ namespace Edgar.Unity.Examples.Gungeon
             return collider.OverlapPoint(point);
         }
 
-        private static Vector3 RandomPointInBounds(Bounds bounds, float margin = 0)
+        public static Vector3 RandomPointInBounds(Bounds bounds, float margin = 0)
         {
             return new Vector3(
                 RandomRange(bounds.min.x + margin, bounds.max.x - margin),

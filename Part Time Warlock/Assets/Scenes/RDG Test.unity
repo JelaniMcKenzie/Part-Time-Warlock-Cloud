@@ -780,12 +780,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.27
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.98
+      value: 40.98
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -818,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3915755962498694640, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3915755962498694643, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: inventoryItems.Array.size
@@ -903,6 +911,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8471707155480732831, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8566513909778505748, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -926,6 +938,22 @@ PrefabInstance:
     - target: {fileID: 8566513909778505748, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844539647537492763, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844539647537492763, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844539647537492763, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844539647537492763, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -955,11 +983,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.98
+      value: -45.02
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1229,12 +1257,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4806632187529585452, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_text
-      value: 'Rent: 50'
+    - target: {fileID: 1070418200844345135, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 0dd656fdf2ce2964680aaa83cd798643, type: 3}
+    - target: {fileID: 1070418200844345135, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489923163800411949, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489923163800411949, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489923163800411949, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489923163800411949, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489923163800411949, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489923163800411949, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849684067703850463, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153830232703998007, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5153830232703998007, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+    - {fileID: 1849684067703850463, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
@@ -1320,7 +1386,7 @@ MonoBehaviour:
     InitializeSharedTilemaps: 1
     TilemapLayersStructure: 0
     TilemapLayersHandler: {fileID: 0}
-    TilemapLayersExample: {fileID: 0}
+    TilemapLayersExample: {fileID: 8492665448054464914, guid: f48e8b683202ceb48be98b44d25305f2, type: 3}
     TilemapMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     CopyTilesToSharedTilemaps: 1
     CenterGrid: 1

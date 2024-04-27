@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System;
 using UnityEngine.InputSystem;
 using InventoryPlus;
+using UnityEngine.Tilemaps;
 
 public class Player : GameEntity
 {
@@ -15,6 +16,7 @@ public class Player : GameEntity
     public InventorySaver inventorySaver;
     public ScriptableObject armor;
     [SerializeField] private InputReader inputReader;
+    private Coroutine shrinkingCoroutine;
 
     [Space(30)]
 
@@ -204,6 +206,19 @@ public class Player : GameEntity
             isGamePaused = true;
             canMove = false;
         }
+
+        
+        // Detect if player is over the pit and call the FallPlayer method
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f);
+        if (hit.collider != null && hit.collider.CompareTag("Pit"))
+        {
+            Debug.LogWarning("ON PIT");
+            Pit pit = hit.collider.GetComponent<Pit>();
+            if (pit != null && isDashing == false)
+            {
+                pit.FallPlayer();
+            }
+        }
     }
 
     private void Movement()
@@ -387,6 +402,36 @@ public class Player : GameEntity
         }
     }
 
+    // Function to start the shrinking coroutine
+    public void StartShrinking(float duration)
+    {
+        if (shrinkingCoroutine == null)
+        {
+            shrinkingCoroutine = StartCoroutine(ShrinkPlayer(duration));
+        }
+    }
+
+    // Coroutine to gradually decrease the player's scale
+    private IEnumerator ShrinkPlayer(float duration)
+    {
+        Vector3 initialScale = transform.localScale;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            float scaleFactor = Mathf.Lerp(1f, 0f, timer / duration);
+            transform.localScale = initialScale * scaleFactor;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the player's scale is set to zero
+        transform.localScale = new Vector3 (0.001f, 0.001f, 0.001f);
+
+        // Reset the shrinking coroutine reference
+        shrinkingCoroutine = null;
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -396,6 +441,14 @@ public class Player : GameEntity
                 Damage();
             }
             
+        }
+
+        if (collision.gameObject.tag == "Pit")
+        {
+            if (isDashing == false)
+            {
+                //falling anim, maybe lerp the player's scale down to 0
+            }
         }
 
     }
@@ -417,4 +470,26 @@ public class Player : GameEntity
         }
 
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Pit"))
+        {
+            Debug.LogWarning("ON PIT");
+            Pit pit = collision.GetComponent<Pit>();
+            if (pit != null && isDashing == false)
+            {
+                pit.FallPlayer();
+            }
+        }
+    }
+
+    //Upon exiting the floor collider, you fall in the pit and take damage
+    //record the point at which you fell, and set the vector -1 to place yourself
+    //at the edge of the pit
+    //or just check the tag of the pit on collision
+    //in post processing, set everything on the collideable tilemap to isTrigger
+    //then on trigger, fall in the pit
+    //outline the first tile square of each floor on the "other" layer so shadow archers
+    //can't teleport to them
 }

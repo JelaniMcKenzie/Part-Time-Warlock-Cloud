@@ -41,6 +41,7 @@ public class ArmorController : MonoBehaviour
             }
             else
             {
+                abilityRef = null;
                 if (isEquipped == true) 
                 {
                     isEquipped = false;

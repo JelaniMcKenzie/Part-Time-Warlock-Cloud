@@ -48,7 +48,7 @@ namespace Edgar.Unity.Examples.Gungeon
             isGenerating = true;
 
             // Show loading screen
-            ShowLoadingScreen("Gungeon", $"Stage {Stage}");
+            ShowLoadingScreen("Part-Time Warlock", $"Stage {Stage}");
 
             // Find the generator runner
             var generator = GameObject.Find("Dungeon Generator").GetComponent<DungeonGeneratorGrid2D>();

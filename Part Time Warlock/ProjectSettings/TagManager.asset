@@ -21,6 +21,7 @@ TagManager:
   - NPC
   - LevelMusic
   - NewBorder
+  - Pit
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Minimap
   - Enemy
   - Player
-  - 
+  - Prox
   - 
   - 
   - 

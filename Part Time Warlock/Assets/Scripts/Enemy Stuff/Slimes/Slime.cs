@@ -17,8 +17,12 @@ public class Slime : GameEntity
     private bool hasPlayedSound = false;
     public Rigidbody2D rb;
 
-    
 
+    public float chaseDistance = 1000f; // Set the distance at which the enemy starts chasing
+    public float chaseDuration = 3f; // Set the duration the enemy chases after the player is out of range
+
+    private bool isChasing = false;
+    private float chaseTimer = 0f;
     public SpriteRenderer detectJump;
     public Sprite[] groundSprites;
 
@@ -40,13 +44,40 @@ public class Slime : GameEntity
     // Update is called once per frame
     void Update()
     {
+        float distanceToPlayer = Vector2.Distance(transform.position, P.transform.position);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (canMove == true)
+
+        if (distanceToPlayer <= chaseDistance)
         {
-            EnemyMovement();
+            canMove = true;
+            if (canMove == true)
+            {
+                if (!isChasing)
+                {
+                    isChasing = true;
+                    chaseTimer = chaseDuration;
+                }
+
+                // Call EnemyMovement() only when chasing
+                EnemyMovement();
+            }
+        }
+        else
+        {
+            // Continue chasing for a certain duration even if the player is out of range
+            chaseTimer -= Time.deltaTime;
+
+            if (chaseTimer <= 0f)
+            {
+                // Stop chasing
+                isChasing = false;
+                canMove = false;
+                //Debug.Log("Chase stopped!");
+            }
         }
 
-        else if (canMove == false)
+
+        if (canMove == false)
         {
             rb.velocity = new Vector3(0, 0, 0);
         }
