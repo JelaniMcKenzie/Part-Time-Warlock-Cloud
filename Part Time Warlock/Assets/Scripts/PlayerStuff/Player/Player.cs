@@ -63,7 +63,13 @@ public class Player : GameEntity
     [SerializeField] private GameObject coinSpawnRef;
     public float maxForce = 5f; // Maximum distance for the offset (how far the coins spread on hit)
 
+
+    [Space(15)]
+
+    [Header("Misc")]
     public Material material;
+    DamageVignette damageVignette;
+    CameraShake camShake;
 
 
 
@@ -78,7 +84,8 @@ public class Player : GameEntity
         uiManager = FindAnyObjectByType<UIManager>();
         SpriteRenderer s = GetComponent<SpriteRenderer>();
         material = s.material;
-
+        damageVignette = FindAnyObjectByType<DamageVignette>();
+        camShake = FindAnyObjectByType<CameraShake>();
 
         inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
         
@@ -277,6 +284,8 @@ public class Player : GameEntity
     {
         if (canHit == true)
         {
+            StartCoroutine(damageVignette.TakeDamageEffect());
+            camShake.ShakeCamera(0.5f, 0.5f);
             canMove = true;
             isHit = true;
 

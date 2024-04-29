@@ -132,19 +132,19 @@ public class SpellClass : InventoryPlus.Item
                     
                     cam.ShakeCamera(screenShakeIntensity, screenShakeLength);
 
-                    Debug.Log("Casted " + this.itemName);
+                    //Debug.Log("Casted " + this.itemName);
                     break;
                 }
             case SpellType.aoe:
                 {
                     Instantiate(spellPrefab, P.transform.position, Quaternion.identity);
-                    Debug.Log("Casted aoe spell");
+                    //Debug.Log("Casted aoe spell");
                     break;
                 }
             case SpellType.status:
                 {
                     //activate spell
-                    Debug.Log("Casted status spell");
+                    //Debug.Log("Casted status spell");
                     break;
                 }
             case SpellType.movement:
@@ -156,7 +156,7 @@ public class SpellClass : InventoryPlus.Item
 
                     Instantiate(spellPrefab, P.transform.position, Quaternion.identity);
                     AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position);
-                    Debug.Log("Casted movement spell");
+                    //Debug.Log("Casted movement spell");
                     break;
                 }
         }
