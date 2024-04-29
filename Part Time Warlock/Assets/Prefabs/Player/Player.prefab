@@ -144,7 +144,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BackGroundColor: {r: 0.09758811, g: 0.12177524, b: 0.4056604, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -411,8 +411,8 @@ GameObject:
   - component: {fileID: 7332275743896073916}
   - component: {fileID: 3381386671888446973}
   - component: {fileID: 8844539647537492763}
-  - component: {fileID: 8471707155480732831}
   - component: {fileID: 3192710016589595085}
+  - component: {fileID: 5221184273143960195}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -429,8 +429,8 @@ Transform:
   m_GameObject: {fileID: 5034193063478891061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -938.73, y: -365.28, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8191880595259874696}
@@ -523,7 +523,7 @@ MonoBehaviour:
   scene: Lose
   canHit: 1
   isGamePaused: 0
-  coinNum: 1
+  coinNum: 0
   moveSpeedMultiplied: 0
   activeScene:
     m_Handle: 0
@@ -595,8 +595,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 1
-  m_Mass: 0.57288486
+  m_UseAutoMass: 0
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -611,7 +611,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &8471707155480732831
+--- !u!114 &3192710016589595085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034193063478891061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23a29b92d11b7c42a8682a98dd84e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedArmor: {fileID: 0}
+  abilityRef: {fileID: 0}
+  isEquipped: 0
+  player: {fileID: 0}
+--- !u!61 &5221184273143960195
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -643,7 +659,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024684578, y: 0.03173709}
+  m_Offset: {x: 0.07006681, y: 0.06467688}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -654,24 +670,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8769441, y: 2.6130962}
+  m_Size: {x: 1.0425885, y: 3.0799139}
   m_EdgeRadius: 0
---- !u!114 &3192710016589595085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5034193063478891061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23a29b92d11b7c42a8682a98dd84e6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippedArmor: {fileID: 0}
-  abilityRef: {fileID: 0}
-  isEquipped: 0
-  player: {fileID: 0}
 --- !u!1 &5980240983192464595
 GameObject:
   m_ObjectHideFlags: 0
@@ -5428,7 +5428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: hotbarUISlots.Array.data[0]
@@ -5525,7 +5525,7 @@ PrefabInstance:
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[4].itemType
       value: 
-      objectReference: {fileID: 11400000, guid: 8aef9c7cc10a44c4c9a9bc9b9fd2089b, type: 2}
+      objectReference: {fileID: 11400000, guid: e6506cedbad98db44a3c141274927fc1, type: 2}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.data[5].itemType
       value: 

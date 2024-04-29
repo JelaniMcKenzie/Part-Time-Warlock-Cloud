@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Fire Wall
   itemID: 
   itemCategory: Magic
+  price: 0
   isStackable: 0
   stackSize: 0
   isDurable: 0
@@ -33,10 +34,10 @@ MonoBehaviour:
   spellPrefab: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
   spellElement: 
   damage: 0
-  uses: 0
+  uses: 1
   maxUses: 1
   maxCooldown: 6
-  currentCooldown: 4.068568
+  currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
@@ -45,5 +46,5 @@ MonoBehaviour:
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
-  screenShakeIntensity: 3
-  screenShakeLength: 0.5
+  screenShakeIntensity: 1
+  screenShakeLength: 0.25

@@ -116,10 +116,10 @@ public class Slime : GameEntity
                 StartCoroutine(PlaySoundAndWait());
             }
             // Calculate the direction towards the player
-            Vector3 direction = (P.transform.position - transform.position).normalized;
+            Vector2 direction = (P.transform.position - transform.position).normalized;
 
             // Move the enemy towards the player
-            transform.position += moveSpeed * Time.deltaTime * direction;
+            rb.velocity = moveSpeed * direction;
 
         }
     }
@@ -128,12 +128,6 @@ public class Slime : GameEntity
     {
         hasPlayedSound = false;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -161,22 +155,6 @@ public class Slime : GameEntity
             StartCoroutine(BurnTime());
         }
 
-    }
-
-    public void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerProx") && !this.gameObject.CompareTag("NPC"))
-        {
-            canMove = true;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerProx") && !this.gameObject.CompareTag("NPC"))
-        {
-            StartCoroutine(ChaseTimer());
-        }
     }
 
 

@@ -5,12 +5,12 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public UIManager UI = null;
-    public Player P = null;
+    public Player player = null;
     [SerializeField] public AudioClip CoinSound = null;
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
         if (UI == null)
         {
@@ -26,19 +26,24 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
             AudioSource.PlayClipAtPoint(CoinSound, transform.position, 4);
-            if (tag == "Coin")
+            if (CompareTag("Coin"))
             {
-                P.coinNum++;
+                player.coinNum++;
                 UI.UpdateCoinText();
                 Destroy(this.gameObject);
             }
-            else if (tag == "BigCoin")
+            else if (CompareTag("BigCoin"))
             {
-                AudioSource.PlayClipAtPoint(CoinSound, transform.position, 4);
-                P.coinNum += 5;
+                //AudioSource.PlayClipAtPoint(CoinSound, transform.position, 4);
+                player.coinNum += 5;
                 UI.UpdateCoinText();
                 Destroy(this.gameObject);
             }

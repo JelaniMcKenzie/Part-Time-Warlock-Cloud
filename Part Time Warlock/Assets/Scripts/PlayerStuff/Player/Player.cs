@@ -141,24 +141,27 @@ public class Player : GameEntity
 
             if (Input.GetKeyDown(KeyCode.Space) && canDash)
             {
-                SpellClass dashSpell = (SpellClass) inventory.GetInventorySlot(inventory.hotbarUISlots[3]).GetItemType();
-
-                if (Mathf.Abs(moveInput.x) != 0 || Mathf.Abs(moveInput.y) != 0)
+                StartCoroutine(Dash(moveInput, rb));
+                if (inventory.GetInventorySlot(inventory.hotbarUISlots[3]).GetItemType() != null)
                 {
-                    if (!isDashing && dashSpell.currentCooldown > 0)
+                    SpellClass dashSpell = (SpellClass)inventory.GetInventorySlot(inventory.hotbarUISlots[3]).GetItemType();
+                    if (Mathf.Abs(moveInput.x) != 0 || Mathf.Abs(moveInput.y) != 0)
                     {
-                        StartCoroutine(Dash(moveInput, rb));
-                    }
-                    else
-                    {
-                        if (canCast == true) 
+                        if (!isDashing && dashSpell.currentCooldown > 0)
                         {
-                            inventory.UseItem(inventory.hotbarUISlots[3]);
                             StartCoroutine(Dash(moveInput, rb));
                         }
-                        
+                        else
+                        {
+                            if (canCast == true)
+                            {
+                                inventory.UseItem(inventory.hotbarUISlots[3]);
+                                StartCoroutine(Dash(moveInput, rb));
+                            }
+
+                        }
                     }
-                }
+                }   
             }
             
             if (Input.GetKeyDown(KeyCode.Q))
@@ -338,10 +341,6 @@ public class Player : GameEntity
         canDash = false;
         isDashing = true;
 
-        // Create a layer mask excluding the enemy layer
-        LayerMask originalMask = ~LayerMask.GetMask("Player");
-        LayerMask noEnemyMask = ~LayerMask.GetMask("Enemy");
-
         // Disable collision with the enemy layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
 
@@ -370,7 +369,11 @@ public class Player : GameEntity
     public IEnumerator Invulnerable()
     {
         canHit = false;
+        // Disable collision with the enemy layer
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
         yield return new WaitForSeconds(2f);
+        // Enable collision with the enemy layer
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
         canHit = true;
         isHit = false;
     }

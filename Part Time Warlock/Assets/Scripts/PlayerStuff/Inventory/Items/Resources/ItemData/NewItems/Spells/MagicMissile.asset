@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Magic Missile
   itemID: 
   itemCategory: Magic
+  price: 0
   isStackable: 0
   stackSize: 0
   isDurable: 0
@@ -33,15 +34,17 @@ MonoBehaviour:
   spellPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
   spellElement: 
   damage: 9
-  uses: 4
+  uses: 2
   maxUses: 5
   maxCooldown: 0.25
   currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25
+  isSpreadShot: 0
+  spreadShotNum: 0
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
-  screenShakeMag: 0
-  screenShakeLength: 0
+  screenShakeIntensity: 0.1
+  screenShakeLength: 0.1

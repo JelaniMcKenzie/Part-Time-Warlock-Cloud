@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4952356095469922359}
+  - {fileID: 5139039218091543552}
   - {fileID: 3963500987334564328}
   - {fileID: 8700708457121112707}
   - {fileID: 3796462028295566857}
@@ -435,7 +436,7 @@ MonoBehaviour:
   - {x: -2, y: -6, z: 0}
   m_ShapePathHash: 1352004885
   m_Mesh: {fileID: 0}
-  m_InstanceId: 133284
+  m_InstanceId: 243372
   m_LocalBounds:
     m_Center: {x: -2.5, y: -2.5, z: 0}
     m_Extent: {x: 0.5, y: 3.5, z: 0}
@@ -472,8 +473,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5139039218091543552}
+  m_Children: []
   m_Father: {fileID: 8731308897405831735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &9065524176008753974
@@ -908,7 +908,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3963500987334564328}
+  m_Father: {fileID: 8731308897405831735}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6687010302574411651
 Tilemap:
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   - {x: 1, y: -6, z: 0}
   m_ShapePathHash: 479589653
   m_Mesh: {fileID: 0}
-  m_InstanceId: 133216
+  m_InstanceId: 243304
   m_LocalBounds:
     m_Center: {x: 0.5, y: -2.5, z: 0}
     m_Extent: {x: 0.5, y: 3.5, z: 0}
