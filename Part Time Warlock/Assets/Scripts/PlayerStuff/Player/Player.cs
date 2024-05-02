@@ -58,8 +58,6 @@ public class Player : GameEntity
     [Space(15)]
 
     [Header("Coin Damage Spawn Settings")]
-    private int minCoinSpawn = 1;
-    private int maxCoinSpawn = 5;
     [SerializeField] private GameObject coinSpawnRef;
     public float maxForce = 5f; // Maximum distance for the offset (how far the coins spread on hit)
 
@@ -87,7 +85,7 @@ public class Player : GameEntity
         damageVignette = FindAnyObjectByType<DamageVignette>();
         camShake = FindAnyObjectByType<CameraShake>();
 
-        inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
+        //inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
         
     }
 

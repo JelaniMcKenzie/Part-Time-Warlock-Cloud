@@ -43,8 +43,8 @@ public class ShadowArcher : GameEntity
     public float minDistance = 10f; //change this value to adjust the movement range
 
     private bool canFire = true;
-    private bool canTP = true;
     public Animator animator;
+    public Animator bowAnim;
     private BoxCollider2D boxCollider;
 
     //get component in parent?
@@ -61,6 +61,7 @@ public class ShadowArcher : GameEntity
        roomManager = GetComponentInParent<GungeonRoomManager>();
        animator = GetComponent<Animator>();
        boxCollider = GetComponent<BoxCollider2D>();
+       bowAnim = bow.GetComponent<Animator>();
 
     }
 
@@ -87,10 +88,10 @@ public class ShadowArcher : GameEntity
         base.Die();
     }
 
-    public void Shoot()
+    public IEnumerator Shoot()
     {
-        //yield return new WaitForSeconds(1f);
         bow.GetComponent<Animator>().SetTrigger("Shoot");
+        yield return new WaitForSeconds(1.375f);
         GameObject a = Instantiate(arrow, firePos.transform.position, Quaternion.identity);
         a.transform.parent = null;
         a.transform.localScale = new Vector3(1, 1, 1);
@@ -128,78 +129,46 @@ public class ShadowArcher : GameEntity
     {
         // Prevent firing multiple times simultaneously
         canFire = false;
+        yield return new WaitForSeconds(0.833f);
 
         // Wait for the interval before firing
         yield return new WaitForSeconds(fireInterval);
 
         // Perform firing action
         // For example, instantiate a projectile at bow position and make it move towards the player
-        Shoot();
+        StartCoroutine(Shoot());
 
-        // Start the animation coroutine
-        StartCoroutine(PlayAnimationAndWait());
+        yield return new WaitForSeconds(2f);
+        animator.SetTrigger("Disappear");
+        yield return new WaitForSeconds(0.75f);
+        FindTeleportSpot(transform.position);
 
         canFire = true;
     }
 
-    private IEnumerator PlayAnimationAndWait()
-    {
-        // Play your animation here
-        // For example:
-        //shoot anim here (found with getcomponentinchild(animator)
-        // Wait for the animation duration
-        // Replace the placeholder value (2f) with the actual duration of your animation
-        yield return new WaitForSeconds(1.375f);
-        
-        // After the animation is finished, start teleportation
-        StartCoroutine(TeleportAfterDelay());
-
-        // Set canTP to true if needed
-        canTP = true;
-    }
-
-    private IEnumerator TeleportAfterDelay()
-    {
-        // Wait for a short delay after firing before teleporting
-        boxCollider.enabled = false;
-        sprite.color = Color.clear;
-        animator.SetTrigger("Disappear");
-        yield return new WaitForSeconds(0.75f); // Adjust the delay as needed, match the length of the animation
-
-        // Perform teleportation action
-        // For example, find a teleport spot and move there
-        //animator.SetTrigger("Disappear");
-        FindTeleportSpot(GetRandomTeleportPosition());
-
-        // Set canTP to true if needed
-        canTP = true;
-    }
-
-    public void FindTeleportSpot(Vector3 position)
+    public void FindTeleportSpot(Vector2 position)
     {
         if (roomManager != null)
         {
             // Check if the point is actually inside the collider as there may be holes in the floor, etc.
             // We also want to make sure that there is no other collider in the radius of 1
 
-            if (!IsPointWithinCollider(roomManager.FloorCollider, position) ||
-                    Physics2D.OverlapCircleAll(position, 0.5f).Any(x => !x.isTrigger))
+            //constantly find a new position until its within a valid point
+            do
             {
-                Debug.LogError("Point is within another collider");
-            }
-            else
-            {
-                //set the new shadowarcher position
-                //Make sure the position isn't getting z axis-ed, everything must have a z value of 0
-                //also, make sure to put breakables and other environment objects in the "collideable" layer to make sure this doesn't happen
-                //Debug.LogWarning("archer transform: " + transform.position);
-                transform.position = position;
-                boxCollider.enabled = true;
-                sprite.color = Color.white;
-                animator.SetTrigger("Appear");
-                
-                //Debug.LogWarning("new transform: " + position);
-            }
+                position = GetRandomTeleportPosition();
+
+            } while (!IsPointWithinCollider(roomManager.FloorCollider, position) ||
+                    Physics2D.OverlapCircleAll(position, 0.5f).Any(x => !x.isTrigger));
+            
+            //set the new shadowarcher position
+            //Make sure the position isn't getting z axis-ed, everything must have a z value of 0
+            //also, make sure to put breakables and other environment objects in the "collideable" layer to make sure this doesn't happen
+            //Debug.LogWarning("archer transform: " + transform.position);
+            transform.position = position;
+            boxCollider.enabled = true;
+            sprite.color = Color.white;
+            animator.SetTrigger("Appear");
         }
         else
         {
@@ -207,7 +176,7 @@ public class ShadowArcher : GameEntity
         }
     }
 
-    private Vector3 GetRandomTeleportPosition()
+    private Vector2 GetRandomTeleportPosition()
     {
         return RandomPointInBounds(roomManager.FloorCollider.bounds, 1f);
     }
@@ -230,19 +199,16 @@ public class ShadowArcher : GameEntity
         }
     }
 
-    
-
     private static bool IsPointWithinCollider(Collider2D collider, Vector2 point)
     {
         return collider.OverlapPoint(point);
     }
 
-    public static Vector3 RandomPointInBounds(Bounds bounds, float margin = 0)
+    public static Vector2 RandomPointInBounds(Bounds bounds, float margin = 0)
     {
-        return new Vector3(
+        return new Vector2(
             RandomRange(bounds.min.x + margin, bounds.max.x - margin),
-            RandomRange(bounds.min.y + margin, bounds.max.y - margin),
-            0//(bounds.min.z + margin, bounds.max.z - margin)
+            RandomRange(bounds.min.y + margin, bounds.max.y - margin)
         );
 
     }
@@ -251,6 +217,5 @@ public class ShadowArcher : GameEntity
     {
         return (UnityEngine.Random.Range(0.0f, 1.0f) * (max - min) + min);
     }
-
 
 }
