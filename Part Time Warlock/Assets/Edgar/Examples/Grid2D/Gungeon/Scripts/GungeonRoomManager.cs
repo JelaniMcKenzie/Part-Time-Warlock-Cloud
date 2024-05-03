@@ -101,47 +101,68 @@ namespace Edgar.Unity.Examples.Gungeon
 
         private void SpawnEnemies()
         {
-            EnemiesSpawned = true;
-            
-            var enemies = new List<GungeonEnemy>();
-            var totalEnemiesCount = UnityEngine.Random.Range(4, 8);
-            
-            
 
-            while (enemies.Count < totalEnemiesCount)
+            if (room.Type != GungeonRoomType.Boss)
             {
-                // Find random position inside floor collider bounds
-                var position = RandomPointInBounds(FloorCollider.bounds, 1f);
+                EnemiesSpawned = true;
 
-                // Check if the point is actually inside the collider as there may be holes in the floor, etc.
-                if (!IsPointWithinCollider(FloorCollider, position))
+                var enemies = new List<GungeonEnemy>();
+                var totalEnemiesCount = UnityEngine.Random.Range(4, 8);
+
+
+
+                while (enemies.Count < totalEnemiesCount)
                 {
-                    continue;
+                    // Find random position inside floor collider bounds
+                    var position = RandomPointInBounds(FloorCollider.bounds, 1f);
+
+                    // Check if the point is actually inside the collider as there may be holes in the floor, etc.
+                    if (!IsPointWithinCollider(FloorCollider, position))
+                    {
+                        continue;
+                    }
+
+                    // We want to make sure that there is no other collider in the radius of 1
+                    if (Physics2D.OverlapCircleAll(position, 0.5f).Any(x => !x.isTrigger))
+                    {
+                        continue;
+                    }
+
+                    // Pick random enemy prefab
+                    var enemyPrefab = EnemyPrefabs[UnityEngine.Random.Range(0, EnemyPrefabs.Length)];
+
+                    // Create an instance of the enemy and set position and parent
+                    var enemy = Instantiate(enemyPrefab, roomInstance.RoomTemplateInstance.transform, true);
+                    enemy.transform.position = position;
+
+
+                    // Add the GungeonEnemy component to know when the enemy is killed
+                    var gungeonEnemy = enemy.AddComponent<GungeonEnemy>();
+                    gungeonEnemy.RoomManager = this;
+
+                    enemies.Add(gungeonEnemy);
                 }
 
-                // We want to make sure that there is no other collider in the radius of 1
-                if (Physics2D.OverlapCircleAll(position, 0.5f).Any(x => !x.isTrigger))
-                {
-                    continue;
-                }
-
-                // Pick random enemy prefab
-                var enemyPrefab = EnemyPrefabs[UnityEngine.Random.Range(0, EnemyPrefabs.Length)];
-
-                // Create an instance of the enemy and set position and parent
-                var enemy = Instantiate(enemyPrefab, roomInstance.RoomTemplateInstance.transform, true);
-                enemy.transform.position = position;
-                
-                
-                // Add the GungeonEnemy component to know when the enemy is killed
-                var gungeonEnemy = enemy.AddComponent<GungeonEnemy>();
-                gungeonEnemy.RoomManager = this;
-                
-                enemies.Add(gungeonEnemy);
+                // Store the list of all spawned enemies for tracking purposes
+                RemainingEnemies = enemies;
             }
+            else
+            {
+                var enemies = new List<GungeonEnemy>();
+                var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Boss");
 
-            // Store the list of all spawned enemies for tracking purposes
-            RemainingEnemies = enemies;
+                foreach (Transform bossTransform in enemiesHolder)
+                {
+                    var bossEnemy = bossTransform.gameObject;
+                    var gungeonBoss = bossEnemy.AddComponent<GungeonEnemy>();
+                    gungeonBoss.RoomManager = this;
+                    enemies.Add(gungeonBoss);
+                    bossEnemy.SetActive(true);
+                }
+
+                RemainingEnemies = enemies;
+            }
+            
         }
 
         private static bool IsPointWithinCollider(Collider2D collider, Vector2 point)

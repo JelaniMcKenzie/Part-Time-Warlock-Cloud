@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b5b0d06428d324ea102b6e0f9672a0, type: 3}
   m_Name: PTWInputSetup
   m_EditorClassIdentifier: 
-  LevelGraph: {fileID: 11400000, guid: 23b21a1e545adca4fb874faaa39abe26, type: 2}
-  UseRandomLevelGraph: 1
+  LevelGraph: {fileID: 11400000, guid: b8965a3a9eff6284db3054f4b26747a2, type: 2}
+  UseRandomLevelGraph: 0
   Stage: 1
   Stage1LevelGraphs:
-  - {fileID: 11400000, guid: 23b21a1e545adca4fb874faaa39abe26, type: 2}
+  - {fileID: 11400000, guid: b8965a3a9eff6284db3054f4b26747a2, type: 2}
   Stage2LevelGraphs:
   - {fileID: 11400000, guid: b8965a3a9eff6284db3054f4b26747a2, type: 2}
   RoomTemplates:
@@ -34,11 +34,14 @@ MonoBehaviour:
     - {fileID: 6265851996217485303, guid: 0ab1baa51cee130499a38fa83c5f68e7, type: 3}
     EntranceRoomTemplates:
     - {fileID: 8492665448054464914, guid: 3831dbf7d8cf1d34f84bb60c19622979, type: 3}
-    ExitRoomTemplates: []
-    HubRoomTemplates: []
+    ExitRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 13d6a11fda32f9b419995eb975943c5c, type: 3}
+    HubRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 98e3b68f20b53af4eb889c8827151aa4, type: 3}
     RewardRoomTemplates:
     - {fileID: 8492665448054464914, guid: 22b599706436baa47bc37c96ebfaebbc, type: 3}
-    ShopRoomTemplates: []
+    ShopRoomTemplates:
+    - {fileID: 8492665448054464914, guid: 8cf1a29a68f44804ba0ef21320c5f25c, type: 3}
     SecretRoomTemplates: []
   SecretRoomChance: 0
   SecretRoomDeadEndChance: 0

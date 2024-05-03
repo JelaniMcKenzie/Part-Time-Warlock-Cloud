@@ -25,7 +25,6 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
     {
         //implement post dungeon generation logic here
         MovePlayerToSpawn(level);
-        //HandleEnemies(level);
         EnableGraffiti(level);
         EnableFogOfWar(level);
 
@@ -97,13 +96,13 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
         }
     }
 
-    /*private void HandleEnemies(DungeonGeneratorLevelGrid2D level)
+    private void HandleBosses(DungeonGeneratorLevelGrid2D level)
     {
         foreach (var roomInstance in level.RoomInstances)
         {
             //find the empty game object called "Enemies".
             //Note: the gameobject HAS to be called "Enemies" for this code to work
-            var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Enemies");
+            var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Boss");
 
             // Skip this room if there are no enemies
             if (enemiesHolder == null)
@@ -126,23 +125,16 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
                  * have a random chance code applied to it, so it chooses which enemy
                  * to spawn from that game object. We could accomplish this with something
                  * like an array that contains the gameobjects of all the enemies we want to spawn.
-                 * 
+                 */
                  
                 var enemy = enemyTransform.gameObject;
 
-                // Roll a dice and check whether to spawn this enemy or not
-                // Use the provided Random instance so that the whole generator uses the same seed and the results can be reproduced
-                if (Random.NextDouble() < enemySpawnChance)
-                {
-                    enemy.SetActive(true);
-                }
-                else
-                {
-                    enemy.SetActive(false);
-                }
+                enemy.SetActive(true);
+                //play boss music
+               
             }
         }
-    }*/
+    }
 
     private void EnableGraffiti(DungeonGeneratorLevelGrid2D level)
     {
