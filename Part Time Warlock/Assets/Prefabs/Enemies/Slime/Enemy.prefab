@@ -129,7 +129,7 @@ MonoBehaviour:
   isBurning: 0
   canMove: 0
   sprite: {fileID: 0}
-  EnemyDeathAnim: {fileID: 8248003738387992355, guid: 3efa197a9fc54e142adaf1f9503010f8, type: 3}
+  EnemyDeathAnim: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   frozen: 0
   UI: {fileID: 0}
   isOnFire: 0

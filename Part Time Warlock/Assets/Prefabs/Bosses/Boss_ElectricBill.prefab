@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7013900342052604804}
   - component: {fileID: 5880609111215806915}
   - component: {fileID: 1719266134415406019}
+  - component: {fileID: 2408177650083997115}
   m_Layer: 7
   m_Name: Boss_ElectricBill
   m_TagString: Enemy
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0061745644, y: -0.013088763}
+  m_Offset: {x: -0.009662896, y: -0.013088763}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -160,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6627394, y: 0.9738225}
+  m_Size: {x: 0.6252238, y: 0.9738225}
   m_EdgeRadius: 0
 --- !u!95 &5880609111215806915
 Animator:
@@ -206,6 +207,41 @@ MonoBehaviour:
   canSlam: 1
   isSlamming: 0
   animator: {fileID: 0}
+--- !u!70 &2408177650083997115
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855346239172629517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.31, y: 1}
+  m_Direction: 0
 --- !u!1 &5853969591651223050
 GameObject:
   m_ObjectHideFlags: 0

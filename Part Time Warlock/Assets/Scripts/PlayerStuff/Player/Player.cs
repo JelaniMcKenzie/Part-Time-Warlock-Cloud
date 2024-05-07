@@ -44,7 +44,7 @@ public class Player : GameEntity
 
     public bool isInventoryOpen = false;
     public Rigidbody2D rb;
-    public Vector2 moveInput;
+    public Vector3 moveInput;
 
     [Space(30)]
 
@@ -66,6 +66,7 @@ public class Player : GameEntity
 
     [Header("Misc")]
     public Material material;
+    public Vector3 pitRespawnPos;
     DamageVignette damageVignette;
     CameraShake camShake;
 
@@ -213,19 +214,6 @@ public class Player : GameEntity
         {
             isGamePaused = true;
             canMove = false;
-        }
-
-        
-        // Detect if player is over the pit and call the FallPlayer method
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f);
-        if (hit.collider != null && hit.collider.CompareTag("Pit"))
-        {
-            Debug.LogWarning("ON PIT");
-            Pit pit = hit.collider.GetComponent<Pit>();
-            if (pit != null && isDashing == false)
-            {
-                pit.FallPlayer();
-            }
         }
     }
 
@@ -377,10 +365,10 @@ public class Player : GameEntity
     {
         canHit = false;
         // Disable collision with the enemy layer
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
         yield return new WaitForSeconds(2f);
         // Enable collision with the enemy layer
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
         canHit = true;
         isHit = false;
     }
@@ -436,34 +424,34 @@ public class Player : GameEntity
         }
 
         // Ensure the player's scale is set to zero
-        transform.localScale = new Vector3 (0.001f, 0.001f, 0.001f);
+        transform.localScale = new Vector3 (0.001f, 0.001f, 0f);
 
         // Reset the shrinking coroutine reference
         shrinkingCoroutine = null;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Pit"))
+        {
+            //Debug.LogWarning("ON PIT");
+            Pit pit = collision.gameObject.GetComponent<Pit>();
+            if (pit != null && isDashing == false)
+            {
+                pit.FallPlayer(this);
+            }
+        }
+
         if (collision.gameObject.tag == "Enemy")
         {
             if (canHit == true)
             {
                 Damage();
             }
-            
         }
-
-        if (collision.gameObject.tag == "Pit")
-        {
-            if (isDashing == false)
-            {
-                //falling anim, maybe lerp the player's scale down to 0
-            }
-        }
-
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
@@ -479,17 +467,13 @@ public class Player : GameEntity
             }
         }
 
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Pit"))
+        if (collision.gameObject.CompareTag("Pit"))
         {
-            Debug.LogWarning("ON PIT");
-            Pit pit = collision.GetComponent<Pit>();
+            //Debug.LogWarning("ON PIT");
+            Pit pit = collision.gameObject.GetComponent<Pit>();
             if (pit != null && isDashing == false)
             {
-                pit.FallPlayer();
+                pit.FallPlayer(this);
             }
         }
     }

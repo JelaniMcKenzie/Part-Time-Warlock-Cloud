@@ -899,8 +899,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 5221184273143960195, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5973587421682468415, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
@@ -1330,7 +1332,6 @@ MonoBehaviour:
   enemySpawnChance: 0.85
   Enemies:
   - {fileID: 7143482120570913188, guid: f4fc1e338ca3ab54bbf646d46c751e33, type: 3}
-  - {fileID: 275988022219552323, guid: 9eef0838c22b1194cb2f109a409c3098, type: 3}
 --- !u!1 &1498134610
 GameObject:
   m_ObjectHideFlags: 0
