@@ -129,11 +129,12 @@ MonoBehaviour:
   isBurning: 0
   canMove: 0
   sprite: {fileID: 0}
+  burnSeconds: 5
+  freezeSeconds: 0
   EnemyDeathAnim: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   frozen: 0
   UI: {fileID: 0}
   isOnFire: 0
-  burnSeconds: 5
   rb: {fileID: 0}
   chaseDistance: 5
   chaseDuration: 3
@@ -146,6 +147,8 @@ MonoBehaviour:
   - {fileID: 149083604, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
   - {fileID: -1773569314, guid: f4abaaf9a0cb1444980fa22463d17719, type: 3}
   slimeMove: {fileID: 8300000, guid: ea75b498c3152e94698a2780934728f2, type: 3}
+  CoinPrefab: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
+  BigCoinPrefab: {fileID: 3322469984456626636, guid: 3908cf7c55f16b34c8ee9cbf410d87c9, type: 3}
 --- !u!114 &4468231041324695757
 MonoBehaviour:
   m_ObjectHideFlags: 0

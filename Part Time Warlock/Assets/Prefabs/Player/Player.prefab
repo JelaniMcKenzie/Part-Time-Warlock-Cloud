@@ -411,9 +411,10 @@ GameObject:
   - component: {fileID: 7332275743896073916}
   - component: {fileID: 3381386671888446973}
   - component: {fileID: 8844539647537492763}
-  - component: {fileID: 3192710016589595085}
   - component: {fileID: 1663805099940891051}
   - component: {fileID: 3743820912001627502}
+  - component: {fileID: 3192710016589595085}
+  - component: {fileID: 5943348743049379371}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -514,11 +515,15 @@ MonoBehaviour:
   isBurning: 0
   canMove: 1
   sprite: {fileID: 0}
+  EnemyDeathAnim: {fileID: 0}
+  burnSeconds: 5
+  freezeSeconds: 0
   staffTip: {fileID: 8436134285611601207}
   inventory: {fileID: 3915755962498694643}
   inventorySaver: {fileID: 0}
   armor: {fileID: 0}
   inputReader: {fileID: 6255309858697955974}
+  uiManager: {fileID: 0}
   controlsReversed: 0
   canCast: 1
   scene: Lose
@@ -532,8 +537,8 @@ MonoBehaviour:
   inventoryObj: {fileID: 3915755962498694640}
   isInventoryOpen: 0
   rb: {fileID: 8844539647537492763}
-  moveInput: {x: 0, y: 0}
-  dashMoveSpeed: 25
+  moveInput: {x: 0, y: 0, z: 0}
+  dashMoveSpeed: 15
   dashDuration: 0.25
   dashCooldown: 0.5
   canDash: 1
@@ -541,6 +546,7 @@ MonoBehaviour:
   coinSpawnRef: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
   maxForce: 1
   material: {fileID: 0}
+  pitRespawnPos: {x: 0, y: 0, z: 0}
 --- !u!95 &7332275743896073916
 Animator:
   serializedVersion: 5
@@ -612,22 +618,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3192710016589595085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5034193063478891061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23a29b92d11b7c42a8682a98dd84e6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippedArmor: {fileID: 0}
-  abilityRef: {fileID: 0}
-  isEquipped: 0
-  player: {fileID: 0}
 --- !u!70 &1663805099940891051
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -661,7 +651,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.09, y: 0}
-  m_Size: {x: 1.06, y: 2.75}
+  m_Size: {x: 2.04, y: 3.5}
   m_Direction: 0
 --- !u!61 &3743820912001627502
 BoxCollider2D:
@@ -708,6 +698,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0851911, y: 3.1302319}
   m_EdgeRadius: 0
+--- !u!114 &3192710016589595085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034193063478891061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23a29b92d11b7c42a8682a98dd84e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedArmor: {fileID: 0}
+  abilityRef: {fileID: 0}
+  isEquipped: 0
+  player: {fileID: 0}
+--- !u!114 &5943348743049379371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034193063478891061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec624df28a9a6846b83617c601ad4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passiveItem: {fileID: 0}
+  passiveAbilityRef: {fileID: 0}
+  isActiveInScene: 0
+  player: {fileID: 0}
+  instantiatedAbilityRef: {fileID: 0}
 --- !u!1 &5980240983192464595
 GameObject:
   m_ObjectHideFlags: 0
@@ -5464,7 +5487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: inventoryItems.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
       propertyPath: hotbarUISlots.Array.data[0]

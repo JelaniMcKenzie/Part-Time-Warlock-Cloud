@@ -4,7 +4,7 @@ namespace Edgar.Unity.Examples.Gungeon
 {
     public class GungeonCurrentRoomHandler : MonoBehaviour
     {
-        private GungeonRoomManager roomManager;
+        public GungeonRoomManager roomManager;
         private RoomInstanceGrid2D roomInstance;
 
         public void Start()

@@ -29,7 +29,7 @@ public class ArmorController : MonoBehaviour
             {
                 ArmorClass a = (ArmorClass)player.inventory.GetInventorySlot(player.inventory.hotbarUISlots[5]).GetItemType();
                 equippedArmor = a;
-                if (abilityRef != null)
+                if (abilityRef == null)
                 {
                 abilityRef = equippedArmor.cloakBuffDebuff;
                 isEquipped = true;

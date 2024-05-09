@@ -11,7 +11,7 @@ namespace Edgar.Unity.Examples.Gungeon
     public class GungeonGameManager : GameManagerBase<GungeonGameManager>
     {
         // Current active room
-        private RoomInstanceGrid2D currentRoom;
+        public RoomInstanceGrid2D currentRoom;
 
         // The room that will be active after the player leaves the current room
         private RoomInstanceGrid2D nextCurrentRoom;
@@ -90,7 +90,7 @@ namespace Edgar.Unity.Examples.Gungeon
             generatorCoroutine.ThrowIfNotSuccessful();
 
             generatorElapsedMilliseconds = stopwatch.ElapsedMilliseconds;
-            RefreshLevelInfo();
+            //RefreshLevelInfo();
             HideLoadingScreen();
         }
 

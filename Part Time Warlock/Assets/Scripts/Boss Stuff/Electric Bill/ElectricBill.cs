@@ -9,8 +9,15 @@ public class ElectricBill : GameEntity
     public bool isFlipped = false;
     public bool canSlam = true;
     public bool isSlamming = false;
+    public bool isSpawningBalls = false;
 
     public Animator animator;
+    private UIManager uiManager;
+    public AudioSource audioSource;
+    public TriggerBossMusic tbm;
+
+    public GameObject BigCoin;
+    [SerializeField] public GameObject EnemyDeathAnim;
 
     CameraShake cam;
 
@@ -20,6 +27,14 @@ public class ElectricBill : GameEntity
         player = FindAnyObjectByType<Player>();
         cam = FindAnyObjectByType<CameraShake>();
         animator = GetComponent<Animator>();
+        uiManager = FindAnyObjectByType(typeof(UIManager)) as UIManager;
+
+        uiManager.bossHealthBar.maxValue = health;
+        uiManager.bossHealthBar.value = health;
+        sprite = GetComponent<SpriteRenderer>();
+        tbm = FindAnyObjectByType<TriggerBossMusic>();
+        audioSource = GameObject.Find("AudioSource").GetComponent<AudioSource>();
+
 
         // Start the coroutine once
         StartCoroutine(SlamChanceTimer());
@@ -29,6 +44,7 @@ public class ElectricBill : GameEntity
     void Update()
     {
         // No need to continuously check in Update
+        
     }
 
     public void LookAtPlayer()
@@ -86,7 +102,6 @@ public class ElectricBill : GameEntity
         //wait for seconds of slam animation
         yield return null;
         //spawn thunderbolts
-        Debug.Log("THUNDERRRRR");
         isSlamming = false;
         canSlam = true;
         yield return new WaitForSeconds(1f);
@@ -100,8 +115,38 @@ public class ElectricBill : GameEntity
 
     public override void Die()
     {
+        uiManager.bossHealthBar.gameObject.SetActive(false);
+        audioSource.clip = tbm.defaultMusic;
+        audioSource.loop = true;
+        audioSource.Play();
+
+        Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
+        for (int i = 0; i < 100; i++)
+        {
+            Instantiate(BigCoin, transform.position, Quaternion.identity);
+        }
         base.Die();
     }
 
-    
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerProjectiles>() != null)
+        {
+            TakeDamage(collision.GetComponent<PlayerProjectiles>().damage);
+            uiManager.bossHealthBar.value = health;
+            Debug.LogWarning(health);
+
+        }
+        else
+        {
+            Debug.LogWarning("Damage is Null!");
+        }
+
+        if (collision.CompareTag("FireWall"))
+        {
+            base.Burn();
+        }
+    }
+
+
 }

@@ -176,7 +176,7 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
             {
                 var spawnPosition = roomTemplateInstance.transform.Find("SpawnPosition");
                 var player = GameObject.FindWithTag("Player");
-                var portal = GameObject.FindWithTag("Portal");
+                
 
                 if (player != null)
                 {
@@ -187,12 +187,19 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
                     Debug.LogError("Could not find Player");
                 }
                 
+                
+                
+            }
+
+            if (room.GetDisplayName() == "Exit")
+            {
+                var spawnPosition = roomTemplateInstance.transform.Find("SpawnPosition");
+                var portal = GameObject.FindWithTag("Portal");
                 if (portal != null)
                 {
                     portal.transform.position = spawnPosition.position;
                     portal.SetActive(false);
                 }
-                
             }
         }
     }

@@ -781,7 +781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49
+      value: 45.27
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -851,6 +851,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7013096632989420080, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: coinNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013096632989420080, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: dashMoveSpeed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7103690517140072971, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -899,10 +907,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5221184273143960195, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 5973587421682468415, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
@@ -919,13 +925,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5471274726712569752, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1960617918, guid: 555c0337d6079cb42b09c461751fc71e, type: 3}
     - target: {fileID: 5957923650014761952, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
     - target: {fileID: 5957923650014761952, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 22.449066
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1112,9 +1126,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 474415862004806713, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: timer
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 474415862004806713, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
       propertyPath: miniMapHead
       value: 
       objectReference: {fileID: 1844624225}
+    - target: {fileID: 474415862004806713, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+      propertyPath: RentGoalText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1199,20 +1221,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2684202386042223021, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3318697474047605615, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 3318697474047605615, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_FontData.m_RichText
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2949043736356961295, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
@@ -1332,6 +1343,7 @@ MonoBehaviour:
   enemySpawnChance: 0.85
   Enemies:
   - {fileID: 7143482120570913188, guid: f4fc1e338ca3ab54bbf646d46c751e33, type: 3}
+  - {fileID: 275988022219552323, guid: 9eef0838c22b1194cb2f109a409c3098, type: 3}
 --- !u!1 &1498134610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,10 +1386,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f2e15188bbcbcd04cae68e0f7e870e83, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9efdd4f0cae61e847b2667617cfdee33, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.191
-  m_Pitch: 1.02
+  m_Volume: 1
+  m_Pitch: 1.28
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1756,7 +1768,7 @@ MonoBehaviour:
   pausedObjects:
   - {fileID: 694327743}
   - {fileID: 694327742}
-  rentGoal: 50
+  rentGoal: 100
 --- !u!114 &2043926004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,6 +1782,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Canvas: {fileID: 694327745}
+  currentRoom:
+    room: {fileID: 0}
+    isCorridor: 0
+    connection: {fileID: 0}
+    roomTemplatePrefab: {fileID: 0}
+    roomTemplateInstance: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    doors: []
+    doorLines: []
+    outlinePolygon:
+      points: []
   Stage: 1
   CurrentLevelGraph: {fileID: 0}
 --- !u!1001 &2120298995

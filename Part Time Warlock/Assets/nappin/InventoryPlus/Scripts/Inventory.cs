@@ -38,6 +38,8 @@ namespace InventoryPlus
 
 
         private Player p;
+        private PassiveItemController passiveItemController;
+        private GameObject instantiatedPassiveRef;
 
 
         /**/
@@ -54,6 +56,8 @@ namespace InventoryPlus
 
                 AddStartingInventory();
                 p = FindAnyObjectByType<Player>();
+                
+                
             }
         }
 
@@ -139,6 +143,12 @@ namespace InventoryPlus
             {
                 if (!_itemType.isStackable) AddNotStackable(_itemType, _itemNum, _itemDurability, _forceDisableNotification);
                 else AddStackable(_itemType, _itemNum, _forceDisableNotification);
+
+                if (_itemType.itemCategory == "Passive")
+                {
+                    PassiveItemClass pItem = (PassiveItemClass)_itemType;
+                    instantiatedPassiveRef = Instantiate(pItem.passiveItemRef);
+                }
             }
         }
 
@@ -292,6 +302,17 @@ namespace InventoryPlus
         {
             if (!_itemType.isStackable) RemoveNotStackable(_itemType, _itemNum);
             else RemoveStackable(_itemType, _itemNum);
+
+            if (_itemType.itemCategory == "Passive")
+            {
+                PassiveItemClass pItem = (PassiveItemClass)_itemType;
+                if (instantiatedPassiveRef != null)
+                {
+                    Destroy(pItem.passiveItemRef);
+                    instantiatedPassiveRef = null;
+                }
+                
+            }
         }
 
 

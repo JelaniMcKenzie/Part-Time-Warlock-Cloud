@@ -16,6 +16,12 @@ public class IdiotSandwichLogic : MonoBehaviour
     void Update()
     {
         player = FindAnyObjectByType<Player>();
+        StartCoroutine(ReverseControls());
+    }
+
+    private IEnumerator ReverseControls()
+    {
         player.controlsReversed = true;
+        yield return new WaitForSeconds(20f);
     }
 }

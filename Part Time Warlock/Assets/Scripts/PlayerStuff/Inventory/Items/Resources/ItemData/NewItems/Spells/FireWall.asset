@@ -24,7 +24,7 @@ MonoBehaviour:
   usageCost: 0
   hasDamagedSprites: 0
   damagedSprites: []
-  itemAttribute: 
+  itemAttribute: Fire
   itemDescription: A defensive, fire type spell that creates a wall of flames
   itemRarity: 0
   useAudio: {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}

@@ -49,7 +49,12 @@ public class ShadowArcher : GameEntity
 
     //get component in parent?
     GungeonRoomManager roomManager;
-    
+
+    [SerializeField] public GameObject EnemyDeathAnim;
+
+    [SerializeField] public GameObject CoinPrefab = null;
+    [SerializeField] public GameObject BigCoinPrefab = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,23 +73,42 @@ public class ShadowArcher : GameEntity
     // Update is called once per frame
     void Update()
     {
-        AimAtPlayer();
+        if (canMove)
+        {
+            AimAtPlayer();
+        }
+        
         // Draw a line from the bow to the player
         Debug.DrawLine(bow.transform.position, player.transform.position, Color.red);
 
-        // Check if it's time to fire
-        if (canFire)
-        {
-            StartCoroutine(Fire());
-            //get the specfic room with the gungeon room manager rather than the whole map
-            //alternatively, set the marigin to a specific radius from the player
-            
-        }
+            // Check if it's time to fire
+            if (canFire && canMove)
+            {
+                StartCoroutine(Fire());
+                //get the specfic room with the gungeon room manager rather than the whole map
+                //alternatively, set the marigin to a specific radius from the player
+
+            }
+        
+        
         animator.GetCurrentAnimatorClipInfo(0);
     }
 
     public override void Die()
     {
+        Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
+        int spawnCoin = UnityEngine.Random.Range(0, 2);
+        int spawnBigCoin = UnityEngine.Random.Range(0, 6);
+        if (spawnCoin == 1)
+        {
+            GameObject K = Instantiate(CoinPrefab, transform.position, Quaternion.identity);
+            K.transform.parent = null;
+        }
+
+        if (spawnBigCoin == 2)
+        {
+            Instantiate(BigCoinPrefab, transform.position, Quaternion.identity);
+        }
         base.Die();
     }
 
@@ -193,10 +217,31 @@ public class ShadowArcher : GameEntity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        if (collision.TryGetComponent<PlayerProjectiles>(out var damageSpell))
         {
-            TakeDamage(9f);
+            TakeDamage(damageSpell.damage);
         }
+
+        if (collision.CompareTag("FireWall"))
+        {
+            base.Burn();
+        }
+
+        if (collision.CompareTag("Ice"))
+        {
+            StartCoroutine(FreezeTime());
+        } 
+    }
+
+    public IEnumerator FreezeTime()
+    {
+        moveSpeed = 0f;
+        isFrozen = true;
+        sprite.color = new Color32(0, 210, 210, 80);
+        yield return new WaitForSeconds(2.5f);
+        sprite.color = new Color32(255, 255, 255, 255);
+        moveSpeed = 4f;
+        isFrozen = false;
     }
 
     private static bool IsPointWithinCollider(Collider2D collider, Vector2 point)

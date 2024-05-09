@@ -56,11 +56,14 @@ public class GameManager : MonoBehaviour
         }
         
 
-        
-        if (UI.timer == 0)
+        if (UI  != null)
         {
-            SceneManager.LoadScene("Lose");
+            if (UI.timer == 0)
+            {
+                //SceneManager.LoadScene("Lose");
+            }
         }
+        
 
 
 

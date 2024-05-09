@@ -25,7 +25,7 @@ MonoBehaviour:
   hasDamagedSprites: 0
   damagedSprites: []
   itemAttribute: 
-  itemDescription: reverse controls
+  itemDescription: reverses the player's controls. If you eat tihs, you are an idiot
   itemRarity: 0
   useAudio: {fileID: 0}
   dropAudio: {fileID: 0}

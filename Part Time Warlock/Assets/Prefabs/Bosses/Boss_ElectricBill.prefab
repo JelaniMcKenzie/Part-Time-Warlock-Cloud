@@ -150,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009662896, y: -0.013088763}
+  m_Offset: {x: -0.0018402264, y: -0.013088763}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -161,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6252238, y: 0.9738225}
+  m_Size: {x: 0.318807, y: 0.9738225}
   m_EdgeRadius: 0
 --- !u!95 &5880609111215806915
 Animator:
@@ -196,17 +196,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a272955653ca0d4c8558c34fc82886e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 2000
   moveSpeed: 5
   isFrozen: 0
   isBurning: 0
   canMove: 1
   sprite: {fileID: 0}
+  EnemyDeathAnim: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
+  burnSeconds: 5
+  freezeSeconds: 0
   player: {fileID: 0}
   isFlipped: 0
   canSlam: 1
   isSlamming: 0
+  isSpawningBalls: 0
   animator: {fileID: 0}
+  audioSource: {fileID: 0}
+  tbm: {fileID: 0}
+  BigCoin: {fileID: 3322469984456626636, guid: 3908cf7c55f16b34c8ee9cbf410d87c9, type: 3}
 --- !u!70 &2408177650083997115
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -240,7 +247,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.31, y: 1}
+  m_Size: {x: 0.68, y: 1}
   m_Direction: 0
 --- !u!1 &5853969591651223050
 GameObject:

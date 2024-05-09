@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c4f3846ebdb042aeb162a3b1fe870, type: 3}
+  m_Name: The Coolest
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: da49b25b248693642b7ac12165925f59, type: 3}
+  itemName: The Coolest
+  itemID: 
+  itemCategory: Passive
+  price: 0
+  isStackable: 0
+  stackSize: 0
+  isDurable: 0
+  maxDurability: 0
+  usageCost: 0
+  hasDamagedSprites: 0
+  damagedSprites: []
+  itemAttribute: 
+  itemDescription: Lowers the cooldown of all active Ice Spells
+  itemRarity: 0
+  useAudio: {fileID: 0}
+  dropAudio: {fileID: 0}
+  equipAudio: {fileID: 0}
+  passiveItemRef: {fileID: 5432542830142821750, guid: 3b81862a22cc5b546b2a13d10295ccc2, type: 3}

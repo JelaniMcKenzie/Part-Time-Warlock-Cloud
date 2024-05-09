@@ -21,7 +21,7 @@ public class Player : GameEntity
     [Space(30)]
 
     //--------------------Script comm fields--------------------
-    private UIManager uiManager = null;
+    public UIManager uiManager = null;
 
     [Space(30)]
 
@@ -294,15 +294,15 @@ public class Player : GameEntity
             else
             {
                 uiManager.timer -= 30;
-                uiManager.CoinText.text = ": 0";
+                uiManager.CoinText.text = ": 0 / 100";
             }
 
             StartCoroutine(Invulnerable());
 
             if (uiManager.timer <= 0)
             {
-                Destroy(this.gameObject);
-                SceneManager.LoadScene(scene);
+                StartCoroutine(TimeToDie());
+                
             }
         }
     }
@@ -378,6 +378,15 @@ public class Player : GameEntity
         GetComponent<SpriteRenderer>().color = new Color32 (255, 255, 255, 0);
         yield return new WaitForSeconds(0.25f);
         GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+    }
+
+    public IEnumerator TimeToDie()
+    {
+        Playeranimations pA = GetComponent<Playeranimations>();
+        pA.anim.Play("Death");
+        yield return new WaitForSeconds(1.2f);
+        Destroy(this.gameObject);
+        SceneManager.LoadScene(scene);
     }
 
     public void FlashTimer()

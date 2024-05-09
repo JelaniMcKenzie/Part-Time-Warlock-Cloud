@@ -24,7 +24,7 @@ MonoBehaviour:
   usageCost: 0
   hasDamagedSprites: 0
   damagedSprites: []
-  itemAttribute: 
+  itemAttribute: Arcane
   itemDescription: Every novice wizard's basic spell. Deals damage
   itemRarity: 0
   useAudio: {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
@@ -34,7 +34,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
   spellElement: 
   damage: 9
-  uses: 2
+  uses: 4
   maxUses: 5
   maxCooldown: 0.25
   currentCooldown: 0

@@ -6,14 +6,13 @@ using UnityEngine.ProBuilder;
 public class Slime : GameEntity
 {
     private Player P = null;
-    [SerializeField] public GameObject EnemyDeathAnim = null;
 
+    [SerializeField] public GameObject EnemyDeathAnim;
 
     //public Animator Anim = null;
     public bool frozen = false;
     public UIManager UI = null;
     public bool isOnFire = false;
-    public int burnSeconds = 5;
     private bool hasPlayedSound = false;
     public Rigidbody2D rb;
 
@@ -27,6 +26,9 @@ public class Slime : GameEntity
     public Sprite[] groundSprites;
 
     [SerializeField] private AudioClip slimeMove;
+
+    [SerializeField] public GameObject CoinPrefab = null;
+    [SerializeField] public GameObject BigCoinPrefab = null;
 
     // Start is called before the first frame update
     void Start()
@@ -80,11 +82,6 @@ public class Slime : GameEntity
         if (canMove == false)
         {
             rb.velocity = new Vector3(0, 0, 0);
-        }
-
-        if (isOnFire == true)
-        {
-            sprite.color = new Color32(222, 70, 97, 255);
         }
 
         if (health <= 0f)
@@ -144,15 +141,13 @@ public class Slime : GameEntity
             //Instantiate "EnemyFreeze" object that's basically a mannequin with an ice block
             //Or instantaiate an opaque ice block on top of it that breaks after five seconds
 
-            StartCoroutine(Freeze());
+            StartCoroutine(FreezeTime());
 
         }
 
         if (other.CompareTag("FireWall"))
         {
-            isOnFire = true;
-            StartCoroutine(Aflame());
-            StartCoroutine(BurnTime());
+            base.Burn();
         }
 
     }
@@ -179,10 +174,23 @@ public class Slime : GameEntity
     public override void Die()
     {
         Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
+
+        int spawnCoin = Random.Range(0, 2);
+        int spawnBigCoin = Random.Range(0, 6);
+        if (spawnCoin == 1)
+        {
+            GameObject K = Instantiate(CoinPrefab, transform.position, Quaternion.identity);
+            K.transform.parent = null;
+        }
+
+        if (spawnBigCoin == 2)
+        {
+            Instantiate(BigCoinPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(this.gameObject);
     }
 
-    public IEnumerator Freeze()
+    public IEnumerator FreezeTime()
     {
         moveSpeed = 0f;
         isFrozen = true;
@@ -200,19 +208,5 @@ public class Slime : GameEntity
         sprite.color = new Color32(255, 255, 255, 255);
     }
 
-    public IEnumerator Aflame()
-    {
-        for (int s = 0; s <= burnSeconds; s++)
-        {
-            health -= 2;
-            yield return new WaitForSeconds(1.5f);
-        }
-    }
-
-    public IEnumerator BurnTime()
-    {
-        yield return new WaitForSeconds(burnSeconds);
-        isOnFire = false;
-        sprite.color = new Color32(255, 255, 255, 255);
-    }
+    
 }

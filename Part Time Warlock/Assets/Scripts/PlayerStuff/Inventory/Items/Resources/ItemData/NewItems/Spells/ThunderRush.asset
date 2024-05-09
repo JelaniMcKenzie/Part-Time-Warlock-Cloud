@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Thunder Rush
   itemID: 
   itemCategory: Magic
+  price: 0
   isStackable: 0
   stackSize: 0
   isDurable: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   usageCost: 0
   hasDamagedSprites: 0
   damagedSprites: []
-  itemAttribute: 
+  itemAttribute: Lightning
   itemDescription: A defensive, lightning type spell that cloaks your body, granting
     temporary invulnerability
   itemRarity: 0
@@ -41,8 +42,10 @@ MonoBehaviour:
   spellSound: {fileID: 0}
   spellType: 3
   projectileSpeed: 0
+  isSpreadShot: 0
+  spreadShotNum: 0
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 4.296
-  screenShakeMag: 0
+  screenShakeIntensity: 0
   screenShakeLength: 0

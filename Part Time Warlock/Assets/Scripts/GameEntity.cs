@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameEntity : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class GameEntity : MonoBehaviour
     public bool isBurning = false;
     public bool canMove = true;
     public SpriteRenderer sprite;
+    
+
+    //a base burnSeconds float to be manipulated by other objects
+    public float burnSeconds = 5f;
+
+    //a base freezeSeconds float to be manipulated by other objects
+    public float freezeSeconds;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,19 +57,60 @@ public class GameEntity : MonoBehaviour
         }
     }
 
-    /*public virtual void Burn()
+    public virtual void Burn()
     {
-        //Method to be overidden by derived classes.
-        //Some enemies may have a positive effect when
-        //this method is called
-    }*/
+        FireQuartzLogic fql = FindAnyObjectByType<FireQuartzLogic>();
 
-    /*public virtual void Freeze()
-    {
+        if (fql != null)
+        {
+            burnSeconds *= 2f;
+        }
+
+        isBurning = true;
         //Method to be overidden by derived classes.
         //Some enemies may have a positive effect when
         //this method is called
-    }*/
+        StartCoroutine(Aflame());
+        StartCoroutine(BurnTime());
+
+        IEnumerator Aflame()
+        {
+            sprite.color = new Color32(222, 70, 97, 255);
+            for (int s = 0; s <= burnSeconds; s++)
+            {
+                health -= 2;
+                yield return new WaitForSeconds(1.5f);
+            }
+        }
+
+        IEnumerator BurnTime()
+        {
+            yield return new WaitForSeconds(burnSeconds);
+            isBurning = false;
+            sprite.color = new Color32(255, 255, 255, 255);
+        }
+    }
+
+    public virtual void Freeze()
+    {
+        isFrozen = true;
+        StartCoroutine(Frozen());
+        isFrozen = false;
+        //Method to be overidden by derived classes.
+        //Some enemies may have a positive effect when
+        //this method is called
+    }
+
+    public IEnumerator Frozen()
+    {
+        moveSpeed = 0f;
+        sprite.color = new Color32(0, 210, 210, 80);
+        yield return new WaitForSeconds(freezeSeconds);
+        sprite.color = new Color32(255, 255, 255, 255);
+        moveSpeed = 4f;
+    }
+
+
 
 
 

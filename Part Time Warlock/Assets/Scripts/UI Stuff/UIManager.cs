@@ -22,11 +22,13 @@ public class UIManager : MonoBehaviour
     public GameObject miniMapHead;
     public Player P;
 
+    public Slider bossHealthBar;
+
     public Scene activeScene;
     private GameManager gameManager;
 
     //timer fields
-    public float timer = 300f;
+    public float timer = 600f;
     public float minutes;
     public float seconds;
     public bool timerActive;
@@ -99,7 +101,7 @@ public class UIManager : MonoBehaviour
             {
                 timer = 0f;
                 timerActive = false;
-                SceneManager.LoadScene("Lose");
+                //SceneManager.LoadScene("Lose");
             }
         }
         
@@ -122,7 +124,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCoinText()
     {
-        CoinText.text = ": " + P.coinNum;
+        CoinText.text = ": " + P.coinNum + " / 100";
     }
 
     // Call this method to update the image based on the percentage
