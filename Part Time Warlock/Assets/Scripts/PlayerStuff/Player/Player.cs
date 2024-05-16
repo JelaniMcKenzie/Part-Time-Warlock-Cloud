@@ -69,6 +69,8 @@ public class Player : GameEntity
     public Vector3 pitRespawnPos;
     DamageVignette damageVignette;
     CameraShake camShake;
+    private Collider2D[] colliders;
+
 
 
 
@@ -85,9 +87,8 @@ public class Player : GameEntity
         material = s.material;
         damageVignette = FindAnyObjectByType<DamageVignette>();
         camShake = FindAnyObjectByType<CameraShake>();
-
         //inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
-        
+
     }
 
     private void Awake()
@@ -205,15 +206,13 @@ public class Player : GameEntity
         }
 
         //Pause Game
-        if (Input.GetKeyDown(KeyCode.Escape) && canMove == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0f)
         {
-            isGamePaused = false;
-            canMove = true;
+            uiManager.ResumeGame();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && canMove == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1f)
         {
-            isGamePaused = true;
-            canMove = false;
+            uiManager.PauseGame();
         }
     }
 
@@ -266,7 +265,7 @@ public class Player : GameEntity
     }
 
 
-    public void Damage()
+    public override void TakeDamage(float damage)
     {
         if (canHit == true)
         {
@@ -275,26 +274,18 @@ public class Player : GameEntity
             canMove = true;
             isHit = true;
 
+            // Calculate the number of coins to spawn based on the damage
+            int coinsToSpawn = Mathf.Max(Mathf.FloorToInt(damage / 2), 1); // Adjust the formula based on your preference
+
             // Ensure coinNum doesn't go below zero
-            if (coinNum > 0)
+            coinNum = Mathf.Max(coinNum - coinsToSpawn, 0);
+
+            uiManager.UpdateCoinText();
+
+            // Spawn coins
+            for (int i = 0; i < coinsToSpawn; i++)
             {
-                int maxSpawnedCoins = Mathf.Min(coinNum, 10); // Adjust the maximum spawn based on your preference
-
-                int subtractedCoins = Mathf.Max(coinNum / 5, 1); // 1:1 spawn for lower numbers, proportional for higher
-
-                coinNum = Mathf.Max(coinNum - subtractedCoins, 0);
-                uiManager.UpdateCoinText();
-
-                // Spawn coins
-                for (int i = 0; i < maxSpawnedCoins; i++)
-                {
-                    SpawnCoin();
-                }
-            }
-            else
-            {
-                uiManager.timer -= 30;
-                uiManager.CoinText.text = ": 0 / 100";
+                SpawnCoin();
             }
 
             StartCoroutine(Invulnerable());
@@ -302,7 +293,6 @@ public class Player : GameEntity
             if (uiManager.timer <= 0)
             {
                 StartCoroutine(TimeToDie());
-                
             }
         }
     }
@@ -310,25 +300,65 @@ public class Player : GameEntity
 
     private void SpawnCoin()
     {
-        // Calculate a random offset within the specified range
-        float xOffset = UnityEngine.Random.Range(-1f, 1f);
-        float yOffset = UnityEngine.Random.Range(-1f, 1f);
+        // Ensure there are coins to spawn
+        if (coinNum <= 0)
+            return;
 
-        // Create a Vector2 with the random offset
-        Vector2 offset = new Vector2(xOffset, yOffset);
+        // Calculate the maximum number of coins to spawn based on available coins
+        int maxSpawnedCoins = Mathf.Min(coinNum, 10); // Adjust the maximum spawn based on your preference
 
-        // Instantiate a coin at the player's position with the random offset
-        Instantiate(coinSpawnRef, (Vector2)transform.position + offset, Quaternion.identity);
+        // Get the player's position
+        Vector2 playerPosition = transform.position;
 
-        // Get the Rigidbody2D component
-        
-        // Apply a random force to the coin
-        if (coinSpawnRef.TryGetComponent<Rigidbody2D>(out var coinRb))
+        // Find all GameObjects with the "Wall" tag
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Border");
+
+        // Iterate through a loop to attempt spawning each coin
+        for (int i = 0; i < maxSpawnedCoins; i++)
         {
-            Vector2 force = new Vector2(UnityEngine.Random.Range(-maxForce, maxForce), UnityEngine.Random.Range(-maxForce, maxForce));
-            coinRb.AddForce(force, ForceMode2D.Impulse);
+            // Calculate a random offset within a range to spawn further away from the player
+            float xOffset = UnityEngine.Random.Range(-2f, 2f);
+            float yOffset = UnityEngine.Random.Range(-2f, 2f);
+
+            // Create a Vector2 with the random offset
+            Vector2 offset = new Vector2(xOffset, yOffset);
+
+            // Calculate the spawn position further away from the player
+            Vector2 spawnPosition = playerPosition + offset;
+
+            // Check if the spawn position is within any GameObjects with the "Wall" tag
+            bool isCollidingWithWall = false;
+            foreach (GameObject wall in walls)
+            {
+                Collider2D wallCollider = wall.GetComponent<Collider2D>();
+                if (wallCollider != null && wallCollider.bounds.Contains(spawnPosition))
+                {
+                    isCollidingWithWall = true;
+                    break;
+                }
+            }
+
+            // If the spawn position is within a wall, skip this spawn attempt
+            if (isCollidingWithWall)
+                continue;
+
+            // Instantiate a coin at the calculated spawn position
+            GameObject newCoin = Instantiate(coinSpawnRef, spawnPosition, Quaternion.identity);
+
+            // Get the Rigidbody2D component of the newly spawned coin
+            Rigidbody2D coinRigidbody = newCoin.GetComponent<Rigidbody2D>();
+
+            // Calculate the direction from the player to the spawned coin
+            Vector2 impulseDirection = (spawnPosition - playerPosition).normalized;
+
+            // Apply a circular impulse to the coin to make them spread out with physics
+            coinRigidbody.AddForce(impulseDirection * UnityEngine.Random.Range(1f, 3f), ForceMode2D.Impulse);
+
+            // Reduce the number of available coins after spawning each coin
+            coinNum--;
         }
     }
+
 
 
     public IEnumerator Dash(Vector2 dashDirection, Rigidbody2D rb)
@@ -455,7 +485,7 @@ public class Player : GameEntity
         {
             if (canHit == true)
             {
-                Damage();
+                TakeDamage(9f);
             }
         }
     }
@@ -472,7 +502,7 @@ public class Player : GameEntity
             }
             if (canHit == true)
             {
-                Damage();
+                TakeDamage(2f);
             }
         }
 
@@ -484,6 +514,18 @@ public class Player : GameEntity
             {
                 pit.FallPlayer(this);
             }
+        }
+    }
+
+    public void SetCollisionStateDuringGeneration(bool enableCollisions)
+    {
+        // Get all Collider components attached to the GameObject
+        Collider2D[] colliders = GetComponents<Collider2D>();
+
+        // Loop through each collider and set its enabled state
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = enableCollisions;
         }
     }
 

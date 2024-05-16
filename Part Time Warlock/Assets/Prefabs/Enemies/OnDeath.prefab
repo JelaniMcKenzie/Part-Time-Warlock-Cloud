@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3440273523344198167}
   - component: {fileID: 4654249782597844689}
   - component: {fileID: 7384529798381958904}
+  - component: {fileID: 8452251239796019478}
   m_Layer: 0
   m_Name: OnDeath
   m_TagString: Untagged
@@ -4896,6 +4897,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &8452251239796019478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598728251544579950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a308ab6ee056648bc4529005e595cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoinPrefab: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
+  BigCoinPrefab: {fileID: 3322469984456626636, guid: 3908cf7c55f16b34c8ee9cbf410d87c9, type: 3}
 --- !u!1 &8906427220721689226
 GameObject:
   m_ObjectHideFlags: 0

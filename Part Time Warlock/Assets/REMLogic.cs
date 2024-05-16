@@ -22,7 +22,7 @@ public class REMLogic : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Coin"))
+        if (other.CompareTag("Coin") || other.CompareTag("BigCoin"))
         {
             // Check if the object is affected by magnetism (has a Rigidbody2D component)
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();

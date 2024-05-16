@@ -39,7 +39,7 @@ public class ShadowArcher : GameEntity
     public GameObject firePos;
     public SpriteRenderer bowSprite;
     public Player player;
-    public float fireInterval = 2f; 
+    public float fireInterval = 2f;
     public float minDistance = 10f; //change this value to adjust the movement range
 
     private bool canFire = true;
@@ -50,69 +50,53 @@ public class ShadowArcher : GameEntity
     //get component in parent?
     GungeonRoomManager roomManager;
 
-    [SerializeField] public GameObject EnemyDeathAnim;
-
-    [SerializeField] public GameObject CoinPrefab = null;
-    [SerializeField] public GameObject BigCoinPrefab = null;
+    private Coroutine fireCoroutine;
+    private List<Coroutine> activeCoroutines = new List<Coroutine>();
 
     // Start is called before the first frame update
     void Start()
     {
-       sprite = GetComponent<SpriteRenderer>();
-       canMove = true;
-       moveSpeed = 2f;
-       player = FindAnyObjectByType<Player>();
+        sprite = GetComponent<SpriteRenderer>();
+        canMove = true;
+        moveSpeed = 2f;
+        player = FindAnyObjectByType<Player>();
 
-       roomManager = GetComponentInParent<GungeonRoomManager>();
-       animator = GetComponent<Animator>();
-       boxCollider = GetComponent<BoxCollider2D>();
-       bowAnim = bow.GetComponent<Animator>();
+        roomManager = GetComponentInParent<GungeonRoomManager>();
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        bowAnim = bow.GetComponent<Animator>();
+        gameManager = FindAnyObjectByType<GameManager>();
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (!isFrozen)
         {
-            AimAtPlayer();
-        }
-        
-        // Draw a line from the bow to the player
-        Debug.DrawLine(bow.transform.position, player.transform.position, Color.red);
+            if (canMove)
+            {
+                AimAtPlayer();
+            }
+
+            // Draw a line from the bow to the player
+            Debug.DrawLine(bow.transform.position, player.transform.position, Color.red);
 
             // Check if it's time to fire
             if (canFire && canMove)
             {
-                StartCoroutine(Fire());
-                //get the specfic room with the gungeon room manager rather than the whole map
-                //alternatively, set the marigin to a specific radius from the player
-
+                fireCoroutine = StartCoroutine(Fire());
             }
-        
-        
-        animator.GetCurrentAnimatorClipInfo(0);
+
+            animator.GetCurrentAnimatorClipInfo(0);
+        }
     }
 
     public override void Die()
     {
-        Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
-        int spawnCoin = UnityEngine.Random.Range(0, 2);
-        int spawnBigCoin = UnityEngine.Random.Range(0, 6);
-        if (spawnCoin == 1)
-        {
-            GameObject K = Instantiate(CoinPrefab, transform.position, Quaternion.identity);
-            K.transform.parent = null;
-        }
-
-        if (spawnBigCoin == 2)
-        {
-            Instantiate(BigCoinPrefab, transform.position, Quaternion.identity);
-        }
         base.Die();
     }
 
-    public IEnumerator Shoot()
+    private IEnumerator Shoot()
     {
         bow.GetComponent<Animator>().SetTrigger("Shoot");
         yield return new WaitForSeconds(1.375f);
@@ -121,13 +105,11 @@ public class ShadowArcher : GameEntity
         a.transform.localScale = new Vector3(1, 1, 1);
         a.transform.position = transform.position;
         a.transform.LookAt(player.transform.position);
-        //bow.transform.LookAt(player.transform.position);
         Destroy(a, 2.5f);
     }
 
     private void AimAtPlayer()
     {
-
         Vector3 directionToPlayer = player.transform.position - transform.position;
 
         // Flip the sprite based on player position
@@ -135,38 +117,40 @@ public class ShadowArcher : GameEntity
         {
             sprite.flipX = false;
             bowSprite.flipY = true;
-        }    
+        }
         else
         {
             sprite.flipX = true;
             bowSprite.flipY = false;
         }
-            
 
         // Rotate the bow toward the player
         float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
         bow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
     }
 
     private IEnumerator Fire()
     {
-        // Prevent firing multiple times simultaneously
         canFire = false;
         yield return new WaitForSeconds(0.833f);
 
-        // Wait for the interval before firing
+        if (isFrozen) yield break; // Check if frozen before firing
+
         yield return new WaitForSeconds(fireInterval);
 
-        // Perform firing action
-        // For example, instantiate a projectile at bow position and make it move towards the player
-        StartCoroutine(Shoot());
+        if (isFrozen) yield break; // Check if frozen before shooting
 
+        StartCoroutine(Shoot());
         yield return new WaitForSeconds(2f);
+
+        if (isFrozen) yield break; // Check if frozen before disappearing
+
         animator.SetTrigger("Disappear");
         yield return new WaitForSeconds(0.75f);
-        FindTeleportSpot(transform.position);
 
+        if (isFrozen) yield break; // Check if frozen before teleporting
+
+        FindTeleportSpot(transform.position);
         canFire = true;
     }
 
@@ -174,21 +158,12 @@ public class ShadowArcher : GameEntity
     {
         if (roomManager != null)
         {
-            // Check if the point is actually inside the collider as there may be holes in the floor, etc.
-            // We also want to make sure that there is no other collider in the radius of 1
-
-            //constantly find a new position until its within a valid point
             do
             {
                 position = GetRandomTeleportPosition();
-
             } while (!IsPointWithinCollider(roomManager.FloorCollider, position) ||
-                    Physics2D.OverlapCircleAll(position, 0.5f).Any(x => !x.isTrigger));
-            
-            //set the new shadowarcher position
-            //Make sure the position isn't getting z axis-ed, everything must have a z value of 0
-            //also, make sure to put breakables and other environment objects in the "collideable" layer to make sure this doesn't happen
-            //Debug.LogWarning("archer transform: " + transform.position);
+                     Physics2D.OverlapCircleAll(position, 0.5f).Any(x => !x.isTrigger));
+
             transform.position = position;
             boxCollider.enabled = true;
             sprite.color = Color.white;
@@ -205,21 +180,16 @@ public class ShadowArcher : GameEntity
         return RandomPointInBounds(roomManager.FloorCollider.bounds, 1f);
     }
 
-    private void ShowBow()
-    {
-        bow.SetActive(true);
-    }
-
-    private void HideBow()
-    {
-        bow.SetActive(false);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<PlayerProjectiles>(out var damageSpell))
         {
             TakeDamage(damageSpell.damage);
+
+            if (isFrozen == false)
+            {
+                StartCoroutine(DamageFlash());
+            }
         }
 
         if (collision.CompareTag("FireWall"))
@@ -229,19 +199,46 @@ public class ShadowArcher : GameEntity
 
         if (collision.CompareTag("Ice"))
         {
-            StartCoroutine(FreezeTime());
-        } 
+            if (!isFrozen)
+            {
+                StartCoroutine(FreezeTime());
+            }
+        }
     }
 
     public IEnumerator FreezeTime()
     {
-        moveSpeed = 0f;
         isFrozen = true;
-        sprite.color = new Color32(0, 210, 210, 80);
+        moveSpeed = 0f;
+        sprite.color = new Color32(0, 186, 192, 255);
+        canFire = false;
+
+        // Stop and clear all active coroutines
+        if (fireCoroutine != null)
+        {
+            StopCoroutine(fireCoroutine);
+        }
+        foreach (var coroutine in activeCoroutines)
+        {
+            StopCoroutine(coroutine);
+        }
+        activeCoroutines.Clear();
+
+        // Pause the animator
+        animator.speed = 0;
+        bowAnim.speed = 0;
+
         yield return new WaitForSeconds(2.5f);
-        sprite.color = new Color32(255, 255, 255, 255);
-        moveSpeed = 4f;
+
+        
+        moveSpeed = 2f; // Or your desired move speed
         isFrozen = false;
+        canFire = true;
+
+        // Resume the animator
+        animator.speed = 1;
+        bowAnim.speed = 1;
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     private static bool IsPointWithinCollider(Collider2D collider, Vector2 point)
@@ -255,12 +252,28 @@ public class ShadowArcher : GameEntity
             RandomRange(bounds.min.x + margin, bounds.max.x - margin),
             RandomRange(bounds.min.y + margin, bounds.max.y - margin)
         );
-
     }
 
     private static float RandomRange(float min, float max)
     {
-        return (UnityEngine.Random.Range(0.0f, 1.0f) * (max - min) + min);
+        return UnityEngine.Random.Range(min, max);
+    }
+
+    public IEnumerator DamageFlash()
+    {
+        sprite.color = new Color32(100, 0, 0, 255);
+        yield return new WaitForSeconds(0.25f);
+        sprite.color = new Color32(255, 255, 255, 255);
+    }
+
+    private void ShowBow()
+    {
+        bow.SetActive(true);
+    }
+
+    private void HideBow()
+    {
+        bow.SetActive(false);
     }
 
 }

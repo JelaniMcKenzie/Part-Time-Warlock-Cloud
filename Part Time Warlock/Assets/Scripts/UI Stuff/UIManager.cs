@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI CoinText;
     public TextMeshProUGUI Pausetext;
     public TextMeshProUGUI TimerText;
-    public TextMeshProUGUI RentGoalText;
     public Image bag;
     public Image controls;
     public Image darkOverlay;
@@ -23,6 +22,7 @@ public class UIManager : MonoBehaviour
     public Player P;
 
     public Slider bossHealthBar;
+    public bool isBossDead = false;
 
     public Scene activeScene;
     private GameManager gameManager;
@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour
             //CoinText.gameObject.SetActive(false);
             TimerText.gameObject.SetActive(false);
             timerActive = false;
-            RentGoalText.gameObject.SetActive(false);
 
             //bag.gameObject.SetActive(false);
 
@@ -59,7 +58,6 @@ public class UIManager : MonoBehaviour
         else if (activeScene.name == "RDG Test") {
             CoinText.gameObject.SetActive(true);
             TimerText.gameObject.SetActive(true);
-            RentGoalText.gameObject.SetActive(true);
 
             bag.gameObject.SetActive(true);
 
@@ -93,6 +91,7 @@ public class UIManager : MonoBehaviour
             if (timer > 0f)
             {
                 timer -= Time.deltaTime * timerSpeed;
+                gameManager.timeLeft += 1f;
                 UpdateTimer(timer);
                 //Debug.Log(timer);
             }
@@ -107,16 +106,13 @@ public class UIManager : MonoBehaviour
         
         if (P.isGamePaused == false)
         {
-            Pausetext.gameObject.SetActive(false);
-            controls.gameObject.SetActive(false);
-            darkOverlay.gameObject.SetActive(false);
+            
+            
         } 
         
         else
         {
-            Pausetext.gameObject.SetActive(true);
-            controls.gameObject.SetActive(true);
-            darkOverlay.gameObject.SetActive(true);
+            
 
         }
 
@@ -155,5 +151,21 @@ public class UIManager : MonoBehaviour
         minutes = Mathf.FloorToInt(timeToDisplay / 60);
         seconds = Mathf.FloorToInt(timeToDisplay % 60);
         TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void PauseGame()
+    {
+        Pausetext.gameObject.SetActive(true);
+        controls.gameObject.SetActive(true);
+        darkOverlay.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Pausetext.gameObject.SetActive(false);
+        controls.gameObject.SetActive(false);
+        darkOverlay.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

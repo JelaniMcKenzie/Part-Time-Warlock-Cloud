@@ -25,9 +25,8 @@ public class TriggerBossMusic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && manager.isBossDead == false)
         {
-            manager.bossHealthBar.gameObject.SetActive(true);
             audioSource.clip = bossMusic;
             audioSource.loop = true;
             audioSource.Play();

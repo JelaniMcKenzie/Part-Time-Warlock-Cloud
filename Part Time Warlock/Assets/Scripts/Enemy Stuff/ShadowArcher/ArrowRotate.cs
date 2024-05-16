@@ -6,6 +6,7 @@ public class ArrowRotate : MonoBehaviour
 {
     public Player P = null;
     [SerializeField] public AudioClip Arrow = null;
+    private float damage = 9f;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,20 +33,16 @@ public class ArrowRotate : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(this.gameObject);
-            P.Damage();
-        }
-
-        if (collision.gameObject.tag == "Border")
-        {
-            Destroy(this.gameObject);
+            P.TakeDamage(damage);
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(this.gameObject);
+            collision.gameObject.GetComponent<GameEntity>().TakeDamage(damage);
 
         }
+
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

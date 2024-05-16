@@ -17,7 +17,7 @@ public class Slime : GameEntity
     public Rigidbody2D rb;
 
 
-    public float chaseDistance = 1000f; // Set the distance at which the enemy starts chasing
+    public float chaseDistance = 100f; // Set the distance at which the enemy starts chasing
     public float chaseDuration = 3f; // Set the duration the enemy chases after the player is out of range
 
     private bool isChasing = false;
@@ -26,9 +26,6 @@ public class Slime : GameEntity
     public Sprite[] groundSprites;
 
     [SerializeField] private AudioClip slimeMove;
-
-    [SerializeField] public GameObject CoinPrefab = null;
-    [SerializeField] public GameObject BigCoinPrefab = null;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +37,7 @@ public class Slime : GameEntity
         UI = FindAnyObjectByType<UIManager>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        gameManager = FindAnyObjectByType<GameManager>();
         //SM.EnemyCount++;
     }
 
@@ -83,12 +81,6 @@ public class Slime : GameEntity
         {
             rb.velocity = new Vector3(0, 0, 0);
         }
-
-        if (health <= 0f)
-        {
-            Die();
-            //SM.EnemyCount--;
-        }
     }
 
     public void EnemyMovement()
@@ -131,7 +123,12 @@ public class Slime : GameEntity
         if (other.TryGetComponent<DamageSpell>(out var damageSpell))
         {
             TakeDamage(damageSpell.damage);
-            StartCoroutine(DamageFlash());
+
+            if (isFrozen == false)
+            {
+                StartCoroutine(DamageFlash());
+            }
+            
 
         }
 
@@ -173,32 +170,18 @@ public class Slime : GameEntity
 
     public override void Die()
     {
-        Instantiate(EnemyDeathAnim, transform.position, Quaternion.identity);
-
-        int spawnCoin = Random.Range(0, 2);
-        int spawnBigCoin = Random.Range(0, 6);
-        if (spawnCoin == 1)
-        {
-            GameObject K = Instantiate(CoinPrefab, transform.position, Quaternion.identity);
-            K.transform.parent = null;
-        }
-
-        if (spawnBigCoin == 2)
-        {
-            Instantiate(BigCoinPrefab, transform.position, Quaternion.identity);
-        }
-        Destroy(this.gameObject);
+        base.Die();
     }
 
     public IEnumerator FreezeTime()
     {
         moveSpeed = 0f;
         isFrozen = true;
-        sprite.color = new Color32(0, 210, 210, 80);
+        sprite.color = new Color32(0, 63, 255, 255);
         yield return new WaitForSeconds(2.5f);
-        sprite.color = new Color32(255, 255, 255, 255);
         moveSpeed = 4f;
         isFrozen = false;
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     public IEnumerator DamageFlash()

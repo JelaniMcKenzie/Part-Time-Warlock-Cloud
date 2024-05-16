@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -148,17 +149,16 @@ namespace Edgar.Unity.Examples.Gungeon
             }
             else
             {
+                EnemiesSpawned = true;
                 var enemies = new List<GungeonEnemy>();
-                var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Boss");
 
-                foreach (Transform bossTransform in enemiesHolder)
-                {
-                    var bossEnemy = bossTransform.gameObject;
-                    var gungeonBoss = bossEnemy.AddComponent<GungeonEnemy>();
-                    gungeonBoss.RoomManager = this;
-                    enemies.Add(gungeonBoss);
-                    bossEnemy.SetActive(true);
-                }
+                var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Boss_ElectricBill");
+                var bossEnemy = enemiesHolder.gameObject;
+                var gungeonBoss = bossEnemy.AddComponent<GungeonEnemy>();
+                gungeonBoss.RoomManager = this;
+                gungeonBoss.RoomManager.Visited = false;
+                enemies.Add(gungeonBoss);
+                bossEnemy.SetActive(true);
 
                 RemainingEnemies = enemies;
             }
@@ -209,9 +209,18 @@ namespace Edgar.Unity.Examples.Gungeon
             {
                 if (door.GetComponent<GungeonDoor>().State == GungeonDoor.DoorState.EnemyLocked)
                 {
-                    door.SetActive(false);
+                    door.GetComponentInChildren<Animator>().SetTrigger("DespawnDoor");
+                    StartCoroutine(CloseDoorTime());
+
+                    IEnumerator CloseDoorTime()
+                    {
+                        yield return new WaitForSeconds(0.85f);
+                        door.SetActive(false);
+                    }
                 }
             }
+
+            
         }
 
         /// <summary>
@@ -256,9 +265,12 @@ namespace Edgar.Unity.Examples.Gungeon
                 OpenDoors();
             }
         }
-
         #endregion
+        
     }
+    
 
     #endregion
+
+    
 }

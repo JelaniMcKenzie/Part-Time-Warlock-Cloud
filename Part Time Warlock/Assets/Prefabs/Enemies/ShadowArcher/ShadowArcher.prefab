@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   isBurning: 0
   canMove: 1
   sprite: {fileID: 275988022219552333}
+  gameManager: {fileID: 0}
+  onDeath: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   burnSeconds: 5
   freezeSeconds: 0
   arrow: {fileID: 3410154502973357208, guid: c785471e6e65f1a45af66445da438112, type: 3}
@@ -148,9 +150,6 @@ MonoBehaviour:
   minDistance: 2
   animator: {fileID: 0}
   bowAnim: {fileID: 0}
-  EnemyDeathAnim: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
-  CoinPrefab: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
-  BigCoinPrefab: {fileID: 3322469984456626636, guid: 3908cf7c55f16b34c8ee9cbf410d87c9, type: 3}
 --- !u!95 &2822497217581174458
 Animator:
   serializedVersion: 5
@@ -410,7 +409,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

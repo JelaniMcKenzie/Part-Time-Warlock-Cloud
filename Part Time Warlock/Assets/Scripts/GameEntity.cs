@@ -11,7 +11,9 @@ public class GameEntity : MonoBehaviour
     public bool isBurning = false;
     public bool canMove = true;
     public SpriteRenderer sprite;
-    
+    public GameManager gameManager;
+
+    public GameObject onDeath;
 
     //a base burnSeconds float to be manipulated by other objects
     public float burnSeconds = 5f;
@@ -41,8 +43,13 @@ public class GameEntity : MonoBehaviour
 
     public virtual void Die()
     {
+        Instantiate(onDeath, transform.position, Quaternion.identity);
+        if (this.gameObject.CompareTag("Enemy"))
+        {
+            gameManager.enemiesKilled++;
+        }
         // add death animation or sound effect here
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     public virtual void AddKnockBack()

@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject Portal = null;
     [SerializeField] public GameObject[] pausedObjects;
     public float rentGoal = 25f;
+
+    public float enemiesKilled = 0;
+    public float damageTaken = 0;
+    public float timeLeft = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +32,14 @@ public class GameManager : MonoBehaviour
     {
 
 
-        if (SceneManager.GetActiveScene().name == "Opener" || 
+        if (SceneManager.GetActiveScene().name == "Opener" ||
+            SceneManager.GetActiveScene().name == "LichLordConvo" ||
             SceneManager.GetActiveScene().name == "Opener2"||
             SceneManager.GetActiveScene().name == "Objectives" ||
             SceneManager.GetActiveScene().name == "Win" ||
             SceneManager.GetActiveScene().name == "Lose")
         {
-            if (Input.anyKey && scene != null)
+            if (Input.anyKeyDown && scene != null)
             {
                 SceneManager.LoadScene(scene);
             }

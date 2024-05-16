@@ -7,6 +7,8 @@ public class PTWShopItem : MonoBehaviour
     public GameObject buyMessage;
 
     public ShopManager shopManager;
+    
+    public UIManager uiManager;
 
     private bool inBuyZone;
 
@@ -20,6 +22,7 @@ public class PTWShopItem : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         shopManager = FindAnyObjectByType<ShopManager>();
+        uiManager = FindAnyObjectByType<UIManager>();
 
     }
 
@@ -34,7 +37,8 @@ public class PTWShopItem : MonoBehaviour
                 {
                     player.coinNum -= item.price;
                     player.inventory.AddInventory(item, 1, 0, true);
-                    shopManager.RemoveItemFromList(item);
+                    //shopManager.RemoveItemFromList(item);
+                    uiManager.UpdateCoinText();
                     this.gameObject.SetActive(false);
   
                 }

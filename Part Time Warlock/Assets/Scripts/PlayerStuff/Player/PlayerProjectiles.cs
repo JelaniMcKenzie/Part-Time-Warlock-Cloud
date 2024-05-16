@@ -30,7 +30,7 @@ public class PlayerProjectiles : DamageSpell
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.gameObject.CompareTag("Border") || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Border"))
         {
             Destroy(this.gameObject);
         }

@@ -23,13 +23,24 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
 
     public override void Run(DungeonGeneratorLevelGrid2D level)
     {
+        var player = GameObject.FindWithTag("Player");
+        Player playerObj = player.GetComponent<Player>();
+
+        playerObj.SetCollisionStateDuringGeneration(false);
         //implement post dungeon generation logic here
         MovePlayerToSpawn(level);
         EnableGraffiti(level);
         EnableFogOfWar(level);
 
+        //Add border tag to all walls
         var walls = level.GetSharedTilemaps().First(x => x.name == "Walls");
         walls.gameObject.tag = "Border";
+
+        //Reset renderer of other 3 (containing pillars) to cover players
+        var pillars = level.GetSharedTilemaps().First(x => x.name == "Other 3");
+        var pillarRenderer = pillars.GetComponent<TilemapRenderer>();
+        pillarRenderer.sortingLayerName = "FG";
+        pillarRenderer.sortingOrder = 10;
 
         foreach (var roomInstance in level.RoomInstances)
         {
@@ -39,6 +50,9 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
             // Find floor tilemap layer
             var tilemaps = RoomTemplateUtilsGrid2D.GetTilemaps(roomTemplateInstance);
             var floor = tilemaps.Single(x => x.name == "Floor").gameObject;
+            
+            
+            
 
             // Add floor collider
             AddFloorCollider(floor);
@@ -94,47 +108,10 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
                 }
             }
         }
+
+        playerObj.SetCollisionStateDuringGeneration(true);
     }
 
-    private void HandleBosses(DungeonGeneratorLevelGrid2D level)
-    {
-        foreach (var roomInstance in level.RoomInstances)
-        {
-            //find the empty game object called "Enemies".
-            //Note: the gameobject HAS to be called "Enemies" for this code to work
-            var enemiesHolder = roomInstance.RoomTemplateInstance.transform.Find("Boss");
-
-            // Skip this room if there are no enemies
-            if (enemiesHolder == null)
-            {
-                continue;
-            }
-
-            // Iterate through all enemies (children of the enemiesHolder)
-            foreach (Transform enemyTransform in enemiesHolder)
-            {
-                /**
-                 * currently, this code chooses to set active
-                 * a random # of the enemies that we deliberately dragged
-                 * into the enemies holder. Upping the spawn rate will probably
-                 * change how many enemies can spawn in that room.
-                 * what we could do is have small rooms contain maybe 5 enemies, 
-                 * and larger rooms have 10.
-                 * 
-                 * Then, we have each gameobject in the enemies holder ALSO
-                 * have a random chance code applied to it, so it chooses which enemy
-                 * to spawn from that game object. We could accomplish this with something
-                 * like an array that contains the gameobjects of all the enemies we want to spawn.
-                 */
-                 
-                var enemy = enemyTransform.gameObject;
-
-                enemy.SetActive(true);
-                //play boss music
-               
-            }
-        }
-    }
 
     private void EnableGraffiti(DungeonGeneratorLevelGrid2D level)
     {
