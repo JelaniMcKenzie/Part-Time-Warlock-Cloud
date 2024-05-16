@@ -34,6 +34,11 @@ public class PlayerProjectiles : DamageSpell
         {
             Destroy(this.gameObject);
         }
+
+        if (!this.gameObject.CompareTag("Ice") && other.CompareTag("Enemy"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void FireWall()

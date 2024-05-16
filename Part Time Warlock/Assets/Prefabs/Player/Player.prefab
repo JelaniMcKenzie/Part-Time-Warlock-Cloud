@@ -515,6 +515,8 @@ MonoBehaviour:
   isBurning: 0
   canMove: 1
   sprite: {fileID: 0}
+  gameManager: {fileID: 0}
+  onDeath: {fileID: 0}
   burnSeconds: 5
   freezeSeconds: 0
   staffTip: {fileID: 8436134285611601207}
