@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Edgar.Unity.Examples
 {
@@ -75,8 +76,8 @@ namespace Edgar.Unity.Examples
         {
             var canvas = GetCanvas();
             var loadingImage = canvas.transform.Find("LoadingImage")?.gameObject;
-            var primaryTextComponent = loadingImage?.transform.Find("PrimaryText")?.gameObject.GetComponent<Text>();
-            var secondaryTextComponent = loadingImage?.transform.Find("SecondaryText")?.gameObject.GetComponent<Text>();
+            var primaryTextComponent = loadingImage?.transform.Find("PrimaryText")?.gameObject.GetComponent<TextMeshProUGUI>();
+            var secondaryTextComponent = loadingImage?.transform.Find("SecondaryText")?.gameObject.GetComponent<TextMeshProUGUI>();
 
             if (loadingImage != null)
             {

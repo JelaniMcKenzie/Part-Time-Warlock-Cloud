@@ -40,11 +40,11 @@ MonoBehaviour:
   currentCooldown: 0
   spellSound: {fileID: 0}
   spellType: 0
-  projectileSpeed: 25
+  projectileSpeed: 20
   isSpreadShot: 0
   spreadShotNum: 0
   effectRadius: 0
   statusDuration: 0
   dashSpellDuration: 0
-  screenShakeIntensity: 0.1
+  screenShakeIntensity: 0.3
   screenShakeLength: 0.1

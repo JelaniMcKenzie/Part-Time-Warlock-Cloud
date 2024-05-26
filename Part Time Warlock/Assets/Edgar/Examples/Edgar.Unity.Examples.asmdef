@@ -1,8 +1,10 @@
 {
     "name": "Edgar.Unity.Examples",
+    "rootNamespace": "",
     "references": [
         "Edgar.Unity",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
