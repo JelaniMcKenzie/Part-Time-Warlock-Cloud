@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 473401003224715504}
   - component: {fileID: 3740252902606212916}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,15 +129,17 @@ MonoBehaviour:
   isBurning: 0
   canMove: 0
   sprite: {fileID: 0}
+  rb: {fileID: 1193764277119068872}
   gameManager: {fileID: 0}
   onDeath: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   burnSeconds: 5
   freezeSeconds: 0
+  knockbackForce: -10
+  canTurnInvincible: 0
   EnemyDeathAnim: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   frozen: 0
   UI: {fileID: 0}
   isOnFire: 0
-  rb: {fileID: 0}
   chaseDistance: 100
   chaseDuration: 3
   detectJump: {fileID: 7143482120570913184}

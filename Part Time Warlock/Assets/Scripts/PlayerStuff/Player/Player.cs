@@ -43,7 +43,6 @@ public class Player : GameEntity
     public GameObject inventoryObj = null;
 
     public bool isInventoryOpen = false;
-    public Rigidbody2D rb;
     public Vector3 moveInput;
 
     [Space(30)]
@@ -79,7 +78,7 @@ public class Player : GameEntity
     void Start()
     {
         inventorySaver = FindAnyObjectByType<InventorySaver>();
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         canDash = true;
         canHit = true;
         uiManager = FindAnyObjectByType<UIManager>();

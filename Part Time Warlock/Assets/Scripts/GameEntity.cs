@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class GameEntity : MonoBehaviour
+public class GameEntity : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float health = 100f;
     public float moveSpeed = 5f; //must be a high value for things like the player (e.g. 500f)
@@ -11,6 +10,7 @@ public class GameEntity : MonoBehaviour
     public bool isBurning = false;
     public bool canMove = true;
     public SpriteRenderer sprite;
+    public Rigidbody2D rb;
     public GameManager gameManager;
 
     public GameObject onDeath;
@@ -20,10 +20,31 @@ public class GameEntity : MonoBehaviour
 
     //a base freezeSeconds float to be manipulated by other objects
     public float freezeSeconds;
+
+    public float knockbackForce = 100f; //Set the default knocback force (if there is knockback for damage)
+    public bool canTurnInvincible;
+
+
+    #region IDamageable properties
+    // IDamageable properties
+    public float Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
+
+    public bool Targetable { get; set; }
+    public bool Invincible { get; set; }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Initialize Targetable and Invincible if necessary
+        Targetable = true;
+        Invincible = false;
+        rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -32,9 +53,46 @@ public class GameEntity : MonoBehaviour
 
     }
 
+    // IDamageable methods
+    public void OnHit(float damage, Vector2 knockback)
+    {
+        if (!Invincible)
+        {
+            TakeDamage(damage);
+            rb.AddForce(knockback, ForceMode2D.Impulse);
+
+            //AddKnockBack(knockback);
+
+            /*if (canTurnInvincible)
+            {
+                //Activate invincibility and timer
+                Invincible = true;
+            }*/
+        }
+    }
+
+    public void OnHit(float damage)
+    {
+        if (!Invincible)
+        {
+            TakeDamage(damage);
+
+            if (canTurnInvincible)
+            {
+                //Activate invincibility and timer
+                Invincible = true;
+            }
+        }
+    }
+
+    public void OnObjectDestroyed()
+    {
+        Die();
+    }
+
     public virtual void TakeDamage(float amount)
     {
-        health -= amount;
+        Health -= amount;
         if (health <= 0)
         {
             Die();
@@ -52,17 +110,18 @@ public class GameEntity : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public virtual void AddKnockBack()
+    /*public virtual void AddKnockBack(Vector2 knockback)
     {
+        // Implement knockback logic here
         if (this.gameObject.CompareTag("Player"))
         {
-
+            // Player-specific knockback logic
         }
         else if (this.gameObject.CompareTag("Enemy"))
         {
-
+            // Enemy-specific knockback logic
         }
-    }
+    }*/
 
     public virtual void Burn()
     {
@@ -74,7 +133,7 @@ public class GameEntity : MonoBehaviour
         }
 
         isBurning = true;
-        //Method to be overidden by derived classes.
+        //Method to be overridden by derived classes.
         //Some enemies may have a positive effect when
         //this method is called
         StartCoroutine(Aflame());
@@ -103,7 +162,7 @@ public class GameEntity : MonoBehaviour
         isFrozen = true;
         StartCoroutine(Frozen());
         isFrozen = false;
-        //Method to be overidden by derived classes.
+        //Method to be overridden by derived classes.
         //Some enemies may have a positive effect when
         //this method is called
     }
@@ -116,9 +175,4 @@ public class GameEntity : MonoBehaviour
         sprite.color = new Color32(255, 255, 255, 255);
         moveSpeed = 4f;
     }
-
-
-
-
-
 }

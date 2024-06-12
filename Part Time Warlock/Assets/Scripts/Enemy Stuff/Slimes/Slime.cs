@@ -14,7 +14,6 @@ public class Slime : GameEntity
     public UIManager UI = null;
     public bool isOnFire = false;
     private bool hasPlayedSound = false;
-    public Rigidbody2D rb;
 
 
     public float chaseDistance = 100f; // Set the distance at which the enemy starts chasing
@@ -35,7 +34,7 @@ public class Slime : GameEntity
         canMove = false;
         P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         gameManager = FindAnyObjectByType<GameManager>();
         //SM.EnemyCount++;
@@ -95,12 +94,14 @@ public class Slime : GameEntity
             if (detectJump.sprite == s)
             {
                 onGround = true;
+
+                //Add some kind of clause here to make knockback work. IDK what it will look like
             }
         }
 
-        if (onGround == false)
+        if (!onGround)
         {
-            if (hasPlayedSound == false)
+            if (!hasPlayedSound)
             {
                 StartCoroutine(PlaySoundAndWait());
             }
@@ -117,20 +118,41 @@ public class Slime : GameEntity
     {
         hasPlayedSound = false;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if (other.TryGetComponent<DamageSpell>(out var damageSpell))
+        if (TryGetComponent<IDamageable>(out var damageable))
         {
-            TakeDamage(damageSpell.damage);
-
-            if (isFrozen == false)
-            {
-                StartCoroutine(DamageFlash());
-            }
+            Debug.Log("HasDamageable");
             
 
+            if (other.TryGetComponent<DamageSpell>(out var damageSpell))
+            {
+                //TakeDamage(damageSpell.damage);
+
+                //offset for collision detection changes the direction where the force comes from
+                Vector2 direction = (other.transform.position - transform.position).normalized;
+
+                Vector2 knockback = direction * knockbackForce; //edit to make knockback change based on the spell
+
+                //Knockback doesn't work if the slime is in the air. Why?
+
+                //After making sure that the collider has a script that implements IDamagable, we can run the OnHit implementation and pass our Vector2 force
+                damageable.OnHit(damageSpell.damage, knockback);
+
+                if (isFrozen == false)
+                {
+                    StartCoroutine(DamageFlash());
+                }
+
+
+            }
         }
+        else
+        {
+            Debug.LogWarning("IDamageable is null!");
+        }
+        
 
         if (other.CompareTag("Ice"))
         {

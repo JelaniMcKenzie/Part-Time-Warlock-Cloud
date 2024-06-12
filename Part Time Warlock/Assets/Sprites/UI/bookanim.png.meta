@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 647bf12bbb9362a45a9a7044ace46125
+guid: ac988a54c8dfb3443aaac6b68a2f38d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 2048
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,11 +107,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: magicmissile_vfx_lightVER-Sheet_0
+      name: bookanim_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 32
-        height: 32
+        y: 6752
+        width: 1504
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 791350470b5b36c48895e0193eb4ba5b
-      internalID: 34242440
+      spriteID: 510fa733785aba04882b96c42c342fcb
+      internalID: 598005340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magicmissile_vfx_lightVER-Sheet_1
+      name: bookanim_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 32
-        height: 32
+        y: 5908
+        width: 1504
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a18f445e98258e74fa8530d0eaf290a3
-      internalID: -2110372642
+      spriteID: 4501be0bcf87fe947953371cead5de68
+      internalID: 531340973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magicmissile_vfx_lightVER-Sheet_2
+      name: bookanim_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 5064
+        width: 1504
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b59d7fec3782b547870e2ca86a9e1be
-      internalID: -848481121
+      spriteID: b4397b75a271fe549b8e497ea368acb3
+      internalID: -783375614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magicmissile_vfx_lightVER-Sheet_3
+      name: bookanim_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 32
+        y: 4220
+        width: 1504
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ceb808905676bd41b87ab19561bc6a4
-      internalID: -1565880590
+      spriteID: c83149597f5d4a34a92e851975bce6a1
+      internalID: -1760414298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magicmissile_vfx_lightVER-Sheet_4
+      name: bookanim_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 32
-        height: 32
+        y: 3376
+        width: 1504
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,83 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa19f58173ef83942ba7b02280f5759c
-      internalID: -1249264433
+      spriteID: 23eb63a9b4dfd9f49b605fc6b0a252cf
+      internalID: -1166499985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magicmissile_vfx_lightVER-Sheet_5
+      name: bookanim_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2532
+        width: 1504
+        height: 844
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d3e4aebbe68e14997716960c0a9688
+      internalID: 642624262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bookanim_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1688
+        width: 1504
+        height: 844
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571fdab61507c2e4f99e50a07fb87aee
+      internalID: 701042756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bookanim_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 844
+        width: 1504
+        height: 844
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a2273965bd13747ab732db91ef3496
+      internalID: 1063704485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bookanim_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 1504
+        height: 844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 334551503d47b064eb40692254d57bc7
-      internalID: -99134073
+      spriteID: e9bbde11f338eda47971eac0165a333a
+      internalID: 1759870507
       vertices: []
       indices: 
       edges: []
@@ -259,12 +322,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      magicmissile_vfx_lightVER-Sheet_0: 34242440
-      magicmissile_vfx_lightVER-Sheet_1: -2110372642
-      magicmissile_vfx_lightVER-Sheet_2: -848481121
-      magicmissile_vfx_lightVER-Sheet_3: -1565880590
-      magicmissile_vfx_lightVER-Sheet_4: -1249264433
-      magicmissile_vfx_lightVER-Sheet_5: -99134073
+      bookanim_0: 598005340
+      bookanim_1: 531340973
+      bookanim_2: -783375614
+      bookanim_3: -1760414298
+      bookanim_4: -1166499985
+      bookanim_5: 642624262
+      bookanim_6: 701042756
+      bookanim_7: 1063704485
+      bookanim_8: 1759870507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

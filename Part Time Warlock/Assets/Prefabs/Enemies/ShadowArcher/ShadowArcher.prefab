@@ -100,12 +100,12 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275988022219552323}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -137,10 +137,13 @@ MonoBehaviour:
   isBurning: 0
   canMove: 1
   sprite: {fileID: 275988022219552333}
+  rb: {fileID: 0}
   gameManager: {fileID: 0}
   onDeath: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   burnSeconds: 5
   freezeSeconds: 0
+  knockbackForce: 5
+  canTurnInvincible: 0
   arrow: {fileID: 3410154502973357208, guid: c785471e6e65f1a45af66445da438112, type: 3}
   bow: {fileID: 2745928774343931507}
   firePos: {fileID: 7575217445225586560}
