@@ -515,10 +515,13 @@ MonoBehaviour:
   isBurning: 0
   canMove: 1
   sprite: {fileID: 0}
+  rb: {fileID: 8844539647537492763}
   gameManager: {fileID: 0}
   onDeath: {fileID: 0}
   burnSeconds: 5
   freezeSeconds: 0
+  knockbackForce: 100
+  canTurnInvincible: 0
   staffTip: {fileID: 8436134285611601207}
   inventory: {fileID: 3915755962498694643}
   inventorySaver: {fileID: 0}
@@ -537,7 +540,6 @@ MonoBehaviour:
   handParent: {fileID: 5980240983192464595}
   inventoryObj: {fileID: 3915755962498694640}
   isInventoryOpen: 0
-  rb: {fileID: 8844539647537492763}
   moveInput: {x: 0, y: 0, z: 0}
   dashMoveSpeed: 25
   dashDuration: 0.25
