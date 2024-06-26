@@ -12,11 +12,22 @@ public class SpriteLightSync : MonoBehaviour
     {
         lightRef = GetComponent<Light2D>();
         parentSprite = GetComponentInParent<SpriteRenderer>();
+        lightRef.intensity = 10f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         lightRef.lightCookieSprite = parentSprite.sprite;
+    
+        if (parentSprite.flipX == true)
+        {
+            transform.localScale = new Vector3(-1f, default, default);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, default, default);
+        }
     }
 }

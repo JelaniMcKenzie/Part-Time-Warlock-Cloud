@@ -4744,6 +4744,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1010174955701457226, guid: 85205dab98094e848b4b4759256d2c40, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 7755950937516839119, guid: 85205dab98094e848b4b4759256d2c40, type: 3}
       propertyPath: m_Name
       value: graffiti_oni_smol
@@ -4810,6 +4814,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1586860504897896833, guid: 76b0254d1055e494da0d4b235fc50842, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2345690390140878997, guid: 76b0254d1055e494da0d4b235fc50842, type: 3}
       propertyPath: m_Name
       value: graffiti_shadowArcherMoneyGang
@@ -4876,6 +4884,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 265314306116779234, guid: 76ec74a821450724d8b2994cfe8bb101, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 2969091419727273872, guid: 76ec74a821450724d8b2994cfe8bb101, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.391556
