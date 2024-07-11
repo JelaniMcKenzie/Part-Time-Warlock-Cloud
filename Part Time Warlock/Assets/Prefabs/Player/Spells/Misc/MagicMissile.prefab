@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 141137965}
   - component: {fileID: 2156898031497136617}
   - component: {fileID: 8211767235571116700}
-  - component: {fileID: 6907589310020880305}
+  - component: {fileID: 8308399240229085000}
   m_Layer: 0
   m_Name: MagicMissile
   m_TagString: Bullet
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  knockbackForce: 0
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
 --- !u!50 &8211767235571116700
@@ -153,8 +154,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &6907589310020880305
-CircleCollider2D:
+--- !u!61 &8308399240229085000
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -185,9 +186,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.10239264, y: 0.01327312}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.34784827
+  m_Size: {x: 0.5069985, y: 0.5714679}
+  m_EdgeRadius: 0
 --- !u!1 &7592989230532881307
 GameObject:
   m_ObjectHideFlags: 0

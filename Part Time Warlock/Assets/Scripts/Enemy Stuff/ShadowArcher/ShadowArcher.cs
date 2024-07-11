@@ -66,6 +66,7 @@ public class ShadowArcher : GameEntity
         boxCollider = GetComponent<BoxCollider2D>();
         bowAnim = bow.GetComponent<Animator>();
         gameManager = FindAnyObjectByType<GameManager>();
+        rb = GetComponent<Rigidbody2D>();
 
     }
 
@@ -182,15 +183,45 @@ public class ShadowArcher : GameEntity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerProjectiles>(out var damageSpell))
+        if (TryGetComponent<IDamageable>(out var damageable))
         {
-            TakeDamage(damageSpell.damage);
+            Debug.Log("HasDamageable");
 
-            if (isFrozen == false)
+
+            if (collision.TryGetComponent<DamageSpell>(out var damageSpell))
             {
-                StartCoroutine(DamageFlash());
+                Vector2 knockbackDirection;
+
+                if (damageSpell.TryGetComponent<PlayerProjectiles>(out var projectile))
+                {
+                    Debug.LogWarning("PROJECTILE!");
+                    //grab the velocity of the projectile to ensure knockback is straight back relative to the projectile's incoming direction
+                    knockbackDirection = projectile.GetComponent<Rigidbody2D>().velocity.normalized;
+                }
+                else
+                {
+                    //offset for collision detection changes the direction where the force comes from
+                    knockbackDirection = (transform.position - damageSpell.transform.position).normalized;
+                }
+
+                Vector2 knockback = knockbackDirection * damageSpell.knockbackForce; //reverse knockback force to send in the other direction
+
+                //After making sure that the collider has a script that implements IDamagable, we can run the OnHit implementation and pass our Vector2 force
+                damageable.OnHit(damageSpell.damage, knockback);
+
+                if (isFrozen == false)
+                {
+                    StartCoroutine(DamageFlash());
+                }
+
+
             }
         }
+        else
+        {
+            Debug.LogWarning("IDamageable is null!");
+        }
+
 
         if (collision.CompareTag("FireWall"))
         {
