@@ -13,7 +13,7 @@ public class PlayerProjectiles : DamageSpell
     //checks what direction the player is facing and fires there
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame

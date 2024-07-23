@@ -32,7 +32,7 @@ public class Player : GameEntity
     public bool canCast = true;
     public string scene;
     public bool canHit = true;
-    //private bool isHit = false;
+    private bool isHit = false;
     public bool isGamePaused; //move this to a gamemanager script later
     public int coinNum = 0;
     public bool moveSpeedMultiplied = false;
