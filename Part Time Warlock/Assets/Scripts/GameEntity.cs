@@ -9,7 +9,6 @@ public class GameEntity : MonoBehaviour, IDamageable
     public bool isFrozen = false;
     public bool isBurning = false;
     public bool canMove = true;
-    protected bool isHit = false;
     public SpriteRenderer sprite;
     public Rigidbody2D rb;
     public GameManager gameManager;
@@ -17,16 +16,13 @@ public class GameEntity : MonoBehaviour, IDamageable
     public GameObject onDeath;
 
     //a base burnSeconds float to be manipulated by other objects
-    public float burnSeconds = 3f;
+    public float burnSeconds = 5f;
 
     //a base freezeSeconds float to be manipulated by other objects
     public float freezeSeconds;
 
-    //public float knockbackForce = 100f; //Set the default knocback force (if there is knockback for damage)
+    public float knockbackForce = 100f; //Set the default knocback force (if there is knockback for damage)
     public bool canTurnInvincible;
-
-    protected enum State {Idle, Moving, Hit}
-    [SerializeField] protected State currentState = State.Idle;
 
 
     #region IDamageable properties
@@ -62,10 +58,8 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         if (!Invincible)
         {
-            isHit = true;
             TakeDamage(damage);
-            ApplyKnockback(knockback);
-            //StartCoroutine(RecoverFromHit());
+            rb.AddForce(knockback, ForceMode2D.Impulse);
 
             //AddKnockBack(knockback);
 
@@ -81,31 +75,14 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         if (!Invincible)
         {
-            isHit = true;
             TakeDamage(damage);
-            isHit = false;
 
-            /*if (canTurnInvincible)
+            if (canTurnInvincible)
             {
                 //Activate invincibility and timer
                 Invincible = true;
-            }*/
+            }
         }
-    }
-
-    public void ApplyKnockback(Vector2 knockback)
-    {
-        currentState = State.Hit;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
-        StartCoroutine(RecoverFromHit());
-        
-    }
-
-    private IEnumerator RecoverFromHit()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isHit = false;
-        currentState = State.Idle;
     }
 
     public void OnObjectDestroyed()
@@ -198,6 +175,4 @@ public class GameEntity : MonoBehaviour, IDamageable
         sprite.color = new Color32(255, 255, 255, 255);
         moveSpeed = 4f;
     }
-
-   
 }
