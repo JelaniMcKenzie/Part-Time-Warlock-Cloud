@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Player player;
+    public WizardPlayer player;
 
     Vector3 target, mousePos, refVel, shakeOffset;
 
@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
         target = player.transform.position;
         zStart = transform.position.z;
     }

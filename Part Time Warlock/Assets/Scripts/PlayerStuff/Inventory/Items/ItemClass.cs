@@ -28,7 +28,7 @@ public class ItemClass : ScriptableObject
 
     
 
-    public virtual void Use(Player p) 
+    public virtual void Use(WizardPlayer p) 
     {
         Debug.Log("used item");
     }

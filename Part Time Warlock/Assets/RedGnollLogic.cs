@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RedGnollLogic : MonoBehaviour
 {
-    private Player player;
+    private WizardPlayer player;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
         player.moveSpeed += 10f;
     }
 

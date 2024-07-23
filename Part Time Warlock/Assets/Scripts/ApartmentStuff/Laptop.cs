@@ -8,11 +8,11 @@ public class Laptop : MonoBehaviour
 {
     public GameObject shopUI;
     public bool isActive;
-    public Player player;
+    public WizardPlayer player;
     // Start is called before the first frame update
     private void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
         isActive = false;
     }
 

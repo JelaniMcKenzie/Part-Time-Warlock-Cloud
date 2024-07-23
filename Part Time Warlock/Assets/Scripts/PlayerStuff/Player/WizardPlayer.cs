@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 using InventoryPlus;
 using UnityEngine.Tilemaps;
 
-public class Player : GameEntity
+public class WizardPlayer : GameEntity
 {
     public GameObject staffTip = null;
     public Inventory inventory;

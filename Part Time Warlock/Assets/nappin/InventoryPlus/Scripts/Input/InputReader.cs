@@ -31,7 +31,7 @@ namespace InventoryPlus
 
         [Space(15)]
         [Header("References")]
-        public Player player;
+        public WizardPlayer player;
         public Inventory inventory;
         public Chest chest;
         public UIDetails details;

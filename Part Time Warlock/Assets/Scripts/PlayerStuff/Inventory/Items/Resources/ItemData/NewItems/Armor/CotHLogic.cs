@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class CotHLogic : MonoBehaviour
 {
-    public Player player;
+    public WizardPlayer player;
     private float defaultMoveSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
 
         if (player != null)
         {

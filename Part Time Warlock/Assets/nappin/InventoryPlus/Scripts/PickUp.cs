@@ -120,7 +120,7 @@ namespace InventoryPlus
         {
             if (collision.CompareTag(playerTag) && hasExitedTrigger)
             {
-                inventory = collision.GetComponent<Player>().inventory;
+                inventory = collision.GetComponent<WizardPlayer>().inventory;
                 UpdateInventory();
                 Destroy(this.gameObject);
             }

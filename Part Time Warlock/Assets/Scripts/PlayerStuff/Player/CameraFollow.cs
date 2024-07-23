@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Player P;
+    public WizardPlayer P;
 
     private void Start()
     {
-        P = FindAnyObjectByType<Player>();
+        P = FindAnyObjectByType<WizardPlayer>();
     }
     private void Update()
     {

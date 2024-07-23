@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class TheCoolestLogic : MonoBehaviour
 {
-    private Player player;
+    private WizardPlayer player;
     private SpellClass spell;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
         
     }
 

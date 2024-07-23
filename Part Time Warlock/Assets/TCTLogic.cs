@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class TCTLogic : MonoBehaviour
 {
-    private Player player;
+    private WizardPlayer player;
     public int maxBonusDamage = 20; // Maximum bonus damage that can be added
     public int coinThreshold = 10; // Number of coins needed to reach max bonus damage
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
     }
 
     // Update is called once per frame
