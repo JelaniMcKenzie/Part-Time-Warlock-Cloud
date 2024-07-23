@@ -23,11 +23,16 @@ public class SpellClass : InventoryPlus.Item
     public GameObject spellPrefab;
     public string spellElement;
     public float damage;
+    public float knockbackForce;
+
+    [Space(30)]
+
     public int uses;
     public int maxUses;
-
     public float maxCooldown;
     public float currentCooldown;
+
+    
 
     [SerializeField] public AudioClip spellSound = null;
 
@@ -47,11 +52,15 @@ public class SpellClass : InventoryPlus.Item
     public bool isSpreadShot;
     public float spreadShotNum;
 
+    [Space(30)]
+
     public float effectRadius;
     public float statusDuration;
     public float dashSpellDuration;
     public float screenShakeIntensity;
     public float screenShakeLength;
+
+    
 
     public SpellClass GetSpell() { return this; }
 
@@ -81,6 +90,13 @@ public class SpellClass : InventoryPlus.Item
                         for (int i = 0; i < spreadShotNum; i++)
                         {
                             GameObject spreadShot = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
+
+                            if (spreadShot.TryGetComponent<PlayerProjectiles>(out var proj))
+                            {
+                                proj.damage = damage;
+                                proj.knockbackForce = knockbackForce;
+                            }
+
                             AudioSource.PlayClipAtPoint(useAudio, spreadShot.transform.position, 2f);
                             
                             // Get the Rigidbody2D component
@@ -98,7 +114,7 @@ public class SpellClass : InventoryPlus.Item
                             spreadShot.transform.position += spreadShot.transform.right;
 
                             // Set the velocity
-                            rb2d.velocity = spreadShot.transform.right * projectileSpeed; // Normalize only when setting velocity
+                            rb2d.velocity = (spreadShot.transform.right).normalized * projectileSpeed; // Normalize only when setting velocity
 
                         }
 
@@ -107,11 +123,11 @@ public class SpellClass : InventoryPlus.Item
                     {
                         //single shot logic here
                         GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
-                        PlayerProjectiles proj = projectile.GetComponent<PlayerProjectiles>();
-
-                        if (proj != null)
+                        
+                        if (projectile.TryGetComponent<PlayerProjectiles>(out var proj))
                         {
                             proj.damage = damage;
+                            proj.knockbackForce = knockbackForce;
                         }
 
                         AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position, 2f);

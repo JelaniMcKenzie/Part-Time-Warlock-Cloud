@@ -7,4 +7,6 @@ public class DamageSpell : MonoBehaviour
     protected WizardPlayer player;
     protected SpellClass spell;
     public float damage;
+    public float knockbackForce;
+
 }
