@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElectricBill_Run : StateMachineBehaviour
 {
-    Player player;
+    WizardPlayer player;
     Rigidbody2D rb;
     ElectricBill eBill;
 
@@ -13,7 +13,7 @@ public class ElectricBill_Run : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
         rb = animator.GetComponent<Rigidbody2D>();
         eBill = animator.GetComponent<ElectricBill>();
 

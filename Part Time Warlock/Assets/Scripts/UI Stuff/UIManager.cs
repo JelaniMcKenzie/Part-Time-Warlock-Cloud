@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public Sprite[] bagFill;
     public GameObject minimap;
     public GameObject miniMapHead;
-    public Player P;
+    public WizardPlayer P;
 
     public Slider bossHealthBar;
     public bool isBossDead = false;
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         activeScene = SceneManager.GetActiveScene();
         timerActive = true;
         gameManager = FindAnyObjectByType<GameManager>();
-        P = FindAnyObjectByType<Player>();
+        P = FindAnyObjectByType<WizardPlayer>();
         UpdateCoinText();
 
         if (activeScene.name == "Apartment")

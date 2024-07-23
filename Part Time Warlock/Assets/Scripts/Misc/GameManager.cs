@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public string scene;
     public string endScene;
     public bool paused = false;
-    public Player P = null;
+    public WizardPlayer P = null;
     public UIManager UI = null;
     [SerializeField] public GameObject Portal = null;
     [SerializeField] public GameObject[] pausedObjects;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<Player>();
+        P = FindAnyObjectByType<WizardPlayer>();
         UI = FindAnyObjectByType<UIManager>();
         UnityEngine.Debug.Log("Scene Name: " + scene);
     }

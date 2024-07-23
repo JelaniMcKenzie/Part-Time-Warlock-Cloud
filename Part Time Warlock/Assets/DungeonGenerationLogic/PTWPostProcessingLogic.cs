@@ -24,7 +24,7 @@ public class PTWDungeonPostProcessingLogic : DungeonGeneratorPostProcessingCompo
     public override void Run(DungeonGeneratorLevelGrid2D level)
     {
         var player = GameObject.FindWithTag("Player");
-        Player playerObj = player.GetComponent<Player>();
+        WizardPlayer playerObj = player.GetComponent<WizardPlayer>();
 
         playerObj.SetCollisionStateDuringGeneration(false);
         //implement post dungeon generation logic here

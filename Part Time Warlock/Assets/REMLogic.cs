@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class REMLogic : MonoBehaviour
 {
-    private Player player;
+    private WizardPlayer player;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType(typeof(Player)) as Player;
+        player = FindAnyObjectByType(typeof(WizardPlayer)) as WizardPlayer;
     }
 
     // Update is called once per frame

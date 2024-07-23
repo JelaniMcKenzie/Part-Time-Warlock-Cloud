@@ -22,7 +22,7 @@ public class ShopController : MonoBehaviour
     
     private GameObject[] cards; //Array where generated cards will be
 
-    public Player p; //the player object
+    public WizardPlayer p; //the player object
     public UIManager uIManager;
 
     // Start is called before the first frame update

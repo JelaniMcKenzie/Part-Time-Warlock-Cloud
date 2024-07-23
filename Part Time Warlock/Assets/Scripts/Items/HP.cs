@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class HP : MonoBehaviour
 {
-    public Player P = null;
+    public WizardPlayer P = null;
     public UIManager UI = null;
     public HealthBar HB = null;
     public AudioClip HPotion = null;
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<Player>();
+        P = FindAnyObjectByType<WizardPlayer>();
         UI = FindAnyObjectByType<UIManager>();
         HB = FindAnyObjectByType<HealthBar>();
     }

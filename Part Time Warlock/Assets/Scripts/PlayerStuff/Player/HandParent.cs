@@ -6,12 +6,12 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class HandParent : MonoBehaviour
 {
-    public Player P = null;
+    public WizardPlayer P = null;
     public GameObject crosshair;
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<Player>();
+        P = FindAnyObjectByType<WizardPlayer>();
     }
 
     // Update is called once per frame

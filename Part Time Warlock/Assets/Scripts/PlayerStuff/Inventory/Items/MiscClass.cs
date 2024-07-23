@@ -10,7 +10,7 @@ public class MiscClass : ItemClass
 
     public override MiscClass GetMisc() { return this; }
 
-    public override void Use(Player p)
+    public override void Use(WizardPlayer p)
     {
         //base.Use(p); //calls the function as implemented in the base class
                      //in this case, the base class the item class

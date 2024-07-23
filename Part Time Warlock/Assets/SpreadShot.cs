@@ -7,11 +7,11 @@ using UnityEngine.ProBuilder;
 public class SpreadShot : MonoBehaviour
 {
     GameObject[] children;
-    Player p;
+    WizardPlayer p;
     public float speed;
     private void Start()
     {
-        p = FindAnyObjectByType<Player>();
+        p = FindAnyObjectByType<WizardPlayer>();
         children = new GameObject[this.transform.childCount];
         // Calculate the direction from the player's position to the mouse position
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

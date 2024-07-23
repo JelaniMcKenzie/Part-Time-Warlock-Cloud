@@ -18,7 +18,7 @@ public class ThunderRushLogic : DamageSpell
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        player = FindAnyObjectByType<WizardPlayer>();
         spell = (SpellClass) player.inventory.GetInventorySlot(player.inventory.hotbarUISlots[3]).GetItemType();
         damage = spell.damage;
         
