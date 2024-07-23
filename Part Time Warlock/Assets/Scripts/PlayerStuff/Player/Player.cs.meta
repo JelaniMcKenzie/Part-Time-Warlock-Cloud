@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 7606e010289777443aa6338a1af3f7b3
+guid: e4d835daf688a654892f890447cdf904
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PelletPrefab: {fileID: 3528400409650182722, guid: db7586d82177e1a49bc5cec5274d9a52, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

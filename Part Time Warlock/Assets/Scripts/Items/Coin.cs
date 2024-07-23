@@ -5,12 +5,12 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public UIManager UI = null;
-    public WizardPlayer player = null;
+    public Player player = null;
     [SerializeField] public AudioClip CoinSound = null;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<WizardPlayer>();
+        player = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
         if (UI == null)
         {

@@ -10,7 +10,7 @@ public class ConsumableClass : InventoryPlus.Item
     //a game object to instantiate, apply logic to, and immediately destroy
     public GameObject consumable;
 
-    public void Use(WizardPlayer p)
+    public void Use(Player p)
     {
         Instantiate(consumable);
     }

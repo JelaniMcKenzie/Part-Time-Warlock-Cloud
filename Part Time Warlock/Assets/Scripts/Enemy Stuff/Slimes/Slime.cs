@@ -5,7 +5,7 @@ using UnityEngine.ProBuilder;
 
 public class Slime : GameEntity
 {
-    private WizardPlayer P = null;
+    private Player P = null;
 
     [SerializeField] public GameObject EnemyDeathAnim;
 
@@ -32,7 +32,7 @@ public class Slime : GameEntity
 
         health = 143;
         canMove = false;
-        P = FindAnyObjectByType<WizardPlayer>();
+        P = FindAnyObjectByType<Player>();
         UI = FindAnyObjectByType<UIManager>();
         //rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();

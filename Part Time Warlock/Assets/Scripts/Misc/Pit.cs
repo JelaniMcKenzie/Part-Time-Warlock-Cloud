@@ -11,7 +11,7 @@ public class Pit : MonoBehaviour
 
 
 
-    public void FallPlayer(WizardPlayer player)
+    public void FallPlayer(Player player)
     {
         if (playerFalling == false)
         {
@@ -24,7 +24,7 @@ public class Pit : MonoBehaviour
         }
     }
 
-    private IEnumerator ReverseMovement(WizardPlayer player)
+    private IEnumerator ReverseMovement(Player player)
     {
         // Wait for one second
         yield return new WaitForSeconds(1f);

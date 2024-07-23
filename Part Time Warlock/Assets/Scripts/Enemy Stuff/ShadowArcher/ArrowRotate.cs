@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ArrowRotate : MonoBehaviour
 {
-    public WizardPlayer P = null;
+    public Player P = null;
     [SerializeField] public AudioClip Arrow = null;
     private float damage = 9f;
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<WizardPlayer>();
+        P = FindAnyObjectByType<Player>();
         AudioSource.PlayClipAtPoint(Arrow, transform.position, 4);
         Vector3 dir = P.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

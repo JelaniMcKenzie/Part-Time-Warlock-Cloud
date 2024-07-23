@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     public string scene;
-    private WizardPlayer p;
+    private Player p;
     private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        p = FindAnyObjectByType<WizardPlayer>();
+        p = FindAnyObjectByType<Player>();
         gm = FindAnyObjectByType<GameManager>();
     }
 

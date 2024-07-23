@@ -21,7 +21,7 @@ public class RespawnPointTracker : MonoBehaviour
         // Check if the other collider is a point object
         if (other.CompareTag("Player"))
         {
-            WizardPlayer p = other.GetComponent<WizardPlayer>();
+            Player p = other.GetComponent<Player>();
             // Get the point of collision
             Vector2 collisionPoint = other.transform.position;
 

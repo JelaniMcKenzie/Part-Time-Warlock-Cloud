@@ -12,11 +12,11 @@ public class ArmorController : MonoBehaviour
 
     // Reference to the equipped armor data
 
-    public WizardPlayer player;
+    public Player player;
 
     private void Start()
     {
-        player = this.gameObject.GetComponent<WizardPlayer>();
+        player = this.gameObject.GetComponent<Player>();
         
     }
 

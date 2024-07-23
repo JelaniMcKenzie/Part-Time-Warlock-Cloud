@@ -65,10 +65,10 @@ public class SpellClass : InventoryPlus.Item
     public SpellClass GetSpell() { return this; }
 
 
-    public void Use(WizardPlayer P)
+    public void Use(Player P)
     {
         CameraShake cam = FindAnyObjectByType<CameraShake>();
-        P = FindAnyObjectByType<WizardPlayer>();
+        P = FindAnyObjectByType<Player>();
 
         if (currentCooldown > 0)
         {

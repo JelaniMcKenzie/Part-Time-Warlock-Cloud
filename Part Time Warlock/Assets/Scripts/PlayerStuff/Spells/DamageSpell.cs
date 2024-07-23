@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageSpell : MonoBehaviour
 {
-    protected WizardPlayer player;
+    protected Player player;
     protected SpellClass spell;
     public float damage;
     public float knockbackForce;

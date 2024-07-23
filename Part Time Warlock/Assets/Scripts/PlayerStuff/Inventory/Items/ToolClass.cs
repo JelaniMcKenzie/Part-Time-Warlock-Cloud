@@ -17,7 +17,7 @@ public class ToolClass : ItemClass
 
     public override ToolClass GetTool() { return this; }
 
-    public override void Use(WizardPlayer p)
+    public override void Use(Player p)
     {
         base.Use(p);
         Debug.Log("swing tool");

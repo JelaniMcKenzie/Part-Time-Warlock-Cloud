@@ -12,7 +12,7 @@ public class ShowInputPrompt : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     { 
-        if (collision.TryGetComponent<WizardPlayer>(out var p))
+        if (collision.TryGetComponent<Player>(out var p))
         {
             inputPrompt.SetActive(true);
         }
@@ -20,7 +20,7 @@ public class ShowInputPrompt : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<WizardPlayer>(out var p))
+        if (collision.TryGetComponent<Player>(out var p))
         {
             inputPrompt.SetActive(false);
         }

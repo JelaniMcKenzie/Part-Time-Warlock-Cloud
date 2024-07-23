@@ -11,7 +11,7 @@ public class ArmorClass : InventoryPlus.Item
     public Color color = new Color();
     public Color defaultColor = new Color(170, 40, 137);
 
-    public void EquipArmor(WizardPlayer p, bool equipped)
+    public void EquipArmor(Player p, bool equipped)
     {
         if (equipped == true)
         {

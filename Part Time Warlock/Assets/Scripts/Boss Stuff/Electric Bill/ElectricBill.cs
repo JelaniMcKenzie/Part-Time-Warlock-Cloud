@@ -5,7 +5,7 @@ using UnityEngine;
 public class ElectricBill : GameEntity
 {
 
-    public WizardPlayer player;
+    public Player player;
     public bool isFlipped = false;
     public bool canSlam = true;
     public bool isSlamming = false;
@@ -25,7 +25,7 @@ public class ElectricBill : GameEntity
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
-        player = FindAnyObjectByType<WizardPlayer>();
+        player = FindAnyObjectByType<Player>();
         cam = FindAnyObjectByType<CameraShake>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();

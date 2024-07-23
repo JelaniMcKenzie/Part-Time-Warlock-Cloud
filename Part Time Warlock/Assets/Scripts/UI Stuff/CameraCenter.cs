@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraCenter : MonoBehaviour
 {
-    public WizardPlayer P = null;
+    public Player P = null;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<WizardPlayer>();    
+        P = FindAnyObjectByType<Player>();    
     }
 
     // Update is called once per frame

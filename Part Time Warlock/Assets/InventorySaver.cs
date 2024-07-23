@@ -10,7 +10,7 @@ namespace InventoryPlus
     public class InventorySaver : MonoBehaviour
     {
         public List<ItemSlot> savedItems = new List<ItemSlot>();
-        public WizardPlayer P;
+        public Player P;
         public Scene scene;
 
         //read from player inventory and save it to this object
@@ -21,7 +21,7 @@ namespace InventoryPlus
         void Update()
         {
             //calling findanyobjectbytype every frame is BAD code practice. CHANGE THIS
-            P = FindAnyObjectByType<WizardPlayer>();
+            P = FindAnyObjectByType<Player>();
             if (SceneManager.GetActiveScene().name == "Apartment") 
             {
                 ClearSavedInventory();

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image healthBarImage;
-    public WizardPlayer P;
+    public Player P;
 
     // Start is called before the first frame update
     void Start()
     {
-        P = FindAnyObjectByType<WizardPlayer>();
+        P = FindAnyObjectByType<Player>();
     }
 
     // Update is called once per frame

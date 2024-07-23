@@ -21,7 +21,7 @@ public class Doormat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<WizardPlayer>() != null)
+        if (collision.GetComponent<Player>() != null)
         {
             SceneManager.LoadScene(sceneToLoad);
         }

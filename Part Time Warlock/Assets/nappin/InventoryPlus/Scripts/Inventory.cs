@@ -37,7 +37,7 @@ namespace InventoryPlus
         private bool wasLoaded = false;
 
 
-        private WizardPlayer p;
+        private Player p;
         private PassiveItemController passiveItemController;
         private GameObject instantiatedPassiveRef;
 
@@ -55,7 +55,7 @@ namespace InventoryPlus
                 AssignHotbarSlots();
 
                 AddStartingInventory();
-                p = FindAnyObjectByType<WizardPlayer>();
+                p = FindAnyObjectByType<Player>();
                 
                 
             }

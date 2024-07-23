@@ -16,11 +16,11 @@ public class PTWShopItem : MonoBehaviour
 
     public InventoryPlus.Item item;
 
-    public WizardPlayer player;
+    public Player player;
     // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<WizardPlayer>();
+        player = FindAnyObjectByType<Player>();
         shopManager = FindAnyObjectByType<ShopManager>();
         uiManager = FindAnyObjectByType<UIManager>();
 

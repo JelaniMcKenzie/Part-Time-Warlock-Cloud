@@ -11,7 +11,7 @@ namespace InventoryPlus
         public string playerTag = "Player";
         public InventorySaver inventorySaver;
         public GameObject inventoryObj;
-        public WizardPlayer P;
+        public Player P;
         
         
         private SaveSystem saveSystem;
@@ -24,7 +24,7 @@ namespace InventoryPlus
         {
             saveSystem = this.GetComponent<SaveSystem>();    
             inventorySaver = FindAnyObjectByType<InventorySaver>();
-            P = FindAnyObjectByType<WizardPlayer>();
+            P = FindAnyObjectByType<Player>();
         }
 
 

@@ -11,7 +11,7 @@ public class Playeranimations : MonoBehaviour
     public float yAxis;
     public Animator anim = null;
     public ArmorController armorController;
-    public WizardPlayer P = null;
+    public Player P = null;
     public string currentanim;
     public string direction;
     AnimatorStateInfo animState;
@@ -26,7 +26,7 @@ public class Playeranimations : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        P = this.gameObject.GetComponent<WizardPlayer>();
+        P = this.gameObject.GetComponent<Player>();
         activeScene = SceneManager.GetActiveScene();
         armorController = GetComponent<ArmorController>();
         playerSprite = P.GetComponent<SpriteRenderer>();

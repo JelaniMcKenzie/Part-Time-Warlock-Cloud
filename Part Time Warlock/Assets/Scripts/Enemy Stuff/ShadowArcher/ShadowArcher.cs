@@ -38,7 +38,7 @@ public class ShadowArcher : GameEntity
     public GameObject bow;
     public GameObject firePos;
     public SpriteRenderer bowSprite;
-    public WizardPlayer player;
+    public Player player;
     public float fireInterval = 2f;
     public float minDistance = 10f; //change this value to adjust the movement range
 
@@ -59,7 +59,7 @@ public class ShadowArcher : GameEntity
         sprite = GetComponent<SpriteRenderer>();
         canMove = true;
         moveSpeed = 2f;
-        player = FindAnyObjectByType<WizardPlayer>();
+        player = FindAnyObjectByType<Player>();
 
         roomManager = GetComponentInParent<GungeonRoomManager>();
         animator = GetComponent<Animator>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdiotSandwichLogic : MonoBehaviour
 {
-    public WizardPlayer player;
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class IdiotSandwichLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = FindAnyObjectByType<WizardPlayer>();
+        player = FindAnyObjectByType<Player>();
         StartCoroutine(ReverseControls());
     }
 
