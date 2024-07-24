@@ -8,15 +8,15 @@ using System;
 using UnityEngine.InputSystem;
 using InventoryPlus;
 using UnityEngine.Tilemaps;
+using Nevelson.Topdown2DPitfall.Assets.Scripts.Utils;
 
-public class WizardPlayer : GameEntity
+public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
 {
     public GameObject staffTip = null;
     public Inventory inventory;
     public InventorySaver inventorySaver;
     public ScriptableObject armor;
     [SerializeField] private InputReader inputReader;
-    private Coroutine shrinkingCoroutine;
 
     [Space(30)]
 
@@ -32,7 +32,6 @@ public class WizardPlayer : GameEntity
     public bool canCast = true;
     public string scene;
     public bool canHit = true;
-    private bool isHit = false;
     public bool isGamePaused; //move this to a gamemanager script later
     public int coinNum = 0;
     public bool moveSpeedMultiplied = false;
@@ -44,6 +43,8 @@ public class WizardPlayer : GameEntity
 
     public bool isInventoryOpen = false;
     public Vector3 moveInput;
+
+    private Vector3 defaultScale;
 
     [Space(30)]
 
@@ -77,6 +78,7 @@ public class WizardPlayer : GameEntity
 
     void Start()
     {
+        defaultScale = transform.localScale;
         inventorySaver = FindAnyObjectByType<InventorySaver>();
         //rb = GetComponent<Rigidbody2D>();
         canDash = true;
@@ -90,12 +92,6 @@ public class WizardPlayer : GameEntity
 
     }
 
-    private void Awake()
-    {
-
-
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -404,9 +400,9 @@ public class WizardPlayer : GameEntity
 
     public IEnumerator DamageFlash()
     {
-        GetComponent<SpriteRenderer>().color = new Color32 (255, 255, 255, 0);
+        sprite.color = new Color32 (255, 255, 255, 0);
         yield return new WaitForSeconds(0.25f);
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     public IEnumerator TimeToDie()
@@ -438,48 +434,24 @@ public class WizardPlayer : GameEntity
         }
     }
 
-    // Function to start the shrinking coroutine
-    public void StartShrinking(float duration)
+    public void PitfallActionsBefore()
     {
-        if (shrinkingCoroutine == null)
-        {
-            shrinkingCoroutine = StartCoroutine(ShrinkPlayer(duration));
-        }
+        canMove = false;
     }
 
-    // Coroutine to gradually decrease the player's scale
-    private IEnumerator ShrinkPlayer(float duration)
+    public void PitfallResultingAfter()
     {
-        Vector3 initialScale = transform.localScale;
-        float timer = 0f;
+        canMove = true;
+        transform.localScale /= 2f;
+    }
 
-        while (timer < duration)
-        {
-            float scaleFactor = Mathf.Lerp(1f, 0f, timer / duration);
-            transform.localScale = initialScale * scaleFactor;
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the player's scale is set to zero
-        transform.localScale = new Vector3 (0.001f, 0.001f, 0f);
-
-        // Reset the shrinking coroutine reference
-        shrinkingCoroutine = null;
+    public bool PitfallConditionCheck()
+    {
+        return true;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Pit"))
-        {
-            //Debug.LogWarning("ON PIT");
-            Pit pit = collision.gameObject.GetComponent<Pit>();
-            if (pit != null && isDashing == false)
-            {
-                pit.FallPlayer(this);
-            }
-        }
-
         if (collision.gameObject.tag == "Enemy")
         {
             if (canHit == true)
@@ -504,16 +476,6 @@ public class WizardPlayer : GameEntity
                 TakeDamage(2f);
             }
         }
-
-        if (collision.gameObject.CompareTag("Pit"))
-        {
-            //Debug.LogWarning("ON PIT");
-            Pit pit = collision.gameObject.GetComponent<Pit>();
-            if (pit != null && isDashing == false)
-            {
-                pit.FallPlayer(this);
-            }
-        }
     }
 
     public void SetCollisionStateDuringGeneration(bool enableCollisions)
@@ -527,6 +489,10 @@ public class WizardPlayer : GameEntity
             collider.enabled = enableCollisions;
         }
     }
+
+    
+
+
 
     //Upon exiting the floor collider, you fall in the pit and take damage
     //record the point at which you fell, and set the vector -1 to place yourself

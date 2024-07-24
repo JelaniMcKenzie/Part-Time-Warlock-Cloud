@@ -8,6 +8,7 @@ public interface IDamageable
     public bool Targetable { set; get; }
     public bool Invincible { set; get; }
     public void OnHit(float damage, Vector2 knockback);
+    public void ApplyKnockback(Vector2 knockback);
     public void OnHit(float damage);
     public void OnObjectDestroyed();
 }

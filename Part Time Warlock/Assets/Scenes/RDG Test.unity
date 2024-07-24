@@ -960,9 +960,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7013096632989420080, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
-      propertyPath: moveSpeed
-      value: 25
+    - target: {fileID: 6588477752154944057, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.136
+      objectReference: {fileID: 0}
+    - target: {fileID: 6588477752154944057, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.866
       objectReference: {fileID: 0}
     - target: {fileID: 7103690517140072971, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchorMax.y

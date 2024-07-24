@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public float moveSpeed = 5f; //must be a high value for things like the player (e.g. 500f)
     public bool isFrozen = false;
     public bool isBurning = false;
+    protected bool isHit = false;
     public bool canMove = true;
     public SpriteRenderer sprite;
     public Rigidbody2D rb;
@@ -16,7 +18,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public GameObject onDeath;
 
     //a base burnSeconds float to be manipulated by other objects
-    public float burnSeconds = 5f;
+    public float burnSeconds = 3f;
 
     //a base freezeSeconds float to be manipulated by other objects
     public float freezeSeconds;
@@ -24,7 +26,8 @@ public class GameEntity : MonoBehaviour, IDamageable
     public float knockbackForce = 100f; //Set the default knocback force (if there is knockback for damage)
     public bool canTurnInvincible;
 
-
+    protected enum State { Idle, Moving, Hit }
+    [SerializeField] protected State currentState = State.Idle;
     #region IDamageable properties
     // IDamageable properties
     public float Health
@@ -44,6 +47,7 @@ public class GameEntity : MonoBehaviour, IDamageable
         Targetable = true;
         Invincible = false;
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
 
     }
 
@@ -58,10 +62,9 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         if (!Invincible)
         {
+            isHit = true;
             TakeDamage(damage);
-            rb.AddForce(knockback, ForceMode2D.Impulse);
-
-            //AddKnockBack(knockback);
+            ApplyKnockback(knockback);
 
             /*if (canTurnInvincible)
             {
@@ -71,18 +74,37 @@ public class GameEntity : MonoBehaviour, IDamageable
         }
     }
 
+    
+
     public void OnHit(float damage)
     {
         if (!Invincible)
         {
+            isHit = true;
             TakeDamage(damage);
-
-            if (canTurnInvincible)
+            isHit = false;
+            /*if (canTurnInvincible)
             {
                 //Activate invincibility and timer
                 Invincible = true;
             }
+            }*/
         }
+    }
+
+    public void ApplyKnockback(Vector2 knockback)
+    {
+        currentState = State.Hit;
+        rb.AddForce(knockback, ForceMode2D.Impulse);
+        StartCoroutine(RecoverFromHit());
+
+    }
+
+    private IEnumerator RecoverFromHit()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isHit = false;
+        currentState = State.Idle;
     }
 
     public void OnObjectDestroyed()

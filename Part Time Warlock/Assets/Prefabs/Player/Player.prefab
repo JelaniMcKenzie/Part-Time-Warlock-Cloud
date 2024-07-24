@@ -511,8 +511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1002157e2fe1e7643a9b7754ebd7f891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  moveSpeed: 5
+  health: 0
+  moveSpeed: 7.5
   isFrozen: 0
   isBurning: 0
   canMove: 1
@@ -520,8 +520,9 @@ MonoBehaviour:
   rb: {fileID: 8844539647537492763}
   gameManager: {fileID: 0}
   onDeath: {fileID: 0}
-  burnSeconds: 3
+  burnSeconds: 5
   freezeSeconds: 0
+  knockbackForce: 100
   canTurnInvincible: 0
   currentState: 0
   staffTip: {fileID: 8436134285611601207}
@@ -532,24 +533,24 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   controlsReversed: 0
   canCast: 1
-  scene: 
+  scene: Lose
   canHit: 1
   isGamePaused: 0
   coinNum: 0
   moveSpeedMultiplied: 0
   activeScene:
     m_Handle: 0
-  handParent: {fileID: 0}
-  inventoryObj: {fileID: 0}
+  handParent: {fileID: 5980240983192464595}
+  inventoryObj: {fileID: 3915755962498694640}
   isInventoryOpen: 0
   moveInput: {x: 0, y: 0, z: 0}
-  dashMoveSpeed: 0
-  dashDuration: 0
-  dashCooldown: 0
+  dashMoveSpeed: 25
+  dashDuration: 0.25
+  dashCooldown: 0.5
   canDash: 1
   isDashing: 0
-  coinSpawnRef: {fileID: 0}
-  maxForce: 5
+  coinSpawnRef: {fileID: 9029762672506579145, guid: da1aef60918ff8e489e652baa96fa8b4, type: 3}
+  maxForce: 1
   material: {fileID: 0}
   pitRespawnPos: {x: 0, y: 0, z: 0}
 --- !u!95 &7332275743896073916
@@ -2087,12 +2088,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
+--- !u!1 &3915755962498694640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6038407031750098887, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
+  m_PrefabInstance: {fileID: 7321503339210162743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3915755962498694643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6038407031750098884, guid: 48a727d389457ef4281e0d98ac6aabca, type: 3}
   m_PrefabInstance: {fileID: 7321503339210162743}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3915755962498694640}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab522e95e5406c24897199ea95710afb, type: 3}

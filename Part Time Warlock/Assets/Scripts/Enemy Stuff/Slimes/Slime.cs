@@ -46,44 +46,49 @@ public class Slime : GameEntity
         float distanceToPlayer = Vector2.Distance(transform.position, P.transform.position);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
-        if (distanceToPlayer <= chaseDistance)
+        if (currentState != State.Hit)
         {
-            canMove = true;
-            if (canMove == true)
+            if (distanceToPlayer <= chaseDistance)
             {
-                if (!isChasing)
+                canMove = true;
+                if (canMove == true)
                 {
-                    isChasing = true;
-                    chaseTimer = chaseDuration;
+                    if (!isChasing)
+                    {
+                        isChasing = true;
+                        chaseTimer = chaseDuration;
+                    }
+
+                    // Call EnemyMovement() only when chasing
+                    EnemyMovement();
                 }
-
-                // Call EnemyMovement() only when chasing
-                EnemyMovement();
             }
-        }
-        else
-        {
-            // Continue chasing for a certain duration even if the player is out of range
-            chaseTimer -= Time.deltaTime;
-
-            if (chaseTimer <= 0f)
+            else
             {
-                // Stop chasing
-                isChasing = false;
-                canMove = false;
-                //Debug.Log("Chase stopped!");
+                // Continue chasing for a certain duration even if the player is out of range
+                chaseTimer -= Time.deltaTime;
+                if (chaseTimer <= 0f)
+                {
+                    // Stop chasing
+                    isChasing = false;
+                    canMove = false;
+                    //Debug.Log("Chase stopped!");
+                }
             }
         }
-
 
         if (canMove == false)
         {
-            rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity = Vector3.zero;
         }
     }
 
     public void EnemyMovement()
     {
+        if (currentState == State.Hit)
+        {
+            return;
+        }
 
         bool onGround = false;
 
@@ -94,13 +99,14 @@ public class Slime : GameEntity
             if (detectJump.sprite == s)
             {
                 onGround = true;
-
-                //Add some kind of clause here to make knockback work. IDK what it will look like
+                currentState = State.Idle;
+                return;
             }
         }
 
         if (!onGround)
         {
+            currentState = State.Moving;
             if (!hasPlayedSound)
             {
                 StartCoroutine(PlaySoundAndWait());
@@ -124,18 +130,24 @@ public class Slime : GameEntity
         if (TryGetComponent<IDamageable>(out var damageable))
         {
             Debug.Log("HasDamageable");
-            
+
 
             if (other.TryGetComponent<DamageSpell>(out var damageSpell))
             {
-                //TakeDamage(damageSpell.damage);
+                Vector2 knockbackDirection;
 
-                //offset for collision detection changes the direction where the force comes from
-                Vector2 direction = (other.transform.position - transform.position).normalized;
+                if (damageSpell.TryGetComponent<PlayerProjectiles>(out var projectile))
+                {
+                    //grab the velocity of the projectile to ensure knockback is straight back relative to the projectile's incoming direction
+                    knockbackDirection = projectile.GetComponent<Rigidbody2D>().velocity.normalized;
+                }
+                else
+                {
+                    //offset for collision detection changes the direction where the force comes from
+                    knockbackDirection = (transform.position - damageSpell.transform.position).normalized;
+                }
 
-                Vector2 knockback = direction * knockbackForce; //edit to make knockback change based on the spell
-
-                //Knockback doesn't work if the slime is in the air. Why?
+                Vector2 knockback = knockbackDirection * damageSpell.knockbackForce; //reverse knockback force to send in the other direction
 
                 //After making sure that the collider has a script that implements IDamagable, we can run the OnHit implementation and pass our Vector2 force
                 damageable.OnHit(damageSpell.damage, knockback);
@@ -152,7 +164,7 @@ public class Slime : GameEntity
         {
             Debug.LogWarning("IDamageable is null!");
         }
-        
+
 
         if (other.CompareTag("Ice"))
         {
@@ -170,6 +182,7 @@ public class Slime : GameEntity
         }
 
     }
+
 
 
     public IEnumerator PlaySoundAndWait()
