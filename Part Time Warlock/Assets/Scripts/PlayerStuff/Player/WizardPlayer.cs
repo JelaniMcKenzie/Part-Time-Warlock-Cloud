@@ -70,6 +70,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     DamageVignette damageVignette;
     CameraShake camShake;
     private Collider2D[] colliders;
+    private Vector2 respawnPosition;
 
 
 
@@ -89,7 +90,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         damageVignette = FindAnyObjectByType<DamageVignette>();
         camShake = FindAnyObjectByType<CameraShake>();
         //inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
-
+        respawnPosition = transform.position;
     }
 
 
@@ -452,13 +453,23 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             if (canHit == true)
             {
                 TakeDamage(9f);
             }
         }
+
+        if (collision.gameObject.CompareTag("Pit"))
+        {
+            transform.position = respawnPosition;
+        }
+    }
+
+    public void SetRespawnPosition(Vector2 entryPoint)
+    {
+        respawnPosition = entryPoint;
     }
 
     public void OnTriggerStay2D(Collider2D collision)
@@ -491,6 +502,8 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     }
 
     
+
+
 
 
 

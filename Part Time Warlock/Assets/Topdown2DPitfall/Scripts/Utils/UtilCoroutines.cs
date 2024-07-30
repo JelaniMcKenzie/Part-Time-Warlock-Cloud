@@ -7,6 +7,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
         public static IEnumerator FallingCo(GameObject fallingObj, Action ActionsAfterPitfall,
             float pitfallAnimSpeed, Vector2 respawnLocation) {
             Vector2 scaleReduction = new Vector2(pitfallAnimSpeed, pitfallAnimSpeed);
+            Vector2 originalScale = fallingObj.transform.localScale;
             while (fallingObj.transform.GetLocalScale2D().x > 0) {
                 fallingObj.transform.SetLocalScale2D(fallingObj.transform.GetLocalScale2D() - scaleReduction);
                 yield return null;
@@ -15,7 +16,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
             ActionsAfterPitfall();
             fallingObj.transform.SetPosition2D(respawnLocation);
             yield return new WaitForSecondsRealtime(.1f);
-            fallingObj.transform.SetLocalScale2D(Vector2.one);
+            fallingObj.transform.SetLocalScale2D(originalScale);
         }
     }
 }

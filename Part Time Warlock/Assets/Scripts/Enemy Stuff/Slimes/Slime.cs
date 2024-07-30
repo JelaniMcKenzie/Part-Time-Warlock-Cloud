@@ -131,7 +131,6 @@ public class Slime : GameEntity
         {
             Debug.Log("HasDamageable");
 
-
             if (other.TryGetComponent<DamageSpell>(out var damageSpell))
             {
                 Vector2 knockbackDirection;

@@ -192,7 +192,6 @@ public class ShadowArcher : GameEntity
 
                 if (damageSpell.TryGetComponent<PlayerProjectiles>(out var projectile))
                 {
-                    Debug.LogWarning("PROJECTILE!");
                     //grab the velocity of the projectile to ensure knockback is straight back relative to the projectile's incoming direction
                     knockbackDirection = projectile.GetComponent<Rigidbody2D>().velocity.normalized;
                 }

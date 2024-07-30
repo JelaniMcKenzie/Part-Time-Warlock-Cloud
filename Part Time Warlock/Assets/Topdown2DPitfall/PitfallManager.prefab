@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a4d2cf0ce767947bb5ab8c00ab6022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentBoundsToPitfallManager: 1
-  bounds:
-  - m_Center: {x: 5, y: -10, z: 0}
-    m_Extent: {x: 6.68, y: 1.6, z: 0}
+  parentBoundsToPitfallManager: 0
+  bounds: []
