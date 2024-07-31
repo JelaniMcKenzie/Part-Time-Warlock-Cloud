@@ -13,6 +13,7 @@ using Nevelson.Topdown2DPitfall.Assets.Scripts.Utils;
 public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
 {
     public GameObject staffTip = null;
+    public GameObject pitfallCollider = null;
     public Inventory inventory;
     public InventorySaver inventorySaver;
     public ScriptableObject armor;
@@ -45,6 +46,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     public Vector3 moveInput;
 
     private Vector3 defaultScale;
+    public Vector3 dashStart;
 
     [Space(30)]
 
@@ -69,8 +71,6 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     public Vector3 pitRespawnPos;
     DamageVignette damageVignette;
     CameraShake camShake;
-    private Collider2D[] colliders;
-    private Vector2 respawnPosition;
 
 
 
@@ -90,7 +90,6 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         damageVignette = FindAnyObjectByType<DamageVignette>();
         camShake = FindAnyObjectByType<CameraShake>();
         //inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
-        respawnPosition = transform.position;
     }
 
 
@@ -270,19 +269,28 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
             canMove = true;
             isHit = true;
 
-            // Calculate the number of coins to spawn based on the damage
-            int coinsToSpawn = Mathf.Max(Mathf.FloorToInt(damage / 2), 1); // Adjust the formula based on your preference
-
-            // Ensure coinNum doesn't go below zero
-            coinNum = Mathf.Max(coinNum - coinsToSpawn, 0);
-
-            uiManager.UpdateCoinText();
-
-            // Spawn coins
-            for (int i = 0; i < coinsToSpawn; i++)
+            if (coinNum > 0) 
             {
-                SpawnCoin();
+                // Calculate the number of coins to spawn based on the damage
+                int coinsToSpawn = Mathf.Max(Mathf.FloorToInt(damage / 2), 1); // Adjust the formula based on your preference
+
+                // Ensure coinNum doesn't go below zero
+                coinNum = Mathf.Max(coinNum - coinsToSpawn, 0);
+
+                uiManager.UpdateCoinText();
+
+                // Spawn coins
+                for (int i = 0; i < coinsToSpawn; i++)
+                {
+                    SpawnCoin();
+                }
             }
+            else
+            {
+                uiManager.timer -= 30f;
+                StartCoroutine(uiManager.ScaleTimerText());
+            }
+           
 
             StartCoroutine(Invulnerable());
 
@@ -362,8 +370,10 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         canDash = false;
         isDashing = true;
 
+        Vector3 dashStart = transform.position;
         // Disable collision with the enemy layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+        pitfallCollider.SetActive(false);
 
         // Perform dash logic here, for example, calculate velocity
         Vector2 dashVelocity = dashDirection.normalized * dashMoveSpeed;
@@ -379,6 +389,9 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
 
         // Enable collision back with the enemy layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
+        pitfallCollider.SetActive(true);
+        
+
 
         rb.velocity = Vector2.zero; // Stop the player after the dash
         isDashing = false;
@@ -443,7 +456,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     public void PitfallResultingAfter()
     {
         canMove = true;
-        transform.localScale /= 2f;
+        TakeDamage(2f);
     }
 
     public bool PitfallConditionCheck()
@@ -460,16 +473,6 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
                 TakeDamage(9f);
             }
         }
-
-        if (collision.gameObject.CompareTag("Pit"))
-        {
-            transform.position = respawnPosition;
-        }
-    }
-
-    public void SetRespawnPosition(Vector2 entryPoint)
-    {
-        respawnPosition = entryPoint;
     }
 
     public void OnTriggerStay2D(Collider2D collision)

@@ -4643,7 +4643,6 @@ GameObject:
   - component: {fileID: 7697156492310162202}
   - component: {fileID: 8778919120616547425}
   - component: {fileID: 3143343701639594606}
-  - component: {fileID: 4449377405938640569}
   m_Layer: 0
   m_Name: Other 2
   m_TagString: Pit
@@ -5397,18 +5396,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &4449377405938640569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954952933385523181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7047ab6ccb0321b40a857bc9253fbef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7874547254748723152
 GameObject:
   m_ObjectHideFlags: 0

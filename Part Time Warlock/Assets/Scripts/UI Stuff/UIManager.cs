@@ -7,12 +7,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI CoinText;
-    public TextMeshProUGUI Pausetext;
-    public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI pauseText;
+    public TextMeshProUGUI timerText;
     public Image bag;
     public Image controls;
     public Image darkOverlay;
@@ -26,6 +27,9 @@ public class UIManager : MonoBehaviour
 
     public Scene activeScene;
     private GameManager gameManager;
+
+    private Vector3 originalTextScale;
+    private Vector3 originalTextPosition;
 
     //timer fields
     public float timer = 600f;
@@ -46,8 +50,8 @@ public class UIManager : MonoBehaviour
 
         if (activeScene.name == "Apartment")
         {
-            //CoinText.gameObject.SetActive(false);
-            TimerText.gameObject.SetActive(false);
+            //coinText.gameObject.SetActive(false);
+            timerText.gameObject.SetActive(false);
             timerActive = false;
 
             //bag.gameObject.SetActive(false);
@@ -56,14 +60,16 @@ public class UIManager : MonoBehaviour
             miniMapHead.SetActive(false);
         }
         else if (activeScene.name == "RDG Test") {
-            CoinText.gameObject.SetActive(true);
-            TimerText.gameObject.SetActive(true);
+            coinText.gameObject.SetActive(true);
+            timerText.gameObject.SetActive(true);
 
             bag.gameObject.SetActive(true);
 
             minimap.SetActive(true);
             miniMapHead.SetActive(true);
         }
+        originalTextScale = timerText.transform.localScale;
+        originalTextPosition = timerText.rectTransform.anchoredPosition;
         
     }
 
@@ -74,7 +80,7 @@ public class UIManager : MonoBehaviour
         //hard coded solution to the canvas not being able to find the player
        
         
-        //UpdateCoinText();
+        //UpdatecoinText();
 
         if (bag != null)
         {
@@ -120,7 +126,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCoinText()
     {
-        CoinText.text = ": " + P.coinNum + " / 100";
+        coinText.text = ": " + P.coinNum + " / 100";
     }
 
     // Call this method to update the image based on the percentage
@@ -150,12 +156,48 @@ public class UIManager : MonoBehaviour
         timeToDisplay += 1;
         minutes = Mathf.FloorToInt(timeToDisplay / 60);
         seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public IEnumerator ScaleTimerText()
+    {
+        float elapsedTime = 0f;
+        float scaleFactor = 3f;
+        float duration = 0.65f;
+        // Calculate the target position for bottom-left growth
+        Vector3 targetPosition = originalTextPosition + new Vector3(-timerText.rectTransform.rect.width * (scaleFactor - 1), -timerText.rectTransform.rect.height * (scaleFactor - 1), 0) / 2;
+
+        // Scale up
+        while (elapsedTime < duration)
+        {
+            float progress = elapsedTime / duration;
+            float scale = Mathf.Lerp(1f, scaleFactor, progress);
+            timerText.transform.localScale = originalTextScale * scale;
+            timerText.rectTransform.anchoredPosition = Vector3.Lerp(originalTextPosition, targetPosition, progress);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+
+        // Scale down
+        while (elapsedTime < duration)
+        {
+            float progress = elapsedTime / duration;
+            float scale = Mathf.Lerp(scaleFactor, 1f, progress);
+            timerText.transform.localScale = originalTextScale * scale;
+            timerText.rectTransform.anchoredPosition = Vector3.Lerp(targetPosition, originalTextPosition, progress);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        timerText.transform.localScale = originalTextScale;
+        timerText.rectTransform.anchoredPosition = originalTextPosition;
     }
 
     public void PauseGame()
     {
-        Pausetext.gameObject.SetActive(true);
+        pauseText.gameObject.SetActive(true);
         controls.gameObject.SetActive(true);
         darkOverlay.gameObject.SetActive(true);
         Time.timeScale = 0f;
@@ -163,7 +205,7 @@ public class UIManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        Pausetext.gameObject.SetActive(false);
+        pauseText.gameObject.SetActive(false);
         controls.gameObject.SetActive(false);
         darkOverlay.gameObject.SetActive(false);
         Time.timeScale = 1f;

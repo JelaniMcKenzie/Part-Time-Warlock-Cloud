@@ -15,6 +15,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils
         {
             currentPos = transform.position;
             whatIsPitfall = LayerMask.GetMask(Constants.PITFALL_COLLIDER);
+            CreateBoundaries();
         }
 
         void OnDrawGizmosSelected()
@@ -72,5 +73,30 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils
         {
             return collision.GetComponentInParent<IPitfall>();
         }
+
+        private void CreateBoundaries()
+        {
+            foreach (var bound in bounds)
+            {
+                CreateBoxCollider(bound);
+            }
+        }
+
+        private void CreateBoxCollider(Bounds bound)
+        {
+            GameObject boundary = new GameObject("Boundary");
+            boundary.transform.SetParent(transform);
+            boundary.layer = LayerMask.NameToLayer("PitBorder");
+
+            BoxCollider2D boxCollider = boundary.AddComponent<BoxCollider2D>();
+            boxCollider.size = new Vector3((bound.size.x * 1.076923f), (bound.size.y * 1.333333333333333333333f), 0f);
+
+            // Set the position of the boundary object relative to the parent
+            boundary.transform.localPosition = bound.center;
+
+            // Offset is no longer needed as we're setting the localPosition directly
+            boxCollider.offset = Vector2.zero;
+        }
+        
     }
 }

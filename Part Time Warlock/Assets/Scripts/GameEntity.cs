@@ -26,7 +26,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public float knockbackForce = 100f; //Set the default knocback force (if there is knockback for damage)
     public bool canTurnInvincible;
 
-    protected enum State { Idle, Moving, Hit }
+    protected enum State { Idle, Moving, Hit, Stun, Stagger }
     [SerializeField] protected State currentState = State.Idle;
     #region IDamageable properties
     // IDamageable properties
@@ -62,9 +62,17 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         if (!Invincible)
         {
+            
             isHit = true;
+            // Disable collision with the PitBorder layer
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), true);
+
+            //Stun state logic here. How long are enemies/players stunned for?
             TakeDamage(damage);
             ApplyKnockback(knockback);
+
+            // Enable collision with the PitBorder layer
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), false);
 
             /*if (canTurnInvincible)
             {
@@ -81,8 +89,14 @@ public class GameEntity : MonoBehaviour, IDamageable
         if (!Invincible)
         {
             isHit = true;
+            // Disable collision with the PitBorder layer
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), true);
+
             TakeDamage(damage);
             isHit = false;
+
+            // Enable collision with the PitBorder layer
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), false);
             /*if (canTurnInvincible)
             {
                 //Activate invincibility and timer

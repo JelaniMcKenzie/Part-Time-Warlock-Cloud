@@ -70,11 +70,29 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
         }
 
         private void DetermineRespawnLocation() {
-            if (transform.GetPosition2D() != lastPosition) {
+
+            //TODO: Fix dash pit logic
+
+            //here, if the player is dashing and falls into the pit, set the position to the dashStart variable
+            if (transform.gameObject.TryGetComponent(out WizardPlayer player)) 
+            { 
+                if (player.isDashing) 
+                {
+                    if (transform.GetPosition2D() != lastPosition)
+                    {
+                        lastPosition = player.dashStart;
+                    }
+                    
+                }
+            }
+
+            if (transform.GetPosition2D() != lastPosition)
+            {
                 Vector2 moveDirection = (transform.GetPosition2D() - lastPosition).normalized;
                 if (moveDirection != Vector2.zero) lastNonZeroMoveDirection = moveDirection;
             }
             lastPosition = transform.GetPosition2D();
+            
         }
 
         private Vector2 GetDynamicRespawnLocation() {

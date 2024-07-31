@@ -973,6 +973,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7013096632989420080, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+      propertyPath: pitfallCollider
+      value: 
+      objectReference: {fileID: 1968129743}
     - target: {fileID: 7103690517140072971, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8469,6 +8473,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
   m_PrefabInstance: {fileID: 427330156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1968129743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6588477752154944058, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
+  m_PrefabInstance: {fileID: 427330156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2085748698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8590,10 +8599,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 474415862004806713, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: miniMapHead
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 474415862004806714, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -8678,21 +8683,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 621191004661138125, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 621191004661138125, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1080
-      objectReference: {fileID: 0}
-    - target: {fileID: 8211871002706817832, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -20.900024
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6262763487324019599, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a064fdb1fc143f42a355a2a823031c1, type: 3}
