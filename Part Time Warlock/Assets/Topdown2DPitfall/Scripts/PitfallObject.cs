@@ -12,7 +12,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
         [Tooltip("If you supply a custom respawn location the pitfall object will " +
             "respawn here every time it falls. " +
             "This value can be changed at runtime.")]
-        public Transform customRespawnLocation;
+        public Vector3 customRespawnLocation;
         private Action PitfallActionBefore;
         private Action PitfallActionAfter;
         private bool isFalling = false;
@@ -43,7 +43,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
             if (customRespawnLocation == null)
                 StartCoroutine(UtilCoroutines.FallingCo(gameObject, PitfallActionAfter, pitfallAnimSpeed, GetDynamicRespawnLocation()));
             else {
-                StartCoroutine(UtilCoroutines.FallingCo(gameObject, PitfallActionAfter, pitfallAnimSpeed, customRespawnLocation.position));
+                StartCoroutine(UtilCoroutines.FallingCo(gameObject, PitfallActionAfter, pitfallAnimSpeed, customRespawnLocation));
             }
         }
 
@@ -73,25 +73,29 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
 
             //TODO: Fix dash pit logic
 
-            //here, if the player is dashing and falls into the pit, set the position to the dashStart variable
-            if (transform.gameObject.TryGetComponent(out WizardPlayer player)) 
-            { 
-                if (player.isDashing) 
-                {
-                    if (transform.GetPosition2D() != lastPosition)
-                    {
-                        lastPosition = player.dashStart;
-                    }
-                    
-                }
-            }
+            
 
             if (transform.GetPosition2D() != lastPosition)
             {
-                Vector2 moveDirection = (transform.GetPosition2D() - lastPosition).normalized;
-                if (moveDirection != Vector2.zero) lastNonZeroMoveDirection = moveDirection;
+                //here, if the player is dashing and falls into the pit, set the position to the dashStart variable
+                if (transform.gameObject.TryGetComponent(out WizardPlayer player))
+                {
+                    if (player.isDashing)
+                    {
+                        customRespawnLocation = player.dashStart;
+                        
+                    }
+                    else
+                    {
+                        Vector2 moveDirection = (transform.GetPosition2D() - lastPosition).normalized;
+                        if (moveDirection != Vector2.zero) lastNonZeroMoveDirection = moveDirection;
+                        lastPosition = transform.GetPosition2D();
+                    }
+                }
+
+                
             }
-            lastPosition = transform.GetPosition2D();
+            
             
         }
 

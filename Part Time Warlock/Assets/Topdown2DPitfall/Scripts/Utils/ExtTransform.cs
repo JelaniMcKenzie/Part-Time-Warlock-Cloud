@@ -20,7 +20,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
         /// <param name="t"></param>
         /// <returns></returns>
         public static Vector2 GetLocalScale2D(this Transform t) {
-            return new Vector3(t.localScale.x, t.localScale.y, 1);
+            return new Vector3(t.localScale.x, t.localScale.y, 0);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils {
         /// <param name="t"></param>
         /// <param name="localScale2D"></param>
         public static void SetLocalScale2D(this Transform t, Vector2 localScale2D) {
-            t.localScale = new Vector3(localScale2D.x, localScale2D.y, 1);
+            t.localScale = new Vector3(localScale2D.x, localScale2D.y, 0);
         }
 
         /// <summary>

@@ -34,6 +34,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 675016632962489012, guid: b91ea3836a3bd19408a6133da5acb56c, type: 3}
   spellElement: 
   damage: 0
+  knockbackForce: 0
   uses: 1
   maxUses: 1
   maxCooldown: 6

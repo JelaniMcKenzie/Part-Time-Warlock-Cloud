@@ -17,6 +17,9 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     public Inventory inventory;
     public InventorySaver inventorySaver;
     public ScriptableObject armor;
+
+    public Image[] cooldownImgs;
+
     [SerializeField] private InputReader inputReader;
 
     [Space(30)]
@@ -45,7 +48,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     public bool isInventoryOpen = false;
     public Vector3 moveInput;
 
-    private Vector3 defaultScale;
+    public Vector3 defaultScale;
     public Vector3 dashStart;
 
     [Space(30)]
@@ -85,11 +88,16 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         canDash = true;
         canHit = true;
         uiManager = FindAnyObjectByType<UIManager>();
-        SpriteRenderer s = GetComponent<SpriteRenderer>();
-        material = s.material;
+        sprite = GetComponent<SpriteRenderer>();
+        material = sprite.material;
         damageVignette = FindAnyObjectByType<DamageVignette>();
         camShake = FindAnyObjectByType<CameraShake>();
         //inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
+
+        foreach(Image image in cooldownImgs)
+        {
+            image.color = Color.black;
+        }
     }
 
 
@@ -181,7 +189,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
                 {
                     //Downcast from ItemSlot to SpellClass to access SpellClass methods
                     SpellClass s = (SpellClass) inventory.inventoryItems[i].GetItemType();
-                    s.UpdateCooldown();
+                    s.UpdateCooldown(cooldownImgs[i]);
                    
                 }
             }
@@ -370,9 +378,10 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         canDash = false;
         isDashing = true;
 
-        Vector3 dashStart = transform.position;
+        dashStart = transform.position;
         // Disable collision with the enemy layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), true);
         pitfallCollider.SetActive(false);
 
         // Perform dash logic here, for example, calculate velocity
@@ -390,7 +399,10 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         // Enable collision back with the enemy layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
         pitfallCollider.SetActive(true);
-        
+        //small offset before reenabling collision with pits, just in case the player is in the pit when the dash stops
+        yield return new WaitForSeconds(0.1f);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), false);
+
 
 
         rb.velocity = Vector2.zero; // Stop the player after the dash

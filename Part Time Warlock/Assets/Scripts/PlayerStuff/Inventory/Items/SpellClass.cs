@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ProBuilder;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+using UnityEngine.UI;
 
 
 [CreateAssetMenu(fileName = "(Spell)Spell", menuName = "InventoryPlus/Spell", order = 1)]
@@ -176,8 +177,8 @@ public class SpellClass : InventoryPlus.Item
         uses--;
     }
 
-    
-    public void UpdateCooldown()
+
+    public void UpdateCooldown(Image cooldownImage)
     {
         if (currentCooldown > 0)
         {
@@ -187,13 +188,31 @@ public class SpellClass : InventoryPlus.Item
                 currentCooldown = 0;
                 uses = maxUses;
                 Debug.Log("Spell cooldown finished.");
+                cooldownImage.color = new Color(0, 0, 0, 1f); // Fully opaque when cooldown is done
+            }
+            else
+            {
+                // Update the fill amount of the cooldown image
+                float fillValue = 0 + (currentCooldown / maxCooldown);
+                cooldownImage.fillAmount = fillValue;
             }
         }
         else if (uses <= 0)
         {
             currentCooldown = maxCooldown;
             Debug.Log("Spell uses exceeded. Cooldown started: " + currentCooldown);
+            cooldownImage.color = new Color(0, 0, 0, 229.5f);
+
+            // Set the image to halfway opaque when cooldown starts
+            cooldownImage.color = new Color(0, 0, 0, 0.5f);
+            cooldownImage.fillAmount = 0f; // Start the fill at 0 when cooldown starts
             return;
         }
-    }    
+        else
+        {
+            // Set the image to fully transparent and reset fill when idle
+            cooldownImage.color = new Color(0, 0, 0, 0f);
+            cooldownImage.fillAmount = 1f; // Ensure fill is reset to full when not cooling down
+        }
+    }
 }
