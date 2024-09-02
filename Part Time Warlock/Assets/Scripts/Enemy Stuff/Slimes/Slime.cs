@@ -14,7 +14,7 @@ public class Slime : GameEntity
     public UIManager UI = null;
     public bool isOnFire = false;
     private bool hasPlayedSound = false;
-
+    
 
     public float chaseDistance = 100f; // Set the distance at which the enemy starts chasing
     public float chaseDuration = 3f; // Set the duration the enemy chases after the player is out of range
@@ -29,7 +29,7 @@ public class Slime : GameEntity
     // Start is called before the first frame update
     void Start()
     {
-
+        attackingDamage = 9f;
         health = 143;
         canMove = false;
         P = FindAnyObjectByType<WizardPlayer>();
@@ -147,6 +147,8 @@ public class Slime : GameEntity
                 }
 
                 Vector2 knockback = knockbackDirection * damageSpell.knockbackForce; //reverse knockback force to send in the other direction
+
+                rb.velocity = Vector2.zero;
 
                 //After making sure that the collider has a script that implements IDamagable, we can run the OnHit implementation and pass our Vector2 force
                 damageable.OnHit(damageSpell.damage, knockback);

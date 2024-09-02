@@ -478,18 +478,20 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
+        if (collision.gameObject.CompareTag("Enemy") && 
+            collision.gameObject.TryGetComponent<GameEntity>(out var enemy))
+        {    
             if (canHit == true)
             {
-                TakeDamage(9f);
+                OnHit(enemy.attackingDamage);
             }
         }
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy") &&
+            collision.gameObject.TryGetComponent<GameEntity>(out var enemy))
         {
             if (inventory.isActiveAndEnabled)
             {
@@ -499,7 +501,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
             }
             if (canHit == true)
             {
-                TakeDamage(2f);
+                OnHit(enemy.attackingDamage);
             }
         }
     }

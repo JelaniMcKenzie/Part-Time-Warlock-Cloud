@@ -201,10 +201,9 @@ public class SpellClass : InventoryPlus.Item
         {
             currentCooldown = maxCooldown;
             Debug.Log("Spell uses exceeded. Cooldown started: " + currentCooldown);
-            cooldownImage.color = new Color(0, 0, 0, 229.5f);
 
             // Set the image to halfway opaque when cooldown starts
-            cooldownImage.color = new Color(0, 0, 0, 0.5f);
+            cooldownImage.color = new Color(1, 0, 1, 0.75f);
             cooldownImage.fillAmount = 0f; // Start the fill at 0 when cooldown starts
             return;
         }

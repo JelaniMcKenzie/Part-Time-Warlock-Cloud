@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: MagicMissile
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: -1057191354, guid: fb4cddae0e22cc346bbad2c947dcce68, type: 3}
+  itemSprite: {fileID: -1565880590, guid: 647bf12bbb9362a45a9a7044ace46125, type: 3}
   itemName: Magic Missile
   itemID: 
   itemCategory: Magic
@@ -35,7 +35,7 @@ MonoBehaviour:
   spellElement: 
   damage: 9
   knockbackForce: 2
-  uses: 2
+  uses: 3
   maxUses: 3
   maxCooldown: 0.25
   currentCooldown: 0

@@ -7,6 +7,7 @@ public class GameEntity : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float health = 100f;
     public float moveSpeed = 5f; //must be a high value for things like the player (e.g. 500f)
+    public float attackingDamage = 0f; //varies for each attacking entity. pass this value into OnHit
     public bool isFrozen = false;
     public bool isBurning = false;
     protected bool isHit = false;
@@ -110,8 +111,25 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         currentState = State.Hit;
         rb.AddForce(knockback, ForceMode2D.Impulse);
-        StartCoroutine(RecoverFromHit());
+        StartCoroutine(HandleKnockback(knockback));
+    }
 
+    private IEnumerator HandleKnockback(Vector2 knockback)
+    {
+        // Ignore collision with the PitBorder layer
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), true);
+
+        // Wait until the velocity drops below a small threshold, indicating the knockback is over
+        while (rb.velocity.magnitude > 0.1f)
+        {
+            yield return null; // Wait until the next frame
+        }
+
+        // Re-enable the collision with the PitBorder layer
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), false);
+
+        // Recover from the hit
+        StartCoroutine(RecoverFromHit());
     }
 
     private IEnumerator RecoverFromHit()

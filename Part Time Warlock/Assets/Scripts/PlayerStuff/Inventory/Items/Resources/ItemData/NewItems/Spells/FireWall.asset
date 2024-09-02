@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
   m_Name: FireWall
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: -1863700131, guid: cde28b8b9e1acbd46b926b0a81ec1194, type: 3}
+  itemSprite: {fileID: 21300000, guid: 9d105277666f70743bacb91b66e65d25, type: 3}
   itemName: Fire Wall
   itemID: 
   itemCategory: Magic
