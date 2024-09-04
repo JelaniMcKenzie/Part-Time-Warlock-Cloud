@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8033867883047377998}
   - component: {fileID: 2619150897040894299}
   - component: {fileID: 5468851416780053630}
+  - component: {fileID: 4144223484838106186}
   m_Layer: 0
-  m_Name: Frost Arrow
+  m_Name: Glacier Shard
   m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,10 +31,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6561484218638063662}
+  - {fileID: 4540306547662040123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3005152075677664826
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 1972415647
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 51cb606a0d3e7d74ab559fe6ced7281d, type: 3}
+  m_Sprite: {fileID: 1460709043, guid: 65c624444c38a6e4696cc0d647a2e433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  knockbackForce: 0
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
 --- !u!50 &2619150897040894299
@@ -162,20 +164,41 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08449891, y: 0.0071914047}
+  m_Offset: {x: 0.0016021729, y: 0.0017849207}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.10066241, y: 0.11864087}
+  m_Size: {x: 0.504334, y: 0.15468287}
   m_EdgeRadius: 0
---- !u!1 &6000960978609788296
+--- !u!95 &4144223484838106186
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528400409650182722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bddc0266c231ce540865a2f984d915e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4141031421887525688
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,9 +206,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6561484218638063662}
-  - component: {fileID: 2159505139294254169}
-  - component: {fileID: 6702340142161481531}
+  - component: {fileID: 4540306547662040123}
+  - component: {fileID: 7387602126008035557}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -193,13 +215,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6561484218638063662
+--- !u!4 &4540306547662040123
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000960978609788296}
+  m_GameObject: {fileID: 4141031421887525688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -208,28 +230,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1479044434323770487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2159505139294254169
+--- !u!114 &7387602126008035557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000960978609788296}
+  m_GameObject: {fileID: 4141031421887525688}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_LightType: 2
+  m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 0.7411765, g: 0.9215687, b: 0.9960785, a: 1}
+  m_FalloffIntensity: 0.75
+  m_Color: {r: 0, g: 0.38654184, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000009fac90756b6d03ba
-  m_LightCookieSprite: {fileID: 0}
+  m_ApplyToSortingLayers: 0000000053a1cf959fac90756b6d03ba
+  m_LightCookieSprite: {fileID: 1460709043, guid: 65c624444c38a6e4696cc0d647a2e433, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
@@ -242,33 +264,21 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0.014450014, y: 0.002550006, z: 0}
+    m_Extent: {x: 0.76645, y: 0.57535, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightInnerRadius: 0.03
+  m_PointLightOuterRadius: 0.59
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &6702340142161481531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000960978609788296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc4827bc6f9dff48bcc12a8e974275b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRef: {fileID: 2159505139294254169}
-  parentSprite: {fileID: 3005152075677664826}
+  - {x: -0.24553108, y: -0.06325817, z: 0}
+  - {x: -0.0986588, y: -0.06437349, z: 0}
+  - {x: 0.28442788, y: -0.008189678, z: 0}
+  - {x: 0.18476081, y: 0.026414156, z: 0}
+  - {x: -0.11541915, y: 0.07914543, z: 0}
+  - {x: -0.24972415, y: 0.07910514, z: 0}

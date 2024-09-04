@@ -346,6 +346,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 3005152075677664826, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005152075677664826, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
       propertyPath: m_Name
       value: Frost Arrow

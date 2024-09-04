@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8879c3ad66088c14e9ae66740863b0c9, type: 3}
-  m_Name: FrostArrow
+  m_Name: GlacierShards
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 89a39c65b651afe40afd32b30b7f8698, type: 3}
-  itemName: Frost Arrow
+  itemSprite: {fileID: 21300000, guid: bd8b3cc16d692fe4dbcfb80e3cbd692e, type: 3}
+  itemName: Glacier Shards
   itemID: 
   itemCategory: Magic
   price: 0
@@ -34,6 +34,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: 
   damage: 15
+  knockbackForce: 0
   uses: 1
   maxUses: 1
   maxCooldown: 1
