@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7989571552506007778}
   - component: {fileID: 4714647047266142657}
-  - component: {fileID: 9184084759561143451}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -46,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_LightType: 2
+  m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.97647065, g: 0.9450981, b: 0.36862746, a: 1}
@@ -67,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.17578125, y: -0.2929685, z: 0}
-    m_Extent: {x: 5.742187, y: 4.6875, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -83,20 +82,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &9184084759561143451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258982287532412576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc4827bc6f9dff48bcc12a8e974275b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRef: {fileID: 0}
-  parentSprite: {fileID: 0}
 --- !u!1 &1349106966584309559
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,3 +277,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  knockbackForce: 0

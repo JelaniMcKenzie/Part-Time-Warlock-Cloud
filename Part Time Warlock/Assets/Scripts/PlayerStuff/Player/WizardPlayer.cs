@@ -121,7 +121,6 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
             canMove = true;
         }*/
 
-
         if (canMove == true)
         {
             Movement();
@@ -174,7 +173,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
                 }   
             }
             
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 inventory.UseItem(inventory.hotbarUISlots[4]);
                 inventory.DropItem(inventory.hotbarUISlots[4]);
