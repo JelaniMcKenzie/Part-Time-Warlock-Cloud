@@ -5,7 +5,7 @@ using UnityEngine.ProBuilder;
 
 public class Slime : GameEntity
 {
-    private WizardPlayer P = null;
+    private WizardPlayer player = null;
 
     [SerializeField] public GameObject EnemyDeathAnim;
 
@@ -32,7 +32,7 @@ public class Slime : GameEntity
         attackingDamage = 9f;
         health = 143;
         canMove = false;
-        P = FindAnyObjectByType<WizardPlayer>();
+        player = FindAnyObjectByType<WizardPlayer>();
         UI = FindAnyObjectByType<UIManager>();
         //rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -43,7 +43,7 @@ public class Slime : GameEntity
     // Update is called once per frame
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, P.transform.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
         if (currentState != State.Hit)
@@ -112,7 +112,7 @@ public class Slime : GameEntity
                 StartCoroutine(PlaySoundAndWait());
             }
             // Calculate the direction towards the player
-            Vector2 direction = (P.transform.position - transform.position).normalized;
+            Vector2 direction = (player.transform.position - transform.position).normalized;
 
             // Move the enemy towards the player
             rb.velocity = moveSpeed * direction;
