@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameEntity : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float health = 100f;
+    [SerializeField] protected SimpleFlash flashEffect;
     public float moveSpeed = 5f; //must be a high value for things like the player (e.g. 500f)
     public float attackingDamage = 0f; //varies for each attacking entity. pass this value into OnHit
     public bool isFrozen = false;
@@ -14,6 +15,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     public bool canMove = true;
     public SpriteRenderer sprite;
     public Rigidbody2D rb;
+    public Color flashColor = Color.white;
     public GameManager gameManager;
 
     public GameObject onDeath;
@@ -39,6 +41,12 @@ public class GameEntity : MonoBehaviour, IDamageable
 
     public bool Targetable { get; set; }
     public bool Invincible { get; set; }
+    public SimpleFlash FlashEffect 
+    {
+        get { return flashEffect; }
+        set { flashEffect = value; } 
+        
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -59,15 +67,15 @@ public class GameEntity : MonoBehaviour, IDamageable
     }
 
     // IDamageable methods
-    public void OnHit(float damage, Vector2 knockback)
+    public virtual void OnHit(float damage, Vector2 knockback)
     {
         if (!Invincible)
         {
-            
             isHit = true;
             // Disable collision with the PitBorder layer
             Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), true);
 
+            FlashEffect.Flash(flashColor);
             //Stun state logic here. How long are enemies/players stunned for?
             TakeDamage(damage);
             ApplyKnockback(knockback);
@@ -85,7 +93,7 @@ public class GameEntity : MonoBehaviour, IDamageable
 
     
 
-    public void OnHit(float damage)
+    public virtual void OnHit(float damage)
     {
         if (!Invincible)
         {
@@ -93,6 +101,7 @@ public class GameEntity : MonoBehaviour, IDamageable
             // Disable collision with the PitBorder layer
             Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), true);
 
+            FlashEffect.Flash(flashColor);
             TakeDamage(damage);
             isHit = false;
 
@@ -107,7 +116,7 @@ public class GameEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public void ApplyKnockback(Vector2 knockback)
+    public virtual void ApplyKnockback(Vector2 knockback)
     {
         currentState = State.Hit;
         rb.AddForce(knockback, ForceMode2D.Impulse);

@@ -641,6 +641,7 @@ GameObject:
   - component: {fileID: 3192710016589595085}
   - component: {fileID: 5943348743049379371}
   - component: {fileID: 1376458632795146476}
+  - component: {fileID: 3688621247133671580}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -737,6 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  flashEffect: {fileID: 3688621247133671580}
   moveSpeed: 7.5
   attackingDamage: 0
   isFrozen: 0
@@ -744,6 +746,7 @@ MonoBehaviour:
   canMove: 1
   sprite: {fileID: 0}
   rb: {fileID: 8844539647537492763}
+  flashColor: {r: 0.5188679, g: 0, b: 0, a: 1}
   gameManager: {fileID: 0}
   onDeath: {fileID: 0}
   burnSeconds: 5
@@ -986,6 +989,20 @@ MonoBehaviour:
   pitfallAnimSpeed: 0.015
   respawnDistFromPit: 2
   customRespawnLocation: {x: 0, y: 0, z: 0}
+--- !u!114 &3688621247133671580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034193063478891061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a856802009d82df44a780fdccc1e082d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 451d3cb0fa7ffac49932a5bc67457b01, type: 2}
+  duration: 0.125
 --- !u!1 &5980240983192464595
 GameObject:
   m_ObjectHideFlags: 0

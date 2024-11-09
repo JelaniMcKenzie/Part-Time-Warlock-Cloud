@@ -208,7 +208,7 @@ public class ShadowArcher : GameEntity
 
                 if (isFrozen == false)
                 {
-                    StartCoroutine(DamageFlash());
+                    //FlashEffect.Flash();
                 }
             }
         }
@@ -237,6 +237,7 @@ public class ShadowArcher : GameEntity
         isFrozen = true;
         moveSpeed = 0f;
         sprite.color = new Color32(0, 186, 192, 255);
+        Debug.LogWarning(sprite.color);
         canFire = false;
 
         // Stop and clear all active coroutines
@@ -283,13 +284,6 @@ public class ShadowArcher : GameEntity
     private static float RandomRange(float min, float max)
     {
         return UnityEngine.Random.Range(min, max);
-    }
-
-    public IEnumerator DamageFlash()
-    {
-        sprite.color = new Color32(100, 0, 0, 255);
-        yield return new WaitForSeconds(0.25f);
-        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     private void ShowBow()

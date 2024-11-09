@@ -32,7 +32,7 @@ public class DamageVignette : MonoBehaviour
         intensity = 0.25f;
 
         _vignette.active = true;
-        _vignette.intensity.Override(0.2f);
+        _vignette.intensity.Override(0.7f);
 
         while (intensity > 0f)
         {

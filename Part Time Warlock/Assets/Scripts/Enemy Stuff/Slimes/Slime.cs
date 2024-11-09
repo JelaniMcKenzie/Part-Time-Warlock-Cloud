@@ -155,7 +155,7 @@ public class Slime : GameEntity
 
                 if (isFrozen == false)
                 {
-                    StartCoroutine(DamageFlash());
+                    //FlashEffect.Flash();
                 }
 
 
@@ -219,13 +219,4 @@ public class Slime : GameEntity
         isFrozen = false;
         sprite.color = new Color32(255, 255, 255, 255);
     }
-
-    public IEnumerator DamageFlash()
-    {
-        sprite.color = new Color32(100, 0, 0, 255);
-        yield return new WaitForSeconds(0.25f);
-        sprite.color = new Color32(255, 255, 255, 255);
-    }
-
-    
 }

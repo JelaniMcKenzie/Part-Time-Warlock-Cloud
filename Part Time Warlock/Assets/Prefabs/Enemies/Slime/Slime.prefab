@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 335754699938242454}
   - component: {fileID: 323649110362874187}
   - component: {fileID: 4468231041324695757}
+  - component: {fileID: 2024031454932688392}
   - component: {fileID: 1193764277119068872}
   - component: {fileID: 473401003224715504}
   - component: {fileID: 3740252902606212916}
@@ -124,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  flashEffect: {fileID: 2024031454932688392}
   moveSpeed: 5
   attackingDamage: 9
   isFrozen: 0
@@ -131,6 +133,7 @@ MonoBehaviour:
   canMove: 0
   sprite: {fileID: 0}
   rb: {fileID: 1193764277119068872}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
   gameManager: {fileID: 0}
   onDeath: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
   burnSeconds: 5
@@ -165,6 +168,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052b56100dbcba94eaafb821d7c283fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2024031454932688392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143482120570913188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a856802009d82df44a780fdccc1e082d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 451d3cb0fa7ffac49932a5bc67457b01, type: 2}
+  duration: 0.125
 --- !u!50 &1193764277119068872
 Rigidbody2D:
   serializedVersion: 4
