@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -882,11 +881,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.02
+      value: 51.98
       objectReference: {fileID: 0}
     - target: {fileID: 3451220922864593842, guid: cefc99425dbe7ae4583318763caebf32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1026,13 +1025,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 5957923650014761952, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35.98
+      value: -30.019997
       objectReference: {fileID: 0}
     - target: {fileID: 8565619543415645653, guid: a2d54c0baf0be264aa908db9bbb9a2ad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1619,12 +1622,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!20 &1709079471
 Camera:
   m_ObjectHideFlags: 0

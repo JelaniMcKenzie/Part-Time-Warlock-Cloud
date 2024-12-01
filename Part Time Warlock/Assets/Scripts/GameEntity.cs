@@ -14,6 +14,7 @@ public class GameEntity : MonoBehaviour, IDamageable
     protected bool isHit = false;
     public bool canMove = true;
     public SpriteRenderer sprite;
+    [SerializeField] protected GameObject hitFlashObj = null;
     public Rigidbody2D rb;
     public Color flashColor = Color.white;
     public GameManager gameManager;

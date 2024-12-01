@@ -268,10 +268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666746ee788f6404bbd643aa70e02984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spell: {fileID: 0}
+  shakeLength: 0.125
+  shakeIntensity: 2
   damage: 0
   knockbackForce: 0
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
+  ImpactHit: {fileID: 4738763225042930448, guid: 9b4dcab1198c6b74e9f0edca36c495b1, type: 3}
 --- !u!1001 &5729486424282204325
 PrefabInstance:
   m_ObjectHideFlags: 0

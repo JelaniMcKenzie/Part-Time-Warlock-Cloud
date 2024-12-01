@@ -89,10 +89,11 @@ public class SpellClass : InventoryPlus.Item
                         {
                             GameObject spreadShot = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
 
-                            if (spreadShot.TryGetComponent<PlayerProjectiles>(out var proj))
+                            if (spreadShot.TryGetComponent<DamageSpell>(out var proj))
                             {
                                 proj.damage = damage;
                                 proj.knockbackForce = knockbackForce;
+                                proj.spell = this;
                             }
 
                             AudioSource.PlayClipAtPoint(useAudio, spreadShot.transform.position, 2f);
@@ -122,10 +123,11 @@ public class SpellClass : InventoryPlus.Item
                         //single shot logic here
                         GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
 
-                        if (projectile.TryGetComponent<PlayerProjectiles>(out var proj))
+                        if (projectile.TryGetComponent<DamageSpell>(out var proj))
                         {
                             proj.damage = damage;
                             proj.knockbackForce = knockbackForce;
+                            proj.spell = this;
                         }
 
                         AudioSource.PlayClipAtPoint(useAudio, spellPrefab.transform.position, 2f);

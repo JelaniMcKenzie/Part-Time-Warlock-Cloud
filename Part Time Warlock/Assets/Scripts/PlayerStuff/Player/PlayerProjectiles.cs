@@ -9,17 +9,18 @@ public class PlayerProjectiles : DamageSpell
     // Start is called before the first frame update
     public GameObject Firewall = null;
     public AudioClip FireClip = null;
+    public GameObject ImpactHit = null;
 
     //checks what direction the player is facing and fires there
     void Start()
     {
-        
+        cs = FindAnyObjectByType<CameraShake>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         Destroy(this.gameObject, 2.5f);
         if (gameObject.tag == "Fire")
         {
@@ -31,7 +32,7 @@ public class PlayerProjectiles : DamageSpell
     {
         
         if (other.gameObject.CompareTag("Border"))
-        {
+        {   
             Destroy(this.gameObject);
         }
 
@@ -53,5 +54,13 @@ public class PlayerProjectiles : DamageSpell
     {
         yield return new WaitForSeconds(0.025f);
         FireWall();
+    }
+
+    public void OnDestroy()
+    {
+        if (ImpactHit == null) { return; }
+        cs.ShakeCamera(shakeLength, shakeIntensity);
+        Instantiate(ImpactHit, transform.position, Quaternion.identity);
+        
     }
 }
