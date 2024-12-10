@@ -17,7 +17,6 @@ public class ArrowRotate : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         StartCoroutine(PassThrough());
         GetComponent<Rigidbody2D>().velocity = (Vector3.MoveTowards(transform.position, P.transform.position, 0.1f) - transform.position) * 200;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("PitBorder"), true);
     }
 
     // Update is called once per frame

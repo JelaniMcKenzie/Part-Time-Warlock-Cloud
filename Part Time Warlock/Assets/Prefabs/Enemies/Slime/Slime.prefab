@@ -132,7 +132,6 @@ MonoBehaviour:
   isBurning: 0
   canMove: 0
   sprite: {fileID: 0}
-  hitFlashObj: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6, type: 3}
   rb: {fileID: 1193764277119068872}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   gameManager: {fileID: 0}

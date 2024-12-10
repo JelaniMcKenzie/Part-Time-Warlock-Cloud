@@ -188,7 +188,6 @@ public class ShadowArcher : GameEntity
 
             if (collision.TryGetComponent<DamageSpell>(out var damageSpell))
             {
-                Instantiate(hitFlashObj, collision.transform.position, Quaternion.identity);
                 Vector2 knockbackDirection;
 
                 if (damageSpell.TryGetComponent<PlayerProjectiles>(out var projectile))
@@ -237,7 +236,7 @@ public class ShadowArcher : GameEntity
     {
         isFrozen = true;
         moveSpeed = 0f;
-        GetComponent<SpriteRenderer>().color = new Color32(0, 186, 192, 255);
+        sprite.color = new Color32(0, 186, 192, 255);
         Debug.LogWarning(sprite.color);
         canFire = false;
 
@@ -266,7 +265,7 @@ public class ShadowArcher : GameEntity
         // Resume the animator
         animator.speed = 1;
         bowAnim.speed = 1;
-        GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 
     private static bool IsPointWithinCollider(Collider2D collider, Vector2 point)

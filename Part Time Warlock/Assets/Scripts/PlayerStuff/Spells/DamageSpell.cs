@@ -5,9 +5,7 @@ using UnityEngine;
 public class DamageSpell : MonoBehaviour
 {
     protected WizardPlayer player;
-    public SpellClass spell;
-    protected CameraShake cs;
-    [SerializeField] public float shakeLength, shakeIntensity;
-    public float damage, knockbackForce;
-
+    protected SpellClass spell;
+    public float damage;
+    public float knockbackForce;
 }

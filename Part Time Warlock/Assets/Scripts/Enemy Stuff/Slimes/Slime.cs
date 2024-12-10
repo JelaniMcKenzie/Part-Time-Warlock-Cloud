@@ -133,7 +133,6 @@ public class Slime : GameEntity
 
             if (other.TryGetComponent<DamageSpell>(out var damageSpell))
             {
-                Instantiate(hitFlashObj, other.transform.position, Quaternion.identity);
                 Vector2 knockbackDirection;
 
                 if (damageSpell.TryGetComponent<PlayerProjectiles>(out var projectile))

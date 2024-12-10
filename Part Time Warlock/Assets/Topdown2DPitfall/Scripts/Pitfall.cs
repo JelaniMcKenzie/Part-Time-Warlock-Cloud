@@ -15,7 +15,7 @@ namespace Nevelson.Topdown2DPitfall.Assets.Scripts.Utils
         {
             currentPos = transform.position;
             whatIsPitfall = LayerMask.GetMask(Constants.PITFALL_COLLIDER);
-            //CreateBoundaries();
+            CreateBoundaries();
         }
 
         void OnDrawGizmosSelected()
