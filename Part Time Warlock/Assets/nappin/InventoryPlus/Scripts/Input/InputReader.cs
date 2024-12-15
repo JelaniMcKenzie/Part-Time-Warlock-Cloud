@@ -95,6 +95,8 @@ namespace InventoryPlus
                 if (inventoryOn)
                 {
                     UISlot currentUISlot = currentSelectedObj.GetComponent<UISlot>();
+
+                    
                     Storage s = currentUISlot.GetSlotOwner();
 
                     if (inventory.inChestRange == true)

@@ -95,9 +95,11 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         //inventorySaver.LoadSavedInventory(inventoryObj.GetComponent<Inventory>());
 
         foreach(Image image in cooldownImgs)
-        {
-            image.color = Color.black;
+        { 
+            image.color = Color.clear;
         }
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), false);
     }
 
 
@@ -178,19 +180,22 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
                 inventory.UseItem(inventory.hotbarUISlots[4]);
                 inventory.DropItem(inventory.hotbarUISlots[4]);
             }
-            
-            
 
-            
-            for (int i = 0; i < inventory.inventoryItems.Count; i++)
+
+
+
+            for (int i = 0; i < inventory.hotbarUISlots.Count; i++)
             {
-                if (inventory.inventoryItems[i].GetItemType() is SpellClass)
+                Debug.unityLogger.logEnabled = false;
+                if (inventory.GetInventorySlot(inventory.hotbarUISlots[i]).GetItemType() != null)
                 {
+                    Debug.unityLogger.logEnabled = true;
                     //Downcast from ItemSlot to SpellClass to access SpellClass methods
-                    SpellClass s = (SpellClass) inventory.inventoryItems[i].GetItemType();
+                    SpellClass s = (SpellClass)inventory.GetInventorySlot(inventory.hotbarUISlots[i]).GetItemType();
                     s.UpdateCooldown(cooldownImgs[i]);
-                   
+                    //return;
                 }
+
             }
             #endregion
 
@@ -474,6 +479,8 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
     {
         return true;
     }
+
+
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

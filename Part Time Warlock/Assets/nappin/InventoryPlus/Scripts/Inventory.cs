@@ -29,7 +29,7 @@ namespace InventoryPlus
         [SerializeField] public AudioSource swapAudio;
 
         [SerializeField] public bool enableDebug;
-
+        
 
         public bool inChestRange = false;
         private List<ItemSlot> dropList = new List<ItemSlot>();
@@ -40,6 +40,7 @@ namespace InventoryPlus
         private WizardPlayer p;
         private PassiveItemController passiveItemController;
         private GameObject instantiatedPassiveRef;
+        public GameObject[] cooldownImages;
 
 
         /**/
@@ -715,7 +716,12 @@ namespace InventoryPlus
 
         public void ShowInventory(bool _show)
         {
-            if(_show) anim.Rebind();
+            if (_show) anim.Rebind();
+
+            foreach (Image i in p.cooldownImgs)
+            {
+                i.gameObject.SetActive(!_show);
+            }
 
             //handle pickuppable instances
             if (instanciatePickuppableOnDrop && dropList.Count > 0)

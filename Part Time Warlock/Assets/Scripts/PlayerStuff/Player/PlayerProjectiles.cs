@@ -9,9 +9,10 @@ public class PlayerProjectiles : DamageSpell
     // Start is called before the first frame update
     public GameObject Firewall = null;
     public AudioClip FireClip = null;
+    public GameObject spellImpact = null;
 
     //checks what direction the player is facing and fires there
-    void Start()
+    void Awake()
     {
         
     }
@@ -29,15 +30,14 @@ public class PlayerProjectiles : DamageSpell
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.gameObject.CompareTag("Border"))
         {
-            Destroy(this.gameObject);
+            DestroyProjectile();
         }
 
         if (!this.gameObject.CompareTag("Ice") && other.CompareTag("Enemy"))
         {
-            Destroy(this.gameObject);
+            DestroyProjectile();
         }
     }
 
@@ -54,4 +54,17 @@ public class PlayerProjectiles : DamageSpell
         yield return new WaitForSeconds(0.025f);
         FireWall();
     }
+
+    public void DestroyProjectile()
+    {
+        
+        if (spellImpact != null)
+        {
+            Instantiate(spellImpact, transform.position, Quaternion.identity);
+        }
+
+        Destroy(this.gameObject);
+    }
+
+
 }

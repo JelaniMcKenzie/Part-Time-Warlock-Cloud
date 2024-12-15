@@ -272,6 +272,7 @@ MonoBehaviour:
   knockbackForce: 0
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
+  spellImpact: {fileID: 6673032355530760672, guid: 2dd7853e1da4f4040bf5b5766d7c5d52, type: 3}
 --- !u!1001 &5729486424282204325
 PrefabInstance:
   m_ObjectHideFlags: 0

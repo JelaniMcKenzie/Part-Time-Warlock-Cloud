@@ -38,6 +38,7 @@ namespace InventoryPlus
             {
                 dragInstance = new GameObject();
                 dragInstance.name = "Drag Image: " + UISlot.name;
+                
 
                 dragInstance.AddComponent<Image>();
                 dragInstance.GetComponent<Image>().sprite = UISlot.itemImg.sprite;
@@ -53,6 +54,9 @@ namespace InventoryPlus
         public void OnDrag(PointerEventData eventData)
         {
             if (dragInstance != null) dragInstance.transform.position = Input.mousePosition;
+
+            GameObject objectToFind = eventData.pointerCurrentRaycast.gameObject;
+            Debug.LogError(objectToFind);
         }
 
 

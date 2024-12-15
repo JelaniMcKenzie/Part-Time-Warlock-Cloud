@@ -8,4 +8,7 @@ public class DamageSpell : MonoBehaviour
     protected SpellClass spell;
     public float damage;
     public float knockbackForce;
+    public float screenShakeIntensity;
+    public float screenShakeLength;
+    
 }
