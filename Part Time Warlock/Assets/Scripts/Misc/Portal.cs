@@ -25,14 +25,20 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (p.coinNum < gm.rentGoal)
+            if (SceneManager.GetActiveScene().name == "RDG Test")
             {
-                scene = "Lose";
+                if (p.coinNum < gm.rentGoal)
+                {
+                    scene = "Lose";
+                }
+                Destroy(other.gameObject);
+                
+                
             }
-            Destroy(other.gameObject);
-            this.gameObject.SetActive(false);
             SceneManager.LoadScene(scene);
-            
+            this.gameObject.SetActive(false);
+
+
         }
     }
 }

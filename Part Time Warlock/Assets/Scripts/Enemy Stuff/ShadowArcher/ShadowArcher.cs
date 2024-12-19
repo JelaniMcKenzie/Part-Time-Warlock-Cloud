@@ -234,6 +234,13 @@ public class ShadowArcher : GameEntity
 
     public IEnumerator FreezeTime()
     {
+        if (activeIceBlock == null)
+        {
+            activeIceBlock = Instantiate(iceBlockPrefab, transform.position, Quaternion.identity);
+            activeIceBlock.transform.SetParent(transform);
+            activeIceBlock.transform.localPosition = Vector3.zero;
+            activeIceBlock.transform.localScale = gameObject.transform.localScale * 5f;
+        }
         isFrozen = true;
         moveSpeed = 0f;
         sprite.color = new Color32(0, 186, 192, 255);
@@ -257,7 +264,12 @@ public class ShadowArcher : GameEntity
 
         yield return new WaitForSeconds(2.5f);
 
-        
+        if (activeIceBlock != null)
+        {
+            Destroy(activeIceBlock);
+            activeIceBlock = null;
+        }
+
         moveSpeed = 2f; // Or your desired move speed
         isFrozen = false;
         canFire = true;
@@ -266,6 +278,7 @@ public class ShadowArcher : GameEntity
         animator.speed = 1;
         bowAnim.speed = 1;
         sprite.color = new Color32(255, 255, 255, 255);
+        Debug.LogWarning("AHHHHHH");
     }
 
     private static bool IsPointWithinCollider(Collider2D collider, Vector2 point)

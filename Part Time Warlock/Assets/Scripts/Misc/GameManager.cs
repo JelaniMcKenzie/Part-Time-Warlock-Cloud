@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Opener" ||
             SceneManager.GetActiveScene().name == "LichLordConvo" ||
-            SceneManager.GetActiveScene().name == "Opener2"||
+            SceneManager.GetActiveScene().name == "Opener2" ||
             SceneManager.GetActiveScene().name == "Objectives" ||
             SceneManager.GetActiveScene().name == "Win" ||
             SceneManager.GetActiveScene().name == "Lose")

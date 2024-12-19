@@ -33,12 +33,12 @@ MonoBehaviour:
   spellRune: {fileID: 0}
   spellPrefab: {fileID: 3528400409650182722, guid: f3f168928ef414341a4b20efc44cc8b7, type: 3}
   spellElement: 
-  damage: 25
+  damage: 1
   knockbackForce: 0
-  uses: 1
+  uses: 0
   maxUses: 1
   maxCooldown: 6
-  currentCooldown: 0
+  currentCooldown: 2.2357242
   spellSound: {fileID: 0}
   spellType: 0
   projectileSpeed: 25

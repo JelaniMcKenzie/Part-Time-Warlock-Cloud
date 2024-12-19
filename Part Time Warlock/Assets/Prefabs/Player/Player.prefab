@@ -749,6 +749,7 @@ MonoBehaviour:
   flashColor: {r: 0.5188679, g: 0, b: 0, a: 1}
   gameManager: {fileID: 0}
   onDeath: {fileID: 0}
+  iceBlockPrefab: {fileID: 0}
   burnSeconds: 5
   freezeSeconds: 0
   knockbackForce: 100

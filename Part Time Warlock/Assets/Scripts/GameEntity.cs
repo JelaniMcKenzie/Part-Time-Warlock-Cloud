@@ -19,12 +19,14 @@ public class GameEntity : MonoBehaviour, IDamageable
     public GameManager gameManager;
 
     public GameObject onDeath;
+    public GameObject iceBlockPrefab;
+    [SerializeField] protected GameObject activeIceBlock;
 
     //a base burnSeconds float to be manipulated by other objects
     public float burnSeconds = 3f;
 
     //a base freezeSeconds float to be manipulated by other objects
-    public float freezeSeconds;
+    public float freezeSeconds = 5f;
 
     public float knockbackForce = 100f; //Set the default knocback force (if there is knockback for damage)
     public bool canTurnInvincible;
@@ -224,18 +226,37 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         isFrozen = true;
         StartCoroutine(Frozen());
-        isFrozen = false;
+        
+        
         //Method to be overridden by derived classes.
         //Some enemies may have a positive effect when
         //this method is called
     }
 
-    public IEnumerator Frozen()
+    public virtual IEnumerator Frozen()
     {
         moveSpeed = 0f;
-        sprite.color = new Color32(0, 210, 210, 80);
+        if (activeIceBlock == null)
+        {
+            activeIceBlock = Instantiate(iceBlockPrefab, transform.position, Quaternion.identity);
+            activeIceBlock.transform.SetParent(transform);
+            activeIceBlock.transform.localPosition = Vector3.zero;
+            activeIceBlock.transform.localScale = transform.localScale * 1.125f;
+        }
+        
+
+        if (TryGetComponent<Animator>(out var Anim)) 
+        {
+            Anim.Play(Anim.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, 0f);
+            Anim.Rebind();
+        }
         yield return new WaitForSeconds(freezeSeconds);
-        sprite.color = new Color32(255, 255, 255, 255);
         moveSpeed = 4f;
+        isFrozen = false;
+        if (activeIceBlock != null)
+        {
+            Destroy(activeIceBlock);
+            activeIceBlock = null;
+        }
     }
 }

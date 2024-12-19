@@ -268,6 +268,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             moveSpeed = 5.0f;
+            transform.position = new Vector3(1, 2, 3);
         }
     }
 

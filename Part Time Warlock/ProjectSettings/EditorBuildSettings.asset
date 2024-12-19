@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LichLordArrest.unity
     guid: 8d760b90ad5af164babf9f0d4685112b
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 20d49297c194c1c49b6e4dc39dd9081e
   m_configObjects: {}

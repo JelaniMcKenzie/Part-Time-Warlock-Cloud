@@ -172,8 +172,8 @@ public class Slime : GameEntity
             //Destroy GameObject
             //Instantiate "EnemyFreeze" object that's basically a mannequin with an ice block
             //Or instantaiate an opaque ice block on top of it that breaks after five seconds
-
-            StartCoroutine(FreezeTime());
+            base.Freeze();
+            //StartCoroutine(FreezeTime());
 
         }
 
