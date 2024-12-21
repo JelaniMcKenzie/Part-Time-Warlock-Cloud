@@ -94,10 +94,10 @@ public class SpellClass : InventoryPlus.Item
                         {
                             GameObject spreadShot = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
 
-                            if (spreadShot.TryGetComponent<DamageSpell>(out var proj))
+                            if (spreadShot.TryGetComponent<DamageSpell>(out var dmg))
                             {
-                                proj.damage = damage;
-                                proj.knockbackForce = knockbackForce;
+                                dmg.damage = damage;
+                                dmg.knockbackForce = knockbackForce;
                                 
                                 
                             }
@@ -129,10 +129,11 @@ public class SpellClass : InventoryPlus.Item
                         //single shot logic here
                         GameObject projectile = Instantiate(spellPrefab, P.staffTip.transform.position, Quaternion.identity);
 
-                        if (projectile.TryGetComponent<DamageSpell>(out var proj))
+                        if (projectile.TryGetComponent<DamageSpell>(out var dmg))
                         {
-                            proj.damage = damage;
-                            proj.knockbackForce = knockbackForce;
+                            dmg.damage = damage;
+                            dmg.knockbackForce = knockbackForce;
+                            
                             
                         }
 

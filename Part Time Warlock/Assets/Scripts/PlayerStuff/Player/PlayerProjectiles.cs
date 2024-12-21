@@ -12,17 +12,13 @@ public class PlayerProjectiles : DamageSpell
     public GameObject spellImpact = null;
 
     //checks what direction the player is facing and fires there
-    void Awake()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         
         Destroy(this.gameObject, 2.5f);
-        if (gameObject.tag == "Fire")
+        if (gameObject.CompareTag("Fire"))
         {
             StartCoroutine(WaitForFire());
         }
@@ -57,12 +53,16 @@ public class PlayerProjectiles : DamageSpell
 
     public void DestroyProjectile()
     {
-        
+        cam.ShakeCamera(screenShakeIntensity, screenShakeLength);
         if (spellImpact != null)
         {
-            Instantiate(spellImpact, transform.position, Quaternion.identity);
+            Instantiate(spellImpact, transform.position, Quaternion.identity); 
         }
-
+        if (impactSound != null)
+        {
+            AudioSource.PlayClipAtPoint(impactSound, transform.position);
+        }
+        
         Destroy(this.gameObject);
     }
 

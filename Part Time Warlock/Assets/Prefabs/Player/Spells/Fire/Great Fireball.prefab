@@ -268,8 +268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666746ee788f6404bbd643aa70e02984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactSound: {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
   damage: 0
   knockbackForce: 0
+  screenShakeIntensity: 2
+  screenShakeLength: 0.5
+  cam: {fileID: 0}
   Firewall: {fileID: 0}
   FireClip: {fileID: 0}
   spellImpact: {fileID: 6673032355530760672, guid: 2dd7853e1da4f4040bf5b5766d7c5d52, type: 3}
