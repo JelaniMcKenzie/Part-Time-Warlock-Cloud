@@ -490,7 +490,9 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
         {    
             if (canHit == true)
             {
-                OnHit(enemy.attackingDamage);
+                Vector2 knockBackDirection = enemy.GetComponent<Rigidbody2D>().velocity;
+                OnHit(enemy.attackingDamage, knockBackDirection * 100f);
+                
             }
         }
     }
