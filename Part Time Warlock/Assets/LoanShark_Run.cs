@@ -36,12 +36,15 @@ public class LoanShark_Run : StateMachineBehaviour
         rb.velocity = moveSpeed * direction;
 
         // Check if within attack range
-        if (Vector2.Distance(player.position, rb.position) <= attackRange)
+        if (Vector2.Distance(player.position, rb.position) <= attackRange && loanSharkBoss.canSlam == true)
         {
+            loanSharkBoss.canSlam = false;
             animator.SetTrigger("Slam");
         }
 
-        if (Vector2.Distance(player.position, rb.position) <= rushRange)
+        if ((Vector2.Distance(player.position, rb.position) <= rushRange && 
+            (Vector2.Distance(player.position, rb.position) > attackRange && 
+            loanSharkBoss.canRush == true)))
         {
             // Decide whether to Slam or Start Rush
             float randomChance = Random.Range(0f, 1f); // Random chance between 0 and 1

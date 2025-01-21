@@ -7,15 +7,14 @@ public class LoanShark_Rush : StateMachineBehaviour
     Transform player;
     Rigidbody2D rb;
     LoanShark loanSharkBoss;
-    private Vector2 startPosition;
-    private Vector2 endPosition;
-    private Vector2 rushDirection;
 
-    [SerializeField] private float rushSpeed = 10f;
-    [SerializeField] private float rushDistance = 5f;
+    [SerializeField] private float rushSpeed = 20f;
+    [SerializeField] private float rushDuration = 0.5f;
     [SerializeField] private float attackRange = 1f;
+    Vector2 playerPos;
 
-    private bool hasReachedEndPoint = false;
+    private Vector2 rushDirection;
+    private float elapsedTime;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,33 +25,29 @@ public class LoanShark_Rush : StateMachineBehaviour
 
         attackRange = animator.GetFloat("attackRange");
 
-        // Determine the dash direction
-        rushDirection = (new Vector2(player.position.x, player.position.y) - rb.position).normalized;
+        playerPos = new Vector2(player.position.x, player.position.y);
 
-        // Calculate the start and end positions for the dash
-        startPosition = rb.position;
-        endPosition = startPosition + rushDirection * rushDistance;
+        // Initialize rush direction toward the player's current position
+        rushDirection = (playerPos - rb.position).normalized;
 
-        hasReachedEndPoint = false;
+        elapsedTime = 0f; // Reset elapsed time
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Move the enemy toward the end position
-        if (!hasReachedEndPoint)
-        {
-            rb.velocity = rushDirection * rushSpeed;
+       
+        // Apply rush movement
+        rb.velocity = rushDirection * rushSpeed;
+        elapsedTime += Time.deltaTime;
 
-            // Check if the enemy has reached the end position
-            if (Vector2.Distance(rb.position, endPosition) <= 0.1f)
-            {
-                hasReachedEndPoint = true;
-            }
+        if (rb.velocity.magnitude > rushSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * rushSpeed;
         }
 
-        // Transition to "Swing" state if within attack range or has reached the end position
-        if (Vector2.Distance(player.position, rb.position) <= attackRange || hasReachedEndPoint)
+        // Transition to "Swing" state if the enemy is within attack range or the rush duration ends
+        if (Vector2.Distance(player.position, rb.position) <= attackRange || elapsedTime >= rushDuration)
         {
             animator.SetTrigger("Swing");
         }
@@ -62,6 +57,6 @@ public class LoanShark_Rush : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Rush");
-        rb.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero; // Stop the enemy's movement
     }
 }

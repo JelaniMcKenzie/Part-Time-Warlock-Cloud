@@ -204,7 +204,7 @@ public class ShadowArcher : GameEntity
                 Vector2 knockback = knockbackDirection * damageSpell.knockbackForce; //reverse knockback force to send in the other direction
 
                 //After making sure that the collider has a script that implements IDamagable, we can run the OnHit implementation and pass our Vector2 force
-                damageable.OnHit(damageSpell.damage, knockback);
+                damageable.OnHit(damageSpell.damage);
 
                 if (isFrozen == false)
                 {

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static IDamageable;
 
 public class GameEntity : MonoBehaviour, IDamageable
 {
@@ -32,7 +34,10 @@ public class GameEntity : MonoBehaviour, IDamageable
     public bool canTurnInvincible;
 
     protected enum State { Idle, Moving, Hit, Stun, Stagger }
+    
     [SerializeField] protected State currentState = State.Idle;
+
+    protected DamageType damageType = DamageType.Melee;
     #region IDamageable properties
     // IDamageable properties
     public float Health
@@ -43,11 +48,11 @@ public class GameEntity : MonoBehaviour, IDamageable
 
     public bool Targetable { get; set; }
     public bool Invincible { get; set; }
-    public SimpleFlash FlashEffect 
+    public SimpleFlash FlashEffect
     {
         get { return flashEffect; }
-        set { flashEffect = value; } 
-        
+        set { flashEffect = value; }
+
     }
     #endregion
 
@@ -60,6 +65,8 @@ public class GameEntity : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
 
+        
+
     }
 
     // Update is called once per frame
@@ -69,10 +76,21 @@ public class GameEntity : MonoBehaviour, IDamageable
     }
 
     // IDamageable methods
-    public virtual void OnHit(float damage, Vector2 knockback)
+    public virtual void OnHit(float damage, KnockbackData knockback, DamageType _attackType)
     {
         if (!Invincible)
         {
+            switch (_attackType)
+            {
+                case DamageType.Projectile:
+
+                    break;
+                case DamageType.Melee:
+                    break;
+                case DamageType.AOE: 
+                    break;
+                
+            }
             isHit = true;
             // Disable collision with the PitBorder layer
             Physics2D.IgnoreLayerCollision(this.gameObject.layer, LayerMask.NameToLayer("PitBorder"), true);
@@ -93,7 +111,7 @@ public class GameEntity : MonoBehaviour, IDamageable
         }
     }
 
-    
+
 
     public virtual void OnHit(float damage)
     {
@@ -118,36 +136,33 @@ public class GameEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public virtual void ApplyKnockback(Vector2 knockback)
+    public virtual void ApplyKnockback(KnockbackData knockbackData)
     {
+        if (currentState == State.Hit) return; // Prevent overlapping knockbacks
+
         currentState = State.Hit;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
-        StartCoroutine(HandleKnockback(knockback));
+        isHit = true;
+
+        // Apply knockback force
+        rb.velocity = Vector2.zero; // Reset velocity to avoid stacking forces
+        rb.AddForce(knockbackData.Direction * knockbackData.Force, ForceMode2D.Impulse);
+
+        // Start knockback handling coroutine
+        StartCoroutine(HandleKnockback(knockbackData.Duration));
     }
 
-    private IEnumerator HandleKnockback(Vector2 knockback)
+
+    private IEnumerator HandleKnockback(float duration)
     {
         // Ignore collision with the PitBorder layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), true);
 
-        // Wait until the velocity drops below a small threshold, indicating the knockback is over
-        while (rb.velocity.magnitude > 0.1f)
-        {
-            yield return null; // Wait until the next frame
-        }
+        yield return new WaitForSeconds(duration);
+        isHit = false;
+        currentState = State.Idle;
 
         // Re-enable the collision with the PitBorder layer
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("PitBorder"), false);
-
-        // Recover from the hit
-        StartCoroutine(RecoverFromHit());
-    }
-
-    private IEnumerator RecoverFromHit()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isHit = false;
-        currentState = State.Idle;
     }
 
     public void OnObjectDestroyed()
@@ -226,8 +241,8 @@ public class GameEntity : MonoBehaviour, IDamageable
     {
         isFrozen = true;
         StartCoroutine(Frozen());
-        
-        
+
+
         //Method to be overridden by derived classes.
         //Some enemies may have a positive effect when
         //this method is called
@@ -243,9 +258,9 @@ public class GameEntity : MonoBehaviour, IDamageable
             activeIceBlock.transform.localPosition = Vector3.zero;
             activeIceBlock.transform.localScale = transform.localScale * 1.125f;
         }
-        
 
-        if (TryGetComponent<Animator>(out var Anim)) 
+
+        if (TryGetComponent<Animator>(out var Anim))
         {
             Anim.Play(Anim.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, 0f);
             Anim.Rebind();

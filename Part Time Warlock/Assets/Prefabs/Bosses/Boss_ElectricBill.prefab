@@ -202,7 +202,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 500
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -296,18 +296,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2000
+  flashEffect: {fileID: 0}
   moveSpeed: 5
+  attackingDamage: 0
   isFrozen: 0
   isBurning: 0
   canMove: 1
   sprite: {fileID: 0}
   rb: {fileID: 0}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
   gameManager: {fileID: 0}
   onDeath: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
+  iceBlockPrefab: {fileID: 0}
+  activeIceBlock: {fileID: 0}
   burnSeconds: 5
   freezeSeconds: 0
   knockbackForce: 100
   canTurnInvincible: 0
+  currentState: 0
   player: {fileID: 0}
   isFlipped: 0
   canSlam: 1

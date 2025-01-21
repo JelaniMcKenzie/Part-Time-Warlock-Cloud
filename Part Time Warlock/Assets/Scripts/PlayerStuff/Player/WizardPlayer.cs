@@ -485,14 +485,35 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && 
-            collision.gameObject.TryGetComponent<GameEntity>(out var enemy))
-        {    
-            if (canHit == true)
+        //in wol, running into enemies doesn't damage you, but running into their attacks does.
+        //in gungeon, running into enemies makes you take damage, but deals no knockback
+        //the same goes for issac, but certain attacks like bombs n such do knockback
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (canHit)
             {
-                Vector2 knockBackDirection = enemy.GetComponent<Rigidbody2D>().velocity;
-                OnHit(enemy.attackingDamage, knockBackDirection * 100f);
-                
+                rb.velocity = Vector3.zero;
+                Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+
+                // Check if GameEntity component exists
+                if (collision.gameObject.TryGetComponent<GameEntity>(out var enemy))
+                {
+                    //base.OnHit(enemy.attackingDamage, knockbackDirection * 100f, damageType);
+                }
+                else
+                {
+                    Debug.LogWarning("Enemy does not have a GameEntity component.");
+                }
+            }
+        }
+        else if (collision.gameObject.TryGetComponent<GameEntity>(out var enemy))
+        {
+            if (canHit)
+            {
+                rb.velocity = Vector3.zero;
+                Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+                //base.OnHit(enemy.attackingDamage, knockbackDirection * 100f, damageType);
             }
         }
     }
@@ -510,7 +531,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
             }
             if (canHit == true)
             {
-                OnHit(enemy.attackingDamage);
+                base.OnHit(enemy.attackingDamage);
             }
         }
     }

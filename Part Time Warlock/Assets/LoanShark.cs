@@ -7,8 +7,7 @@ public class LoanShark : GameEntity
     public WizardPlayer player;
     public bool isFlipped = false;
     public bool canSlam = true;
-    public bool isSlamming = false;
-    public bool isSpawningBalls = false;
+    public bool canRush = true;
 
     public Animator animator;
     private UIManager uiManager;
@@ -51,7 +50,8 @@ public class LoanShark : GameEntity
     private void OnEnable()
     {
         // Start the coroutine once
-        //StartCoroutine(SlamChanceTimer());
+        StartCoroutine(SlamChanceTimer());
+        StartCoroutine(RushTimer());
     }
     // Update is called once per frame
     void Update()
@@ -83,42 +83,18 @@ public class LoanShark : GameEntity
     {
         while (true) // Keep running indefinitely
         {
-            yield return new WaitForSeconds(3f);
-            float spawnChance = Random.Range(0f, 100f);
-
-            if (spawnChance <= 50f)
-            {
-                if (canSlam)
-                {
-                    ThunderSlam();
-                    canSlam = false; // Disable slamming until the next timer cycle
-                }
-            }
-
+            yield return new WaitForSeconds(1.5f);
+            canSlam = true;
         }
     }
 
-    public void ThunderSlam()
+    public IEnumerator RushTimer()
     {
-        // Implement your slam logic here
-        // For now, let's just log that slam occurred
-        //Debug.LogWarning("Thunder Slam!");
-        StartCoroutine(SlamTime());
-
-        // You might want to reset the slam chance timer here if needed
-    }
-
-    public IEnumerator SlamTime()
-    {
-        canMove = false;
-        isSlamming = true;
-        //wait for seconds of slam animation
-        yield return null;
-        //spawn thunderbolts
-        isSlamming = false;
-        canSlam = true;
-        yield return new WaitForSeconds(1f);
-        canMove = true;
+        while (true) // Keep running indefinitely
+        {
+            yield return new WaitForSeconds(5f);
+            canRush = true;
+        }
     }
 
     public void ShakeCameraTrigger()

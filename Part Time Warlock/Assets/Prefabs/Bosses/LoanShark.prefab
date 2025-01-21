@@ -216,7 +216,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1257238925952091700
 MonoBehaviour:
@@ -252,8 +252,7 @@ MonoBehaviour:
   player: {fileID: 0}
   isFlipped: 0
   canSlam: 1
-  isSlamming: 0
-  isSpawningBalls: 0
+  canRush: 1
   animator: {fileID: 0}
   audioSource: {fileID: 0}
   tbm: {fileID: 0}
@@ -270,7 +269,7 @@ GameObject:
   - component: {fileID: 905146446294450554}
   m_Layer: 7
   m_Name: CaseHitBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,7 +318,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.3174208, y: -0.35628873}

@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e738b125004526c48b4f3631031669d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rushSpeed: 20
-  rushDistance: 5
+  rushSpeed: 30
+  rushDuration: 0.5
   attackRange: 0
 --- !u!91 &9100000
 AnimatorController:
@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseDuration: 0.5
+  loanSharkBoss: {fileID: 0}
 --- !u!1101 &2849347422508705549
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

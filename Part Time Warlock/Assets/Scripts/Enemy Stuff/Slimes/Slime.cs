@@ -37,6 +37,7 @@ public class Slime : GameEntity
         //rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         gameManager = FindAnyObjectByType<GameManager>();
+        
         //SM.EnemyCount++;
     }
 
@@ -151,7 +152,7 @@ public class Slime : GameEntity
                 rb.velocity = Vector2.zero;
 
                 //After making sure that the collider has a script that implements IDamagable, we can run the OnHit implementation and pass our Vector2 force
-                damageable.OnHit(damageSpell.damage, knockback);
+                damageable.OnHit(damageSpell.damage);
 
                 if (isFrozen == false)
                 {
