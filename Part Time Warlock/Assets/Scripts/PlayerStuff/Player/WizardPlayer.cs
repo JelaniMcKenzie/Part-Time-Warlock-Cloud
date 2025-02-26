@@ -187,8 +187,7 @@ public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
             for (int i = 0; i < inventory.hotbarUISlots.Count; i++)
             {
                 Debug.unityLogger.logEnabled = false;
-                if (inventory.GetInventorySlot(inventory.hotbarUISlots[i]).GetItemType() != null &&
-                    inventory.GetInventorySlot(inventory.hotbarUISlots[i]).GetItemType() is SpellClass)
+                if (inventory.GetInventorySlot(inventory.hotbarUISlots[i]).GetItemType() != null)
                 {
                     Debug.unityLogger.logEnabled = true;
                     //Downcast from ItemSlot to SpellClass to access SpellClass methods

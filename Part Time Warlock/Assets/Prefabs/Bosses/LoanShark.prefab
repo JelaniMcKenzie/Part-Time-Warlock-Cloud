@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4747117455246766885}
   - component: {fileID: 2707189195371843955}
   - component: {fileID: 1257238925952091700}
-  - component: {fileID: 1692700593762376342}
   m_Layer: 7
   m_Name: LoanShark
   m_TagString: Enemy
@@ -204,7 +203,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 500
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -231,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b306ffc6bee87a94aa7bf73deee2b1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  flashEffect: {fileID: 1692700593762376342}
+  health: 100
+  flashEffect: {fileID: 0}
   moveSpeed: 5
   attackingDamage: 0
   isFrozen: 0
@@ -242,7 +241,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   gameManager: {fileID: 0}
-  onDeath: {fileID: 1598728251544579950, guid: 302f4ae0e16b33b4aad7f9b154e1b8ee, type: 3}
+  onDeath: {fileID: 0}
   iceBlockPrefab: {fileID: 0}
   activeIceBlock: {fileID: 0}
   burnSeconds: 3
@@ -257,21 +256,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   audioSource: {fileID: 0}
   tbm: {fileID: 0}
-  BigCoin: {fileID: 3322469984456626636, guid: 3908cf7c55f16b34c8ee9cbf410d87c9, type: 3}
---- !u!114 &1692700593762376342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5193008012125642349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856802009d82df44a780fdccc1e082d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 2100000, guid: 451d3cb0fa7ffac49932a5bc67457b01, type: 2}
-  duration: 0.125
+  BigCoin: {fileID: 0}
 --- !u!1 &8133610214504568195
 GameObject:
   m_ObjectHideFlags: 0

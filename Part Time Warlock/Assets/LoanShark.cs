@@ -107,22 +107,14 @@ public class LoanShark : GameEntity
 
         uiManager.isBossDead = true;
         uiManager.bossHealthBar.gameObject.SetActive(false);
-        if (audioSource != null)
-        {
-            audioSource.clip = tbm.defaultMusic;
-            audioSource.loop = true;
-            audioSource.pitch = 1.28f;
-            audioSource.Play();
-        }
+        audioSource.clip = tbm.defaultMusic;
+        audioSource.loop = true;
+        audioSource.pitch = 1.28f;
+        audioSource.Play();
 
         Instantiate(onDeath, transform.position, Quaternion.identity);
         SpawnCoin();
         Destroy(this.gameObject);
-    }
-
-    public override void TakeDamage(float amount)
-    {
-        base.TakeDamage(amount);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -131,6 +123,7 @@ public class LoanShark : GameEntity
         {
             TakeDamage(collision.GetComponent<PlayerProjectiles>().damage);
             uiManager.bossHealthBar.value = health;
+            StartCoroutine(DamageFlash());
 
         }
         else
@@ -191,5 +184,12 @@ public class LoanShark : GameEntity
             coinRigidbody.AddForce(impulseDirection * UnityEngine.Random.Range(1f, 3f), ForceMode2D.Impulse);
 
         }
+    }
+
+    public IEnumerator DamageFlash()
+    {
+        sprite.color = new Color32(100, 0, 0, 255);
+        yield return new WaitForSeconds(0.25f);
+        sprite.color = new Color32(255, 255, 255, 255);
     }
 }

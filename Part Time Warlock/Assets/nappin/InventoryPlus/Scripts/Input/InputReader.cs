@@ -173,31 +173,20 @@ namespace InventoryPlus
             }*/
 
            
-            if (inventoryOn)
+            //drop action
+            if (Input.GetKeyDown(KeyCode.Q) && currentSelectedObj != null && ((performDrop == ActionState.Inventory && inventoryOn) || (performDrop == ActionState.HUD && !inventoryOn) || (performDrop == ActionState.Both)))
             {
-                //drop action
-                if (Input.GetKeyDown(KeyCode.Q) && currentSelectedObj != null && ((performDrop == ActionState.Inventory && inventoryOn) || (performDrop == ActionState.HUD && !inventoryOn) || (performDrop == ActionState.Both)))
-                {
-                    inventory.DropItem(currentSelectedObj.GetComponent<UISlot>());
-                    if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
-                }
-
-                //sort action
-                if (Input.GetKeyDown(KeyCode.M) && currentSelectedObj != null && ((performSort == ActionState.Inventory && inventoryOn) || (performSort == ActionState.HUD && !inventoryOn) || (performSort == ActionState.Both)))
-                {
-                    inventory.Sort();
-                    if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
-                }
-
-                //swap action - clear swap
-                if (Input.GetKeyDown(KeyCode.N) && currentSelectedObj != null && ((performSwap == ActionState.Inventory && inventoryOn) || (performSwap == ActionState.HUD && !inventoryOn) || (performSwap == ActionState.Both)))
-                {
-                    inventory.SwapItem(currentSelectedObj.GetComponent<UISlot>());
-                    if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
-                }
-                
+                inventory.DropItem(currentSelectedObj.GetComponent<UISlot>());
+                if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
             }
-            
+
+            //sort action
+            if (Input.GetKeyDown(KeyCode.M) && currentSelectedObj != null && ((performSort == ActionState.Inventory && inventoryOn) || (performSort == ActionState.HUD && !inventoryOn) || (performSort == ActionState.Both)))
+            {
+                inventory.Sort();
+                if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
+            }
+
             /*
             //equip action
             if (Input.GetKeyDown(KeyCode.E) && currentSelectedObj != null && ((performEquip == ActionState.Inventory && inventoryOn) || (performEquip == ActionState.HUD && !inventoryOn) || (performEquip == ActionState.Both)))
@@ -206,7 +195,12 @@ namespace InventoryPlus
                 if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
             }*/
 
-            
+            //swap action - clear swap
+            if (Input.GetKeyDown(KeyCode.N) && currentSelectedObj != null && ((performSwap == ActionState.Inventory && inventoryOn) || (performSwap == ActionState.HUD && !inventoryOn) || (performSwap == ActionState.Both)))
+            {
+                inventory.SwapItem(currentSelectedObj.GetComponent<UISlot>());
+                if (details != null && inventoryOn) details.UpdateDetails(currentSelectedObj.GetComponent<UISlot>(), false);
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 inventory.ClearSwap();
