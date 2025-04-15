@@ -1,13 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Runtime.CompilerServices;
-using System;
-using UnityEngine.InputSystem;
 using InventoryPlus;
-using UnityEngine.Tilemaps;
 using Nevelson.Topdown2DPitfall.Assets.Scripts.Utils;
 
 public class WizardPlayer : GameEntity, IPitfallCheck, IPitfallObject
